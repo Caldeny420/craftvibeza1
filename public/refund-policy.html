@@ -1,46 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Refund Policy – CraftVibeZA</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    body{font-family:'Inter',sans-serif;background:#000;color:#fff;}
-    .hero-safe{padding-top:120px;}
-    @media(min-width:640px){.hero-safe{padding-top:140px;}}
-    @media(min-width:1024px){.hero-safe{padding-top:160px;}}
-  </style>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Refund Policy – CraftVibeZA</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  body{font-family:'Inter',sans-serif;background:#000;color:#fff;margin:0;}
+  .safe-top{padding-top:120px;}
+  @media(min-width:640px){.safe-top{padding-top:140px;}}
+  @media(min-width:1024px){.safe-top{padding-top:160px;}}
+</style>
 </head>
 <body class="min-h-screen flex flex-col">
 <div id="header-placeholder"></div>
 
-<section class="hero-safe px-6 text-center">
+<section class="safe-top px-6 text-center">
   <div class="max-w-5xl mx-auto">
-    <h1 class="text-6xl sm:text-8xl md:text-9xl font-black mb-12 text-green-400 leading-tight">
-      REFUND POLICY
-    </h1>
-
+    <h1 class="text-6xl sm:text-8xl md:text-9xl font-black mb-12 text-green-400 leading-tight">REFUND POLICY</h1>
     <div class="bg-zinc-900/95 backdrop-blur-xl border-4 border-green-500 rounded-3xl p-10 sm:p-16 md:p-24">
-      <p class="text-4xl sm:text-5xl md:text-6xl font-black text-green-400 mb-16">
-        We ship on time or you don’t pay. Simple.
-      </p>
+      <p class="text-4xl sm:text-5xl md:text-6xl font-black text-green-400 mb-16">We ship on time or you don’t pay. Simple.</p>
 
       <div class="space-y-12 text-2xl sm:text-3xl md:text-4xl max-w-4xl mx-auto text-left">
         <div class="bg-black/50 rounded-2xl p-8 border border-green-500/50">
           <p class="font-black text-green-300">Growth & Dominance tiers</p>
           <p class="mt-4">100% live by 28 February 2026 → otherwise your entire setup fee is refunded instantly. No questions. No pro-rata.</p>
         </div>
-
         <div class="bg-black/50 rounded-2xl p-8 border border-yellow-500/50">
           <p class="font-black text-yellow-400">Elite tier</p>
-          <p class="mt-4">If the three Elite-exclusive features (CPD tracker, AI Brief Writer, full white-label) are not delivered by 28 Feb 2026 → you instantly receive <strong>R100,000 refund</strong> (the exact difference between Elite R149,900 and Dominance R89,900 setup fees).</p>
-          <p class="mt-6 text-green-300">Core platform + all Dominance features will already be live → you keep paying only the Dominance-equivalent price until Elite extras arrive.</p>
+          <p class="mt-4">If the three Elite-exclusive features are not delivered by 28 Feb 2026 → you instantly receive <strong>R100,000 refund</strong> (difference between Elite and Dominance setup fees).</p>
+          <p class="mt-6 text-green-300">Core platform + Dominance features will be live → you keep paying only Dominance-equivalent until Elite extras arrive.</p>
         </div>
-
         <div class="bg-black/50 rounded-2xl p-8">
-          <p>• Monthly billing starts <strong>only when YOUR firm clicks “Go Live”</strong> in the dashboard</p>
+          <p>• Monthly billing starts <strong>only when YOUR firm clicks “Go Live”</strong></p>
           <p>• Cancel anytime – 30 days notice via WhatsApp</p>
           <p>• Zero cancellation fees • Zero contracts</p>
           <p>• All refunds processed within 48 hours via EFT</p>
@@ -49,9 +38,7 @@
 
       <div class="mt-20">
         <p class="text-4xl font-black text-yellow-400">Questions or need your money?</p>
-        <a href="https://wa.me/27764312871" class="inline-block mt-8 text-6xl sm:text-7xl font-black text-green-400 hover:scale-110 transition">
-          076 431 2871
-        </a>
+        <a href="https://wa.me/27764312871" class="inline-block mt-8 text-6xl sm:text-7xl font-black text-green-400 hover:scale-110 transition">076 431 2871</a>
       </div>
     </div>
   </div>
@@ -62,5 +49,4 @@
   fetch('header.html').then(r=>r.ok?r.text():'').then(h=>document.getElementById('header-placeholder').innerHTML=h);
   fetch('footer.html').then(r=>r.ok?r.text():'').then(f=>document.getElementById('footer-placeholder').innerHTML=f);
 </script>
-</body>
-</html>
+</body></html>
