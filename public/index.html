@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="CraftVibeZA – The new AI growth platform built exclusively for South African law firms. Only 12 Founding Partners forever. Live end Feb 2026." />
+  <title>CraftVibeZA | Only 12 Founding Partners Forever – Live Feb 2026</title>
+  <link rel="icon" href="/images/craftvibe-logo.jpg" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root { --green:#10b981; --yellow:#fbbf24; --amber:#f59e0b; --red:#ef4444; }
+    body { font-family:'Inter',sans-serif; background:#000; color:#fff; margin:0; overflow-x:hidden; }
+    .badge-new { @apply inline-block bg-amber-500 text-black font-black px-5 py-2 rounded-full text-xs sm:text-sm tracking-wider; }
+
+    /* NEW BADGE – BEST ONE FOR ZERO CLIENTS */
+    .founding-badge {
+      @apply absolute -top-5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-yellow-400 via-orange-400 to-amber-500 text-black font-black px-8 py-3 rounded-full text-sm uppercase tracking-widest shadow-2xl animate-pulse border-4 border-black;
+      letter-spacing: 2px;
+    }
+    @keyframes pulse { 0%,100% { transform: scale(1); opacity: 0.95; } 50% { transform: scale(1.05); opacity: 1; } }
+
+    .check { @apply text-green-400 text-3xl font-black; }
+    .cross { @apply text-gray-600 text-3xl opacity-50; }
+    .hero-safe-padding { padding-top: 110px; }
+    @media (min-width: 640px) { .hero-safe-padding { padding-top: 130px; } }
+    @media (min-width: 1024px) { .hero-safe-padding { padding-top: 150px; } }
+    .pricing-scroll { -webkit-overflow-scrolling: touch; scrollbar-width: none; -ms-overflow-style: none; }
+    .pricing-scroll::-webkit-scrollbar { display: none; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <div id="header-placeholder"></div>
+
+  <!-- HERO -->
+  <section class="hero-safe-padding text-center px-6 max-w-5xl mx-auto">
+    <div class="badge-new mb-8">FOUNDING PARTNERS • ONLY 12 FOREVER • LIVE END FEB 2026</div>
+    <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-tight mb-8">
+      The New Standard<br class="hidden sm:block">for SA Law Firms<br>in <span class="text-green-400">2026</span>
+    </h1>
+    <p class="text-xl md:text-3xl opacity-90 mb-12 max-w-4xl mx-auto">
+      Full systems delivered and live <strong>by end February 2026</strong> — price locked forever.
+    </p>
+    <button onclick="startQuiz()" class="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-black font-black text-3xl sm:text-4xl md:text-5xl px-12 sm:px-16 py-8 sm:py-10 rounded-full shadow-2xl hover:scale-105 transition">
+      SEE IF YOU QUALIFY (90 Sec)
+    </button>
+    <div class="mt-16 flex flex-wrap justify-center gap-4 text-sm sm:text-base">
+      <span class="bg-white/10 backdrop-blur px-6 py-3 rounded-full">Exclusively for SA law firms</span>
+      <span class="bg-white/10 backdrop-blur px-6 py-3 rounded-full">100% POPIA compliant</span>
+      <span class="bg-white/10 backdrop-blur px-6 py-3 rounded-full">Proudly South African</span>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing" class="py-20 px-6 bg-black">
+    <div class="max-w-7xl mx-auto text-center">
+      <h2 class="text-5xl sm:text-6xl md:text-7xl font-black mb-6">Founding Partner Pricing</h2>
+      <p class="text-xl sm:text-2xl opacity-80 mb-16">Only 12 firms ever get this pricing — <strong class="text-red-500">forever</strong></p>
+
+      <!-- MOBILE SWIPE -->
+      <div class="block md:hidden overflow-x-auto pricing-scroll pb-8 -mx-6 px-6">
+        <div class="inline-flex gap-6 min-w-max items-start">
+          <div class="w-80 flex-shrink-0 bg-gradient-to-b from-zinc-900 to-black border-2 border-zinc-700 rounded-3xl p-8">
+            <h3 class="text-4xl font-black text-green-400 mb-4">Growth</h3>
+            <div class="text-6xl font-black text-green-400">R14,900<span class="text-3xl">/mo</span></div>
+            <p class="text-lg opacity-70 my-4">Normal: <strong>R49,900+</strong></p>
+            <p class="text-xl">Setup: R49,900</p>
+          </div>
+
+          <div class="relative w-96 flex-shrink-0 bg-gradient-to-b from-green-900/30 to-black border-4 border-green-500 rounded-3xl p-10 shadow-2xl scale-110">
+            <div class="founding-badge">FOUNDING PRICE – LOCKED FOREVER</div>
+            <h3 class="text-5xl font-black text-yellow-400 mb-4 mt-4">Dominance</h3>
+            <div class="text-7xl font-black text-green-400">R29,900<span class="text-4xl">/mo</span></div>
+            <p class="text-lg opacity-70 my-4">Normal: <strong>R89k–R119k</strong></p>
+            <p class="text-2xl">Setup: R89,900</p>
+          </div>
+
+          <div class="w-80 flex-shrink-0 bg-gradient-to-b from-zinc-900 to-black border-2 border-yellow-600 rounded-3xl p-8">
+            <h3 class="text-4xl font-black text-yellow-400 mb-4">Elite</h3>
+            <div class="text-6xl font-black text-green-400">R49,900<span class="text-3xl">/mo</span></div>
+            <p class="text-lg opacity-70 my-4">Normal: <strong>R149,900+</strong></p>
+            <p class="text-xl">Setup: R149,900</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- DESKTOP GRID -->
+      <div class="hidden md:grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div class="bg-gradient-to-b from-zinc-900 to-black border-2 border-zinc-700 rounded-3xl p-8 hover:border-green-500 transition">
+          <h3 class="text-4xl font-black text-green-400 mb-4">Growth</h3>
+          <div class="text-6xl font-black text-green-400 mb-2">R14,900<span class="text-3xl">/mo</span></div>
+          <p class="text-lg opacity-70 mb-6">Normal: <strong>R49,900+</strong></p>
+          <p class="text-xl opacity-80">Setup: R49,900</p>
+        </div>
+
+        <div class="relative bg-gradient-to-b from-green-900/20 to-black border-4 border-green-500 rounded-3xl p-10 shadow-2xl transform scale-105">
+          <div class="founding-badge">FOUNDING PRICE – LOCKED FOREVER</div>
+          <h3 class="text-5xl font-black text-yellow-400 mb-4 mt-4">Dominance</h3>
+          <div class="text-7xl font-black text-green-400 mb-2">R29,900<span class="text-4xl">/mo</span></div>
+          <p class="text-lg opacity-70 mb-6">Normal: <strong>R89k–R119k</strong></p>
+          <p class="text-2xl opacity-80">Setup: R89,900</p>
+        </div>
+
+        <div class="bg-gradient-to-b from-zinc-900 to-black border-2 border-yellow-600 rounded-3xl p-8 hover:border-yellow-500 transition">
+          <h3 class="text-4xl font-black text-yellow-400 mb-4">Elite</h3>
+          <div class="text-6xl font-black text-green-400 mb-2">R49,900<span class="text-3xl">/mo</span></div>
+          <p class="text-lg opacity-70 mb-6">Normal: <strong>R149,900+</strong></p>
+          <p class="text-xl opacity-80">Setup: R149,900</p>
+        </div>
+      </div>
+
+      <!-- DIRECT CAPTURE FORM -->
+      <div class="mt-20 max-w-2xl mx-auto bg-zinc-900/80 backdrop-blur-xl border-4 border-green-500 rounded-3xl p-8 sm:p-10 shadow-2xl">
+        <h3 class="text-4xl sm:text-5xl font-black text-center mb-8 text-green-400">Secure One of the 12 Spots Forever</h3>
+        <form id="direct-capture-form" class="space-y-6">
+          <input type="text" name="name" placeholder="Full Name" required class="w-full px-6 py-5 rounded-2xl bg-zinc-800 text-white text-lg focus:outline-none focus:ring-4 focus:ring-green-500">
+          <input type="tel" name="phone" placeholder="WhatsApp Number (e.g. 082 123 4567)" required class="w-full px-6 py-5 rounded-2xl bg-zinc-800 text-white text-lg focus:outline-none focus:ring-4 focus:ring-green-500">
+          <div class="flex items-start gap-4 bg-zinc-800/50 p-5 rounded-2xl cursor-pointer select-none" onclick="toggleConsent(this)">
+            <input type="checkbox" required class="sr-only">
+            <div class="checkbox-custom w-7 h-7 rounded border-2 border-gray-500 flex items-center justify-center flex-shrink-0 transition-all">
+              <i class="fas fa-check text-green-500 text-lg hidden transition-all"></i>
+            </div>
+            <label class="cursor-pointer text-sm leading-tight">I consent to be contacted via WhatsApp/call (POPIA compliant)</label>
+          </div>
+          <button type="submit" class="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-black font-black text-2xl sm:text-4xl py-10 rounded-3xl shadow-2xl hover:scale-105 transition">
+            YES – CALL ME IN UNDER 60 SECONDS
+          </button>
+        </form>
+        <p class="mt-6 text-center opacity-80">Only 12 Founding Partners forever • We reply instantly</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES TABLE -->
+  <section id="features" class="py-20 px-6 bg-black">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-5xl sm:text-6xl md:text-7xl font-black text-center mb-16">Complete Feature Breakdown</h2>
+      <div class="overflow-x-auto rounded-3xl border border-zinc-800">
+        <table class="w-full min-w-[700px] text-left">
+          <thead class="bg-gradient-to-r from-zinc-900 to-black">
+            <tr>
+              <th class="px-6 py-5 text-lg font-black">Feature</th>
+              <th class="text-center px-6 py-5 text-xl font-black text-green-400">Growth</th>
+              <th class="text-center px-6 py-5 text-xl font-black text-yellow-400">Dominance</th>
+              <th class="text-center px-6 py-5 text-xl font-black text-amber-400">Elite</th>
+            </tr>
+          </thead>
+          <tbody class="text-base">
+            <tr class="border-t border-zinc-800"><td class="px-6 py-5">Professional website on CraftVibeZA subdomain</td><td class="text-center check">Yes</td><td class="text-center check">Yes</td><td class="text-center check">Yes</td></tr>
+            <tr class="border-t border-zinc-800 bg-zinc-900/30"><td class="px-6 py-5">AI full-site generator + no-code editor</td><td class="text-center check">Yes</td><td class="text-center check">Yes</td><td class="text-center check">Yes</td></tr>
+            <tr class="border-t border-zinc-800"><td class="px-6 py-5">Lead dashboard + automated calendar</td><td class="text-center check">Yes</td><td class="text-center check">Yes</td><td class="text-center check">Yes</td></tr>
+            <tr class="border-t border-zinc-800 bg-zinc-900/30"><td class="px-6 py-5">Full automated billing + trust warnings</td><td class="text-center check">Yes</td><td class="text-center check">Yes</td><td class="text-center check">Yes</td></tr>
+            <tr class="border-t border-zinc-800 bg-zinc-900/30">
+              <td class="px-6 py-5 font-bold text-lime-300">Automated Email + WhatsApp sequencing<br><span class="text-xs opacity-80">Late invoices · Lead nurturing · Birthdays · Referral asks</span></td>
+              <td class="text-center cross">No</td><td class="text-center check text-4xl">Yes</td><td class="text-center check text-4xl">Yes</td>
+            </tr>
+            <tr class="border-t border-zinc-800"><td class="px-6 py-5 font-bold text-lime-300">Analytics, ROI dashboard, affiliate program</td><td class="text-center cross">No</td><td class="text-center check">Yes</td><td class="text-center check">Yes</td></tr>
+            <tr class="border-t border-zinc-800 bg-zinc-900/30"><td class="px-6 py-5 font-bold text-lime-300">Priority support + 1-on-1 onboarding</td><td class="text-center cross">No</td><td class="text-center check">Yes</td><td class="text-center check">Yes</td></tr>
+            <tr class="border-t border-zinc-800 bg-zinc-900/30"><td class="px-6 py-5 font-bold text-lime-300">AI Brief & Letter Writer (SA-law trained)</td><td class="text-center cross">No</td><td class="text-center cross">No</td><td class="text-center check">Yes</td></tr>
+            <tr class="border-t border-zinc-800"><td class="px-6 py-5 font-bold text-lime-300">Automated LPC/CPD tracking & reporting</td><td class="text-center cross">No</td><td class="text-center cross">No</td><td class="text-center check">Yes</td></tr>
+            <tr class="border-t border-zinc-800 bg-zinc-900/30"><td class="px-6 py-5 font-bold text-lime-300">White-label + custom domain + strategy day</td><td class="text-center cross">No</td><td class="text-center cross">No</td><td class="text-center check">Yes</td></tr>
+            <tr class="border-t border-zinc-800 bg-gradient-to-r from-amber-900/30 to-transparent">
+              <td class="px-6 py-5 font-bold text-yellow-400">Permanent Founding Partner pricing (never increases)</td>
+              <td class="text-center check text-yellow-400 text-4xl">Yes</td><td class="text-center check text-yellow-400 text-4xl">Yes</td><td class="text-center check text-yellow-400 text-4xl">Yes</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCARCITY BAR -->
+  <section class="py-16 bg-gradient-to-r from-green-900/60 to-emerald-900/60 border-y-4 border-green-500">
+    <div class="max-w-5xl mx-auto text-center px-6">
+      <p class="text-4xl md:text-6xl font-black mb-6">
+        Only <span class="text-red-500">12</span> Founding Partners <span class="text-red-500">Forever</span>
+      </p>
+      <p class="text-2xl md:text-4xl opacity-90 mb-8">Applications Close End February 2026</p>
+      <a href="https://wa.me/27764312871?text=Hi%20CraftVibeZA!%20I%20want%20one%20of%20the%2012%20Founding%20spots%20before%20Feb%202026" target="_blank"
+         class="inline-flex items-center gap-4 bg-white text-black font-black text-2xl md:text-3xl px-12 py-8 rounded-full hover:scale-105 transition shadow-2xl">
+        <i class="fab fa-whatsapp text-4xl text-green-500"></i>
+        YES – MESSAGE FOUNDER NOW
+      </a>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="py-20 px-6 bg-black">
+    <div class="max-w-4xl mx-auto text-center">
+      <button onclick="document.getElementById('faq-toggle').classList.toggle('hidden')" class="text-lg underline underline-offset-4 opacity-70 hover:opacity-100">
+        Still have questions? Click to expand
+      </button>
+      <div id="faq-toggle" class="hidden mt-12 space-y-8 text-left text-lg">
+        <div class="bg-zinc-900/50 rounded-2xl p-6 border border-zinc-800"><p class="font-bold">When will my firm go live?</p><p class="opacity-90">Every Founding Partner is fully live by end February 2026 — guaranteed.</p></div>
+        <div class="bg-zinc-900/50 rounded-2xl p-6 border border-zinc-800"><p class="font-bold">Why only 12 Founding Partners?</p><p class="opacity-90">White-glove service + direct input into future features. No exceptions.</p></div>
+        <div class="bg-zinc-900/50 rounded-2xl p-6 border border-zinc-800"><p class="font-bold">Is my data safe?</p><p class="opacity-90">100% POPIA compliant. End-to-end encryption. SA-hosted.</p></div>
+        <div class="bg-zinc-900/50 rounded-2xl p-6 border border-zinc-800"><p class="font-bold">Can I cancel anytime?</p><p class="opacity-90">Yes — 30 days written notice. Zero lock-in.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUIZ OVERLAY & RESULTS (unchanged) -->
+  <div id="quiz-overlay" class="fixed inset-0 bg-black/98 backdrop-blur-2xl flex items-center justify-center z-[1000] hidden px-4">
+    <div class="w-full max-w-2xl">
+      <div class="h-2 bg-zinc-800 rounded-full mb-10 overflow-hidden"><div id="quiz-progress" class="h-full bg-gradient-to-r from-green-500 to-emerald-600 transition-all duration-700" style="width:0%"></div></div>
+      <h2 id="quiz-question-text" class="text-4xl md:text-6xl font-black text-center mb-12 leading-tight"></h2>
+      <div id="quiz-options" class="grid gap-5"></div>
+    </div>
+  </div>
+
+  <section id="quiz-results" class="py-20 px-6 bg-black hidden">
+    <!-- (your existing quiz results section – unchanged) -->
+    <div class="max-w-5xl mx-auto text-center">
+      <h2 class="text-4xl md:text-6xl font-black mb-10 text-green-400">Your Perfect Founding Plan</h2>
+      <div class="relative inline-block mb-12">
+        <div id="tier-name" class="px-16 py-8 rounded-full text-5xl md:text-7xl font-black text-black bg-gradient-to-r from-green-500 to-emerald-600 shadow-2xl">CALCULATING...</div>
+        <div id="popular-badge" class="founding-badge" style="display:none">FOUNDING PRICE – LOCKED FOREVER</div>
+      </div>
+      <!-- rest unchanged -->
+    </div>
+  </section>
+
+  <!-- FLOATING WHATSAPP -->
+  <div class="fixed bottom-6 right-6 z-[997]">
+    <a href="https://wa.me/27764312871?text=Hi%20CraftVibeZA!%20I%20want%20a%20Founding%20Partner%20spot%20before%20they're%20gone" target="_blank"
+       class="flex items-center gap-3 bg-white text-black rounded-full shadow-2xl pl-5 pr-7 py-4 font-bold text-base transition-all hover:scale-110">
+      <span class="absolute inset-0 rounded-full bg-green-500 opacity-75 animate-ping"></span>
+      <div class="relative flex items-center gap-3">
+        <i class="fab fa-whatsapp text-3xl text-green-500"></i>
+        <div class="hidden md:block text-sm"><div class="opacity-70">Chat with founder</div><div>Reply in under 60 seconds</div></div>
+      </div>
+    </a>
+  </div>
+
+  <div id="footer-placeholder"></div>
+  <script src="script.js"></script>
+</body>
+</html>
