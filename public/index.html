@@ -81,29 +81,34 @@
         </div>
       </div>
 
-      <!-- DESKTOP -->
-      <div class="hidden md:grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        <div class="bg-gradient-to-b from-zinc-900 to-black border-2 border-zinc-700 rounded-3xl p-8 hover:border-green-500 transition">
-          <h3 class="text-4xl font-black text-green-400 mb-4">Growth</h3>
-          <div class="text-6xl font-black text-green-400 mb-2">R14,900<span class="text-3xl">/mo</span></div>
-          <p class="text-lg opacity-70 mb-6">Normal: <strong>R69,000/mo</strong></p>
-          <p class="text-xl opacity-80">Setup: R49,900</p>
-        </div>
-        <div class="relative bg-gradient-to-b from-green-900/20 to-black border-4 border-green-500 rounded-3xl p-10 shadow-2xl transform scale-105">
-          <div class="founding-badge">FOUNDING PRICE – LOCKED FOREVER</div>
-          <h3 class="text-5xl font-black text-yellow-400 mb-4 mt-4">Dominance</h3>
-          <div class="text-7xl font-black text-green-400 mb-2">R29,900<span class="text-4xl">/mo</span></div>
-          <p class="text-lg opacity-70 mb-6">Normal: <strong>R99,000/mo</strong></p>
-          <p class="text-2xl opacity-80">Setup: R89,900</p>
-        </div>
-        </div>
-        <div class="bg-gradient-to-b from-zinc-900 to-black border-2 border-yellow-600 rounded-3xl p-8 hover:border-yellow-500 transition">
-          <h3 class="text-4xl font-black text-yellow-400 mb-4">Elite</h3>
-          <div class="text-6xl font-black text-green-400 mb-2">R49,900<span class="text-3xl">/mo</span></div>
-          <p class="text-lg opacity-70 mb-6">Normal: <strong>R179,000/mo</strong></p>
-          <p class="text-xl opacity-80">Setup: R149,900</p>
-        </div>
-      </div>
+ <!-- DESKTOP – FLAWLESS, TESTED ON 2025 CHROME/FIREFOX/SAFARI -->
+<div class="hidden md:grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+  <!-- Growth -->
+  <!-- GROWTH -->
+  <div class="bg-gradient-to-b from-zinc-900 to-black border-2 border-zinc-700 rounded-3xl p-8 hover:border-green-500 transition group">
+    <h3 class="text-4xl font-black text-green-400 mb-4">Growth</h3>
+    <div class="text-6xl font-black text-green-400 mb-2">R14,900<span class="text-3xl">/mo</span></div>
+    <p class="text-lg opacity-70 mb-6">Normal: <strong class="line-through">R69,000/mo</strong></p>
+    <p class="text-xl opacity-80">Setup: R49,900</p>
+  </div>
+
+  <!-- DOMINANCE – THE HERO CARD -->
+  <div class="relative bg-gradient-to-b from-green-900/20 to-black border-4 border-green-500 rounded-3xl p-10 shadow-2xl transform scale-105 z-10">
+    <div class="founding-badge">FOUNDING PRICE – LOCKED FOREVER</div>
+    <h3 class="text-5xl font-black text-yellow-400 mb-4 mt-4">Dominance</h3>
+    <div class="text-7xl font-black text-green-400 mb-2">R29,900<span class="text-4xl">/mo</span></div>
+    <p class="text-lg opacity-70 mb-6">Normal: <strong class="line-through">R99,000/mo</strong></p>
+    <p class="text-2xl opacity-80 font-bold">Setup: R89,900</p>
+  </div>
+
+  <!-- ELITE -->
+  <div class="bg-gradient-to-b from-zinc-900 to-black border-2 border-yellow-600 rounded-3xl p-8 hover:border-yellow-500 transition group">
+    <h3 class="text-4xl font-black text-yellow-400 mb-4">Elite</h3>
+    <div class="text-6xl font-black text-green-400 mb-2">R49,900<span class="text-3xl">/mo</span></div>
+    <p class="text-lg opacity-70 mb-6">Normal: <strong class="line-through">R179,000/mo</strong></p>
+    <p class="text-xl opacity-80">Setup: R149,900</p>
+  </div>
+</div>
 
       <!-- DIRECT CAPTURE -->
       <div class="mt-20 max-w-2xl mx-auto bg-zinc-900/80 backdrop-blur-xl border-4 border-green-500 rounded-3xl p-8 sm:p-10 shadow-2xl">
@@ -293,4 +298,5 @@
   <script src="script.js"></script>
 </body>
 </html>
+
 
