@@ -160,8 +160,6 @@
               <td class="text-green-400 font-bold text-center">Yes</td>
               <td class="text-green-400 font-bold text-center">Yes</td>
             </tr>
-
-            <!-- TRUST ACCOUNT WARNING — RED EMERGENCY -->
             <tr class="bg-red-900/30 border-b-4 border-red-600">
               <td class="py-8 font-black text-red-400 flex items-center gap-3">
                 NEVER Miss a Trust Account Warning Again<br>
@@ -171,7 +169,6 @@
               <td class="text-green-400 font-bold text-center text-3xl">Yes</td>
               <td class="text-green-400 font-bold text-center text-3xl">Yes</td>
             </tr>
-
             <tr class="border-b border-gray-800">
               <td class="py-6 text-green-300">
                 Automated Email + WhatsApp sequencing<br>
@@ -181,15 +178,12 @@
               <td class="text-green-400 font-bold text-center">Yes</td>
               <td class="text-green-400 font-bold text-center">Yes</td>
             </tr>
-
             <tr class="border-b border-gray-800">
               <td class="py-6">Analytics, ROI dashboard, affiliate program</td>
               <td class="text-red-500 font-black text-center">No</td>
               <td class="text-green-400 font-bold text-center">Yes</td>
               <td class="text-green-400 font-bold text-center">Yes</td>
             </tr>
-
-            <!-- LPC/CPD — ORANGE PANIC -->
             <tr class="bg-orange-900/30 border-b-4 border-orange-600">
               <td class="py-8 font-black text-orange-300 flex items-center gap-3">
                 Automated LPC/CPD Tracking & Reporting<br>
@@ -199,7 +193,6 @@
               <td class="text-red-500 font-black text-center text-3xl">No</td>
               <td class="text-green-400 font-bold text-center text-4xl animate-pulse">YES</td>
             </tr>
-
             <tr class="border-b border-gray-800">
               <td class="py-6 text-yellow-300">
                 AI Brief & Letter Writer (trained on SA law)
@@ -208,15 +201,12 @@
               <td class="text-red-500 font-black text-center">No</td>
               <td class="text-green-400 font-bold text-center">Yes</td>
             </tr>
-
             <tr class="border-b border-gray-800">
               <td class="py-6">Full white-label + custom domain + strategy day</td>
               <td class="text-red-500 font-black text-center">No</td>
               <td class="text-red-500 font-black text-center">No</td>
               <td class="text-green-400 font-bold text-center">Yes</td>
             </tr>
-
-            <!-- LOCKED PRICE -->
             <tr class="bg-green-900/50 border-t-4 border-green-500">
               <td class="py-8 font-black text-green-400">
                 Permanent Founding Partner Pricing<br>
@@ -285,10 +275,12 @@
       <form id="capture-form" class="mt-16 max-w-2xl mx-auto space-y-6">
         <input type="text" name="name" placeholder="Your Full Name" required class="w-full px-6 py-5 rounded-2xl bg-zinc-800 text-white text-lg focus:outline-none focus:ring-4 focus:ring-green-500">
         <input type="tel" name="phone" placeholder="WhatsApp Number" required class="w-full px-6 py-5 rounded-2xl bg-zinc-800 text-white text-lg focus:outline-none focus:ring-4 focus:ring-green-500">
-        <div class="flex items-start gap-4 bg-zinc-800/50 p-5 rounded-2xl cursor-pointer" onclick="toggleConsent(this)">
+        <div class="flex items-start gap-4 bg-zinc-800/50 p-5 rounded-2xl cursor-pointer select-none" onclick="toggleConsent(this)">
           <input type="checkbox" required class="sr-only">
-          <div class="checkbox-custom w-7 h-7 rounded border-2 border-gray-500 flex items-center justify-center"><i class="fas fa-check text-green-500 text-lg hidden"></i></div>
-          <label class="cursor-pointer text-sm">I consent to be contacted (POPIA compliant)</label>
+          <div class="checkbox-custom w-7 h-7 rounded border-2 border-gray-500 flex items-center justify-center flex-shrink-0 transition-all">
+            <i class="="fas fa-check text-green-500 text-lg hidden transition-all"></i>
+          </div>
+          <label class="cursor-pointer text-sm leading-tight">I consent to be contacted (POPIA compliant)</label>
         </div>
         <button type="submit" class="w-full bg-white text-black font-black text-3xl py-8 rounded-3xl hover:scale-105 transition shadow-2xl">YES – CALL ME NOW</button>
       </form>
