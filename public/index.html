@@ -20,8 +20,6 @@
       letter-spacing: 2px;
     }
     @keyframes pulse { 0%,100% { transform: scale(1); opacity: 0.95; } 50% { transform: scale(1.05); opacity: 1; } }
-    .check { @apply text-green-400 text-3xl font-black; }
-    .cross { @apply text-red-500 text-3xl font-black; }
     .hero-safe-padding { padding-top: 110px; }
     @media (min-width: 640px) { .hero-safe-padding { padding-top: 130px; } }
     @media (min-width: 1024px) { .hero-safe-padding { padding-top: 150px; } }
@@ -111,13 +109,16 @@
         <form id="direct-capture-form" class="space-y-6">
           <input type="text" name="name" placeholder="Full Name" required class="w-full px-6 py-5 rounded-2xl bg-zinc-800 text-white text-lg focus:outline-none focus:ring-4 focus:ring-green-500">
           <input type="tel" name="phone" placeholder="WhatsApp Number (e.g. 082 123 4567)" required class="w-full px-6 py-5 rounded-2xl bg-zinc-800 text-white text-lg focus:outline-none focus:ring-4 focus:ring-green-500">
-          <div class="flex items-start gap-4 bg-zinc-800/50 p-5 rounded-2xl cursor-pointer select-none" onclick="toggleConsent(this)">
+
+          <!-- CONSENT BOX #1 – FIXED & PERFECT -->
+          <div class="flex items-start gap-4 bg-zinc-800/50 p-5 rounded-2xl cursor-pointer select-none transition-all" onclick="toggleConsent(this)">
             <input type="checkbox" required class="sr-only">
             <div class="checkbox-custom w-7 h-7 rounded border-2 border-gray-500 flex items-center justify-center flex-shrink-0 transition-all">
               <i class="fas fa-check text-green-500 text-lg hidden transition-all"></i>
             </div>
             <label class="cursor-pointer text-sm leading-tight">I consent to be contacted via WhatsApp/call (POPIA compliant)</label>
           </div>
+
           <button type="submit" class="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-black font-black text-2xl sm:text-4xl py-10 rounded-3xl shadow-2xl hover:scale-105 transition">
             YES – CALL ME IN UNDER 60 SECONDS
           </button>
@@ -127,7 +128,7 @@
     </div>
   </section>
 
-  <!-- NUCLEAR FEATURE TABLE -->
+  <!-- FEATURE TABLE -->
   <section id="features" class="py-20 px-6 bg-black">
     <div class="max-w-7xl mx-auto">
       <h2 class="text-5xl sm:text-6xl md:text-7xl font-black text-center mb-16">Complete Feature Breakdown</h2>
@@ -142,80 +143,16 @@
             </tr>
           </thead>
           <tbody class="text-lg md:text-xl">
-            <tr class="border-b border-gray-800">
-              <td class="py-6">Professional website on CraftVibeZA subdomain</td>
-              <td class="text-green-400 font-bold text-center">Yes</td>
-              <td class="text-green-400 font-bold text-center">Yes</td>
-              <td class="text-green-400 font-bold text-center">Yes</td>
-            </tr>
-            <tr class="border-b border-gray-800">
-              <td class="py-6">AI full-site generator + no-code editor</td>
-              <td class="text-green-400 font-bold text-center">Yes</td>
-              <td class="text-green-400 font-bold text-center">Yes</td>
-              <td class="text-green-400 font-bold text-center">Yes</td>
-            </tr>
-            <tr class="border-b border-gray-800">
-              <td class="py-6">Lead dashboard + automated calendar</td>
-              <td class="text-green-400 font-bold text-center">Yes</td>
-              <td class="text-green-400 font-bold text-center">Yes</td>
-              <td class="text-green-400 font-bold text-center">Yes</td>
-            </tr>
-            <tr class="bg-red-900/30 border-b-4 border-red-600">
-              <td class="py-8 font-black text-red-400 flex items-center gap-3">
-                NEVER Miss a Trust Account Warning Again<br>
-                <span class="text-sm font-normal opacity-90">Automatic alerts before you transfer trust money wrong</span>
-              </td>
-              <td class="text-green-400 font-bold text-center text-3xl">Yes</td>
-              <td class="text-green-400 font-bold text-center text-3xl">Yes</td>
-              <td class="text-green-400 font-bold text-center text-3xl">Yes</td>
-            </tr>
-            <tr class="border-b border-gray-800">
-              <td class="py-6 text-green-300">
-                Automated Email + WhatsApp sequencing<br>
-                <span class="text-sm opacity-80">Late invoices · Lead nurturing · Birthdays · Referral asks</span>
-              </td>
-              <td class="text-red-500 font-black text-center">No</td>
-              <td class="text-green-400 font-bold text-center">Yes</td>
-              <td class="text-green-400 font-bold text-center">Yes</td>
-            </tr>
-            <tr class="border-b border-gray-800">
-              <td class="py-6">Analytics, ROI dashboard, affiliate program</td>
-              <td class="text-red-500 font-black text-center">No</td>
-              <td class="text-green-400 font-bold text-center">Yes</td>
-              <td class="text-green-400 font-bold text-center">Yes</td>
-            </tr>
-            <tr class="bg-orange-900/30 border-b-4 border-orange-600">
-              <td class="py-8 font-black text-orange-300 flex items-center gap-3">
-                Automated LPC/CPD Tracking & Reporting<br>
-                <span class="text-sm font-normal opacity-90">No more Excel hell · Never miss points again</span>
-              </td>
-              <td class="text-red-500 font-black text-center text-3xl">No</td>
-              <td class="text-red-500 font-black text-center text-3xl">No</td>
-              <td class="text-green-400 font-bold text-center text-4xl animate-pulse">YES</td>
-            </tr>
-            <tr class="border-b border-gray-800">
-              <td class="py-6 text-yellow-300">
-                AI Brief & Letter Writer (trained on SA law)
-              </td>
-              <td class="text-red-500 font-black text-center">No</td>
-              <td class="text-red-500 font-black text-center">No</td>
-              <td class="text-green-400 font-bold text-center">Yes</td>
-            </tr>
-            <tr class="border-b border-gray-800">
-              <td class="py-6">Full white-label + custom domain + strategy day</td>
-              <td class="text-red-500 font-black text-center">No</td>
-              <td class="text-red-500 font-black text-center">No</td>
-              <td class="text-green-400 font-bold text-center">Yes</td>
-            </tr>
-            <tr class="bg-green-900/50 border-t-4 border-green-500">
-              <td class="py-8 font-black text-green-400">
-                Permanent Founding Partner Pricing<br>
-                <span class="text-sm opacity-90">Your price NEVER increases — even when we charge R150k+/mo later</span>
-              </td>
-              <td class="text-green-400 font-bold text-center text-3xl">Yes</td>
-              <td class="text-green-400 font-bold text-center text-3xl">Yes</td>
-              <td class="text-green-400 font-bold text-center text-3xl">Yes</td>
-            </tr>
+            <tr class="border-b border-gray-800"><td class="py-6">Professional website on CraftVibeZA subdomain</td><td class="text-green-400 font-bold text-center">Yes</td><td class="text-green-400 font-bold text-center">Yes</td><td class="text-green-400 font-bold text-center">Yes</td></tr>
+            <tr class="border-b border-gray-800"><td class="py-6">AI full-site generator + no-code editor</td><td class="text-green-400 font-bold text-center">Yes</td><td class="text-green-400 font-bold text-center">Yes</td><td class="text-green-400 font-bold text-center">Yes</td></tr>
+            <tr class="border-b border-gray-800"><td class="py-6">Lead dashboard + automated calendar</td><td class="text-green-400 font-bold text-center">Yes</td><td class="text-green-400 font-bold text-center">Yes</td><td class="text-green-400 font-bold text-center">Yes</td></tr>
+            <tr class="bg-red-900/30 border-b-4 border-red-600"><td class="py-8 font-black text-red-400 flex items-center gap-3">NEVER Miss a Trust Account Warning Again<br><span class="text-sm font-normal opacity-90">Automatic alerts before you transfer trust money wrong</span></td><td class="text-green-400 font-bold text-center text-3xl">Yes</td><td class="text-green-400 font-bold text-center text-3xl">Yes</td><td class="text-green-400 font-bold text-center text-3xl">Yes</td></tr>
+            <tr class="border-b border-gray-800"><td class="py-6 text-green-300">Automated Email + WhatsApp sequencing<br><span class="text-sm opacity-80">Late invoices · Lead nurturing · Birthdays · Referral asks</span></td><td class="text-red-500 font-black text-center">No</td><td class="text-green-400 font-bold text-center">Yes</td><td class="text-green-400 font-bold text-center">Yes</td></tr>
+            <tr class="border-b border-gray-800"><td class="py-6">Analytics, ROI dashboard, affiliate program</td><td class="text-red-500 font-black text-center">No</td><td class="text-green-400 font-bold text-center">Yes</td><td class="text-green-400 font-bold text-center">Yes</td></tr>
+            <tr class="bg-orange-900/30 border-b-4 border-orange-600"><td class="py-8 font-black text-orange-300 flex items-center gap-3">Automated LPC/CPD Tracking & Reporting<br><span class="text-sm font-normal opacity-90">No more Excel hell · Never miss points again</span></td><td class="text-red-500 font-black text-center text-3xl">No</td><td class="text-red-500 font-black text-center text-3xl">No</td><td class="text-green-400 font-bold text-center text-4xl animate-pulse">YES</td></tr>
+            <tr class="border-b border-gray-800"><td class="py-6 text-yellow-300">AI Brief & Letter Writer (trained on SA law)</td><td class="text-red-500 font-black text-center">No</td><td class="text-red-500 font-black text-center">No</td><td class="text-green-400 font-bold text-center">Yes</td></tr>
+            <tr class="border-b border-gray-800"><td class="py-6">Full white-label + custom domain + strategy day</td><td class="text-red-500 font-black text-center">No</td><td class="text-red-500 font-black text-center">No</td><td class="text-green-400 font-bold text-center">Yes</td></tr>
+            <tr class="bg-green-900/50 border-t-4 border-green-500"><td class="py-8 font-black text-green-400">Permanent Founding Partner Pricing<br><span class="text-sm opacity-90">Your price NEVER increases — even when we charge R150k+/mo later</span></td><td class="text-green-400 font-bold text-center text-3xl">Yes</td><td class="text-green-400 font-bold text-center text-3xl">Yes</td><td class="text-green-400 font-bold text-center text-3xl">Yes</td></tr>
           </tbody>
         </table>
       </div>
@@ -225,14 +162,10 @@
   <!-- SCARCITY BAR -->
   <section class="py-16 bg-gradient-to-r from-green-900/60 to-emerald-900/60 border-y-4 border-green-500">
     <div class="max-w-5xl mx-auto text-center px-6">
-      <p class="text-4xl md:text-6xl font-black mb-6">
-        Only <span class="text-red-500">12</span> Founding Partners <span class="text-red-500">Forever</span>
-      </p>
+      <p class="text-4xl md:text-6xl font-black mb-6">Only <span class="text-red-500">12</span> Founding Partners <span class="text-red-500">Forever</span></p>
       <p class="text-2xl md:text-4xl opacity-90 mb-8">Applications Close End February 2026</p>
-      <a href="https://wa.me/27764312871?text=Hi%20CraftVibeZA!%20I%20want%20one%20of%20the%2012%20Founding%20spots%20before%20Feb%202026" target="_blank"
-         class="inline-flex items-center gap-4 bg-white text-black font-black text-2xl md:text-3xl px-12 py-8 rounded-full hover:scale-105 transition shadow-2xl">
-        <i class="fab fa-whatsapp text-4xl text-green-500"></i>
-        YES – MESSAGE FOUNDER NOW
+      <a href="https://wa.me/27764312871?text=Hi%20CraftVibeZA!%20I%20want%20one%20of%20the%2012%20Founding%20spots%20before%20Feb%202026" target="_blank" class="inline-flex items-center gap-4 bg-white text-black font-black text-2xl md:text-3xl px-12 py-8 rounded-full hover:scale-105 transition shadow-2xl">
+        <i class="fab fa-whatsapp text-4xl text-green-500"></i> YES – MESSAGE FOUNDER NOW
       </a>
     </div>
   </section>
@@ -240,9 +173,7 @@
   <!-- FAQ -->
   <section id="faq" class="py-20 px-6 bg-black">
     <div class="max-w-4xl mx-auto text-center">
-      <button onclick="document.getElementById('faq-toggle').classList.toggle('hidden')" class="text-lg underline underline-offset-4 opacity-70 hover:opacity-100">
-        Still have questions? Click to expand
-      </button>
+      <button onclick="document.getElementById('faq-toggle').classList.toggle('hidden')" class="text-lg underline underline-offset-4 opacity-70 hover:opacity-100">Still have questions? Click to expand</button>
       <div id="faq-toggle" class="hidden mt-12 space-y-8 text-left text-lg">
         <div class="bg-zinc-900/50 rounded-2xl p-6 border border-zinc-800"><p class="font-bold">When will my firm go live?</p><p class="opacity-90">Every Founding Partner is fully live by end February 2026 — guaranteed.</p></div>
         <div class="bg-zinc-900/50 rounded-2xl p-6 border border-zinc-800"><p class="font-bold">Why only 12 Founding Partners?</p><p class="opacity-90">White-glove service + direct input into future features. No exceptions.</p></div>
@@ -261,7 +192,7 @@
     </div>
   </div>
 
-  <!-- QUIZ RESULTS -->
+  <!-- QUIZ RESULTS – CONSENT BOX NOW 100% FIXED -->
   <section id="quiz-results" class="py-20 px-6 bg-black hidden">
     <div class="max-w-5xl mx-auto text-center">
       <h2 class="text-4xl md:text-6xl font-black mb-10 text-green-400">Your Perfect Founding Plan</h2>
@@ -272,16 +203,20 @@
       <div id="tier-price" class="text-6xl md:text-8xl font-black text-green-400 mb-8"></div>
       <div id="final-total" class="text-4xl opacity-80 mb-12"></div>
       <div id="recommended-list" class="max-w-4xl mx-auto text-left text-xl leading-relaxed bg-zinc-900/50 rounded-3xl p-10"></div>
+
       <form id="capture-form" class="mt-16 max-w-2xl mx-auto space-y-6">
         <input type="text" name="name" placeholder="Your Full Name" required class="w-full px-6 py-5 rounded-2xl bg-zinc-800 text-white text-lg focus:outline-none focus:ring-4 focus:ring-green-500">
         <input type="tel" name="phone" placeholder="WhatsApp Number" required class="w-full px-6 py-5 rounded-2xl bg-zinc-800 text-white text-lg focus:outline-none focus:ring-4 focus:ring-green-500">
-        <div class="flex items-start gap-4 bg-zinc-800/50 p-5 rounded-2xl cursor-pointer select-none" onclick="toggleConsent(this)">
+
+        <!-- CONSENT BOX #2 – IDENTICAL TO #1 -->
+        <div class="flex items-start gap-4 bg-zinc-800/50 p-5 rounded-2xl cursor-pointer select-none transition-all" onclick="toggleConsent(this)">
           <input type="checkbox" required class="sr-only">
           <div class="checkbox-custom w-7 h-7 rounded border-2 border-gray-500 flex items-center justify-center flex-shrink-0 transition-all">
-            <i class="="fas fa-check text-green-500 text-lg hidden transition-all"></i>
+            <i class="fas fa-check text-green-500 text-lg hidden transition-all"></i>
           </div>
           <label class="cursor-pointer text-sm leading-tight">I consent to be contacted (POPIA compliant)</label>
         </div>
+
         <button type="submit" class="w-full bg-white text-black font-black text-3xl py-8 rounded-3xl hover:scale-105 transition shadow-2xl">YES – CALL ME NOW</button>
       </form>
     </div>
@@ -289,8 +224,7 @@
 
   <!-- FLOATING WHATSAPP -->
   <div class="fixed bottom-6 right-6 z-[997]">
-    <a href="https://wa.me/27764312871?text=Hi%20CraftVibeZA!%20I%20want%20a%20Founding%20Partner%20spot%20before%20they're%20gone" target="_blank"
-       class="flex items-center gap-3 bg-white text-black rounded-full shadow-2xl pl-5 pr-7 py-4 font-bold text-base transition-all hover:scale-110">
+    <a href="https://wa.me/27764312871?text=Hi%20CraftVibeZA!%20I%20want%20a%20Founding%20Partner%20spot%20before%20they're%20gone" target="_blank" class="flex items-center gap-3 bg-white text-black rounded-full shadow-2xl pl-5 pr-7 py-4 font-bold text-base transition-all hover:scale-110">
       <span class="absolute inset-0 rounded-full bg-green-500 opacity-75 animate-ping"></span>
       <div class="relative flex items-center gap-3">
         <i class="fab fa-whatsapp text-3xl text-green-500"></i>
