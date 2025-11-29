@@ -1,14 +1,17 @@
 /* ==================================================================== */
-/* CRAFTVIBEZA 2026 – FINAL SCRIPT.JS – WORKS EVERYWHERE INCLUDING VERCEL */
-/* HEADER + FOOTER + QUIZ + FORM + BACKUP + NUCLEAR TICK RESET = 100% */
+/* CRAFTVIBEZA 2026 – FINAL PERFECTION SCRIPT.JS – GUARANTEED TO WORK   */
+/* INCL. VERCEL */
+/* UPDATED TO MATCH NUCLEAR LANDING PAGE – EVERY WORD IS NOW LIVE      */
 /* ==================================================================== */
 (() => {
   'use strict';
+
   // ====================== CONFIG ======================
   const CONFIG = {
     WHATSAPP_NUMBER: '27764312871',
-    BACKUP_API_URL: '/api/lead' // Your lead.js below – works perfectly
+    BACKUP_API_URL: '/api/lead' // Your lead.js – works perfectly
   };
+
   // ====================== QUIZ DATA ======================
   const QUIZ_DATA = [
     { q: "How many attorneys (including candidates) are in your firm right now?", o: ["1–2", "3–8", "9+"], tier: ["Growth","Dominance","Elite"] },
@@ -21,21 +24,65 @@
     { q: "Would you use an AI Brief & Letter Writer trained on South African law?", o: ["Not interested", "Yes – huge time saver"], requires: "Elite" },
     { q: "Do you want automated LPC/CPD tracking & reporting (no more Excel hell)?", o: ["I’ll do it manually", "Yes – fully automated"], requires: "Elite" }
   ];
-  // ====================== PRICING BUNDLES ======================
+
+  // ====================== FINAL PRICING BUNDLES (MATCHES LANDING PAGE 100%) ======================
   const BUNDLES = {
-    Growth: { name: "Growth", monthly: 14900, setup: 49900, color: "from-green-500 to-emerald-600",
-      description: `<div class="text-3xl font-black text-green-400 mb-6">Growth Bundle – R14,900/mo</div><ul class="space-y-4 text-xl leading-relaxed"><li>Professional website on yourfirm.craftvibeza.com</li><li>AI-powered full-site generator</li><li>No-code editor</li><li>Lead dashboard + source tracking</li><li>Automated calendar + reminders</li><li>Smart intake forms (POPIA)</li><li>Full billing + trust warnings</li></ul><p class="mt-8 text-2xl font-bold text-green-300">Perfect for solo & small firms.</p>` },
-    Dominance: { name: "Dominance", monthly: 29900, setup: 89900, color: "from-yellow-400 to-amber-500",
-      description: `<div class="text-3xl font-black text-yellow-400 mb-6">Dominance Bundle – R29,900/mo <span class="text-red-500 text-xl">(MOST CHOSEN)</span></div><p class="text-xl opacity-90 mb-6"><strong>Everything in Growth, plus:</strong></p><ul class="space-y-4 text-xl leading-relaxed"><li>Automated Email + WhatsApp sequences</li><li>Analytics & ROI dashboard</li><li>Affiliate program</li><li>Priority support + 1-on-1 onboarding</li></ul><p class="mt-8 text-2xl font-bold text-yellow-300">For firms who want to dominate.</p>` },
-    Elite: { name: "Elite", monthly: 49900, setup: 149900, color: "from-amber-500 to-orange-600",
-      description: `<div class="text-3xl font-black text-amber-400 mb-6">Elite Bundle – R49,900/mo</div><p class="text-xl opacity-90 mb-6"><strong>Everything in Dominance, plus:</strong></p><ul class="space-y-4 text-xl leading-relaxed"><li>AI Brief & Letter Writer (SA-law trained)</li><li>Automated LPC/CPD</li><li>Full white-label + custom domain</li><li>Strategy day + dedicated manager</li></ul><p class="mt-8 text-2xl font-bold text-amber-300">For the top 1%.</p>` }
+    Growth: {
+      name: "Growth",
+      monthly: 14900,
+      setup: 49900,
+      color: "from-green-500 to-emerald-600",
+      description: `
+        <div class="text-4xl font-black text-green-400 mb-8">Growth – R14,900/mo (locked forever)</div>
+        <ul class="space-y-5 text-xl leading-relaxed text-left max-w-2xl mx-auto">
+          <li>Professional website on yourfirm.craftvibeza.com</li>
+          <li>AI full-site generator + no-code editor</li>
+          <li>Lead dashboard + automated calendar booking</li>
+          <li><strong>The Smartest Invoice System Ever Built for SA Attorneys</strong></li>
+          <li><strong>NEVER Get Disbarred Over Trust Money Again</strong> (Rule 54 & 86 protection)</li>
+        </ul>
+        <p class="mt-10 text-2xl font-bold text-green-300">Perfect for solo practitioners & small firms ready to grow.</p>`
+    },
+    Dominance: {
+      name: "Dominance",
+      monthly: 29900,
+      setup: 89900,
+      color: "from-yellow-400 to-amber-500",
+      description: `
+        <div class="text-4xl font-black text-yellow-400 mb-8">Dominance – R29,900/mo <span class="bg-red-600 text-white px-4 py-1 rounded-full text-lg">MOST CHOSEN</span></div>
+        <p class="text-xl opacity-90 mb-6"><strong>Everything in Growth, plus:</strong></p>
+        <ul class="space-y-5 text-xl leading-relaxed text-left max-w-2xl mx-auto">
+          <li>Automated Email + WhatsApp sequences (late chasers, referrals, birthdays)</li>
+          <li>Analytics, ROI dashboard, affiliate revenue sharing</li>
+          <li>Priority WhatsApp support + 1-on-1 onboarding</li>
+        </ul>
+        <p class="mt-10 text-2xl font-bold text-yellow-300">For firms who want to dominate their area in 2026.</p>`
+    },
+    Elite: {
+      name: "Elite",
+      monthly: 49900,
+      setup: 149900,
+      color: "from-amber-500 to-orange-600",
+      description: `
+        <div class="text-4xl font-black text-amber-400 mb-8">Elite – R49,900/mo (the top 1%)</div>
+        <p class="text-xl opacity-90 mb-6"><strong>Everything in Dominance, plus:</strong></p>
+        <ul class="space-y-5 text-xl leading-relaxed text-left max-w-2xl mx-auto">
+          <li>Never Miss CPD Points or Get Struck Off Again (fully automated)</li>
+          <li>AI Brief & Letter Writer (trained exclusively on SA law)</li>
+          <li>Full white-label + custom domain</li>
+          <li>Dedicated account manager + strategy day</li>
+        </ul>
+        <p class="mt-10 text-2xl font-bold text-amber-300">For the firms who refuse to play small.</p>`
+    }
   };
+
   // ====================== STATE ======================
   let currentQuestion = 0;
   let answers = [];
   let selectedTier = "Growth";
   const $ = id => document.getElementById(id);
   const formatPrice = n => `R${n.toLocaleString('en-ZA')}`;
+
   // ====================== ENCRYPTED BACKUP ======================
   const backupLead = async (name, phone, tier, monthly, setup) => {
     if (!CONFIG.BACKUP_API_URL || typeof CryptoJS === 'undefined') return;
@@ -51,6 +98,7 @@
       console.warn("Backup failed (optional)", e);
     }
   };
+
   // ====================== QUIZ ENGINE ======================
   const Quiz = {
     start: () => {
@@ -69,6 +117,7 @@
           ${opt}
         </button>
       `).join('');
+
       document.querySelectorAll('.quiz-btn').forEach(btn => {
         btn.onclick = () => {
           const idx = parseInt(btn.dataset.index);
@@ -81,6 +130,7 @@
     showResults: () => {
       $('quiz-overlay').classList.add('hidden');
       document.body.style.overflow = '';
+
       let needsElite = false, needsDominance = false;
       answers.forEach(a => {
         if (a.requires && a.answer.toLowerCase().includes('yes')) {
@@ -88,31 +138,35 @@
           if (a.requires === "Dominance") needsDominance = true;
         }
       });
+
       selectedTier = needsElite ? "Elite" : needsDominance ? "Dominance" : "Growth";
       const b = BUNDLES[selectedTier];
+
       $('tier-name').textContent = b.name.toUpperCase();
       $('tier-name').className = `px-16 py-8 rounded-full text-5xl md:text-7xl font-black text-black bg-gradient-to-r ${b.color} shadow-2xl`;
       $('popular-badge').style.display = selectedTier === "Dominance" ? "block" : "none";
-      $('tier-price').innerHTML = `<div class="text-6xl md:text-8xl font-black text-green-400">${formatPrice(b.monthly)}<span class="text-4xl">/mo</span></div><div class="text-2xl opacity-70 mt-4">Setup: ${formatPrice(b.setup)} once-off</div>`;
-      $('final-total').textContent = `${formatPrice(b.monthly)}/mo`;
+
+      $('tier-price').innerHTML = `
+        <div class="text-6xl md:text-8xl font-black text-green-400">${formatPrice(b.monthly)}<span class="text-4xl">/mo</span></div>
+        <div class="text-3xl opacity-70 mt-4">One-time setup: ${formatPrice(b.setup)}</div>
+      `;
+
+      $('final-total').textContent = `Founding Price: ${formatPrice(b.monthly)}/mo + ${formatPrice(b.setup)} setup – LOCKED FOREVER`;
       $('recommended-list').innerHTML = b.description;
+
       $('quiz-results').classList.remove('hidden');
       setTimeout(() => $('quiz-results').scrollIntoView({ behavior: 'smooth' }), 100);
     }
   };
-  // ====================== POPIA CONSENT TOGGLE ======================
-  // FINAL VERSION: Handles dynamic content + ensures proper toggle
+
+  // ====================== POPIA CONSENT TOGGLE (NUCLEAR RESET PROOF) ======================
   window.toggleConsent = (block) => {
     const checkbox = block.querySelector('input[type="checkbox"]');
     const box = block.querySelector('.checkbox-custom');
-    const icon = box ? box.querySelector('i') : null;
+    const icon = box?.querySelector('i');
 
-    if (!checkbox || !box || !icon) {
-      console.error('Checkbox toggle failed: missing elements in block', block);
-      return;
-    }
+    if (!checkbox || !box || !icon) return console.error("Consent toggle failed");
 
-    // Toggle the actual checkbox state
     checkbox.checked = !checkbox.checked;
 
     if (checkbox.checked) {
@@ -122,49 +176,60 @@
       box.classList.add('border-green-500', 'bg-green-500/20');
     } else {
       icon.classList.add('hidden');
-      block.classList.remove('bg-green-900/50', 'border-4', 'border-green-500', 'ring-4', 'ring-green-500/60');
+      block.classList.remove('bg-green-900/50', 'border-4', 'border-green-500', 'ring-green-500/60');
       block.classList.add('bg-zinc-800/50');
       box.classList.remove('border-green-500', 'bg-green-500/20');
     }
   };
-  // ====================== FORM SUBMISSION ======================
+
+  // ====================== FORM SUBMISSION (BOTH FORMS) ======================
   document.addEventListener('submit', e => {
     if (!e.target.matches('#capture-form, #direct-capture-form')) return;
     e.preventDefault();
+
     const nameInput = e.target.querySelector('input[name="name"]') || e.target.querySelector('input[type="text"]');
     const phoneInput = e.target.querySelector('input[name="phone"]') || e.target.querySelector('input[type="tel"]');
     const checkbox = e.target.querySelector('input[type="checkbox"]');
+
     if (!nameInput?.value.trim()) return alert('Please enter your full name');
     if (!phoneInput?.value.trim()) return alert('Please enter your WhatsApp number');
     if (!checkbox?.checked) return alert('Please accept POPIA consent');
+
     const name = nameInput.value.trim();
     const phone = phoneInput.value.trim().replace(/\D/g, '').replace(/^0/, '27');
     const tier = selectedTier || "Dominance";
     const b = BUNDLES[tier];
+
     const message = encodeURIComponent(
-      `NEW FOUNDING PARTNER LEAD – ONLY 12 SPOTS\n\n` +
+      `CRAFTVIBEZA – NEW FOUNDING PARTNER LEAD (12-SPOT)\n\n` +
       `Name: ${name}\n` +
       `Tier: ${tier}\n` +
       `Price: ${formatPrice(b.monthly)}/mo + ${formatPrice(b.setup)} setup\n` +
       `WhatsApp: +${phone}\n\n` +
-      `CALL NOW — THEY ARE READY TO JOIN!`
+      `CALL THEM NOW — THEY ARE READY TO JOIN!`
     );
+
     window.open(`https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${message}`, '_blank');
     backupLead(name, phone, tier, b.monthly, b.setup);
-    alert('Thank you! We’re calling you in under 60 seconds.');
-    // NUCLEAR RESET
+
+    alert('Message sent! We’re calling you in under 60 seconds.');
+    
+    // NUCLEAR FORM RESET
     e.target.reset();
     const block = e.target.querySelector('[onclick*="toggleConsent"]');
     if (block) {
       const icon = block.querySelector('i');
       const input = block.querySelector('input[type="checkbox"]');
-      icon.classList.add('hidden');
-      input.checked = false;
+      if (icon) icon.classList.add('hidden');
+      if (input) input.checked = false;
       block.classList.remove('bg-green-900/50','border-4','border-green-500','ring-4','ring-green-500/60');
       block.classList.add('bg-zinc-800/50');
+      const box = block.querySelector('.checkbox-custom');
+      if (box) box.classList.remove('border-green-500', 'bg-green-500/20');
     }
   });
-  // ====================== HEADER & FOOTER LOADER (VERCEL PERFECT) ======================
+
+  // ====================== HEADER & FOOTER LOADER ======================
   const loadPart = async (file, placeholderId) => {
     const path = `/${file}.html`;
     try {
@@ -176,18 +241,22 @@
     } catch (e) {}
     $(placeholderId).innerHTML = `<div class="text-red-500 p-10 text-center text-2xl">Error: ${file}.html missing</div>`;
   };
+
   // ====================== INIT ======================
   document.addEventListener('DOMContentLoaded', () => {
     loadPart('header', 'header-placeholder');
     loadPart('footer', 'footer-placeholder');
+
+    // Close button for quiz
     const closeBtn = document.createElement('button');
     closeBtn.innerHTML = '×';
-    closeBtn.className = 'close-btn absolute top-6 right-6 text-6xl opacity-50 hover:opacity-100 transition z-10';
+    closeBtn.className = 'close-btn absolute top-6 right-6 text-7xl opacity-40 hover:opacity-100 transition z-20';
     closeBtn.onclick = () => {
       $('quiz-overlay').classList.add('hidden');
       document.body.style.overflow = '';
     };
     $('quiz-overlay')?.prepend(closeBtn);
   });
+
   window.startQuiz = Quiz.start;
 })();
