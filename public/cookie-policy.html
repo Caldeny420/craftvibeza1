@@ -3,23 +3,21 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <style>body{font-family:'Inter',sans-serif;background:#000;color:#fff;}</style>
-</head>
-<body class="min-h-screen flex flex-col">
+</head><body class="min-h-screen flex flex-col">
 <div id="header-placeholder"></div>
 
-<section class="py-56 px-6 text-center">
+<main class="flex-1 pt-52 sm:pt-56 md:pt-60 lg:pt-32 xl:pt-28 px-6 text-center">
   <div class="max-w-4xl mx-auto">
-    <h1 class="text-7xl md:text-9xl font-black mb-16 text-green-400">COOKIE POLICY</h1>
-    <div class="bg-zinc-900/90 backdrop-blur border-4 border-green-500 rounded-3xl p-20">
-      <p class="text-5xl md:text-7xl font-black text-green-400">We use ZERO cookies.</p>
-      <p class="text-3xl mt-12 opacity-90">No tracking. No analytics. No bullshit.<br>After Feb 2026: only essential session cookies.</p>
+    <h1 class="text-7xl sm:text-8xl md:text-9xl font-black text-green-400 leading-none mb-16">COOKIE<br class="sm:hidden"> POLICY</h1>
+    <div class="bg-zinc-900/90 backdrop-blur border-4 border-green-500 rounded-3xl p-12 sm:p-20 lg:p-28">
+      <p class="text-5xl md:text-7xl font-black text-green-400 mb-12">ZERO cookies right now.</p>
+      <p class="text-3xl leading-relaxed">After Feb 2026: only essential session cookies. No tracking. Consent obtained per POPIA.</p>
     </div>
   </div>
-</section>
+</main>
 
 <div id="footer-placeholder" class="mt-auto"></div>
 <script>
-  fetch('header.html').then(r=>r.ok?r.text():'').then(h=>document.getElementById('header-placeholder').innerHTML=h);
-  fetch('footer.html').then(r=>r.ok?r.text():'').then(f=>document.getElementById('footer-placeholder').innerHTML=f);
-</script>
-</body></html>
+  fetch('header.html?v='+Date.now()).then(r=>r.ok?r.text():'').then(h=>document.getElementById('header-placeholder').innerHTML=h);
+  fetch('footer.html?v='+Date.now()).then(r=>r.ok?r.text():'').then(f=>document.getElementById('footer-placeholder').innerHTML=f);
+</script></body></html>
