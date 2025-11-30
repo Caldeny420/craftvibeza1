@@ -1,38 +1,51 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Refund Policy – CraftVibeZA</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com"></script>
-<style>
-  body{font-family:'Inter',sans-serif;background:#000;color:#fff;margin:0;}
-  .safe-top{padding-top:190px;}
-  @media(min-width:640px){.safe-top{padding-top:210px;}}
-  @media(min-width:1024px){.safe-top{padding-top:230px;}}
-</style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Refund Policy – CraftVibeZA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {font-family:'Inter',sans-serif;background:#000;color:#fff;margin:0;}
+    /* Exact safe-top values that match your main site */
+    .safe-top {padding-top: 190px;}
+    @media (min-width: 640px) {.safe-top {padding-top: 210px;}}
+    @media (min-width: 1024px) {.safe-top {padding-top: 230px;}}
+  </style>
 </head>
 <body class="min-h-screen flex flex-col">
+
 <div id="header-placeholder"></div>
 
 <section class="safe-top px-6 text-center">
   <div class="max-w-5xl mx-auto">
-    <h1 class="text-6xl sm:text-8xl md:text-9xl font-black mb-10 text-green-400 leading-tight">REFUND POLICY</h1>
-    
-    <div class="bg-zinc-900/95 backdrop-blur-xl border-4 border-green-500 rounded-3xl p-8 sm:p-12 md:p-20"> <!-- reduced top padding on mobile -->
-      <p class="text-4xl sm:text-5xl md:text-7xl font-black text-green-400 mb-16">We ship on time or you don’t pay.</p>
 
-      <div class="space-y-12 text-2xl sm:text-3xl md:text-4xl max-w-4xl mx-auto text-left">
-        <!-- all your existing boxes exactly the same -->
+    <h1 class="text-6xl sm:text-8xl md:text-9xl font-black mb-10 text-green-400 leading-tight">
+      REFUND POLICY
+    </h1>
+
+    <div class="bg-zinc-900/95 backdrop-blur-xl border-4 border-green-500 rounded-3xl p-8 sm:p-12 lg:p-20">
+      <p class="text-4xl sm:text-5xl lg:text-7xl font-black text-green-400 mb-14 lg:mb-20">
+        We ship on time or you don’t pay.
+      </p>
+
+      <div class="space-y-12 text-2xl sm:text-3xl lg:text-4xl max-w-4xl mx-auto text-left">
+
         <div class="bg-black/60 rounded-3xl p-10 border border-green-500/50">
           <p class="font-black text-green-300 text-3xl mb-4">Growth & Dominance Tiers</p>
-          <p>Every promised feature must be 100% live by <strong>28 February 2026</strong>.<br>If we miss → your <strong>entire setup fee is refunded instantly</strong>. No questions.</p>
+          <p>Every promised feature must be 100% live by <strong>28 February 2026</strong>.<br>
+          If we miss → your <strong>entire setup fee is refunded instantly</strong>. No questions.</p>
         </div>
 
         <div class="bg-black/60 rounded-3xl p-10 border border-yellow-500/50">
           <p class="font-black text-yellow-400 text-3xl mb-4">Elite Tier</p>
-          <p>If the three Elite-exclusive features are not delivered by 28 Feb 2026 → you receive <strong>R100,000 refund</strong> (difference between Elite and Dominance setup fees).</p>
+          <p>If the three Elite-exclusive features are not delivered by 28 Feb 2026 → you receive 
+          <strong>R100,000 refund</strong> (difference between Elite and Dominance setup fees).</p>
           <p class="mt-6 text-green-300 text-xl">You keep the full core + Dominance platform and pay only Dominance pricing until Elite extras arrive.</p>
         </div>
 
-        <div class="bg-black/60 rounded-3xl p-10 text-xl sm:text-2xl">
+        <div class="bg-black/60 rounded-3xl p-10 text-xl sm:text-2xl lg:text-3xl">
           <ul class="space-y-6">
             <li>• Monthly billing starts <strong>only when YOU click “Go Live”</strong></li>
             <li>• Cancel anytime with 30 days notice via WhatsApp</li>
@@ -43,18 +56,28 @@
         </div>
       </div>
 
-      <div class="mt-20 text-center">
+      <div class="mt-16 lg:mt-24 text-center">
         <p class="text-4xl font-black text-yellow-400 mb-6">Questions or need a refund?</p>
-        <a href="https://wa.me/27764312871" class="inline-block text-7xl sm:text-8xl font-black text-green-400 hover:scale-110 transition">076 431 2871</a>
+        <a href="https://wa.me/27764312871" class="inline-block text-7xl lg:text-8xl font-black text-green-400 hover:scale-110 transition">
+          076 431 2871
+        </a>
       </div>
     </div>
   </div>
 </section>
 
 <div id="footer-placeholder" class="mt-auto"></div>
+
 <script>
-  fetch('header.html').then(r=>r.ok?r.text():'').then(h=>document.getElementById('header-placeholder').innerHTML=h);
-  fetch('footer.html').then(r=>r.ok?r.text():'').then(f=>document.getElementById('footer-placeholder').innerHTML=f);
+  const load = async (file, id) => {
+    try {
+      const res = await fetch(`/${file}.html?v=${Date.now()}`, {cache: "no-store"});
+      if (res.ok) document.getElementById(id).innerHTML = await res.text();
+    } catch(e) {}
+  };
+  load('header', 'header-placeholder');
+  load('footer', 'footer-placeholder');
 </script>
-</body></html>
+</body>
+</html>
 
