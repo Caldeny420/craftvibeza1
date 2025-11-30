@@ -5,74 +5,60 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Refund Policy – CraftVibeZA</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body { font-family: 'Inter', sans-serif; background: #000; color: #fff; margin: 0; padding: 0; }
-    .fire-pulse { animation: pulse 2s infinite; }
-    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.8; } }
+    body { font-family: 'Inter', sans-serif; background: #000; color: #fff; }
   </style>
 </head>
 <body class="min-h-screen flex flex-col">
 
-  <!-- HEADER LOADED FROM header.html -->
+  <!-- HEADER FROM header.html (your exact same header with logo + banner + button) -->
   <div id="header-placeholder"></div>
 
-  <!-- MAIN CONTENT – PERFECT SPACING ON ALL DEVICES -->
-  <main class="flex-1 pt-28 sm:pt-32 lg:pt-40 pb-20 px-4">
-    <section class="text-center max-w-5xl mx-auto">
-      <h1 class="text-6xl xs:text-7xl sm:text-8xl lg:text-9xl font-black text-center leading-none mb-16 lg:mb-24 text-transparent bg-clip-text bg-gradient-to-b from-green-300 to-green-500">
-        REFUND<br>POLICY
+  <!-- MAIN CONTENT – PERFECT SPACING ON EVERY DEVICE FOREVER -->
+  <main class="flex-1 pt-52 sm:pt-56 md:pt-60 lg:pt-32 xl:pt-28 px-6 text-center">
+    <div class="max-w-5xl mx-auto">
+
+      <h1 class="text-7xl xs:text-8xl sm:text-9xl lg:text-10xl font-black text-green-400 leading-none">
+        REFUND<br class="sm:hidden"> POLICY
       </h1>
 
-      <div class="bg-zinc-900/90 backdrop-blur-2xl border-4 border-green-500 rounded-3xl p-10 sm:p-14 lg:p-24 shadow-2xl">
-        <p class="text-5xl sm:text-6xl lg:text-7xl font-black text-green-400 text-center mb-16">100% Risk Free</p>
+      <div class="mt-20 sm:mt-28 bg-zinc-900/90 backdrop-blur border-4 border-green-500 rounded-3xl p-12 sm:p-20 lg:p-28">
 
-        <ul class="space-y-10 text-xl sm:text-2xl lg:text-3xl font-medium max-w-4xl mx-auto">
-          <li class="flex items-start gap-5">
-            <span class="text-green-400 text-4xl mt-1">•</span>
-            <span>Full setup fee refunded if we miss <strong class="text-green-300">28 Feb 2026</strong></span>
-          </li>
-          <li class="flex items-start gap-5">
-            <span class="text-green-400 text-4xl mt-1">•</span>
-            <span>Cancel anytime — 30 days notice via WhatsApp</span>
-          </li>
-          <li class="flex items-start gap-5">
-            <span class="text-green-400 text-4xl mt-1">•</span>
-            <span>No cancellation fees</span>
-          </li>
-          <li class="flex items-start gap-5">
-            <span class="text-green-400 text-4xl mt-1">•</span>
-            <span>No long-term contracts</span>
-          </li>
-          <li class="flex items-start gap-5">
-            <span class="text-green-400 text-4xl mt-1">•</span>
-            <span>Billing starts only when you go live</span>
-          </li>
+        <p class="text-5xl sm:text-6xl lg:text-7xl font-black text-green-400 mb-16">
+          100% Risk Free
+        </p>
+
+        <ul class="space-y-10 text-2xl sm:text-3xl lg:text-4xl font-medium max-w-4xl mx-auto text-left">
+          <li>• Full setup fee refunded if we miss 28 Feb 2026</li>
+          <li>• Cancel anytime — 30 days notice via WhatsApp</li>
+          <li>• No cancellation fees</li>
+          <li>• No long-term contracts</li>
+          <li>• Billing starts only when you go live</li>
         </ul>
 
-        <div class="text-center mt-20">
-          <a href="https://wa.me/27764312871" class="inline-block bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-black font-black text-3xl sm:text-4xl lg:text-5xl px-12 py-7 rounded-3xl shadow-2xl hover:scale-105 transition-all">
-            WhatsApp 076 431 2871
-          </a>
-        </div>
+        <p class="mt-20 text-yellow-400 font-black text-4xl sm:text-5xl lg:text-6xl">
+          WhatsApp 076 431 2871
+        </p>
+
       </div>
-    </section>
+    </div>
   </main>
 
-  <!-- FOOTER LOADED FROM footer.html -->
+  <!-- FOOTER FROM footer.html -->
   <div id="footer-placeholder" class="mt-auto"></div>
 
-  <!-- LOAD HEADER & FOOTER (exact same as your main site) -->
+  <!-- LOAD HEADER & FOOTER (exact same script you already use everywhere) -->
   <script>
     fetch('header.html?' + Date.now())
-      .then(r => r.ok ? r.text() : '')
-      .then(html => document.getElementById('header-placeholder').innerHTML = html);
+      .then(r => r.ok ? r.text() : '<div></div>')
+      .then(h => document.getElementById('header-placeholder').innerHTML = h);
 
     fetch('footer.html?' + Date.now())
-      .then(r => r.ok ? r.text() : '')
-      .then(html => document.getElementById('footer-placeholder').innerHTML = html);
+      .then(r => r.ok ? r.text() : '<div></div>')
+      .then(f => document.getElementById('footer-placeholder').innerHTML = f);
   </script>
 
 </body>
 </html>
+
