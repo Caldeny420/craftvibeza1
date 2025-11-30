@@ -2,60 +2,30 @@
 <title>Privacy Policy – CraftVibeZA</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
-<style>
-  body{font-family:'Inter',sans-serif;background:#000;color:#fff;margin:0;}
-  .safe-top{padding-top:190px;}
-  @media(min-width:640px){.safe-top{padding-top:210px;}}
-  @media(min-width:1024px){.safe-top{padding-top:230px;}}
-</style>
-</head>
-<body class="min-h-screen flex flex-col">
+<style>body{font-family:'Inter',sans-serif;background:#000;color:#fff;}</style>
+</head><body class="min-h-screen flex flex-col">
 <div id="header-placeholder"></div>
 
-<section class="safe-top px-6 text-center">
-  <div class="max-w-5xl mx-auto">
-    <h1 class="text-6xl md:text-9xl font-black mb-8 text-green-400 leading-tight">PRIVACY POLICY</h1>
-    <p class="text-2xl md:text-4xl opacity-90">Your data belongs to you. Full stop.</p>
-    <p class="text-xl opacity-70 mt-4">Last updated: 29 November 2025</p>
-
-    <div class="max-w-4xl mx-auto mt-20 space-y-16 text-xl">
-      <div class="bg-zinc-900/90 backdrop-blur border-4 border-green-500 rounded-3xl p-12">
-        <h2 class="text-4xl font-black text-green-400 mb-8">1. What We Collect Right Now (Pre-Launch)</h2>
-        <ul class="list-disc pl-10 space-y-4 text-green-300">
-          <li>Your full name</li>
-          <li>Your WhatsApp number</li>
-          <li>Your selected Founding tier</li>
-        </ul>
-        <p class="mt-8 text-2xl font-bold">That’s it. Zero client data exists yet.</p>
-      </div>
-      <div class="bg-zinc-900/90 backdrop-blur border-4 border-green-500 rounded-3xl p-12 text-center">
-        <h2 class="text-4xl font-black text-green-400 mb-8">2. Data Location</h2>
-        <p class="text-3xl">100% South Africa<br>Johannesburg & Cape Town only<br>Never overseas. Ever.</p>
-      </div>
-      <div class="bg-zinc-900/90 backdrop-blur border-4 border-green-500 rounded-3xl p-12">
-        <h2 class="text-4xl font-black text-green-400 mb-8">3. Security</h2>
-        <ul class="list-disc pl-10 space-y-4 text-lg">
-          <li>AES-256 encryption at rest & in transit</li>
-          <li>No third-party analytics or tracking</li>
-          <li>Daily encrypted backups</li>
-          <li>Only the founder has access until Feb 2026</li>
-        </ul>
-      </div>
-      <div class="bg-zinc-900/90 backdrop-blur border-4 border-green-500 rounded-3xl p-12 text-center">
-        <h2 class="text-4xl font-black text-green-400 mb-8">Information Officer</h2>
-        <p class="text-6xl font-black text-yellow-400">076 431 2871</p>
-        <a href="https://wa.me/27764312871" class="block mt-4 text-2xl text-green-400 hover:underline">Tap to WhatsApp</a>
-      </div>
-      <div class="bg-red-900/80 border-4 border-red-600 rounded-3xl p-16 text-center">
-        <p class="text-5xl md:text-7xl font-black text-red-300">We will NEVER sell, rent, or share your data.<br>Not now. Not ever.</p>
-      </div>
-    </div>
+<main class="flex-1 pt-52 sm:pt-56 md:pt-60 lg:pt-32 xl:pt-28 px-6">
+  <div class="max-w-5xl mx-auto text-center">
+    <h1 class="text-7xl sm:text-8xl md:text-9xl font-black text-green-400 leading-none mb-12">PRIVACY<br class="sm:hidden"> POLICY</h1>
+    <p class="text-3xl md:text-5xl opacity-90">Your data belongs to you. Full stop.</p>
+    <p class="text-xl opacity-70 mt-4">Last updated: 30 November 2025</p>
   </div>
-</section>
+
+  <div class="max-w-4xl mx-auto mt-20 space-y-16 text-2xl">
+    <div class="bg-zinc-900/90 backdrop-blur border-4 border-green-500 rounded-3xl p-12"><h2 class="text-4xl font-black text-green-400 mb-6">Pre-Launch</h2><p>Name • WhatsApp • Tier only. Nothing else.</p></div>
+    <div class="bg-zinc-900/90 backdrop-blur border-4 border-green-500 rounded-3xl p-12"><h2 class="text-4xl font-black text-green-400 mb-6">Post-Launch</h2><p>All client data, trust accounts, files, CPD records processed only for you. Deleted on termination.</p></div>
+    <div class="bg-zinc-900/90 backdrop-blur border-4 border-green-500 rounded-3xl p-12"><h2 class="text-4xl font-black text-green-400 mb-6">Location</h2><p class="text-3xl">All personal data processed and stored exclusively in South Africa (JHB + CPT regions).</p></div>
+    <div class="bg-zinc-900/90 backdrop-blur border-4 border-green-500 rounded-3xl p-12"><h2 class="text-4xl font-black text-green-400 mb-6">Security</h2><ul class="list-disc pl-10 space-y-4"><li>AES-256 everywhere</li><li>Multi-tenant data fully segregated</li><li>No third-party analytics</li><li>Daily encrypted backups</li></ul></div>
+    <div class="bg-zinc-900/90 backdrop-blur border-4 border-green-500 rounded-3xl p-12 text-center"><h2 class="text-4xl font-black text-green-400 mb-6">Information Officer</h2><p class="text-5xl"><a href="https://wa.me/27764312871" class="text-yellow-400">076 431 2871</a></p></div>
+    <div class="bg-red-900/80 border-4 border-red-600 rounded-3xl p-16 text-center"><p class="text-5xl md:text-7xl font-black text-red-300">We will NEVER sell, share, or monetize your data.<br>Not now. Not ever.</p></div>
+  </div>
+</main>
 
 <div id="footer-placeholder" class="mt-auto"></div>
 <script>
-  fetch('header.html').then(r=>r.ok?r.text():'').then(h=>document.getElementById('header-placeholder').innerHTML=h);
-  fetch('footer.html').then(r=>r.ok?r.text():'').then(f=>document.getElementById('footer-placeholder').innerHTML=f);
-</script>
-</body></html>
+  fetch('header.html?v='+Date.now()).then(r=>r.ok?r.text():'').then(h=>document.getElementById('header-placeholder').innerHTML=h);
+  fetch('footer.html?v='+Date.now()).then(r=>r.ok?r.text():'').then(f=>document.getElementById('footer-placeholder').innerHTML=f);
+</script></body></html>
+
