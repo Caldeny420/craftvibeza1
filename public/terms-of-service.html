@@ -3,26 +3,26 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <style>body{font-family:'Inter',sans-serif;background:#000;color:#fff;}</style>
-</head>
-<body class="min-h-screen flex flex-col">
+</head><body class="min-h-screen flex flex-col">
 <div id="header-placeholder"></div>
 
-<section class="py-32 px-6 text-center">
+<main class="flex-1 pt-52 sm:pt-56 md:pt-60 lg:pt-32 xl:pt-28 px-6 text-center">
   <div class="max-w-5xl mx-auto">
-    <h1 class="text-6xl md:text-9xl font-black mb-12 text-green-400">TERMS OF SERVICE</h1>
-    <div class="bg-zinc-900/80 backdrop-blur border-4 border-green-500 rounded-3xl p-16 max-w-4xl mx-auto space-y-12 text-2xl">
-      <div><p class="text-4xl font-black">Only 12 Founding Partners will ever exist</p><p>Your pricing is locked forever — even if public price becomes R200k+/mo</p></div>
-      <div><p class="text-4xl font-black">Go-live guarantee</p><p>100% live by 28 February 2026 or your entire setup fee refunded instantly</p></div>
-      <div><p class="text-4xl font-black">Payment</p><p>First month billed only when you go live • Setup fee due on reservation</p></div>
-      <div><p class="text-4xl font-black">Cancellation</p><p>30 days notice via WhatsApp • No fees • No contracts</p></div>
-      <div><p class="text-4xl font-black">Contact</p><p>All communication: <a href="https://wa.me/27764312871" class="text-yellow-400">076 431 2871</a></p></div>
+    <h1 class="text-7xl sm:text-8xl md:text-9xl font-black text-green-400 leading-none">TERMS OF<br class="sm:hidden"> SERVICE</h1>
+
+    <div class="mt-20 bg-zinc-900/90 backdrop-blur border-4 border-green-500 rounded-3xl p-12 sm:p-20 lg:p-28 text-2xl sm:text-3xl lg:text-4xl space-y-16 text-left max-w-4xl mx-auto">
+      <div><p class="text-4xl font-black text-green-400">Only 12 Founding Partners</p><p>Your pricing and priority are locked forever — even when public price exceeds R200k/month.</p></div>
+      <div><p class="text-4xl font-black text-green-400">Go-Live Guarantee</p><p>Dominance-level platform 100% live by 28 February 2026 or full setup fee refunded instantly (see Refund Policy).</p></div>
+      <div><p class="text-4xl font-black text-green-400">Billing</p><p>Setup fee due on reservation • First monthly invoice only when you are live.</p></div>
+      <div><p class="text-4xl font-black text-green-400">Cancellation</p><p>30 days written notice via WhatsApp • No fees • No contracts • No questions.</p></div>
+      <div><p class="text-4xl font-black text-green-400">Acceptable Use</p><p>Exclusively for South African law firms • No agencies • No resellers • Violation = immediate termination without refund.</p></div>
+      <div><p class="text-4xl font-black text-green-400">Contact & Support</p><p>All communication and support: WhatsApp <a href="https://wa.me/27764312871" class="text-yellow-400">076 431 2871</a></p></div>
     </div>
   </div>
-</section>
+</main>
 
 <div id="footer-placeholder" class="mt-auto"></div>
 <script>
-  fetch('header.html').then(r=>r.ok?r.text():'').then(h=>document.getElementById('header-placeholder').innerHTML=h);
-  fetch('footer.html').then(r=>r.ok?r.text():'').then(f=>document.getElementById('footer-placeholder').innerHTML=f);
-</script>
-</body></html>
+  fetch('header.html?v='+Date.now()).then(r=>r.ok?r.text():'').then(h=>document.getElementById('header-placeholder').innerHTML=h);
+  fetch('footer.html?v='+Date.now()).then(r=>r.ok?r.text():'').then(f=>document.getElementById('footer-placeholder').innerHTML=f);
+</script></body></html>
