@@ -8,26 +8,31 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {font-family:'Inter',sans-serif;background:#000;color:#fff;margin:0;}
-    /* This is the EXACT height of your fixed header including the red banner */
-    .header-compensation {padding-top: 135px;}           /* mobile */
-    @media (min-width: 640px) {.header-compensation {padding-top: 145px;}}
-    @media (min-width: 1024px) {.header-compensation {padding-top: 155px;}} /* laptop & desktop */}}
+    
+    /* Mobile & tablet = original perfect spacing (your red banner is inside header) */
+    .mobile-perfect {padding-top: 180px;}
+    @media (min-width: 640px) {.mobile-perfect {padding-top: 200px;}}
+    
+    /* Laptop & desktop = ultra-tight, 2–3 mm under black header bar */
+    @media (min-width: 1024px) {.desktop-tight {padding-top: 138px !important;}}
+    @media (min-width: 1280px) {.desktop-tight {padding-top: 142px !important;}}
+    @media (min-width: 1536px) {.desktop-tight {padding-top: 148px !important;}}
   </style>
 </head>
 <body class="min-h-screen flex flex-col">
 
 <div id="header-placeholder"></div>
 
-<main class="header-compensation px-6 text-center">
+<main class="mobile-perfect desktop-tight px-6 text-center">
   <div class="max-w-5xl mx-auto">
 
-    <!-- MASSIVE TITLE – sits literally right under the header -->
-    <h1 class="text-7xl sm:text-9xl lg:text-[180px] xl:text-[200px] font-black leading-none text-green-400 -mt-4">
+    <!-- TITLE – mobile identical to original, desktop ultra-tight -->
+    <h1 class="text-7xl sm:text-9xl lg:text-[180px] xl:text-[210px] font-black leading-none text-green-400 -mt-3 lg:-mt-1">
       REFUND<br>POLICY
     </h1>
 
-    <!-- CONTENT BOX – starts immediately after the title -->
-    <div class="mt-8 lg:mt-16 bg-zinc-900/95 backdrop-blur-xl border-4 border-green-500 rounded-3xl p-8 sm:p-12 lg:p-20">
+    <!-- CONTENT BOX -->
+    <div class="mt-10 lg:mt-16 bg-zinc-900/95 backdrop-blur-xl border-4 border-green-500 rounded-3xl p-8 sm:p-12 lg:p-20">
       <p class="text-4xl sm:text-6xl lg:text-7xl font-black text-green-400 mb-12 lg:mb-20">
         We ship on time or you don’t pay.
       </p>
@@ -64,7 +69,6 @@
         </a>
       </div>
     </div>
-
   </div>
 </main>
 
