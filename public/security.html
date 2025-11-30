@@ -1,35 +1,33 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Security Overview – CraftVibeZA</title>
+<title>Security – CraftVibeZA</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <style>body{font-family:'Inter',sans-serif;background:#000;color:#fff;}</style>
-</head>
-<body class="min-h-screen flex flex-col">
+</head><body class="min-h-screen flex flex-col">
 <div id="header-placeholder"></div>
 
-<section class="py-40 px-6">
-  <div class="max-w-6xl mx-auto text-center">
-    <h1 class="text-7xl md:text-9xl font-black mb-20 text-green-400">SECURITY OVERVIEW</h1>
+<main class="flex-1 pt-52 sm:pt-56 md:pt-60 lg:pt-32 xl:pt-28 px-6 text-center">
+  <div class="max-w-6xl mx-auto">
+    <h1 class="text-7xl sm:text-8xl md:text-9xl font-black text-green-400 leading-none mb-20">SECURITY<br class="sm:hidden"> OVERVIEW</h1>
     <div class="grid md:grid-cols-3 gap-12">
-      <div class="bg-zinc-900/90 backdrop-blur border-4 border-green-500 rounded-3xl p-16">
+      <div class="bg-zinc-900/90 backdrop-blur border-4 border-green-500 rounded-3xl p-16 text-center">
         <h3 class="text-5xl font-black text-green-400 mb-8">Encryption</h3>
-        <p class="text-3xl">AES-256 everywhere</p>
+        <p class="text-3xl">AES-256 at rest & transit</p>
       </div>
-      <div class="bg-zinc-900/90 backdrop-blur border-4 border-green-500 rounded-3xl p-16">
+      <div class="bg-zinc-900/90 backdrop-blur border-4 border-green-500 rounded-3xl p-16 text-center">
         <h3 class="text-5xl font-black text-green-400 mb-8">Hosting</h3>
         <p class="text-3xl">100% South Africa<br>JHB + CPT</p>
       </div>
-      <div class="bg-zinc-900/90 backdrop-blur border-4 border-green-500 rounded-3xl p-16">
-        <h3 class="text-5xl font-black text-green-400 mb-8">Access</h3>
-        <p class="text-3xl">Only founder until launch</p>
+      <div class="bg-zinc-900/90 backdrop-blur border-4 border-green-500 rounded-3xl p-16 text-center">
+        <h3 class="text-5xl font-black text-green-400 mb-8">Segregation</h3>
+        <p class="text-3xl">Multi-tenant data fully isolated</p>
       </div>
     </div>
   </div>
-</section>
+</main>
 
 <div id="footer-placeholder" class="mt-auto"></div>
 <script>
-  fetch('header.html').then(r=>r.ok?r.text():'').then(h=>document.getElementById('header-placeholder').innerHTML=h);
-  fetch('footer.html').then(r=>r.ok?r.text():'').then(f=>document.getElementById('footer-placeholder').innerHTML=f);
-</script>
-</body></html>
+  fetch('header.html?v='+Date.now()).then(r=>r.ok?r.text():'').then(h=>document.getElementById('header-placeholder').innerHTML=h);
+  fetch('footer.html?v='+Date.now()).then(r=>r.ok?r.text():'').then(f=>document.getElementById('footer-placeholder').innerHTML=f);
+</script></body></html>
