@@ -1,62 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Refund Policy – CraftVibeZA</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Refund Policy | CraftVibeZA</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>body{font-family:'Inter',sans-serif;background:#000;color:#fff;}</style>
+  <style>
+    body { font-family:'Inter',sans-serif; background:#000; color:#fff; }
+    a { @apply text-green-400 underline hover:text-yellow-400; }
+  </style>
 </head>
 <body class="min-h-screen flex flex-col">
-<div id="header-placeholder"></div>
-
-<main class="flex-1 pt-52 sm:pt-56 md:pt-60 lg:pt-32 xl:pt-28 px-6 text-center">
-  <div class="max-w-5xl mx-auto">
-
-    <h1 class="text-7xl sm:text-8xl md:text-9xl font-black text-green-400 leading-none">
-      REFUND POLICY
-    </h1>
-
-    <div class="mt-20 bg-zinc-900/90 backdrop-blur border-4 border-green-500 rounded-3xl p-12 sm:p-20 lg:p-32">
-      <p class="text-5xl sm:text-6xl lg:text-7xl font-black text-green-400 mb-20">100% Risk Free</p>
-
-      <ul class="space-y-14 text-2xl sm:text-3xl lg:text-4xl font-medium text-left max-w-4xl mx-auto leading-relaxed">
-
-        <li class="text-green-300 font-black">
-          • If the <strong>Dominance-level core platform</strong> is not 100% live for you by <strong>28 February 2026</strong> →  
-          <strong>full setup fee refunded instantly</strong> to <u>every</u> Founding Partner:
-        </li>
-        <li class="ml-10 text-xl opacity-90">
-          Growth → R49,900<br>
-          Dominance → R89,900<br>
-          Elite → R149,900
-        </li>
-
-        <li class="text-amber-300 font-black mt-8">
-          • If we deliver Dominance on time but miss any <strong>Elite-only features</strong> by 28 Feb 2026 →  
-          Elite clients receive an <strong>immediate R60,000 pro-rata refund</strong> (the Elite premium only)
-        </li>
-
-        <li>• Setup fee is otherwise fully non-refundable (you’re reserving one of only 12 lifetime spots)</li>
-        <li>• Cancel monthly subscription anytime — 30 days notice via WhatsApp</li>
-        <li>• Zero cancellation fees ever</li>
-        <li>• Monthly billing starts only when your platform is live</li>
-      </ul>
-
-      <p class="mt-24 text-yellow-400 font-black text-4xl sm:text-5xl lg:text-6xl text-center">
-        Questions? WhatsApp 076 431 2871
-      </p>
+  <div id="header-placeholder"></div>
+  <main class="flex-1 pt-52 sm:pt-56 md:pt-60 lg:pt-32 xl:pt-28 px-6 max-w-5xl mx-auto">
+    <h1 class="text-5xl sm:text-6xl md:text-7xl font-black text-center mb-12 text-green-400">Refund Policy</h1>
+    <div class="prose prose-invert prose-lg max-w-none space-y-8 text-xl leading-relaxed">
+      <p>Founding Partner setup fees are non-refundable once your firm has been accepted and onboarding has begun.</p>
+      <p>If for any reason we fail to deliver your complete system live by <strong>28 February 2026</strong>, you will receive a <strong>100% refund of your setup fee</strong> — no questions asked.</p>
+      <p>Monthly subscriptions may be cancelled at any time with 30 days written notice. No further charges will apply after cancellation.</p>
+      <p class="text-2xl font-bold text-center mt-20">Only 12 Founding Partners will ever exist.<br>Your pricing and priority are locked forever.</p>
     </div>
-  </div>
-</main>
-
-<div id="footer-placeholder" class="mt-auto"></div>
-
-<script>
-  fetch('header.html?v='+Date.now()).then(r=>r.ok?r.text():'').then(h=>document.getElementById('header-placeholder').innerHTML=h);
-  fetch('footer.html?v='+Date.now()).then(r=>r.ok?r.text():'').then(f=>document.getElementById('footer-placeholder').innerHTML=f);
-</script>
+  </main>
+  <div id="footer-placeholder"></div>
+  <script src="script.js"></script>
 </body>
 </html>
 
