@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta name="theme-color" content="#000000" />
-  <meta name="description" content="CraftVibeZA – The only all-in-one AI growth platform for South African law firms. Founding prices locked forever." />
-  <title>CraftVibeZA | Founding Member Pricing – Locked Forever</title>
+  <meta name="description" content="CraftVibeZA – The new AI growth platform built exclusively for South African law firms. Only 500 Founding Members forever." />
+  <title>CraftVibeZA | Founding Member Pricing Locked Forever</title>
   <link rel="icon" href="/images/craftvibe-logo.jpg" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
@@ -15,92 +15,99 @@
     :root { --green:#10b981; --yellow:#fbbf24; --amber:#f59e0b; --red:#ef4444; }
     body { font-family:'Inter',sans-serif; background:#000; color:#fff; margin:0; overflow-x:hidden; }
     .badge-new { @apply inline-block bg-amber-500 text-black font-black px-5 py-2 rounded-full text-xs sm:text-sm tracking-wider; }
-    .founding-badge {
-      @apply absolute -top-6 left-1/2 -translate-x-1/2 bg-gradient-to-r from-yellow-400 via-orange-400 to-amber-500 text-black font-black px-8 py-3 rounded-full text-sm uppercase tracking-widest shadow-2xl animate-pulse border-4 border-black;
-      letter-spacing: 2px;
-    }
+    .founding-badge { @apply absolute -top-6 left-1/2 -translate-x-1/2 bg-gradient-to-r from-yellow-400 via-orange-400 to-amber-500 text-black font-black px-8 py-3 rounded-full text-sm uppercase tracking-widest shadow-2xl animate-pulse border-4 border-black; letter-spacing: 2px; }
     @keyframes pulse { 0%,100% { transform: scale(1); opacity: 0.95; } 50% { transform: scale(1.05); opacity: 1; } }
     .pricing-scroll { -webkit-overflow-scrolling: touch; scrollbar-width: none; -ms-overflow-style: none; }
     .pricing-scroll::-webkit-scrollbar { display: none; }
+    table { border-collapse: separate; border-spacing: 0; }
+    th, td { border: 1px solid #333; }
+    .spots-left { font-size: 2.5rem; font-weight: 900; }
   </style>
 </head>
 <body class="min-h-screen flex flex-col">
-  <div id="header-placeholder"></div>
 
   <!-- HERO -->
-  <main class="flex-1 pt-40 sm:pt-56 md:pt-60 lg:pt-32 xl:pt-28 px-6 text-center">
+  <main class="flex-1 pt-32 md:pt-48 px-6 text-center">
     <div class="max-w-5xl mx-auto">
-      <div class="badge-new mb-8">ONLY 500 FOUNDING MEMBERS EVER • PRICE TRIPLES FOREVER AFTER</div>
+      <div class="badge-new mb-8">ONLY 500 FOUNDING MEMBERS EVER • PRICE TRIPLES FOREVER AFTER</	div>
       <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-tight mb-8">
-        The Only Platform<br class="hidden sm:block">South African Law Firms<br>Will Ever Need in 2026
+        The Only Platform<br class="hidden sm:block">SA Law Firms Will Ever Need
       </h1>
       <p class="text-xl md:text-3xl opacity-90 mb-12 max-w-4xl mx-auto">
-        Never get disbarred • Smart invoicing • Passive referral income • Full white-label • Live end Feb 2026
+        Never get disbarred • Smart invoicing • Passive referral income • White-label • Live Feb 2026
       </p>
-      <button onclick="startQuiz()" class="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-black font-black text-3xl sm:text-4xl md:text-5xl px-12 sm:px-16 py-8 sm:py-10 rounded-full shadow-2xl hover:scale-105 transition">
+      <button onclick="startQuiz()" class="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-black font-black text-3xl sm:text-4xl md:text-5xl px-16 py-10 rounded-full shadow-2xl hover:scale-105 transition">
         SEE IF YOU QUALIFY (90 Sec)
       </button>
     </div>
   </main>
 
-  <!-- PRICING -->
-  <section id="pricing" class="py-20 px-6 bg-black">
+  <!-- PRICING TABLE – EXACTLY AS CAL EMAILED YOU -->
+  <section class="py-20 px-6 bg-black">
     <div class="max-w-7xl mx-auto text-center">
       <h2 class="text-5xl sm:text-6xl md:text-7xl font-black mb-6">Founding Member Pricing – Locked Forever</h2>
       <p class="text-2xl opacity-80 mb-16">Only 500 spots total • After that prices <strong class="text-red-500">triple forever</strong></p>
 
-      <!-- Mobile -->
-      <div class="block md:hidden overflow-x-auto pricing-scroll pb-12">
-        <div class="inline-flex gap-8 min-w-max">
-          <div class="w-80 bg-gradient-to-b from-zinc-900 to-black border-2 border-zinc-700 rounded-3xl p-8">
-            <h3 class="text-4xl font-black text-green-400 mb-4">Growth</h3>
-            <div class="text-6xl font-black">R999<span class="text-3xl opacity-70">/mo</span></div>
-            <p class="text-2xl my-4 line-through opacity-60">R2,999</p>
-            <p class="text-xl mb-4">Spots left: <strong id="spots-growth-mobile" class="text-red-500">12</strong></p>
-            <a href="https://payfast.io/xxx-growth" class="block w-full bg-green-500 hover:bg-green-600 text-black font-black text-2xl py-5 rounded-2xl">Claim Spot</a>
-          </div>
-          <div class="relative w-80 bg-gradient-to-b from-green-900/30 to-black border-4 border-green-500 rounded-3xl p-10 shadow-2xl transform scale-105">
-            <div class="founding-badge">MOST POPULAR</div>
-            <h3 class="text-5xl font-black text-yellow-400 mb-4 mt-8">Dominance</h3>
-            <div class="text-7xl font-black">R2,999<span class="text-4xl opacity-70">/mo</span></div>
-            <p class="text-3xl my-4 line-through opacity-60">R7,999</p>
-            <p class="text-xl mb-4">Spots left: <strong id="spots-dominance-mobile" class="text-red-500">38</strong></p>
-            <a href="https://payfast.io/xxx-dominance" class="block w-full bg-yellow-400 hover:bg-yellow-500 text-black font-black text-2xl py-6 rounded-2xl">Claim Before Gone</a>
-          </div>
-          <div class="w-80 bg-gradient-to-b from-zinc-900 to-black border-2 border-yellow-600 rounded-3xl p-8">
-            <h3 class="text-4xl font-black text-yellow-400 mb-4">Elite</h3>
-            <div class="text-6xl font-black">R9,999<span class="text-3xl opacity-70">/mo</span></div>
-            <p class="text-2xl my-4 line-through opacity-60">R19,999</p>
-            <p class="text-xl mb-4">Spots left: <strong id="spots-elite-mobile" class="text-red-500">50</strong></p>
-            <a href="https://payfast.io/xxx-elite" class="block w-full bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-black text-2xl py-5 rounded-2xl">Claim Spot</a>
-          </div>
-        </div>
+      <!-- THE EXACT TABLE FROM CAL’S EMAIL -->
+      <div class="overflow-x-auto rounded-3xl border border-zinc-800">
+        <table class="w-full min-w-[800px] text-left text-lg md:text-xl">
+          <thead class="bg-gradient-to-r from-zinc-900 to-black">
+            <tr>
+              <th class="px-8 py-6 text-2xl font-black"></th>
+              <th class="text-center px-8 py-6 text-3xl font-black text-green-400">Growth<br><span class="text-xl block mt-2">R999/mo</span></th>
+              <th class="text-center px-8 py-6 text-3xl font-black text-yellow-400">Dominance<br><span class="text-xl block mt-2">R2,999/mo</span></th>
+              <th class="text-center px-8 py-6 text-3xl font-black text-amber-400">Elite<br><span class="text-xl block mt-2">R9,999/mo</span></th>
+            </tr>
+          </thead>
+          <tbody class="text-lg">
+            <tr class="bg-zinc-900/50 border-t-4 border-zinc-800">
+              <td class="py-6 px-8 font-bold">Normal price (after founding)</td>
+              <td class="text-center line-through opacity-60">R2,999</td>
+              <td class="text-center line-through opacity-60">R7,999</td>
+              <td class="text-center line-through opacity-60">R19,999</td>
+            </tr>
+            <tr class="bg-zinc-900/30">
+              <td class="py-6 px-8 font-bold">Spots left (real-time)</td>
+              <td class="text-center spots-left text-green-400" id="spots-growth">12</td>
+              <td class="text-center spots-left text-yellow-400" id="spots-dominance">38</td>
+              <td class="text-center spots-left text-amber-400" id="spots-elite">50</td>
+            </tr>
+            <tr class="bg-green-900/20 border-t-8 border-green-500">
+              <td class="py-10 px-8 font-black text-3xl text-green-300">Never get disbarred — Real-time Rule 54/86 & IOLTA alerts</td>
+              <td class="text-center text-5xl text-green-400 font-black">Yes</td>
+              <td class="text-center text-5xl text-green-400 font-black">Yes</td>
+              <td class="text-center text-5xl text-green-400 font-black">Yes</td>
+            </tr>
+            <tr><td class="py-6 px-8">Smart invoicing (timer → auto VAT/interest + bulk 50 in 60s)</td><td class="text-center text-green-400 font-bold">Yes</td><td class="text-center text-green-400 font-bold">Yes</td><td class="text-center text-green-400 font-bold">Yes</td></tr>
+            <tr><td class="py-6 px-8">Professional website + AI generator</td><td class="text-center text-green-400 font-bold">Yes</td><td class="text-center text-green-400 font-bold">Yes</td><td class="text-center text-green-400 font-bold">Yes</td></tr>
+            <tr><td class="py-6 px-8">Client portal & payment links</td><td class="text-center text-green-400 font-bold">Yes</td><td class="text-center text-green-400 font-bold">Yes</td><td class="text-center text-green-400 font-bold">Yes</td></tr>
+            <tr class="bg-yellow-900/20">
+              <td class="py-8 px-8 font-black text-2xl text-yellow-300">Automated email/SMS sequences + 20–30% lifetime affiliate dashboard<br><span class="text-lg opacity-80">Earn R6k–R30k+/mo passive</span></td>
+              <td class="text-center text-red-500 font-black text-3xl">No</td>
+              <td class="text-center text-5xl text-green-400 font-black animate-pulse">YES</td>
+              <td class="text-center text-5xl text-green-400 font-black animate-pulse">YES</td>
+            </tr>
+            <tr class="bg-amber-900/20">
+              <td class="py-8 px-8 font-black text-2xl text-amber-300">CPD auto-tracking + 1-click LPC report<br>White-label + custom domain<br>Priority support + quarterly calls</td>
+              <td class="text-center text-red-500 font-black text-3xl">No</td>
+              <td class="text-center text-red-500 font-black text-3xl">No</td>
+              <td class="text-center text-5xl text-green-400 font-black animate-pulse">YES</td>
+            </tr>
+            <tr class="bg-green-900/50 border-t-8 border-green-500">
+              <td class="py-10 px-8 font-black text-3xl text-green-400">Your Price Locked Forever</td>
+              <td class="text-center text-5xl text-green-400 font-black">YES</td>
+              <td class="text-center text-5xl text-green-400 font-black">YES</td>
+              <td class="text-center text-5xl text-green-400 font-black">YES</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
-      <!-- Desktop -->
-      <div class="hidden md:grid md:grid-cols-3 gap-10 max-w-6xl mx-auto">
-        <div class="bg-gradient-to-b from-zinc-900 to-black border-2 border-zinc-700 rounded-3xl p-10 hover:border-green-500 transition">
-          <h3 class="text-5xl font-black text-green-400 mb-4">Growth</h3>
-          <div class="text-8xl font-black mb-2">R999<span class="text-4xl opacity-70">/mo</span></div>
-          <p class="text-3xl my-6 line-through opacity-50">R2,999</p>
-          <p class="text-2xl mb-8">Spots left: <strong id="spots-growth" class="text-red-500">12</strong></p>
-          <a href="https://payfast.io/xxx-growth" class="block w-full bg-green-500 hover:bg-green-600 text-black font-black text-2xl py-6 rounded-2xl">Claim Founding Spot</a>
-        </div>
-        <div class="relative bg-gradient-to-b from-green-900/20 to-black border-4 border-green-500 rounded-3xl p-12 shadow-2xl transform scale-105">
-          <div class="founding-badge">MOST POPULAR</div>
-          <h3 class="text-6xl font-black text-yellow-400 mb-4 mt-6">Dominance</h3>
-          <div class="text-9xl font-black mb-2">R2,999<span class="text-5xl opacity-70">/mo</span></div>
-          <p class="text-4xl my-6 line-through opacity-50">R7,999</p>
-          <p class="text-3xl mb-8">Spots left: <strong id="spots-dominance" class="text-red-500">38</strong></p>
-          <a href="https://payfast.io/xxx-dominance" class="block w-full bg-yellow-400 hover:bg-yellow-500 text-black font-black text-3xl py-8 rounded-2xl">Claim My Spot Now</a>
-        </div>
-        <div class="bg-gradient-to-b from-zinc-900 to-black border-2 border-yellow-600 rounded-3xl p-10 hover:border-yellow-500 transition">
-          <h3 class="text-5xl font-black text-yellow-400 mb-4">Elite</h3>
-          <div class="text-8xl font-black mb-2">R9,999<span class="text-4xl opacity-70">/mo</span></div>
-          <p class="text-3xl my-6 line-through opacity-50">R19,999</p>
-          <p class="text-2xl mb-8">Spots left: <strong id="spots-elite" class="text-red-500">50</strong></p>
-          <a href="https://payfast.io/xxx-elite" class="block w-full bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-black text-2xl py-6 rounded-2xl">Claim Elite Spot</a>
-        </div>
+      <!-- PAYFAST BUTTONS UNDER TABLE -->
+      <div class="mt-16 grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <a href="https://payfast.io/your-growth-link-here" class="bg-green-500 hover:bg-green-600 text-black font-black text-3xl py-10 rounded-3xl text-center shadow-2xl hover:scale-105 transition">CLAIM GROWTH SPOT</a>
+        <a href="https://payfast.io/your-dominance-link-here" class="bg-yellow-400 hover:bg-yellow-500 text-black font-black text-3xl py-10 rounded-3xl text-center shadow-2xl hover:scale-105 transition scale-110">CLAIM DOMINANCE (MOST POPULAR)</a>
+        <a href="https://payfast.io/your-elite-link-here" class="bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-black font-black text-3xl py-10 rounded-3xl text-center shadow-2xl hover:scale-105 transition">CLAIM ELITE SPOT</a>
       </div>
     </div>
   </section>
@@ -108,25 +115,25 @@
   <!-- FAQ -->
   <section class="py-20 px-6 bg-black">
     <div class="max-w-4xl mx-auto text-center">
-      <h2 class="text-5xl font-black mb-12">Frequently Asked Questions</h2>
-      <div class="space-y-8 text-left text-lg md:text-xl">
-        <div class="bg-zinc-900/50 rounded-2xl p-6 border border-zinc-800"><p class="font-bold">When do I go live?</p><p>Every Founding Member is 100% live by end February 2026 — guaranteed.</p></div>
-        <div class="bg-zinc-900/50 rounded-2xl p-6 border border-zinc-800"><p class="font-bold">Why only 500 spots?</p><p>White-glove onboarding + direct influence on roadmap. Never again after this.</p></div>
-        <div class="bg-zinc-900/50 rounded-2xl p-6 border border-zinc-800"><p class="font-bold">Is my data safe?</p><p>100% POPIA compliant • End-to-end encryption • Hosted only in South Africa.</p></div>
-        <div class="bg-zinc-900/50 rounded-2xl p-6 border border-zinc-800"><p class="font-bold">Can I cancel anytime?</p><p>Yes — 30 days notice. Zero lock-in contracts.</p></div>
+      <h2 class="text-5xl font-black mb-16">Frequently Asked Questions</h2>
+      <div class="space-y-8 text-left text-xl">
+        <div class="bg-zinc-900/50 rounded-2xl p-8 border border-zinc-800"><p class="font-bold text-2xl mb-2">When will my firm go live?</p><p>100% live by end February 2026 — guaranteed or your money back.</p></div>
+        <div class="bg-zinc-900/50 rounded-2xl p-8 border border-zinc-800"><p class="font-bold text-2xl mb-2">Why only 500 founding spots?</p><p>White-glove service + you help shape the final product. Never again after this.</p></div>
+        <div class="bg-zinc-900/50 rounded-2xl p-8 border border-zinc-800"><p class="font-bold text-2xl mb-2">Is my data safe?</p><p>100% POPIA compliant • Hosted in SA • End-to-end encryption.</p></div>
+        <div class="bg-zinc-900/50 rounded-2xl p-8 border border-zinc-800"><p class="font-bold text-2xl mb-2">Can I cancel anytime?</p><p>Yes — 30 days notice. Zero lock-in.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- WhatsApp Float -->
+  <!-- FLOATING WHATSAPP -->
   <div class="fixed bottom-6 right-6 z-50">
-    <a href="https://wa.me/27764312871?text=Hi%20CraftVibeZA!%20I%20want%20a%20Founding%20spot%20before%20they're%20gone" target="_blank" class="flex items-center gap-4 bg-white text-black rounded-full shadow-2xl pl-6 pr-8 py-5 font-black text-lg hover:scale-110 transition">
+    <a href="https://wa.me/27764312871?text=Hi%20CraftVibeZA!%20I%20want%20a%20Founding%20spot%20NOW" target="_blank" class="flex items-center gap-4 bg-white text-black rounded-full shadow-2xl pl-6 pr-8 py-5 font-black text-lg hover:scale-110 transition">
       <i class="fab fa-whatsapp text-4xl text-green-500"></i>
       <div>Lock My Founding Price<br><span class="text-sm font-normal opacity-80">Reply in under 60 seconds</span></div>
     </a>
   </div>
 
-  <!-- QUIZ OVERLAY & RESULTS (hidden until used) -->
+  <!-- QUIZ OVERLAY (hidden until clicked) -->
   <div id="quiz-overlay" class="fixed inset-0 bg-black/98 backdrop-blur-2xl flex items-center justify-center z-[1000] hidden px-4">
     <div class="w-full max-w-2xl">
       <div class="h-2 bg-zinc-800 rounded-full mb-10 overflow-hidden"><div id="quiz-progress" class="h-full bg-gradient-to-r from-green-500 to-emerald-600 transition-all duration-700" style="width:0%"></div></div>
@@ -135,26 +142,19 @@
     </div>
   </div>
 
+  <!-- QUIZ RESULTS -->
   <section id="quiz-results" class="py-20 px-6 bg-black hidden">
     <div class="max-w-5xl mx-auto text-center">
       <h2 class="text-4xl md:text-6xl font-black mb-10 text-green-400">Your Perfect Founding Plan</h2>
-      <div class="relative inline-block mb-12">
-        <div id="tier-name" class="px-16 py-8 rounded-full text-5xl md:text-7xl font-black text-black bg-gradient-to-r from-green-500 to-emerald-600 shadow-2xl">CALCULATING...</div>
-        <div id="popular-badge" class="founding-badge" style="display:none">MOST POPULAR</div>
-      </div>
-      <div id="tier-price" class="text-6xl md:text-8xl font-black text-green-400 mb-8"></div>
-      <div id="final-total" class="text-4xl opacity-80 mb-12"></div>
-      <div id="recommended-list" class="max-w-4xl mx-auto text-left text-xl leading-relaxed bg-zinc-900/50 rounded-3xl p-10"></div>
-      <div class="mt-16 max-w-2xl mx-auto">
-        <a id="payfast-link" href="" class="block w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-black font-black text-3xl py-10 rounded-3xl shadow-2xl hover:scale-105 transition mb-8">
-          YES – SECURE MY FOUNDING SPOT NOW
-        </a>
-        <p class="text-xl opacity-80">Or WhatsApp us instantly → <a href="https://wa.me/27764312871" class="text-green-400 underline">click here</a></p>
-      </div>
+      <div id="tier-name" class="px-16 py-8 rounded-full text-5xl md:text-7xl font-black text-black bg-gradient-to-r from-green-500 to-emerald-600 shadow-2xl inline-block">CALCULATING...</div>
+      <div id="tier-price" class="text-6xl md:text-8xl font-black text-green-400 my-10"></div>
+      <div id="recommended-list" class="max-w-4xl mx-auto text-left text-xl leading-relaxed bg-zinc-900/50 rounded-3xl p-10 mb-10"></div>
+      <a id="payfast-link" href="" class="inline-block bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-black font-black text-3xl py-10 px-20 rounded-3xl shadow-2xl hover:scale-105 transition">
+        YES – SECURE MY SPOT NOW
+      </a>
     </div>
   </section>
 
-  <div id="footer-placeholder"></div>
   <script src="/script.js?v=20251202"></script>
 </body>
 </html>
