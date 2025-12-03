@@ -11,11 +11,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
-
   <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-
   <style>
     :root { --green:#10b981; --yellow:#fbbf24; --amber:#f59e0b; --red:#ef4444; }
     body { font-family:'Inter',sans-serif; background:#000; color:#fff; margin:0; overflow-x:hidden; }
@@ -30,8 +28,6 @@
   </style>
 </head>
 <body class="min-h-screen flex flex-col">
-
-  <div id="header-placeholder"></div>
 
   <!-- HERO -->
   <main class="flex-1 pt-52 sm:pt-56 md:pt-60 lg:pt-32 xl:pt-28 px-6 text-center">
@@ -53,7 +49,7 @@
       <button onclick="startQuiz()" class="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-black font-black text-3xl sm:text-4xl md:text-5xl px-12 sm:px-16 py-8 sm:py-10 rounded-full shadow-2xl hover:scale-105 transition">
         SEE IF YOU QUALIFY (90 Sec)
       </button>
-      <div class="mt-16 futex flex-wrap justify-center gap-4 text-sm sm:text-base">
+      <div class="mt-16 flex flex-wrap justify-center gap-4 text-sm sm:text-base">
         <span class="bg-white/10 backdrop-blur px-6 py-3 rounded-full">Exclusively for SA law firms</span>
         <span class="bg-white/10 backdrop-blur px-6 py-3 rounded-full">100% POPIA compliant</span>
         <span class="bg-white/10 backdrop-blur px-6 py-3 rounded-full">Proudly South African</span>
@@ -70,7 +66,7 @@
       <!-- MOBILE CARDS -->
       <div class="block md:hidden overflow-x-auto pricing-scroll pb-12 -mx-6 px-6">
         <div class="inline-flex gap-8 min-w-max items-start">
-          <!-- Growth Mobile -->
+          <!-- Growth -->
           <div class="w-80 flex-shrink-0 bg-gradient-to-b from-zinc-900 to-black border-2 border-zinc-700 rounded-3xl p-8 text-center">
             <h3 class="text-4xl font-black text-green-400 mb-4">Growth</h3>
             <div class="text-6xl font-black text-green-400">R999<span class="text-3xl">/mo</span></div>
@@ -79,8 +75,7 @@
             <p class="text-lg mt-4">Taken: <span id="growth-taken">0</span> / 100</p>
             <form data-tier="Growth" class="payfast-form mt-6"></form>
           </div>
-
-          <!-- Dominance Mobile -->
+          <!-- Dominance (Most Popular) -->
           <div class="relative w-80 flex-shrink-0 bg-gradient-to-b from-green-900/30 to-black border-4 border-green-500 rounded-3xl p-10 shadow-2xl text-center">
             <div class="founding-badge">FOUNDING PRICE – LOCKED FOREVER</div>
             <h3 class="text-5xl font-black text-yellow-400 mb-4 mt-4">Dominance</h3>
@@ -90,8 +85,7 @@
             <p class="text-lg mt-4">Taken: <span id="dominance-taken">0</span> / 200</p>
             <form data-tier="Dominance" class="payfast-form mt-6"></form>
           </div>
-
-          <!-- Elite Mobile -->
+          <!-- Elite -->
           <div class="w-80 flex-shrink-0 bg-gradient-to-b from-zinc-900 to-black border-2 border-yellow-600 rounded-3xl p-8 text-center">
             <h3 class="text-4xl font-black text-yellow-400 mb-4">Elite</h3>
             <div class="text-6xl font-black text-green-400">R9,999<span class="text-3xl">/mo</span></div>
@@ -105,7 +99,6 @@
 
       <!-- DESKTOP CARDS -->
       <div class="hidden md:grid md:grid-cols-3 gap-10 max-w-6xl mx-auto">
-        <!-- Growth Desktop -->
         <div class="bg-gradient-to-b from-zinc-900 to-black border-2 border-zinc-700 rounded-3xl p-10 hover:border-green-500 transition text-center">
           <h3 class="text-4xl font-black text-green-400 mb-4">Growth</h3>
           <div class="text-7xl font-black text-green-400 mb-2">R999<span class="text-3xl">/mo</span></div>
@@ -114,8 +107,6 @@
           <p class="text-lg mt-4">Taken: <span id="growth-taken-desktop">0</span> / 100</p>
           <form data-tier="Growth" class="payfast-form mt-6"></form>
         </div>
-
-        <!-- Dominance Desktop -->
         <div class="relative bg-gradient-to-b from-green-900/20 to-black border-4 border-green-500 rounded-3xl p-12 shadow-2xl transform scale-105 text-center">
           <div class="founding-badge">FOUNDING PRICE – LOCKED FOREVER</div>
           <h3 class="text-5xl font-black text-yellow-400 mb-4 mt-4">Dominance</h3>
@@ -125,8 +116,6 @@
           <p class="text-lg mt-4">Taken: <span id="dominance-taken-desktop">0</span> / 200</p>
           <form data-tier="Dominance" class="payfast-form mt-6"></form>
         </div>
-
-        <!-- Elite Desktop -->
         <div class="bg-gradient-to-b from-zinc-900 to-black border-2 border-yellow-600 rounded-3xl p-10 hover:border-yellow-500 transition text-center">
           <h3 class="text-4xl font-black text-yellow-400 mb-4">Elite</h3>
           <div class="text-7xl font-black text-green-400 mb-2">R9,999<span class="text-3xl">/mo</span></div>
@@ -147,6 +136,7 @@
       </div>
     </div>
   </section>
+
   <!-- FEATURES TABLE -->
   <section id="features" class="py-20 px-6 bg-black">
     <div class="max-w-7xl mx-auto">
@@ -222,47 +212,9 @@
           </tbody>
         </table>
       </div>
-      <!-- Additional PayFast Buttons Below Table -->
-      <div class="mt-16 grid md:grid-cols-3 gap-10 max-w-6xl mx-auto">
-        <form action="https://www.payfast.co.za/eng/process" method="post">
-          <input type="hidden" name="merchant_id" value="YOUR_MERCHANT_ID">
-          <input type="hidden" name="merchant_key" value="YOUR_MERCHANT_KEY">
-          <input type="hidden" name="amount" value="999.00">
-          <input type="hidden" name="item_name" value="CraftVibeZA Growth Tier Founding Membership">
-          <input type="hidden" name="subscription_type" value="1">
-          <input type="hidden" name="recurring_amount" value="999.00">
-          <input type="hidden" name="frequency" value="3">
-          <input type="hidden" name="cycles" value="0">
-          <input type="hidden" name="notify_url" value="https://us-central1-yourproject.cloudfunctions.net/payfastWebhook">
-          <button type="submit" class="w-full bg-gradient-to-r from-green-500 to-emerald-600 text-black font-black text-xl py-4 rounded-full shadow-2xl hover:scale-105 transition">Pay for Growth</button>
-        </form>
-        <form action="https://www.payfast.co.za/eng/process" method="post">
-          <input type="hidden" name="merchant_id" value="YOUR_MERCHANT_ID">
-          <input type="hidden" name="merchant_key" value="YOUR_MERCHANT_KEY">
-          <input type="hidden" name="amount" value="2999.00">
-          <input type="hidden" name="item_name" value="CraftVibeZA Dominance Tier Founding Membership">
-          <input type="hidden" name="subscription_type" value="1">
-          <input type="hidden" name="recurring_amount" value="2999.00">
-          <input type="hidden" name="frequency" value="3">
-          <input type="hidden" name="cycles" value="0">
-          <input type="hidden" name="notify_url" value="https://us-central1-yourproject.cloudfunctions.net/payfastWebhook">
-          <button type="submit" class="w-full bg-gradient-to-r from-yellow-400 to-amber-500 text-black font-black text-xl py-4 rounded-full shadow-2xl hover:scale-105 transition">Pay for Dominance</button>
-        </form>
-        <form action="https://www.payfast.co.za/eng/process" method="post">
-          <input type="hidden" name="merchant_id" value="YOUR_MERCHANT_ID">
-          <input type="hidden" name="merchant_key" value="YOUR_MERCHANT_KEY">
-          <input type="hidden" name="amount" value="9999.00">
-          <input type="hidden" name="item_name" value="CraftVibeZA Elite Tier Founding Membership">
-          <input type="hidden" name="subscription_type" value="1">
-          <input type="hidden" name="recurring_amount" value="9999.00">
-          <input type="hidden" name="frequency" value="3">
-          <input type="hidden" name="cycles" value="0">
-          <input type="hidden" name="notify_url" value="https://us-central1-yourproject.cloudfunctions.net/payfastWebhook">
-          <button type="submit" class="w-full bg-gradient-to-r from-amber-500 to-orange-600 text-black font-black text-xl py-4 rounded-full shadow-2xl hover:scale-105 transition">Pay for Elite</button>
-        </form>
-      </div>
     </div>
   </section>
+
   <!-- SCARCITY BAR -->
   <section class="py-16 bg-gradient-to-r from-green-900/60 to-emerald-900/60 border-y-4 border-green-500">
     <div class="max-w-5xl mx-auto text-center px-6">
@@ -273,6 +225,7 @@
       </a>
     </div>
   </section>
+
   <!-- FAQ -->
   <section id="faq" class="py-20 px-6 bg-black">
     <div class="max-w-4xl mx-auto text-center">
@@ -285,6 +238,7 @@
       </div>
     </div>
   </section>
+
   <!-- QUIZ OVERLAY -->
   <div id="quiz-overlay" class="fixed inset-0 bg-black/98 backdrop-blur-2xl flex items-center justify-center z-[1000] hidden px-4">
     <div class="w-full max-w-2xl">
@@ -293,7 +247,8 @@
       <div id="quiz-options" class="grid gap-5 sm:gap-6"></div>
     </div>
   </div>
-<!-- QUIZ RESULTS (PayFast form is now auto-generated too) -->
+
+  <!-- QUIZ RESULTS -->
   <section id="quiz-results" class="py-20 px-6 bg-black hidden">
     <div class="max-w-5xl mx-auto text-center">
       <h2 class="text-4xl md:text-6xl font-black mb-10 text-green-400">Your Perfect Founding Plan</h2>
@@ -308,6 +263,7 @@
     </div>
   </section>
 
+  <!-- Floating WhatsApp -->
   <div class="fixed bottom-6 right-6 z-50">
     <a href="https://wa.me/27764312871?text=Hi%20CraftVibeZA!%20I%20want%20a%20Founding%20Member%20spot" target="_blank" class="flex items-center gap-3 bg-white text-black rounded-full shadow-2xl pl-5 pr-7 py-4 font-bold text-base transition-all hover:scale-110">
       <span class="absolute inset-0 rounded-full bg-green-500 opacity-75 animate-ping"></span>
@@ -318,13 +274,10 @@
     </a>
   </div>
 
-  <div id="footer-placeholder"></div>
-
-  <!-- SINGLE SOURCE OF TRUTH – .env + AUTO-INJECT (Vite/Netlify/Vercel ready) -->
+  <!-- FINAL SCRIPT – EVERYTHING INCLUDED -->
   <script type="module">
-    // Firebase Config – replace with your own
     const firebaseConfig = {
-      apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "your-fallback-key",
+      apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
       authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
       projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
       storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
@@ -332,25 +285,35 @@
       appId: import.meta.env.VITE_FIREBASE_APP_ID
     };
     firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
 
-    // PayFast Auto-Form Generator (ONE place for all credentials)
+    // Real-time counters update
+    db.collection("spots").doc("counters").onSnapshot(doc => {
+      if (doc.exists) {
+        const d = doc.data();
+        ["growth","dominance","elite"].forEach(t => {
+          const val = d[`${t}_taken`] || 0;
+          document.querySelectorAll(`#${t}-taken, #${t}-taken-desktop`).forEach(el => el.textContent = val);
+        });
+      }
+    });
+
     document.addEventListener('DOMContentLoaded', () => {
       const merchantId = import.meta.env.VITE_PAYFAST_MERCHANT_ID || '10030123';
       const merchantKey = import.meta.env.VITE_PAYFAST_MERCHANT_KEY || '';
-      const passphrase = import.meta.env.VITE_PAYFAST_PASSPHRASE || '';
       const returnUrl = import.meta.env.VITE_PAYFAST_RETURN_URL || 'https://craftvibeza.co.za/thank-you';
       const notifyUrl = import.meta.env.VITE_PAYFAST_NOTIFY_URL || 'https://your-project.cloudfunctions.net/payfastWebhook';
 
       const pricing = {
-        Growth:    { monthly: 999,  setup: 0,     normal: 2999,  waiveFirst: 999 },
-        Dominance: { monthly: 2999, setup: 4999,  normal: 7999,  waiveFirst: 100 },
-        Elite:     { monthly: 9999, setup: 9999,  normal: 19999, waiveFirst: 50 }
+        Growth:    { monthly: 999,  setup: 0,     waiveFirst: 999 },
+        Dominance: { monthly: 2999, setup: 4999,  waiveFirst: 100 },
+        Elite:     { monthly: 9999, setup: 9999,  waiveFirst: 50 }
       };
 
       document.querySelectorAll('.payfast-form').forEach(form => {
         const tier = form.dataset.tier;
         const p = pricing[tier];
-        const taken = parseInt(document.getElementById(`${tier.toLowerCase()}-taken`)?.textContent || "0");
+        const taken = parseInt(document.querySelector(`#${tier.toLowerCase()}-taken`)?.textContent || "0");
         const setupFee = (tier === "Dominance" && taken < p.waiveFirst) || (tier === "Elite" && taken < p.waiveFirst) ? 0 : p.setup;
         const totalFirst = p.monthly + setupFee;
 
@@ -371,14 +334,25 @@
           <input type="hidden" name="name_last" value="">
           <input type="hidden" name="email_address" value="">
           <input type="hidden" name="cell_number" value="">
+
+          <!-- POPIA + Terms + Recurring Consent Checkbox -->
+          <div class="my-6 text-left bg-zinc-800/50 p-5 rounded-xl border border-zinc-700">
+            <label class="flex items-start gap-4 cursor-pointer select-none">
+              <input type="checkbox" required class="w-6 h-6 text-green-500 rounded border-gray-600 focus:ring-green-500 mt-1 flex-shrink-0">
+              <span class="text-sm leading-tight">
+                I consent to CraftVibeZA processing my personal information per 
+                <a href="/terms.html" target="_blank" class="text-green-400 underline font-bold">POPIA & Terms</a>. 
+                I authorise recurring monthly billing from end-Feb 2026 at the Founding rate (30-day cancellation).
+              </span>
+            </label>
+          </div>
+
           <button type="submit" class="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-black font-black text-2xl py-6 rounded-2xl shadow-2xl hover:scale-105 transition">
             ${tier === "Dominance" ? "MOST POPULAR – CLAIM NOW" : "CLAIM " + tier.toUpperCase() + " SPOT"}
           </button>
         `;
-      });
 
-      // Auto-fill name/email/phone from localStorage before any PayFast submit
-      document.querySelectorAll('.payfast-form').forEach(form => {
+        // Auto-fill name/email/phone on submit
         form.addEventListener('submit', () => {
           const lead = JSON.parse(localStorage.getItem('craftvibe_lead') || '{}');
           if (lead.name) {
@@ -392,8 +366,8 @@
       });
     });
   </script>
-
   <script src="script.js"></script>
 </body>
 </html>
+
 
