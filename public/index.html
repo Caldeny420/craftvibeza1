@@ -11,6 +11,11 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
   <style>
     :root { --green:#10b981; --yellow:#fbbf24; --amber:#f59e0b; --red:#ef4444; }
     body { font-family:'Inter',sans-serif; background:#000; color:#fff; margin:0; overflow-x:hidden; }
@@ -19,16 +24,15 @@
       @apply absolute -top-6 left-1/2 -translate-x-1/2 bg-gradient-to-r from-yellow-400 via-orange-400 to-amber-500 text-black font-black px-8 py-3 rounded-full text-sm uppercase tracking-widest shadow-2xl animate-pulse border-4 border-black;
       letter-spacing: 2px;
     }
-    @keyframes pulse { 0%,100% { transform: scale(1); opacity: 0.95; } 50% { transform: scale(1.05); opacity: 1; } animation-duration: 2s; }
+    @keyframes pulse { 0%,100% { transform: scale(1); opacity: 0.95; } 50% { transform: scale(1.05); opacity: 1; } }
     .pricing-scroll { -webkit-overflow-scrolling: touch; scrollbar-width: none; -ms-overflow-style: none; }
     .pricing-scroll::-webkit-scrollbar { display: none; }
   </style>
-  <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js"></script>
 </head>
 <body class="min-h-screen flex flex-col">
+
   <div id="header-placeholder"></div>
+
   <!-- HERO -->
   <main class="flex-1 pt-52 sm:pt-56 md:pt-60 lg:pt-32 xl:pt-28 px-6 text-center">
     <div class="max-w-5xl mx-auto">
@@ -49,167 +53,91 @@
       <button onclick="startQuiz()" class="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-black font-black text-3xl sm:text-4xl md:text-5xl px-12 sm:px-16 py-8 sm:py-10 rounded-full shadow-2xl hover:scale-105 transition">
         SEE IF YOU QUALIFY (90 Sec)
       </button>
-      <div class="mt-16 flex flex-wrap justify-center gap-4 text-sm sm:text-base">
+      <div class="mt-16 futex flex-wrap justify-center gap-4 text-sm sm:text-base">
         <span class="bg-white/10 backdrop-blur px-6 py-3 rounded-full">Exclusively for SA law firms</span>
         <span class="bg-white/10 backdrop-blur px-6 py-3 rounded-full">100% POPIA compliant</span>
         <span class="bg-white/10 backdrop-blur px-6 py-3 rounded-full">Proudly South African</span>
       </div>
     </div>
   </main>
+
   <!-- PRICING -->
   <section id="pricing" class="py-20 px-6 bg-black">
     <div class="max-w-7xl mx-auto text-center">
       <h2 class="text-5xl sm:text-6xl md:text-7xl font-black mb-6">Founding Member Pricing</h2>
       <p class="text-xl sm:text-2xl opacity-80 mb-16">Only 500 firms ever get this pricing — <strong class="text-red-500">forever</strong></p>
-      <!-- MOBILE – ZERO OVERLAP, PERFECT -->
+
+      <!-- MOBILE CARDS -->
       <div class="block md:hidden overflow-x-auto pricing-scroll pb-12 -mx-6 px-6">
         <div class="inline-flex gap-8 min-w-max items-start">
+          <!-- Growth Mobile -->
           <div class="w-80 flex-shrink-0 bg-gradient-to-b from-zinc-900 to-black border-2 border-zinc-700 rounded-3xl p-8 text-center">
             <h3 class="text-4xl font-black text-green-400 mb-4">Growth</h3>
             <div class="text-6xl font-black text-green-400">R999<span class="text-3xl">/mo</span></div>
-            <p class="text-lg opacity-70 my-4">Normal: <strong class="line-through">R2,999</strong></p>
+            <p class="text-lg opacity-70 my-4">Normal: <s>R2,999</s></p>
             <p class="text-xl">Setup: R0</p>
             <p class="text-lg mt-4">Taken: <span id="growth-taken">0</span> / 100</p>
-            <form action="https://www.payfast.co.za/eng/process" method="post" class="mt-6">
-              <input type="hidden" name="merchant_id" value="YOUR_MERCHANT_ID">
-              <input type="hidden" name="merchant_key" value="YOUR_MERCHANT_KEY">
-              <input type="hidden" name="amount" value="999.00">
-              <input type="hidden" name="item_name" value="CraftVibeZA Growth Tier Founding Membership">
-              <input type="hidden" name="item_description" value="Monthly subscription for Growth Tier">
-              <input type="hidden" name="subscription_type" value="1">
-              <input type="hidden" name="billing_date" value="2026-02-28">
-              <input type="hidden" name="recurring_amount" value="999.00">
-              <input type="hidden" name="frequency" value="3"> <!-- Monthly -->
-              <input type="hidden" name="cycles" value="0"> <!-- Indefinite -->
-              <input type="hidden" name="return_url" value="https://your-site.com/success">
-              <input type="hidden" name="cancel_url" value="https://your-site.com/cancel">
-              <input type="hidden" name="notify_url" value="https://us-central1-yourproject.cloudfunctions.net/payfastWebhook">
-              <button type="submit" class="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-black font-black text-2xl py-6 rounded-2xl shadow-2xl hover:scale-105 transition">Claim Spot Now</button>
-            </form>
+            <form data-tier="Growth" class="payfast-form mt-6"></form>
           </div>
+
+          <!-- Dominance Mobile -->
           <div class="relative w-80 flex-shrink-0 bg-gradient-to-b from-green-900/30 to-black border-4 border-green-500 rounded-3xl p-10 shadow-2xl text-center">
             <div class="founding-badge">FOUNDING PRICE – LOCKED FOREVER</div>
             <h3 class="text-5xl font-black text-yellow-400 mb-4 mt-4">Dominance</h3>
             <div class="text-7xl font-black text-green-400">R2,999<span class="text-4xl">/mo</span></div>
-            <p class="text-lg opacity-70 my-4">Normal: <strong class="line-through">R7,999</strong></p>
-            <p class="text-2xl">Setup: R4,999 (waived for first 100)</p>
+            <p class="text-lg opacity-70 my-4">Normal: <s>R7,999</s></p>
+            <p class="text-2xl">Setup: R4,999 <span class="text-green-400 text-sm block">(waived first 100)</span></p>
             <p class="text-lg mt-4">Taken: <span id="dominance-taken">0</span> / 200</p>
-            <form action="https://www.payfast.co.za/eng/process" method="post" class="mt-6">
-              <input type="hidden" name="merchant_id" value="YOUR_MERCHANT_ID">
-              <input type="hidden" name="merchant_key" value="YOUR_MERCHANT_KEY">
-              <input type="hidden" name="amount" value="2999.00">
-              <input type="hidden" name="item_name" value="CraftVibeZA Dominance Tier Founding Membership">
-              <input type="hidden" name="item_description" value="Monthly subscription for Dominance Tier">
-              <input type="hidden" name="subscription_type" value="1">
-              <input type="hidden" name="billing_date" value="2026-02-28">
-              <input type="hidden" name="recurring_amount" value="2999.00">
-              <input type="hidden" name="frequency" value="3">
-              <input type="hidden" name="cycles" value="0">
-              <input type="hidden" name="return_url" value="https://your-site.com/success">
-              <input type="hidden" name="cancel_url" value="https://your-site.com/cancel">
-              <input type="hidden" name="notify_url" value="https://us-central1-yourproject.cloudfunctions.net/payfastWebhook">
-              <button type="submit" class="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-black font-black text-2xl py-6 rounded-2xl shadow-2xl hover:scale-105 transition">Claim Spot Now</button>
-            </form>
+            <form data-tier="Dominance" class="payfast-form mt-6"></form>
           </div>
+
+          <!-- Elite Mobile -->
           <div class="w-80 flex-shrink-0 bg-gradient-to-b from-zinc-900 to-black border-2 border-yellow-600 rounded-3xl p-8 text-center">
             <h3 class="text-4xl font-black text-yellow-400 mb-4">Elite</h3>
             <div class="text-6xl font-black text-green-400">R9,999<span class="text-3xl">/mo</span></div>
-            <p class="text-lg opacity-70 my-4">Normal: <strong class="line-through">R19,999</strong></p>
-            <p class="text-xl">Setup: R9,999 (waived for first 50)</p>
+            <p class="text-lg opacity-70 my-4">Normal: <s>R19,999</s></p>
+            <p class="text-xl">Setup: R9,999 <span class="text-green-400 text-sm block">(waived first 50)</span></p>
             <p class="text-lg mt-4">Taken: <span id="elite-taken">0</span> / 200</p>
-            <form action="https://www.payfast.co.za/eng/process" method="post" class="mt-6">
-              <input type="hidden" name="merchant_id" value="YOUR_MERCHANT_ID">
-              <input type="hidden" name="merchant_key" value="YOUR_MERCHANT_KEY">
-              <input type="hidden" name="amount" value="9999.00">
-              <input type="hidden" name="item_name" value="CraftVibeZA Elite Tier Founding Membership">
-              <input type="hidden" name="item_description" value="Monthly subscription for Elite Tier">
-              <input type="hidden" name="subscription_type" value="1">
-              <input type="hidden" name="billing_date" value="2026-02-28">
-              <input type="hidden" name="recurring_amount" value="9999.00">
-              <input type="hidden" name="frequency" value="3">
-              <input type="hidden" name="cycles" value="0">
-              <input type="hidden" name="return_url" value="https://your-site.com/success">
-              <input type="hidden" name="cancel_url" value="https://your-site.com/cancel">
-              <input type="hidden" name="notify_url" value="https://us-central1-yourproject.cloudfunctions.net/payfastWebhook">
-              <button type="submit" class="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-black font-black text-2xl py-6 rounded-2xl shadow-2xl hover:scale-105 transition">Claim Spot Now</button>
-            </form>
+            <form data-tier="Elite" class="payfast-form mt-6"></form>
           </div>
         </div>
       </div>
-      <!-- DESKTOP -->
+
+      <!-- DESKTOP CARDS -->
       <div class="hidden md:grid md:grid-cols-3 gap-10 max-w-6xl mx-auto">
+        <!-- Growth Desktop -->
         <div class="bg-gradient-to-b from-zinc-900 to-black border-2 border-zinc-700 rounded-3xl p-10 hover:border-green-500 transition text-center">
           <h3 class="text-4xl font-black text-green-400 mb-4">Growth</h3>
           <div class="text-7xl font-black text-green-400 mb-2">R999<span class="text-3xl">/mo</span></div>
-          <p class="text-lg opacity-70 mb-6">Normal: <strong class="line-through">R2,999/mo</strong></p>
+          <p class="text-lg opacity-70 mb-6">Normal: <s>R2,999/mo</s></p>
           <p class="text-xl opacity-80">Setup: R0</p>
           <p class="text-lg mt-4">Taken: <span id="growth-taken-desktop">0</span> / 100</p>
-          <form action="https://www.payfast.co.za/eng/process" method="post" class="mt-6">
-            <input type="hidden" name="merchant_id" value="YOUR_MERCHANT_ID">
-            <input type="hidden" name="merchant_key" value="YOUR_MERCHANT_KEY">
-            <input type="hidden" name="amount" value="999.00">
-            <input type="hidden" name="item_name" value="CraftVibeZA Growth Tier Founding Membership">
-            <input type="hidden" name="item_description" value="Monthly subscription for Growth Tier">
-            <input type="hidden" name="subscription_type" value="1">
-            <input type="hidden" name="billing_date" value="2026-02-28">
-            <input type="hidden" name="recurring_amount" value="999.00">
-            <input type="hidden" name="frequency" value="3">
-            <input type="hidden" name="cycles" value="0">
-            <input type="hidden" name="return_url" value="https://your-site.com/success">
-            <input type="hidden" name="cancel_url" value="https://your-site.com/cancel">
-            <input type="hidden" name="notify_url" value="https://us-central1-yourproject.cloudfunctions.net/payfastWebhook">
-            <button type="submit" class="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-black font-black text-2xl py-6 rounded-2xl shadow-2xl hover:scale-105 transition">Claim Spot Now</button>
-          </form>
+          <form data-tier="Growth" class="payfast-form mt-6"></form>
         </div>
+
+        <!-- Dominance Desktop -->
         <div class="relative bg-gradient-to-b from-green-900/20 to-black border-4 border-green-500 rounded-3xl p-12 shadow-2xl transform scale-105 text-center">
           <div class="founding-badge">FOUNDING PRICE – LOCKED FOREVER</div>
           <h3 class="text-5xl font-black text-yellow-400 mb-4 mt-4">Dominance</h3>
           <div class="text-8xl font-black text-green-400 mb-2">R2,999<span class="text-4xl">/mo</span></div>
-          <p class="text-lg opacity-70 mb-6">Normal: <strong class="line-through">R7,999/mo</strong></p>
-          <p class="text-2xl opacity-80">Setup: R4,999 (waived for first 100)</p>
+          <p class="text-lg opacity-70 mb-6">Normal: <s>R7,999/mo</s></p>
+          <p class="text-2xl opacity-80">Setup: R4,999 <span class="text-green-400 text-sm block">(waived first 100)</span></p>
           <p class="text-lg mt-4">Taken: <span id="dominance-taken-desktop">0</span> / 200</p>
-          <form action="https://www.payfast.co.za/eng/process" method="post" class="mt-6">
-            <input type="hidden" name="merchant_id" value="YOUR_MERCHANT_ID">
-            <input type="hidden" name="merchant_key" value="YOUR_MERCHANT_KEY">
-            <input type="hidden" name="amount" value="2999.00">
-            <input type="hidden" name="item_name" value="CraftVibeZA Dominance Tier Founding Membership">
-            <input type="hidden" name="item_description" value="Monthly subscription for Dominance Tier">
-            <input type="hidden" name="subscription_type" value="1">
-            <input type="hidden" name="billing_date" value="2026-02-28">
-            <input type="hidden" name="recurring_amount" value="2999.00">
-            <input type="hidden" name="frequency" value="3">
-            <input type="hidden" name="cycles" value="0">
-            <input type="hidden" name="return_url" value="https://your-site.com/success">
-            <input type="hidden" name="cancel_url" value="https://your-site.com/cancel">
-            <input type="hidden" name="notify_url" value="https://us-central1-yourproject.cloudfunctions.net/payfastWebhook">
-            <button type="submit" class="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-black font-black text-2xl py-6 rounded-2xl shadow-2xl hover:scale-105 transition">Claim Spot Now</button>
-          </form>
+          <form data-tier="Dominance" class="payfast-form mt-6"></form>
         </div>
+
+        <!-- Elite Desktop -->
         <div class="bg-gradient-to-b from-zinc-900 to-black border-2 border-yellow-600 rounded-3xl p-10 hover:border-yellow-500 transition text-center">
           <h3 class="text-4xl font-black text-yellow-400 mb-4">Elite</h3>
           <div class="text-7xl font-black text-green-400 mb-2">R9,999<span class="text-3xl">/mo</span></div>
-          <p class="text-lg opacity-70 mb-6">Normal: <strong class="line-through">R19,999/mo</strong></p>
-          <p class="text-xl opacity-80">Setup: R9,999 (waived for first 50)</p>
+          <p class="text-lg opacity-70 mb-6">Normal: <s>R19,999/mo</s></p>
+          <p class="text-xl opacity-80">Setup: R9,999 <span class="text-green-400 text-sm block">(waived first 50)</span></p>
           <p class="text-lg mt-4">Taken: <span id="elite-taken-desktop">0</span> / 200</p>
-          <form action="https://www.payfast.co.za/eng/process" method="post" class="mt-6">
-            <input type="hidden" name="merchant_id" value="YOUR_MERCHANT_ID">
-            <input type="hidden" name="merchant_key" value="YOUR_MERCHANT_KEY">
-            <input type="hidden" name="amount" value="9999.00">
-            <input type="hidden" name="item_name" value="CraftVibeZA Elite Tier Founding Membership">
-            <input type="hidden" name="item_description" value="Monthly subscription for Elite Tier">
-            <input type="hidden" name="subscription_type" value="1">
-            <input type="hidden" name="billing_date" value="2026-02-28">
-            <input type="hidden" name="recurring_amount" value="9999.00">
-            <input type="hidden" name="frequency" value="3">
-            <input type="hidden" name="cycles" value="0">
-            <input type="hidden" name="return_url" value="https://your-site.com/success">
-            <input type="hidden" name="cancel_url" value="https://your-site.com/cancel">
-            <input type="hidden" name="notify_url" value="https://us-central1-yourproject.cloudfunctions.net/payfastWebhook">
-            <button type="submit" class="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-black font-black text-2xl py-6 rounded-2xl shadow-2xl hover:scale-105 transition">Claim Spot Now</button>
-          </form>
+          <form data-tier="Elite" class="payfast-form mt-6"></form>
         </div>
       </div>
-      <!-- CONTACT CTA (Replaced form) -->
+
+      <!-- WhatsApp CTA -->
       <div class="mt-20 max-w-2xl mx-auto bg-zinc-900/80 backdrop-blur-xl border-4 border-green-500 rounded-3xl p-8 sm:p-12 shadow-2xl">
         <h3 class="text-4xl sm:text-5xl font-black text-center mb-10 text-green-400">Secure One of the 500 Spots Forever</h3>
         <a href="https://wa.me/27764312871?text=Hi%20CraftVibeZA!%20I%20want%20one%20of%20the%20500%20Founding%20spots%20before%20Feb%202026" target="_blank" class="w-full block bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-black font-black text-2xl sm:text-4xl py-10 rounded-3xl shadow-2xl hover:scale-105 transition">
@@ -365,7 +293,7 @@
       <div id="quiz-options" class="grid gap-5 sm:gap-6"></div>
     </div>
   </div>
-  <!-- QUIZ RESULTS -->
+<!-- QUIZ RESULTS (PayFast form is now auto-generated too) -->
   <section id="quiz-results" class="py-20 px-6 bg-black hidden">
     <div class="max-w-5xl mx-auto text-center">
       <h2 class="text-4xl md:text-6xl font-black mb-10 text-green-400">Your Perfect Founding Plan</h2>
@@ -376,24 +304,12 @@
       <div id="tier-price" class="text-6xl md:text-8xl font-black text-green-400 mb-8"></div>
       <div id="final-total" class="text-4xl opacity-80 mb-12"></div>
       <div id="recommended-list" class="max-w-4xl mx-auto text-left text-xl leading-relaxed bg-zinc-900/50 rounded-3xl p-10"></div>
-      <!-- PayFast Button in Quiz Results -->
-      <form id="quiz-payfast-form" action="https://www.payfast.co.za/eng/process" method="post" class="mt-16 max-w-2xl mx-auto">
-        <input type="hidden" name="merchant_id" value="YOUR_MERCHANT_ID">
-        <input type="hidden" name="merchant_key" value="YOUR_MERCHANT_KEY">
-        <input type="hidden" id="quiz-amount" name="amount" value="">
-        <input type="hidden" id="quiz-item-name" name="item_name" value="">
-        <input type="hidden" name="subscription_type" value="1">
-        <input type="hidden" name="recurring_amount" id="quiz-recurring-amount" value="">
-        <input type="hidden" name="frequency" value="3">
-        <input type="hidden" name="cycles" value="0">
-        <input type="hidden" name="notify_url" value="https://us-central1-yourproject.cloudfunctions.net/payfastWebhook">
-        <button type="submit" class="w-full bg-white text-black font-black text-3xl py-8 rounded-3xl hover:scale-105 transition shadow-2xl">YES – CLAIM THIS PLAN NOW</button>
-      </form>
+      <form id="quiz-payfast-form" class="payfast-form mt-16 max-w-2xl mx-auto" data-tier="Dominance"></form>
     </div>
   </section>
-  <!-- FLOATING WHATSAPP -->
+
   <div class="fixed bottom-6 right-6 z-50">
-    <a href="https://wa.me/27764312871?text=Hi%20CraftVibeZA!%20I%20want%20a%20Founding%20Member%20spot%20before%20they're%20gone" target="_blank" class="flex items-center gap-3 bg-white text-black rounded-full shadow-2xl pl-5 pr-7 py-4 font-bold text-base transition-all hover:scale-110">
+    <a href="https://wa.me/27764312871?text=Hi%20CraftVibeZA!%20I%20want%20a%20Founding%20Member%20spot" target="_blank" class="flex items-center gap-3 bg-white text-black rounded-full shadow-2xl pl-5 pr-7 py-4 font-bold text-base transition-all hover:scale-110">
       <span class="absolute inset-0 rounded-full bg-green-500 opacity-75 animate-ping"></span>
       <div class="relative flex items-center gap-3">
         <i class="fab fa-whatsapp text-3xl text-green-500"></i>
@@ -401,46 +317,83 @@
       </div>
     </a>
   </div>
+
   <div id="footer-placeholder"></div>
-  <script>
-    // Firebase Config (Placeholder - Replace with your actual config from Firebase Console)
+
+  <!-- SINGLE SOURCE OF TRUTH – .env + AUTO-INJECT (Vite/Netlify/Vercel ready) -->
+  <script type="module">
+    // Firebase Config – replace with your own
     const firebaseConfig = {
-      apiKey: "YOUR_API_KEY",
-      authDomain: "yourproject.firebaseapp.com",
-      projectId: "yourproject",
-      storageBucket: "yourproject.appspot.com",
-      messagingSenderId: "YOUR_SENDER_ID",
-      appId: "YOUR_APP_ID"
+      apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "your-fallback-key",
+      authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+      projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+      storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+      messagingSenderId: import.meta.env.VITE_FIREBASE_SENDER_ID,
+      appId: import.meta.env.VITE_FIREBASE_APP_ID
     };
     firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
 
-    // Fetch and Update Taken
-    function updateTaken() {
-      db.collection("spots").doc("counters").get().then(doc => {
-        if (doc.exists) {
-          const data = doc.data();
-          document.getElementById('growth-taken').textContent = data.growth_taken || 0;
-          document.getElementById('dominance-taken').textContent = data.dominance_taken || 0;
-          document.getElementById('elite-taken').textContent = data.elite_taken || 0;
-          document.getElementById('growth-taken-desktop').textContent = data.growth_taken || 0;
-          document.getElementById('dominance-taken-desktop').textContent = data.dominance_taken || 0;
-          document.getElementById('elite-taken-desktop').textContent = data.elite_taken || 0;
-        }
-      }).catch(error => console.error("Error fetching taken:", error));
-    }
-    updateTaken(); // Initial fetch
-    // Listen for real-time updates
-    db.collection("spots").doc("counters").onSnapshot(doc => {
-      const data = doc.data();
-      document.getElementById('growth-taken').textContent = data.growth_taken || 0;
-      document.getElementById('dominance-taken').textContent = data.dominance_taken || 0;
-      document.getElementById('elite-taken').textContent = data.elite_taken || 0;
-      document.getElementById('growth-taken-desktop').textContent = data.growth_taken || 0;
-      document.getElementById('dominance-taken-desktop').textContent = data.dominance_taken || 0;
-      document.getElementById('elite-taken-desktop').textContent = data.elite_taken || 0;
+    // PayFast Auto-Form Generator (ONE place for all credentials)
+    document.addEventListener('DOMContentLoaded', () => {
+      const merchantId = import.meta.env.VITE_PAYFAST_MERCHANT_ID || '10030123';
+      const merchantKey = import.meta.env.VITE_PAYFAST_MERCHANT_KEY || '';
+      const passphrase = import.meta.env.VITE_PAYFAST_PASSPHRASE || '';
+      const returnUrl = import.meta.env.VITE_PAYFAST_RETURN_URL || 'https://craftvibeza.co.za/thank-you';
+      const notifyUrl = import.meta.env.VITE_PAYFAST_NOTIFY_URL || 'https://your-project.cloudfunctions.net/payfastWebhook';
+
+      const pricing = {
+        Growth:    { monthly: 999,  setup: 0,     normal: 2999,  waiveFirst: 999 },
+        Dominance: { monthly: 2999, setup: 4999,  normal: 7999,  waiveFirst: 100 },
+        Elite:     { monthly: 9999, setup: 9999,  normal: 19999, waiveFirst: 50 }
+      };
+
+      document.querySelectorAll('.payfast-form').forEach(form => {
+        const tier = form.dataset.tier;
+        const p = pricing[tier];
+        const taken = parseInt(document.getElementById(`${tier.toLowerCase()}-taken`)?.textContent || "0");
+        const setupFee = (tier === "Dominance" && taken < p.waiveFirst) || (tier === "Elite" && taken < p.waiveFirst) ? 0 : p.setup;
+        const totalFirst = p.monthly + setupFee;
+
+        form.innerHTML = `
+          <input type="hidden" name="merchant_id" value="${merchantId}">
+          <input type="hidden" name="merchant_key" value="${merchantKey}">
+          <input type="hidden" name="return_url" value="${returnUrl}">
+          <input type="hidden" name="cancel_url" value="${returnUrl}">
+          <input type="hidden" name="notify_url" value="${notifyUrl}">
+          <input type="hidden" name="amount" value="${totalFirst}.00">
+          <input type="hidden" name="recurring_amount" value="${p.monthly}.00">
+          <input type="hidden" name="frequency" value="3">
+          <input type="hidden" name="cycles" value="0">
+          <input type="hidden" name="subscription_type" value="1">
+          <input type="hidden" name="billing_date" value="2026-02-28">
+          <input type="hidden" name="item_name" value="CraftVibeZA ${tier} Founding Membership">
+          <input type="hidden" name="name_first" value="">
+          <input type="hidden" name="name_last" value="">
+          <input type="hidden" name="email_address" value="">
+          <input type="hidden" name="cell_number" value="">
+          <button type="submit" class="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-black font-black text-2xl py-6 rounded-2xl shadow-2xl hover:scale-105 transition">
+            ${tier === "Dominance" ? "MOST POPULAR – CLAIM NOW" : "CLAIM " + tier.toUpperCase() + " SPOT"}
+          </button>
+        `;
+      });
+
+      // Auto-fill name/email/phone from localStorage before any PayFast submit
+      document.querySelectorAll('.payfast-form').forEach(form => {
+        form.addEventListener('submit', () => {
+          const lead = JSON.parse(localStorage.getItem('craftvibe_lead') || '{}');
+          if (lead.name) {
+            const names = lead.name.trim().split(' ');
+            form.querySelector('[name="name_first"]').value = names[0];
+            form.querySelector('[name="name_last"]').value = names.slice(1).join(' ');
+          }
+          if (lead.email) form.querySelector('[name="email_address"]').value = lead.email;
+          if (lead.phone) form.querySelector('[name="cell_number"]').value = lead.phone.replace('+27','0');
+        });
+      });
     });
   </script>
+
   <script src="script.js"></script>
 </body>
 </html>
+
