@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta name="theme-color" content="#000000" />
-  <meta name="description" content="CraftVibeZA – The new AI growth platform built exclusively for South African law firms. Only 12 Founding Partners forever. Live end Feb 2026." />
-  <title>CraftVibeZA | Only 12 Founding Partners Forever – Live Feb 2026</title>
+  <meta name="description" content="CraftVibeZA – The new AI growth platform built exclusively for South African law firms. Only 500 Founding Members forever. Live end Feb 2026." />
+  <title>CraftVibeZA | Only 500 Founding Members Forever – Live Feb 2026</title>
   <link rel="icon" href="/images/craftvibe-logo.jpg" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
@@ -19,19 +19,20 @@
       @apply absolute -top-6 left-1/2 -translate-x-1/2 bg-gradient-to-r from-yellow-400 via-orange-400 to-amber-500 text-black font-black px-8 py-3 rounded-full text-sm uppercase tracking-widest shadow-2xl animate-pulse border-4 border-black;
       letter-spacing: 2px;
     }
-    @keyframes pulse { 0%,100% { transform: scale(1); opacity: 0.95; } 50% { transform: scale(1.05); opacity: 1; } }
+    @keyframes pulse { 0%,100% { transform: scale(1); opacity: 0.95; } 50% { transform: scale(1.05); opacity: 1; } animation-duration: 2s; }
     .pricing-scroll { -webkit-overflow-scrolling: touch; scrollbar-width: none; -ms-overflow-style: none; }
     .pricing-scroll::-webkit-scrollbar { display: none; }
   </style>
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js"></script>
 </head>
 <body class="min-h-screen flex flex-col">
-
   <div id="header-placeholder"></div>
-
   <!-- HERO -->
   <main class="flex-1 pt-52 sm:pt-56 md:pt-60 lg:pt-32 xl:pt-28 px-6 text-center">
     <div class="max-w-5xl mx-auto">
-      <div class="badge-new mb-8">FOUNDING PARTNERS • ONLY 12 FOREVER • LIVE END FEB 2026</div>
+      <div class="badge-new mb-8">FOUNDING MEMBERS • ONLY 500 FOREVER • LIVE END FEB 2026</div>
       <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-tight mb-8">
         The New Standard<br class="hidden sm:block">for SA Law Firms<br>in <span class="text-green-400">2026</span>
       </h1>
@@ -48,90 +49,174 @@
       </div>
     </div>
   </main>
-
   <!-- PRICING -->
   <section id="pricing" class="py-20 px-6 bg-black">
     <div class="max-w-7xl mx-auto text-center">
-      <h2 class="text-5xl sm:text-6xl md:text-7xl font-black mb-6">Founding Partner Pricing</h2>
-      <p class="text-xl sm:text-2xl opacity-80 mb-16">Only 12 firms ever get this pricing — <strong class="text-red-500">forever</strong></p>
-
+      <h2 class="text-5xl sm:text-6xl md:text-7xl font-black mb-6">Founding Member Pricing</h2>
+      <p class="text-xl sm:text-2xl opacity-80 mb-16">Only 500 firms ever get this pricing — <strong class="text-red-500">forever</strong></p>
       <!-- MOBILE – ZERO OVERLAP, PERFECT -->
       <div class="block md:hidden overflow-x-auto pricing-scroll pb-12 -mx-6 px-6">
         <div class="inline-flex gap-8 min-w-max items-start">
           <div class="w-80 flex-shrink-0 bg-gradient-to-b from-zinc-900 to-black border-2 border-zinc-700 rounded-3xl p-8">
             <h3 class="text-4xl font-black text-green-400 mb-4">Growth</h3>
-            <div class="text-6xl font-black text-green-400">R14,900<span class="text-3xl">/mo</span></div>
-            <p class="text-lg opacity-70 my-4">Normal: <strong>R69,000</strong></p>
-            <p class="text-xl">Setup: R49,900</p>
+            <div class="text-6xl font-black text-green-400">R999<span class="text-3xl">/mo</span></div>
+            <p class="text-lg opacity-70 my-4">Normal: <strong class="line-through">R2,999</strong></p>
+            <p class="text-xl">Setup: R0</p>
+            <p class="text-lg mt-4">Spots left: <span id="growth-spots">12</span></p>
+            <form action="https://www.payfast.co.za/eng/process" method="post" class="mt-6">
+              <input type="hidden" name="merchant_id" value="YOUR_MERCHANT_ID">
+              <input type="hidden" name="merchant_key" value="YOUR_MERCHANT_KEY">
+              <input type="hidden" name="amount" value="999.00">
+              <input type="hidden" name="item_name" value="CraftVibeZA Growth Tier Founding Membership">
+              <input type="hidden" name="item_description" value="Monthly subscription for Growth Tier">
+              <input type="hidden" name="subscription_type" value="1">
+              <input type="hidden" name="billing_date" value="2026-02-28">
+              <input type="hidden" name="recurring_amount" value="999.00">
+              <input type="hidden" name="frequency" value="3"> <!-- Monthly -->
+              <input type="hidden" name="cycles" value="0"> <!-- Indefinite -->
+              <input type="hidden" name="return_url" value="https://your-site.com/success">
+              <input type="hidden" name="cancel_url" value="https://your-site.com/cancel">
+              <input type="hidden" name="notify_url" value="https://us-central1-yourproject.cloudfunctions.net/payfastWebhook">
+              <button type="submit" class="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-black font-black text-2xl py-6 rounded-2xl shadow-2xl hover:scale-105 transition">Claim Spot Now</button>
+            </form>
           </div>
-
           <div class="relative w-80 flex-shrink-0 bg-gradient-to-b from-green-900/30 to-black border-4 border-green-500 rounded-3xl p-10 shadow-2xl">
             <div class="founding-badge">FOUNDING PRICE – LOCKED FOREVER</div>
             <h3 class="text-5xl font-black text-yellow-400 mb-4 mt-4">Dominance</h3>
-            <div class="text-7xl font-black text-green-400">R29,900<span class="text-4xl">/mo</span></div>
-            <p class="text-lg opacity-70 my-4">Normal: <strong>R99,000</strong></p>
-            <p class="text-2xl">Setup: R89,900</p>
+            <div class="text-7xl font-black text-green-400">R2,999<span class="text-4xl">/mo</span></div>
+            <p class="text-lg opacity-70 my-4">Normal: <strong class="line-through">R7,999</strong></p>
+            <p class="text-2xl">Setup: R4,999 (waived for first 100)</p>
+            <p class="text-lg mt-4">Spots left: <span id="dominance-spots">38</span></p>
+            <form action="https://www.payfast.co.za/eng/process" method="post" class="mt-6">
+              <input type="hidden" name="merchant_id" value="YOUR_MERCHANT_ID">
+              <input type="hidden" name="merchant_key" value="YOUR_MERCHANT_KEY">
+              <input type="hidden" name="amount" value="2999.00">
+              <input type="hidden" name="item_name" value="CraftVibeZA Dominance Tier Founding Membership">
+              <input type="hidden" name="item_description" value="Monthly subscription for Dominance Tier">
+              <input type="hidden" name="subscription_type" value="1">
+              <input type="hidden" name="billing_date" value="2026-02-28">
+              <input type="hidden" name="recurring_amount" value="2999.00">
+              <input type="hidden" name="frequency" value="3">
+              <input type="hidden" name="cycles" value="0">
+              <input type="hidden" name="return_url" value="https://your-site.com/success">
+              <input type="hidden" name="cancel_url" value="https://your-site.com/cancel">
+              <input type="hidden" name="notify_url" value="https://us-central1-yourproject.cloudfunctions.net/payfastWebhook">
+              <button type="submit" class="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-black font-black text-2xl py-6 rounded-2xl shadow-2xl hover:scale-105 transition">Claim Spot Now</button>
+            </form>
           </div>
-
           <div class="w-80 flex-shrink-0 bg-gradient-to-b from-zinc-900 to-black border-2 border-yellow-600 rounded-3xl p-8">
             <h3 class="text-4xl font-black text-yellow-400 mb-4">Elite</h3>
-            <div class="text-6xl font-black text-green-400">R49,900<span class="text-3xl">/mo</span></div>
-            <p class="text-lg opacity-70 my-4">Normal: <strong>R179,000</strong></p>
-            <p class="text-xl">Setup: R149,900</p>
+            <div class="text-6xl font-black text-green-400">R9,999<span class="text-3xl">/mo</span></div>
+            <p class="text-lg opacity-70 my-4">Normal: <strong class="line-through">R19,999</strong></p>
+            <p class="text-xl">Setup: R9,999 (waived for first 50)</p>
+            <p class="text-lg mt-4">Spots left: <span id="elite-spots">50</span></p>
+            <form action="https://www.payfast.co.za/eng/process" method="post" class="mt-6">
+              <input type="hidden" name="merchant_id" value="YOUR_MERCHANT_ID">
+              <input type="hidden" name="merchant_key" value="YOUR_MERCHANT_KEY">
+              <input type="hidden" name="amount" value="9999.00">
+              <input type="hidden" name="item_name" value="CraftVibeZA Elite Tier Founding Membership">
+              <input type="hidden" name="item_description" value="Monthly subscription for Elite Tier">
+              <input type="hidden" name="subscription_type" value="1">
+              <input type="hidden" name="billing_date" value="2026-02-28">
+              <input type="hidden" name="recurring_amount" value="9999.00">
+              <input type="hidden" name="frequency" value="3">
+              <input type="hidden" name="cycles" value="0">
+              <input type="hidden" name="return_url" value="https://your-site.com/success">
+              <input type="hidden" name="cancel_url" value="https://your-site.com/cancel">
+              <input type="hidden" name="notify_url" value="https://us-central1-yourproject.cloudfunctions.net/payfastWebhook">
+              <button type="submit" class="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-black font-black text-2xl py-6 rounded-2xl shadow-2xl hover:scale-105 transition">Claim Spot Now</button>
+            </form>
           </div>
         </div>
       </div>
-
       <!-- DESKTOP -->
       <div class="hidden md:grid md:grid-cols-3 gap-10 max-w-6xl mx-auto">
         <div class="bg-gradient-to-b from-zinc-900 to-black border-2 border-zinc-700 rounded-3xl p-10 hover:border-green-500 transition">
           <h3 class="text-4xl font-black text-green-400 mb-4">Growth</h3>
-          <div class="text-7xl font-black text-green-400 mb-2">R14,900<span class="text-3xl">/mo</span></div>
-          <p class="text-lg opacity-70 mb-6">Normal: <strong>R69,000/mo</strong></p>
-          <p class="text-xl opacity-80">Setup: R49,900</p>
+          <div class="text-7xl font-black text-green-400 mb-2">R999<span class="text-3xl">/mo</span></div>
+          <p class="text-lg opacity-70 mb-6">Normal: <strong class="line-through">R2,999/mo</strong></p>
+          <p class="text-xl opacity-80">Setup: R0</p>
+          <p class="text-lg mt-4">Spots left: <span id="growth-spots-desktop">12</span></p>
+          <form action="https://www.payfast.co.za/eng/process" method="post" class="mt-6">
+            <input type="hidden" name="merchant_id" value="YOUR_MERCHANT_ID">
+            <input type="hidden" name="merchant_key" value="YOUR_MERCHANT_KEY">
+            <input type="hidden" name="amount" value="999.00">
+            <input type="hidden" name="item_name" value="CraftVibeZA Growth Tier Founding Membership">
+            <input type="hidden" name="item_description" value="Monthly subscription for Growth Tier">
+            <input type="hidden" name="subscription_type" value="1">
+            <input type="hidden" name="billing_date" value="2026-02-28">
+            <input type="hidden" name="recurring_amount" value="999.00">
+            <input type="hidden" name="frequency" value="3">
+            <input type="hidden" name="cycles" value="0">
+            <input type="hidden" name="return_url" value="https://your-site.com/success">
+            <input type="hidden" name="cancel_url" value="https://your-site.com/cancel">
+            <input type="hidden" name="notify_url" value="https://us-central1-yourproject.cloudfunctions.net/payfastWebhook">
+            <button type="submit" class="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-black font-black text-2xl py-6 rounded-2xl shadow-2xl hover:scale-105 transition">Claim Spot Now</button>
+          </form>
         </div>
         <div class="relative bg-gradient-to-b from-green-900/20 to-black border-4 border-green-500 rounded-3xl p-12 shadow-2xl transform scale-105">
           <div class="founding-badge">FOUNDING PRICE – LOCKED FOREVER</div>
           <h3 class="text-5xl font-black text-yellow-400 mb-4 mt-4">Dominance</h3>
-          <div class="text-8xl font-black text-green-400 mb-2">R29,900<span class="text-4xl">/mo</span></div>
-          <p class="text-lg opacity-70 mb-6">Normal: <strong>R99,000/mo</strong></p>
-          <p class="text-2xl opacity-80">Setup: R89,900</p>
+          <div class="text-8xl font-black text-green-400 mb-2">R2,999<span class="text-4xl">/mo</span></div>
+          <p class="text-lg opacity-70 mb-6">Normal: <strong class="line-through">R7,999/mo</strong></p>
+          <p class="text-2xl opacity-80">Setup: R4,999 (waived for first 100)</p>
+          <p class="text-lg mt-4">Spots left: <span id="dominance-spots-desktop">38</span></p>
+          <form action="https://www.payfast.co.za/eng/process" method="post" class="mt-6">
+            <input type="hidden" name="merchant_id" value="YOUR_MERCHANT_ID">
+            <input type="hidden" name="merchant_key" value="YOUR_MERCHANT_KEY">
+            <input type="hidden" name="amount" value="2999.00">
+            <input type="hidden" name="item_name" value="CraftVibeZA Dominance Tier Founding Membership">
+            <input type="hidden" name="item_description" value="Monthly subscription for Dominance Tier">
+            <input type="hidden" name="subscription_type" value="1">
+            <input type="hidden" name="billing_date" value="2026-02-28">
+            <input type="hidden" name="recurring_amount" value="2999.00">
+            <input type="hidden" name="frequency" value="3">
+            <input type="hidden" name="cycles" value="0">
+            <input type="hidden" name="return_url" value="https://your-site.com/success">
+            <input type="hidden" name="cancel_url" value="https://your-site.com/cancel">
+            <input type="hidden" name="notify_url" value="https://us-central1-yourproject.cloudfunctions.net/payfastWebhook">
+            <button type="submit" class="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-black font-black text-2xl py-6 rounded-2xl shadow-2xl hover:scale-105 transition">Claim Spot Now</button>
+          </form>
         </div>
         <div class="bg-gradient-to-b from-zinc-900 to-black border-2 border-yellow-600 rounded-3xl p-10 hover:border-yellow-500 transition">
           <h3 class="text-4xl font-black text-yellow-400 mb-4">Elite</h3>
-          <div class="text-7xl font-black text-green-400 mb-2">R49,900<span class="text-3xl">/mo</span></div>
-          <p class="text-lg opacity-70 mb-6">Normal: <strong>R179,000/mo</strong></p>
-          <p class="text-xl opacity-80">Setup: R149,900</p>
+          <div class="text-7xl font-black text-green-400 mb-2">R9,999<span class="text-3xl">/mo</span></div>
+          <p class="text-lg opacity-70 mb-6">Normal: <strong class="line-through">R19,999/mo</strong></p>
+          <p class="text-xl opacity-80">Setup: R9,999 (waived for first 50)</p>
+          <p class="text-lg mt-4">Spots left: <span id="elite-spots-desktop">50</span></p>
+          <form action="https://www.payfast.co.za/eng/process" method="post" class="mt-6">
+            <input type="hidden" name="merchant_id" value="YOUR_MERCHANT_ID">
+            <input type="hidden" name="merchant_key" value="YOUR_MERCHANT_KEY">
+            <input type="hidden" name="amount" value="9999.00">
+            <input type="hidden" name="item_name" value="CraftVibeZA Elite Tier Founding Membership">
+            <input type="hidden" name="item_description" value="Monthly subscription for Elite Tier">
+            <input type="hidden" name="subscription_type" value="1">
+            <input type="hidden" name="billing_date" value="2026-02-28">
+            <input type="hidden" name="recurring_amount" value="9999.00">
+            <input type="hidden" name="frequency" value="3">
+            <input type="hidden" name="cycles" value="0">
+            <input type="hidden" name="return_url" value="https://your-site.com/success">
+            <input type="hidden" name="cancel_url" value="https://your-site.com/cancel">
+            <input type="hidden" name="notify_url" value="https://us-central1-yourproject.cloudfunctions.net/payfastWebhook">
+            <button type="submit" class="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-black font-black text-2xl py-6 rounded-2xl shadow-2xl hover:scale-105 transition">Claim Spot Now</button>
+          </form>
         </div>
       </div>
-
-      <!-- CAPTURE FORM -->
+      <!-- CONTACT CTA (Replaced form) -->
       <div class="mt-20 max-w-2xl mx-auto bg-zinc-900/80 backdrop-blur-xl border-4 border-green-500 rounded-3xl p-8 sm:p-12 shadow-2xl">
-        <h3 class="text-4xl sm:text-5xl font-black text-center mb-10 text-green-400">Secure One of the 12 Spots Forever</h3>
-        <form id="direct-capture-form" class="space-y-6">
-          <input type="text" name="name" placeholder="Full Name" required class="w-full px-6 py-5 rounded-2xl bg-zinc-800 text-white text-lg focus:outline-none focus:ring-4 focus:ring-green-500">
-          <input type="tel" name="phone" placeholder="WhatsApp Number (e.g. 082 123 4567)" required class="w-full px-6 py-5 rounded-2xl bg-zinc-800 text-white text-lg focus:outline-none focus:ring-4 focus:ring-green-500">
-          <div class="flex items-start gap-4 bg-zinc-800/50 p-5 rounded-2xl cursor-pointer select-none transition-all" onclick="toggleConsent(this)">
-            <input type="checkbox" required class="sr-only">
-            <div class="checkbox-custom w-7 h-7 rounded border-2 border-gray-500 flex items-center justify-center flex-shrink-0 transition-all">
-              <i class="fas fa-check text-green-500 text-lg hidden transition-all"></i>
-            </div>
-            <label class="cursor-pointer text-sm leading-tight">I consent to be contacted via WhatsApp/call (POPIA compliant)</label>
-          </div>
-          <button type="submit" class="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-black font-black text-2xl sm:text-4xl py-10 rounded-3xl shadow-2xl hover:scale-105 transition">
-            YES – CALL ME IN UNDER 60 SECONDS
-          </button>
-        </form>
-        <p class="mt-8 text-center opacity-80 text-lg">Only 12 Founding Partners forever • Reply instantly 24/7</p>
+        <h3 class="text-4xl sm:text-5xl font-black text-center mb-10 text-green-400">Secure One of the 500 Spots Forever</h3>
+        <a href="https://wa.me/27764312871?text=Hi%20CraftVibeZA!%20I%20want%20one%20of%20the%20500%20Founding%20spots%20before%20Feb%202026" target="_blank" class="w-full block bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-black font-black text-2xl sm:text-4xl py-10 rounded-3xl shadow-2xl hover:scale-105 transition">
+          YES – CONTACT ME NOW
+        </a>
+        <p class="mt-8 text-center opacity-80 text-lg">Only 500 Founding Members forever • Reply instantly 24/7</p>
       </div>
     </div>
   </section>
-
   <!-- FEATURES TABLE -->
   <section id="features" class="py-20 px-6 bg-black">
     <div class="max-w-7xl mx-auto">
       <h2 class="text-5xl sm:text-6xl md:text-7xl font-black text-center mb-16">Complete Feature Breakdown</h2>
-      <div class="overflow-x-auto rounded-3xl border border-zinc-800">
+      <div class="overflow-x-auto rounded-3xl border border-zinc-800 md:text-xl">
         <table class="w-full min-w-[700px] text-left">
           <thead class="bg-gradient-to-r from-zinc-900 to-black">
             <tr>
@@ -145,35 +230,18 @@
             <tr class="border-b border-gray-800 bg-zinc-900/50">
               <td class="py-6 font-bold text-xl">Team Size (Attorneys + Staff)</td>
               <td class="text-center text-green-400 font-black text-2xl">1–5</td>
-              <td class="text-center text-yellow-400 font-black text-3xl">5–12</td>
+              <td class="text-center text-yellow-400 font-black text-3xl">5–15</td>
               <td class="text-center text-amber-400 font-black text-3xl">Unlimited</td>
             </tr>
-            <tr class="border-b border-gray-800"><td class="py-6">Professional website on yourfirm.craftvibeza.com</td><td class="text-green-400 font-bold text-center">Yes</td><td class="text-green-400 font-bold text-center">Yes</td><td class="text-green-400 font-bold text-center">Yes</td></tr>
-            <tr class="border-b border-gray-800"><td class="py-6">AI full-site generator + no-code editor</td><td class="text-green-400 font-bold text-center">Yes</td><td class="text-green-400 font-bold text-center">Yes</td><td class="text-green-400 font-bold text-center">Yes</td></tr>
-            <tr class="border-b border-gray-800"><td class="py-6">Lead dashboard + calendar booking</td><td class="text-green-400 font-bold text-center">Yes</td><td class="text-green-400 font-bold text-center">Yes</td><td class="text-green-400 font-bold text-center">Yes</td></tr>
-            <tr class="bg-green-900/20 border-b-8 border-green-500">
-              <td class="py-10 font-black text-3xl leading-tight text-green-300">
-                The Smartest Invoice System Ever Built for SA Attorneys<br>
-                <span class="text-lg font-normal opacity-95 mt-2 block">• Timer or type service → auto-pulls client, balances, VAT & interest<br>• Bulk invoice 50 matters in 60 sec • PDF sent instantly</span>
-              </td>
-              <td class="text-green-400 font-bold text-center text-4xl animate-pulse">YES</td>
-              <td class="text-green-400 font-bold text-center text-4xl animate-pulse">YES</td>
-              <td class="text-green-400 font-bold text-center text-4xl animate-pulse">YES</td>
-            </tr>
-            <tr class="bg-red-900/30 border-b-8 border-red-600">
-              <td class="py-10 font-black text-3xl leading-tight text-red-400">
-                NEVER Get Disbarred Over Trust Money Again<br>
-                <span class="text-lg font-normal opacity-95 mt-2 block">Real-time Rule 54 & 86 alerts — stops illegal transfers</span>
-              </td>
-              <td class="text-green-400 font-bold text-center text-4xl animate-pulse">YES</td>
-              <td class="text-green-400 font-bold text-center text-4xl animate-pulse">YES</td>
-              <td class="text-green-400 font-bold text-center text-4xl animate-pulse">YES</td>
-            </tr>
-            <tr class="border-b border-gray-800"><td class="py-6 text-green-300">Automated sequences (chaser, nurturing, referrals)</td><td class="text-red-500 font-black text-center">No</td><td class="text-green-400 font-bold text-center">Yes</td><td class="text-green-400 font-bold text-center">Yes</td></tr>
+            <tr class="border-b border-gray-800"><td class="py-6">Real-time Rule 54/86 & IOLTA trust alerts</td><td class="text-green-400 font-bold text-center">Yes</td><td class="text-green-400 font-bold text-center">Yes</td><td class="text-green-400 font-bold text-center">Yes</td></tr>
+            <tr class="border-b border-gray-800"><td class="py-6">Smart invoicing (timer → auto VAT/interest + bulk 50 in 60s)</td><td class="text-green-400 font-bold text-center">Yes</td><td class="text-green-400 font-bold text-center">Yes</td><td class="text-green-400 font-bold text-center">Yes</td></tr>
+            <tr class="border-b border-gray-800"><td class="py-6">Professional website on yourfirm.yourdomain.com + AI generator</td><td class="text-green-400 font-bold text-center">Yes</td><td class="text-green-400 font-bold text-center">Yes</td><td class="text-green-400 font-bold text-center">Yes</td></tr>
+            <tr class="border-b border-gray-800"><td class="py-6">Client portal & automated payment links</td><td class="text-green-400 font-bold text-center">Yes</td><td class="text-green-400 font-bold text-center">Yes</td><td class="text-green-400 font-bold text-center">Yes</td></tr>
+            <tr class="border-b border-gray-800"><td class="py-6 text-green-300">Automated email/SMS sequences (reminders, nurturing, referrals)</td><td class="text-red-500 font-black text-center">No</td><td class="text-green-400 font-bold text-center">Yes</td><td class="text-green-400 font-bold text-center">Yes</td></tr>
             <tr class="border-b border-gray-800 bg-gradient-to-r from-zinc-800/50 to-zinc-900/50">
               <td class="py-8 font-black text-3xl leading-tight text-green-300">
-                Earn R6k–R15k+/Month Passive Income<br>
-                <span class="text-lg font-normal opacity-90">Refer one firm → 20–30% forever</span>
+                20–30% lifetime affiliate commission dashboard<br>
+                <span class="text-lg font-normal opacity-90">Earn R6k–R30k+/mo passive from referrals</span>
               </td>
               <td class="text-red-500 font-black text-center text-3xl">No</td>
               <td class="text-green-400 font-bold text-center text-4xl animate-pulse">YES</td>
@@ -181,19 +249,19 @@
             </tr>
             <tr class="bg-orange-900/30 border-b-8 border-orange-600">
               <td class="py-10 font-black text-3xl leading-tight text-orange-300">
-                Never Miss CPD Points Again<br>
-                <span class="text-lg font-normal opacity-95 mt-2 block">Auto-tracks everything · LPC report in 1 click</span>
+                CPD / CLE auto-tracking + 1-click LPC report
               </td>
               <td class="text-red-500 font-black text-center text-4xl">No</td>
               <td class="text-red-500 font-black text-center text-4xl">No</td>
               <td class="text-green-400 font-bold text-center text-5xl animate-pulse">YES</td>
             </tr>
-            <tr class="border-b border-gray-800"><td class="py-6 text-yellow-300">AI Brief & Letter Writer (SA-law trained)</td><td class="text-red-500 font-black text-center">No</td><td class="text-red-500 font-black text-center">No</td><td class="text-green-400 font-bold text-center">Yes</td></tr>
-            <tr class="border-b border-gray-800"><td class="py-6">White-label, custom domain, strategy day</td><td class="text-red-500 font-black text-center">No</td><td class="text-red-500 font-black text-center">No</td><td class="text-green-400 font-bold text-center">Yes</td></tr>
+            <tr class="border-b border-gray-800"><td class="py-6 text-yellow-300">White-label (your logo, your branding everywhere)</td><td class="text-red-500 font-black text-center">No</td><td class="text-red-500 font-black text-center">No</td><td class="text-green-400 font-bold text-center">Yes</td></tr>
+            <tr class="border-b border-gray-800"><td class="py-6">Custom domain for the entire app (app.yourfirm.com)</td><td class="text-red-500 font-black text-center">No</td><td class="text-red-500 font-black text-center">No</td><td class="text-green-400 font-bold text-center">Yes</td></tr>
+            <tr class="border-b border-gray-800"><td class="py-6">Priority support + quarterly strategy call</td><td class="text-red-500 font-black text-center">No</td><td class="text-red-500 font-black text-center">No</td><td class="text-green-400 font-bold text-center">Yes</td></tr>
             <tr class="bg-green-900/50 border-t-8 border-b-8 border-green-500">
               <td class="py-10 font-black text-3xl leading-tight text-green-400">
                 Your Price Locked Forever at Founding Rate<br>
-                <span class="text-lg opacity-95">Even when public price hits R179,000+/month</span>
+                <span class="text-lg opacity-95">Even when public price hits R19,999+/month</span>
               </td>
               <td class="text-green-400 font-bold text-center text-4xl">YES</td>
               <td class="text-green-400 font-bold text-center text-4xl">YES</td>
@@ -202,42 +270,77 @@
           </tbody>
         </table>
       </div>
+      <!-- Additional PayFast Buttons Below Table -->
+      <div class="mt-16 grid md:grid-cols-3 gap-10 max-w-6xl mx-auto">
+        <form action="https://www.payfast.co.za/eng/process" method="post">
+          <input type="hidden" name="merchant_id" value="YOUR_MERCHANT_ID">
+          <input type="hidden" name="merchant_key" value="YOUR_MERCHANT_KEY">
+          <input type="hidden" name="amount" value="999.00">
+          <input type="hidden" name="item_name" value="CraftVibeZA Growth Tier Founding Membership">
+          <input type="hidden" name="subscription_type" value="1">
+          <input type="hidden" name="recurring_amount" value="999.00">
+          <input type="hidden" name="frequency" value="3">
+          <input type="hidden" name="cycles" value="0">
+          <input type="hidden" name="notify_url" value="https://us-central1-yourproject.cloudfunctions.net/payfastWebhook">
+          <button type="submit" class="w-full bg-gradient-to-r from-green-500 to-emerald-600 text-black font-black text-xl py-4 rounded-full shadow-2xl hover:scale-105 transition">Pay for Growth</button>
+        </form>
+        <form action="https://www.payfast.co.za/eng/process" method="post">
+          <input type="hidden" name="merchant_id" value="YOUR_MERCHANT_ID">
+          <input type="hidden" name="merchant_key" value="YOUR_MERCHANT_KEY">
+          <input type="hidden" name="amount" value="2999.00">
+          <input type="hidden" name="item_name" value="CraftVibeZA Dominance Tier Founding Membership">
+          <input type="hidden" name="subscription_type" value="1">
+          <input type="hidden" name="recurring_amount" value="2999.00">
+          <input type="hidden" name="frequency" value="3">
+          <input type="hidden" name="cycles" value="0">
+          <input type="hidden" name="notify_url" value="https://us-central1-yourproject.cloudfunctions.net/payfastWebhook">
+          <button type="submit" class="w-full bg-gradient-to-r from-yellow-400 to-amber-500 text-black font-black text-xl py-4 rounded-full shadow-2xl hover:scale-105 transition">Pay for Dominance</button>
+        </form>
+        <form action="https://www.payfast.co.za/eng/process" method="post">
+          <input type="hidden" name="merchant_id" value="YOUR_MERCHANT_ID">
+          <input type="hidden" name="merchant_key" value="YOUR_MERCHANT_KEY">
+          <input type="hidden" name="amount" value="9999.00">
+          <input type="hidden" name="item_name" value="CraftVibeZA Elite Tier Founding Membership">
+          <input type="hidden" name="subscription_type" value="1">
+          <input type="hidden" name="recurring_amount" value="9999.00">
+          <input type="hidden" name="frequency" value="3">
+          <input type="hidden" name="cycles" value="0">
+          <input type="hidden" name="notify_url" value="https://us-central1-yourproject.cloudfunctions.net/payfastWebhook">
+          <button type="submit" class="w-full bg-gradient-to-r from-amber-500 to-orange-600 text-black font-black text-xl py-4 rounded-full shadow-2xl hover:scale-105 transition">Pay for Elite</button>
+        </form>
+      </div>
     </div>
   </section>
-
   <!-- SCARCITY BAR -->
   <section class="py-16 bg-gradient-to-r from-green-900/60 to-emerald-900/60 border-y-4 border-green-500">
     <div class="max-w-5xl mx-auto text-center px-6">
-      <p class="text-4xl md:text-6xl font-black mb-6">Only <span class="text-red-500">12</span> Founding Partners <span class="text-red-500">Forever</span></p>
+      <p class="text-4xl md:text-6xl font-black mb-6">Only <span class="text-red-500">500</span> Founding Members <span class="text-red-500">Forever</span></p>
       <p class="text-2xl md:text-4xl opacity-90 mb-8">Applications Close End February 2026 — No Exceptions</p>
-      <a href="https://wa.me/27764312871?text=Hi%20CraftVibeZA!%20I%20want%20one%20of%20the%2012%20Founding%20spots%20before%20Feb%202026" target="_blank" class="inline-flex items-center gap-4 bg-white text-black font-black text-2xl md:text-3xl px-12 py-8 rounded-full hover:scale-105 transition shadow-2xl">
+      <a href="https://wa.me/27764312871?text=Hi%20CraftVibeZA!%20I%20want%20one%20of%20the%20500%20Founding%20spots%20before%20they're%20gone" target="_blank" class="inline-flex items-center gap-4 bg-white text-black font-black text-2xl md:text-3xl px-12 py-8 rounded-full hover:scale-105 transition shadow-2xl">
         <i class="fab fa-whatsapp text-4xl text-green-500"></i> YES – MESSAGE FOUNDER NOW
       </a>
     </div>
   </section>
-
   <!-- FAQ -->
   <section id="faq" class="py-20 px-6 bg-black">
     <div class="max-w-4xl mx-auto text-center">
       <button onclick="document.getElementById('faq-toggle').classList.toggle('hidden')" class="text-lg underline underline-offset-4 opacity-70 hover:opacity-100">Still have questions? Click to expand</button>
-      <div id="faq-toggle" class="hidden mt-12 space-y-8 text-left text-lg">
-        <div class="bg-zinc-900/50 rounded-2xl p-6 border border-zinc-800"><p class="font-bold">When will my firm go live?</p><p class="opacity-90">Every Founding Partner is 100% live by end Feb 2026 — guaranteed or full setup fee refunded.</p></div>
-        <div class="bg-zinc-900/50 rounded-2xl p-6 border border-zinc-800"><p class="font-bold">Why only 12?</p><p class="opacity-90">White-glove service + direct input into the product. No exceptions ever.</p></div>
+      <div id="faq-toggle" class="hidden mt-12 space-y-8 text-left text-lg transition-all">
+        <div class="bg-zinc-900/50 rounded-2xl p-6 border border-zinc-800"><p class="font-bold">When will my firm go live?</p><p class="opacity-90">Every Founding Member is 100% live by end Feb 2026 — guaranteed or full setup fee refunded.</p></div>
+        <div class="bg-zinc-900/50 rounded-2xl p-6 border border-zinc-800"><p class="font-bold">Why only 500?</p><p class="opacity-90">White-glove service + direct input into the product. No exceptions ever.</p></div>
         <div class="bg-zinc-900/50 rounded-2xl p-6 border border-zinc-800"><p class="font-bold">Is my data safe?</p><p class="opacity-90">100% POPIA compliant. End-to-end encryption. Hosted only in SA.</p></div>
         <div class="bg-zinc-900/50 rounded-2xl p-6 border border-zinc-800"><p class="font-bold">Can I cancel anytime?</p><p class="opacity-90">Yes — 30 days notice. Zero lock-in.</p></div>
       </div>
     </div>
   </section>
-
   <!-- QUIZ OVERLAY -->
   <div id="quiz-overlay" class="fixed inset-0 bg-black/98 backdrop-blur-2xl flex items-center justify-center z-[1000] hidden px-4">
     <div class="w-full max-w-2xl">
       <div class="h-2 bg-zinc-800 rounded-full mb-10 overflow-hidden"><div id="quiz-progress" class="h-full bg-gradient-to-r from-green-500 to-emerald-600 transition-all duration-700" style="width:0%"></div></div>
       <h2 id="quiz-question-text" class="text-4xl md:text-6xl font-black text-center mb-12 leading-tight"></h2>
-      <div id="quiz-options" class="grid gap-5"></div>
+      <div id="quiz-options" class="grid gap-5 sm:gap-6"></div>
     </div>
   </div>
-
   <!-- QUIZ RESULTS -->
   <section id="quiz-results" class="py-20 px-6 bg-black hidden">
     <div class="max-w-5xl mx-auto text-center">
@@ -249,24 +352,24 @@
       <div id="tier-price" class="text-6xl md:text-8xl font-black text-green-400 mb-8"></div>
       <div id="final-total" class="text-4xl opacity-80 mb-12"></div>
       <div id="recommended-list" class="max-w-4xl mx-auto text-left text-xl leading-relaxed bg-zinc-900/50 rounded-3xl p-10"></div>
-      <form id="capture-form" class="mt-16 max-w-2xl mx-auto space-y-6">
-        <input type="text" name="name" placeholder="Your Full Name" required class="w-full px-6 py-5 rounded-2xl bg-zinc-800 text-white text-lg focus:outline-none focus:ring-4 focus:ring-green-500">
-        <input type="tel" name="phone" placeholder="WhatsApp Number" required class="w-full px-6 py-5 rounded-2xl bg-zinc-800 text-white text-lg focus:outline-none focus:ring-4 focus:ring-green-500">
-        <div class="flex items-start gap-4 bg-zinc-800/50 p-5 rounded-2xl cursor-pointer select-none transition-all" onclick="toggleConsent(this)">
-          <input type="checkbox" required class="sr-only">
-          <div class="checkbox-custom w-7 h-7 rounded border-2 border-gray-500 flex items-center justify-center flex-shrink-0 transition-all">
-            <i class="fas fa-check text-green-500 text-lg hidden transition-all"></i>
-          </div>
-          <label class="cursor-pointer text-sm leading-tight">I consent to be contacted (POPIA compliant)</label>
-        </div>
-        <button type="submit" class="w-full bg-white text-black font-black text-3xl py-8 rounded-3xl hover:scale-105 transition shadow-2xl">YES – CALL ME NOW</button>
+      <!-- PayFast Button in Quiz Results -->
+      <form id="quiz-payfast-form" action="https://www.payfast.co.za/eng/process" method="post" class="mt-16 max-w-2xl mx-auto">
+        <input type="hidden" name="merchant_id" value="YOUR_MERCHANT_ID">
+        <input type="hidden" name="merchant_key" value="YOUR_MERCHANT_KEY">
+        <input type="hidden" id="quiz-amount" name="amount" value="">
+        <input type="hidden" id="quiz-item-name" name="item_name" value="">
+        <input type="hidden" name="subscription_type" value="1">
+        <input type="hidden" name="recurring_amount" id="quiz-recurring-amount" value="">
+        <input type="hidden" name="frequency" value="3">
+        <input type="hidden" name="cycles" value="0">
+        <input type="hidden" name="notify_url" value="https://us-central1-yourproject.cloudfunctions.net/payfastWebhook">
+        <button type="submit" class="w-full bg-white text-black font-black text-3xl py-8 rounded-3xl hover:scale-105 transition shadow-2xl">YES – CLAIM THIS PLAN NOW</button>
       </form>
     </div>
   </section>
-
   <!-- FLOATING WHATSAPP -->
-  <div class="fixed bottom-6 right-6 z-[997]">
-    <a href="https://wa.me/27764312871?text=Hi%20CraftVibeZA!%20I%20want%20a%20Founding%20Partner%20spot%20before%20they're%20gone" target="_blank" class="flex items-center gap-3 bg-white text-black rounded-full shadow-2xl pl-5 pr-7 py-4 font-bold text-base transition-all hover:scale-110">
+  <div class="fixed bottom-6 right-6 z-50">
+    <a href="https://wa.me/27764312871?text=Hi%20CraftVibeZA!%20I%20want%20a%20Founding%20Member%20spot%20before%20they're%20gone" target="_blank" class="flex items-center gap-3 bg-white text-black rounded-full shadow-2xl pl-5 pr-7 py-4 font-bold text-base transition-all hover:scale-110">
       <span class="absolute inset-0 rounded-full bg-green-500 opacity-75 animate-ping"></span>
       <div class="relative flex items-center gap-3">
         <i class="fab fa-whatsapp text-3xl text-green-500"></i>
@@ -274,8 +377,51 @@
       </div>
     </a>
   </div>
-
   <div id="footer-placeholder"></div>
+  <script>
+    // Firebase Config (Placeholder - Replace with your actual config from Firebase Console)
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "yourproject.firebaseapp.com",
+      projectId: "yourproject",
+      storageBucket: "yourproject.appspot.com",
+      messagingSenderId: "YOUR_SENDER_ID",
+      appId: "YOUR_APP_ID"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    // Fetch and Update Spots
+    function updateSpots() {
+      db.collection("spots").doc("counters").get().then(doc => {
+        if (doc.exists) {
+          const data = doc.data();
+          document.getElementById('growth-spots').textContent = data.growth || 12;
+          document.getElementById('dominance-spots').textContent = data.dominance || 38;
+          document.getElementById('elite-spots').textContent = data.elite || 50;
+          document.getElementById('growth-spots-desktop').textContent = data.growth || 12;
+          document.getElementById('dominance-spots-desktop').textContent = data.dominance || 38;
+          document.getElementById('elite-spots-desktop').textContent = data.elite || 50;
+        }
+      }).catch(error => console.error("Error fetching spots:", error));
+    }
+    updateSpots(); // Initial fetch
+    // Listen for real-time updates
+    db.collection("spots").doc("counters").onSnapshot(doc => {
+      const data = doc.data();
+      document.getElementById('growth-spots').textContent = data.growth || 12;
+      document.getElementById('dominance-spots').textContent = data.dominance || 38;
+      document.getElementById('elite-spots').textContent = data.elite || 50;
+      document.getElementById('growth-spots-desktop').textContent = data.growth || 12;
+      document.getElementById('dominance-spots-desktop').textContent = data.dominance || 38;
+      document.getElementById('elite-spots-desktop').textContent = data.elite || 50;
+    });
+
+    // Update Quiz PayFast Form Dynamically (in script.js showResults)
+    // Assuming you update script.js to set document.getElementById('quiz-amount').value = b.monthly + '.00';
+    // document.getElementById('quiz-recurring-amount').value = b.monthly + '.00';
+    // document.getElementById('quiz-item-name').value = `CraftVibeZA ${b.name} Tier Founding Membership`;
+  </script>
   <script src="script.js"></script>
 </body>
 </html>
