@@ -39,6 +39,13 @@
       <p class="text-xl md:text-3xl opacity-90 mb-12 max-w-4xl mx-auto">
         Full systems delivered and live <strong>by end February 2026</strong> — price locked forever.
       </p>
+      <ul class="space-y-4 text-xl max-w-3xl mx-auto mb-12 opacity-90">
+        <li class="flex items-center justify-center gap-2"><i class="fas fa-check text-green-400"></i> Smart AI invoicing & trust compliance to never get disbarred</li>
+        <li class="flex items-center justify-center gap-2"><i class="fas fa-check text-green-400"></i> Professional AI-generated websites with lead dashboards</li>
+        <li class="flex items-center justify-center gap-2"><i class="fas fa-check text-green-400"></i> Automated growth sequences for referrals & passive income</li>
+        <li class="flex items-center justify-center gap-2"><i class="fas fa-check text-green-400"></i> CPD auto-tracking & SA-law trained AI tools</li>
+        <li class="flex items-center justify-center gap-2"><i class="fas fa-check text-green-400"></i> 100% POPIA compliant, proudly South African</li>
+      </ul>
       <button onclick="startQuiz()" class="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-black font-black text-3xl sm:text-4xl md:text-5xl px-12 sm:px-16 py-8 sm:py-10 rounded-full shadow-2xl hover:scale-105 transition">
         SEE IF YOU QUALIFY (90 Sec)
       </button>
@@ -57,12 +64,12 @@
       <!-- MOBILE – ZERO OVERLAP, PERFECT -->
       <div class="block md:hidden overflow-x-auto pricing-scroll pb-12 -mx-6 px-6">
         <div class="inline-flex gap-8 min-w-max items-start">
-          <div class="w-80 flex-shrink-0 bg-gradient-to-b from-zinc-900 to-black border-2 border-zinc-700 rounded-3xl p-8">
+          <div class="w-80 flex-shrink-0 bg-gradient-to-b from-zinc-900 to-black border-2 border-zinc-700 rounded-3xl p-8 text-center">
             <h3 class="text-4xl font-black text-green-400 mb-4">Growth</h3>
             <div class="text-6xl font-black text-green-400">R999<span class="text-3xl">/mo</span></div>
             <p class="text-lg opacity-70 my-4">Normal: <strong class="line-through">R2,999</strong></p>
             <p class="text-xl">Setup: R0</p>
-            <p class="text-lg mt-4">Spots left: <span id="growth-spots">12</span></p>
+            <p class="text-lg mt-4">Taken: <span id="growth-taken">0</span> / 100</p>
             <form action="https://www.payfast.co.za/eng/process" method="post" class="mt-6">
               <input type="hidden" name="merchant_id" value="YOUR_MERCHANT_ID">
               <input type="hidden" name="merchant_key" value="YOUR_MERCHANT_KEY">
@@ -80,13 +87,13 @@
               <button type="submit" class="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-black font-black text-2xl py-6 rounded-2xl shadow-2xl hover:scale-105 transition">Claim Spot Now</button>
             </form>
           </div>
-          <div class="relative w-80 flex-shrink-0 bg-gradient-to-b from-green-900/30 to-black border-4 border-green-500 rounded-3xl p-10 shadow-2xl">
+          <div class="relative w-80 flex-shrink-0 bg-gradient-to-b from-green-900/30 to-black border-4 border-green-500 rounded-3xl p-10 shadow-2xl text-center">
             <div class="founding-badge">FOUNDING PRICE – LOCKED FOREVER</div>
             <h3 class="text-5xl font-black text-yellow-400 mb-4 mt-4">Dominance</h3>
             <div class="text-7xl font-black text-green-400">R2,999<span class="text-4xl">/mo</span></div>
             <p class="text-lg opacity-70 my-4">Normal: <strong class="line-through">R7,999</strong></p>
             <p class="text-2xl">Setup: R4,999 (waived for first 100)</p>
-            <p class="text-lg mt-4">Spots left: <span id="dominance-spots">38</span></p>
+            <p class="text-lg mt-4">Taken: <span id="dominance-taken">0</span> / 200</p>
             <form action="https://www.payfast.co.za/eng/process" method="post" class="mt-6">
               <input type="hidden" name="merchant_id" value="YOUR_MERCHANT_ID">
               <input type="hidden" name="merchant_key" value="YOUR_MERCHANT_KEY">
@@ -104,12 +111,12 @@
               <button type="submit" class="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-black font-black text-2xl py-6 rounded-2xl shadow-2xl hover:scale-105 transition">Claim Spot Now</button>
             </form>
           </div>
-          <div class="w-80 flex-shrink-0 bg-gradient-to-b from-zinc-900 to-black border-2 border-yellow-600 rounded-3xl p-8">
+          <div class="w-80 flex-shrink-0 bg-gradient-to-b from-zinc-900 to-black border-2 border-yellow-600 rounded-3xl p-8 text-center">
             <h3 class="text-4xl font-black text-yellow-400 mb-4">Elite</h3>
             <div class="text-6xl font-black text-green-400">R9,999<span class="text-3xl">/mo</span></div>
             <p class="text-lg opacity-70 my-4">Normal: <strong class="line-through">R19,999</strong></p>
             <p class="text-xl">Setup: R9,999 (waived for first 50)</p>
-            <p class="text-lg mt-4">Spots left: <span id="elite-spots">50</span></p>
+            <p class="text-lg mt-4">Taken: <span id="elite-taken">0</span> / 200</p>
             <form action="https://www.payfast.co.za/eng/process" method="post" class="mt-6">
               <input type="hidden" name="merchant_id" value="YOUR_MERCHANT_ID">
               <input type="hidden" name="merchant_key" value="YOUR_MERCHANT_KEY">
@@ -131,12 +138,12 @@
       </div>
       <!-- DESKTOP -->
       <div class="hidden md:grid md:grid-cols-3 gap-10 max-w-6xl mx-auto">
-        <div class="bg-gradient-to-b from-zinc-900 to-black border-2 border-zinc-700 rounded-3xl p-10 hover:border-green-500 transition">
+        <div class="bg-gradient-to-b from-zinc-900 to-black border-2 border-zinc-700 rounded-3xl p-10 hover:border-green-500 transition text-center">
           <h3 class="text-4xl font-black text-green-400 mb-4">Growth</h3>
           <div class="text-7xl font-black text-green-400 mb-2">R999<span class="text-3xl">/mo</span></div>
           <p class="text-lg opacity-70 mb-6">Normal: <strong class="line-through">R2,999/mo</strong></p>
           <p class="text-xl opacity-80">Setup: R0</p>
-          <p class="text-lg mt-4">Spots left: <span id="growth-spots-desktop">12</span></p>
+          <p class="text-lg mt-4">Taken: <span id="growth-taken-desktop">0</span> / 100</p>
           <form action="https://www.payfast.co.za/eng/process" method="post" class="mt-6">
             <input type="hidden" name="merchant_id" value="YOUR_MERCHANT_ID">
             <input type="hidden" name="merchant_key" value="YOUR_MERCHANT_KEY">
@@ -154,13 +161,13 @@
             <button type="submit" class="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-black font-black text-2xl py-6 rounded-2xl shadow-2xl hover:scale-105 transition">Claim Spot Now</button>
           </form>
         </div>
-        <div class="relative bg-gradient-to-b from-green-900/20 to-black border-4 border-green-500 rounded-3xl p-12 shadow-2xl transform scale-105">
+        <div class="relative bg-gradient-to-b from-green-900/20 to-black border-4 border-green-500 rounded-3xl p-12 shadow-2xl transform scale-105 text-center">
           <div class="founding-badge">FOUNDING PRICE – LOCKED FOREVER</div>
           <h3 class="text-5xl font-black text-yellow-400 mb-4 mt-4">Dominance</h3>
           <div class="text-8xl font-black text-green-400 mb-2">R2,999<span class="text-4xl">/mo</span></div>
           <p class="text-lg opacity-70 mb-6">Normal: <strong class="line-through">R7,999/mo</strong></p>
           <p class="text-2xl opacity-80">Setup: R4,999 (waived for first 100)</p>
-          <p class="text-lg mt-4">Spots left: <span id="dominance-spots-desktop">38</span></p>
+          <p class="text-lg mt-4">Taken: <span id="dominance-taken-desktop">0</span> / 200</p>
           <form action="https://www.payfast.co.za/eng/process" method="post" class="mt-6">
             <input type="hidden" name="merchant_id" value="YOUR_MERCHANT_ID">
             <input type="hidden" name="merchant_key" value="YOUR_MERCHANT_KEY">
@@ -178,12 +185,12 @@
             <button type="submit" class="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-black font-black text-2xl py-6 rounded-2xl shadow-2xl hover:scale-105 transition">Claim Spot Now</button>
           </form>
         </div>
-        <div class="bg-gradient-to-b from-zinc-900 to-black border-2 border-yellow-600 rounded-3xl p-10 hover:border-yellow-500 transition">
+        <div class="bg-gradient-to-b from-zinc-900 to-black border-2 border-yellow-600 rounded-3xl p-10 hover:border-yellow-500 transition text-center">
           <h3 class="text-4xl font-black text-yellow-400 mb-4">Elite</h3>
           <div class="text-7xl font-black text-green-400 mb-2">R9,999<span class="text-3xl">/mo</span></div>
           <p class="text-lg opacity-70 mb-6">Normal: <strong class="line-through">R19,999/mo</strong></p>
           <p class="text-xl opacity-80">Setup: R9,999 (waived for first 50)</p>
-          <p class="text-lg mt-4">Spots left: <span id="elite-spots-desktop">50</span></p>
+          <p class="text-lg mt-4">Taken: <span id="elite-taken-desktop">0</span> / 200</p>
           <form action="https://www.payfast.co.za/eng/process" method="post" class="mt-6">
             <input type="hidden" name="merchant_id" value="YOUR_MERCHANT_ID">
             <input type="hidden" name="merchant_key" value="YOUR_MERCHANT_KEY">
@@ -216,7 +223,7 @@
   <section id="features" class="py-20 px-6 bg-black">
     <div class="max-w-7xl mx-auto">
       <h2 class="text-5xl sm:text-6xl md:text-7xl font-black text-center mb-16">Complete Feature Breakdown</h2>
-      <div class="overflow-x-auto rounded-3xl border border-zinc-800 md:text-xl">
+      <div class="overflow-x-auto rounded-3xl border border-zinc-800">
         <table class="w-full min-w-[700px] text-left">
           <thead class="bg-gradient-to-r from-zinc-900 to-black">
             <tr>
@@ -233,15 +240,32 @@
               <td class="text-center text-yellow-400 font-black text-3xl">5–15</td>
               <td class="text-center text-amber-400 font-black text-3xl">Unlimited</td>
             </tr>
-            <tr class="border-b border-gray-800"><td class="py-6">Real-time Rule 54/86 & IOLTA trust alerts</td><td class="text-green-400 font-bold text-center">Yes</td><td class="text-green-400 font-bold text-center">Yes</td><td class="text-green-400 font-bold text-center">Yes</td></tr>
-            <tr class="border-b border-gray-800"><td class="py-6">Smart invoicing (timer → auto VAT/interest + bulk 50 in 60s)</td><td class="text-green-400 font-bold text-center">Yes</td><td class="text-green-400 font-bold text-center">Yes</td><td class="text-green-400 font-bold text-center">Yes</td></tr>
-            <tr class="border-b border-gray-800"><td class="py-6">Professional website on yourfirm.yourdomain.com + AI generator</td><td class="text-green-400 font-bold text-center">Yes</td><td class="text-green-400 font-bold text-center">Yes</td><td class="text-green-400 font-bold text-center">Yes</td></tr>
-            <tr class="border-b border-gray-800"><td class="py-6">Client portal & automated payment links</td><td class="text-green-400 font-bold text-center">Yes</td><td class="text-green-400 font-bold text-center">Yes</td><td class="text-green-400 font-bold text-center">Yes</td></tr>
-            <tr class="border-b border-gray-800"><td class="py-6 text-green-300">Automated email/SMS sequences (reminders, nurturing, referrals)</td><td class="text-red-500 font-black text-center">No</td><td class="text-green-400 font-bold text-center">Yes</td><td class="text-green-400 font-bold text-center">Yes</td></tr>
+            <tr class="border-b border-gray-800"><td class="py-6">Professional website on yourfirm.craftvibeza.com</td><td class="text-green-400 font-bold text-center">Yes</td><td class="text-green-400 font-bold text-center">Yes</td><td class="text-green-400 font-bold text-center">Yes</td></tr>
+            <tr class="border-b border-gray-800"><td class="py-6">AI full-site generator + no-code editor</td><td class="text-green-400 font-bold text-center">Yes</td><td class="text-green-400 font-bold text-center">Yes</td><td class="text-green-400 font-bold text-center">Yes</td></tr>
+            <tr class="border-b border-gray-800"><td class="py-6">Lead dashboard + calendar booking</td><td class="text-green-400 font-bold text-center">Yes</td><td class="text-green-400 font-bold text-center">Yes</td><td class="text-green-400 font-bold text-center">Yes</td></tr>
+            <tr class="bg-green-900/20 border-b-8 border-green-500">
+              <td class="py-10 font-black text-3xl leading-tight text-green-300">
+                The Smartest Invoice System Ever Built for SA Attorneys<br>
+                <span class="text-lg font-normal opacity-95 mt-2 block">• Timer or type service → auto-pulls client, balances, VAT & interest<br>• Bulk invoice 50 matters in 60 sec • PDF sent instantly</span>
+              </td>
+              <td class="text-green-400 font-bold text-center text-4xl animate-pulse">YES</td>
+              <td class="text-green-400 font-bold text-center text-4xl animate-pulse">YES</td>
+              <td class="text-green-400 font-bold text-center text-4xl animate-pulse">YES</td>
+            </tr>
+            <tr class="bg-red-900/30 border-b-8 border-red-600">
+              <td class="py-10 font-black text-3xl leading-tight text-red-400">
+                NEVER Get Disbarred Over Trust Money Again<br>
+                <span class="text-lg font-normal opacity-95 mt-2 block">Real-time Rule 54 & 86 alerts — stops illegal transfers</span>
+              </td>
+              <td class="text-green-400 font-bold text-center text-4xl animate-pulse">YES</td>
+              <td class="text-green-400 font-bold text-center text-4xl animate-pulse">YES</td>
+              <td class="text-green-400 font-bold text-center text-4xl animate-pulse">YES</td>
+            </tr>
+            <tr class="border-b border-gray-800"><td class="py-6 text-green-300">Automated sequences (chaser, nurturing, referrals)</td><td class="text-red-500 font-black text-center">No</td><td class="text-green-400 font-bold text-center">Yes</td><td class="text-green-400 font-bold text-center">Yes</td></tr>
             <tr class="border-b border-gray-800 bg-gradient-to-r from-zinc-800/50 to-zinc-900/50">
               <td class="py-8 font-black text-3xl leading-tight text-green-300">
-                20–30% lifetime affiliate commission dashboard<br>
-                <span class="text-lg font-normal opacity-90">Earn R6k–R30k+/mo passive from referrals</span>
+                Earn R6k–R15k+/Month Passive Income<br>
+                <span class="text-lg font-normal opacity-90">Refer one firm → 20–30% forever</span>
               </td>
               <td class="text-red-500 font-black text-center text-3xl">No</td>
               <td class="text-green-400 font-bold text-center text-4xl animate-pulse">YES</td>
@@ -249,15 +273,15 @@
             </tr>
             <tr class="bg-orange-900/30 border-b-8 border-orange-600">
               <td class="py-10 font-black text-3xl leading-tight text-orange-300">
-                CPD / CLE auto-tracking + 1-click LPC report
+                Never Miss CPD Points Again<br>
+                <span class="text-lg font-normal opacity-95 mt-2 block">Auto-tracks everything · LPC report in 1 click</span>
               </td>
               <td class="text-red-500 font-black text-center text-4xl">No</td>
               <td class="text-red-500 font-black text-center text-4xl">No</td>
               <td class="text-green-400 font-bold text-center text-5xl animate-pulse">YES</td>
             </tr>
-            <tr class="border-b border-gray-800"><td class="py-6 text-yellow-300">White-label (your logo, your branding everywhere)</td><td class="text-red-500 font-black text-center">No</td><td class="text-red-500 font-black text-center">No</td><td class="text-green-400 font-bold text-center">Yes</td></tr>
-            <tr class="border-b border-gray-800"><td class="py-6">Custom domain for the entire app (app.yourfirm.com)</td><td class="text-red-500 font-black text-center">No</td><td class="text-red-500 font-black text-center">No</td><td class="text-green-400 font-bold text-center">Yes</td></tr>
-            <tr class="border-b border-gray-800"><td class="py-6">Priority support + quarterly strategy call</td><td class="text-red-500 font-black text-center">No</td><td class="text-red-500 font-black text-center">No</td><td class="text-green-400 font-bold text-center">Yes</td></tr>
+            <tr class="border-b border-gray-800"><td class="py-6 text-yellow-300">AI Brief & Letter Writer (SA-law trained)</td><td class="text-red-500 font-black text-center">No</td><td class="text-red-500 font-black text-center">No</td><td class="text-green-400 font-bold text-center">Yes</td></tr>
+            <tr class="border-b border-gray-800"><td class="py-6">White-label, custom domain, strategy day</td><td class="text-red-500 font-black text-center">No</td><td class="text-red-500 font-black text-center">No</td><td class="text-green-400 font-bold text-center">Yes</td></tr>
             <tr class="bg-green-900/50 border-t-8 border-b-8 border-green-500">
               <td class="py-10 font-black text-3xl leading-tight text-green-400">
                 Your Price Locked Forever at Founding Rate<br>
@@ -391,36 +415,31 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
-    // Fetch and Update Spots
-    function updateSpots() {
+    // Fetch and Update Taken
+    function updateTaken() {
       db.collection("spots").doc("counters").get().then(doc => {
         if (doc.exists) {
           const data = doc.data();
-          document.getElementById('growth-spots').textContent = data.growth || 12;
-          document.getElementById('dominance-spots').textContent = data.dominance || 38;
-          document.getElementById('elite-spots').textContent = data.elite || 50;
-          document.getElementById('growth-spots-desktop').textContent = data.growth || 12;
-          document.getElementById('dominance-spots-desktop').textContent = data.dominance || 38;
-          document.getElementById('elite-spots-desktop').textContent = data.elite || 50;
+          document.getElementById('growth-taken').textContent = data.growth_taken || 0;
+          document.getElementById('dominance-taken').textContent = data.dominance_taken || 0;
+          document.getElementById('elite-taken').textContent = data.elite_taken || 0;
+          document.getElementById('growth-taken-desktop').textContent = data.growth_taken || 0;
+          document.getElementById('dominance-taken-desktop').textContent = data.dominance_taken || 0;
+          document.getElementById('elite-taken-desktop').textContent = data.elite_taken || 0;
         }
-      }).catch(error => console.error("Error fetching spots:", error));
+      }).catch(error => console.error("Error fetching taken:", error));
     }
-    updateSpots(); // Initial fetch
+    updateTaken(); // Initial fetch
     // Listen for real-time updates
     db.collection("spots").doc("counters").onSnapshot(doc => {
       const data = doc.data();
-      document.getElementById('growth-spots').textContent = data.growth || 12;
-      document.getElementById('dominance-spots').textContent = data.dominance || 38;
-      document.getElementById('elite-spots').textContent = data.elite || 50;
-      document.getElementById('growth-spots-desktop').textContent = data.growth || 12;
-      document.getElementById('dominance-spots-desktop').textContent = data.dominance || 38;
-      document.getElementById('elite-spots-desktop').textContent = data.elite || 50;
+      document.getElementById('growth-taken').textContent = data.growth_taken || 0;
+      document.getElementById('dominance-taken').textContent = data.dominance_taken || 0;
+      document.getElementById('elite-taken').textContent = data.elite_taken || 0;
+      document.getElementById('growth-taken-desktop').textContent = data.growth_taken || 0;
+      document.getElementById('dominance-taken-desktop').textContent = data.dominance_taken || 0;
+      document.getElementById('elite-taken-desktop').textContent = data.elite_taken || 0;
     });
-
-    // Update Quiz PayFast Form Dynamically (in script.js showResults)
-    // Assuming you update script.js to set document.getElementById('quiz-amount').value = b.monthly + '.00';
-    // document.getElementById('quiz-recurring-amount').value = b.monthly + '.00';
-    // document.getElementById('quiz-item-name').value = `CraftVibeZA ${b.name} Tier Founding Membership`;
   </script>
   <script src="script.js"></script>
 </body>
