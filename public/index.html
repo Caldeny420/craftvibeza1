@@ -10,114 +10,98 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
   <style>
-    :root { --green:#10b981; --yellow:#fbbf24; --amber:#f59e0b; --red:#ef4444c4; }
+    :root { --green:#10b981; --yellow:#fbbf24; --amber:#f59e0b; }
     body { font-family:'Inter',sans-serif; background:#000; color:#fff; margin:0; overflow-x:hidden; }
-
-    .badge-new { @apply inline-block bg-amber-500 text-black font-black px-6 py-3 rounded-full text-sm sm:text-base tracking-widest; }
-    .founding-badge {
-      @apply absolute -top-6 left-1/2 -translate-x-1/2 bg-gradient-to-r from-yellow-400 via-orange-400 to-amber-500 text-black font-black px-8 py-3 rounded-full text-sm uppercase tracking-widest shadow-2xl animate-pulse border-4 border-black z-10;
-      letter-spacing: 2px;
-    }
-
-    /* HERO – EXACT SAME HEIGHT AS YOUR REFUND POLICY PAGE */
+    .badge { @apply inline-block bg-amber-500 text-black font-black px-6 py-3 rounded-full text-sm sm:text-base tracking-widest; }
+    .founding-badge { @apply absolute -top-6 left-1/2 -translate-x-1/2 bg-gradient-to-r from-yellow-400 via-orange-400 to-amber-500 text-black font-black px-8 py-3 rounded-full text-sm uppercase tracking-widest shadow-2xl animate-pulse border-4 border-black; }
     main { padding-top: 13rem; }
     @media (min-width: 640px) { main { padding-top: 14rem; } }
     @media (min-width: 768px) { main { padding-top: 15rem; } }
     @media (min-width: 1024px) { main { padding-top: 8rem; } }
-    @media (min-width: 1280px) { main { padding-top: 7rem; } }
-
-    /* PRICING CARDS */
     .pricing-card {
-      @apply relative w-80 flex-shrink-0 bg-gradient-to-b from-zinc-900 to-black rounded-3xl p-8 text-center border-2;
-      min-height: 640px;
-      box-shadow: 0 25px 50px rgba(0,0,0,0.7);
+      @apply relative w-80 flex-shrink-0 bg-gradient-to-b from-zinc-900 to-black rounded-3xl p-8 text-center border-2 shadow-2xl;
+      min-height: 660px;
     }
-    .pricing-card-popular { @apply border-green-500 shadow-2xl; transform: scale(1.04); z-index:10; }
-
-    /* MOBILE – 1.4 CARD PEEK + SCROLL */
-    .mobile-pricing-wrapper { @apply relative overflow-hidden; }
     .mobile-pricing-scroll {
-      @apply flex gap-8 pb-12 overflow-x-auto scroll-smooth snap-x snap-mandatory;
-      -webkit-overflow-scrolling: touch; scrollbar-width: none;
-      padding-left: calc((100vw - 320px) / 2);
+      @apply flex gap-8 pb-12 overflow-x-auto scroll-smooth snap-x snap-mandatory -mx-6 px-6;
+      scrollbar-width: none;
+      padding-left: calc((100vw - 320px)/2);
+      padding-right: calc((100vw - 320px)/2);
     }
     .mobile-pricing-scroll::-webkit-scrollbar { display: none; }
-    .mobile-pricing-scroll > * { scroll-snap-align: start; }
-
-    .scroll-fade-left  { @apply absolute top-0 bottom-0 left-0 w-24 pointer-events-none z-20; background:linear-gradient(to right,#000,transparent); }
-    .scroll-fade-right { @apply absolute top-0 bottom-0 right-0 w-24 pointer-events-none z-20; background:linear-gradient(to left,#000,transparent); }
+    .mobile-pricing-scroll > * { scroll-snap-align: center; }
+    .scroll-fade-left  { @apply absolute top-0 bottom-0 left-0 w-32 pointer-events-none z-10 bg-gradient-to-r from-black to-transparent; }
+    .scroll-fade-right { @apply absolute top-0 bottom-0 right-0 w-32 pointer-events-none z-10 bg-gradient-to-l from-black to-transparent; }
   </style>
 </head>
 <body class="min-h-screen flex flex-col">
-
 <div id="header-placeholder"></div>
+<!-- 1. HERO SECTION -->
+<main class="flex-1 px-6 text-center">
+  <div class="max-w-5xl mx-auto">
+    <div class="badge mb-8">FOUNDING MEMBERS • ONLY 500 FOREVER • LIVE END FEB 2026</div>
 
-    <!-- HERO – FIXED & BEAUTIFUL -->
-  <main class="flex-1 px-6 text-center">
-    <div class="max-w-5xl mx-auto">
-      <div class="badge-new mb-8 sm:mb-12">FOUNDING MEMBERS • ONLY 500 FOREVER • LIVE END FEB 2026</div>
-      
-      <h1 class="text-5xl xs:text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black leading-none mb-8 md:mb-12">
-        The AI-powered<br class="hidden sm:block">
-        practice platform<br class="hidden lg:block">
-        built exclusively for<br>
-        <span class="text-green-400">South African law firms</span>
-      </h1>
+    <h1 class="text-5xl xs:text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black leading-none mb-10">
+      CraftVibeZA<br class="sm:hidden"> – AI-assisted<br class="hidden sm:block">practice platform<br class="hidden lg:block">
+      for <span class="text-green-400">South African law firms</span>
+    </h1>
 
-      <p class="text-lg sm:text-xl md:text-2xl lg:text-3xl opacity-90 mb-12 md:mb-16 max-w-4xl mx-auto leading-relaxed">
-        Launching February 2026 • Proudly South African • 100% POPIA compliant • Locally hosted
-      </p>
-
-      <div class="space-y-6">
-        <button onclick="startQuiz()" class="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-black font-black text-3xl xs:text-4xl sm:text-5xl px-12 sm:px-16 py-8 sm:py-10 rounded-full shadow-2xl hover:scale-105 transition">
-          APPLY IN 90 SECONDS
-        </button>
-        <p class="text-base sm:text-lg opacity-80">
-          or <a href="https://wa.me/27764312871?text=Hi%20CraftVibeZA%20-%20Early%20Access" target="_blank" class="text-green-400 underline hover:opacity-80">message the founder directly on WhatsApp</a>
-          <br class="sm:hidden"><span class="text-sm opacity-70">(replies in under 60 seconds)</span>
-        </p>
-      </div>
-    </div>
-  </main>
-<!-- WHY YOU CAN TRUST US – THE MISSING CREDIBILITY SECTION -->
-<section class="py-32 px-6 bg-zinc-950">
-  <div class="max-w-5xl mx-auto text-center">
-    <h2 class="text-5xl sm:text-6xl md:text-7xl font-black mb-20">
-      Why South African Attorneys<br><span class="text-green-400">Already Trust CraftVibeZA</span>
-    </h2>
-
-    <div class="grid md:grid-cols-3 gap-12">
-
-      <div class="bg-zinc-900/70 backdrop-blur border border-zinc-700 rounded-3xl p-12">
-        <div class="text-8xl font-black text-green-400 mb-6">100%</div>
-        <h3 class="text-3xl font-black mb-4">POPIA Compliant</h3>
-        <p class="text-xl opacity-90">Fully audited • Data never leaves South Africa • Enterprise-grade encryption</p>
-      </div>
-
-      <div class="bg-zinc-900/70 backdrop-blur border border-zinc-700 rounded-3xl p-12">
-        <div class="text-8xl font-black text-green-400 mb-6">0</div>
-        <h3 class="text-3xl font-black mb-4">Trust Account Risk</h3>
-        <p class="text-xl opacity-90">Real-time Rule 54 & 86 enforcement • System physically blocks illegal transfers</p>
-      </div>
-
-      <div class="bg-zinc-900/70 backdrop-blur border border-zinc-700 rounded-3xl p-12">
-        <div class="text-8xl font-black text-green-400 mb-6">24/7</div>
-        <h3 class="text-3xl font-black mb-4">Founder Access</h3>
-        <p class="text-xl opacity-90">Message the founder directly on WhatsApp • Replies in under 60 seconds • No sales team</p>
-      </div>
-
-    </div>
-
-    <p class="mt-20 text-2xl opacity-80 max-w-3xl mx-auto leading-relaxed">
-      Built exclusively for South African law firms, by people who understand the LPC, trust accounts, and the real pressure you’re under.
+    <p class="text-xl md:text-2xl lg:text-3xl opacity-90 mb-12">
+      Launching February 2026 • Proudly South African • 100% POPIA compliant • Locally hosted
     </p>
+
+    <div class="max-w-3xl mx-auto text-left space-y-5 text-lg md:text-xl mb-16">
+      <p>0 Trust Account Risk – Real-time Rule 54 & 86 alerts prevent trust account errors</p>
+      <p>24/7 Founder Access – WhatsApp replies under 60 seconds, no sales team</p>
+      <p>Automated invoicing, AI drafting, CPD tracking</p>
+    </div>
+
+    <div class="space-y-6">
+      <button onclick="startQuiz()" class="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-black font-black text-3xl sm:text-5xl px-16 py-10 rounded-full shadow-2xl hover:scale-105 transition">
+        APPLY IN 90 SECONDS
+      </button>
+      <p class="text-lg opacity-80">
+        or <a href="https://wa.me/27764312871?text=Hi%20CraftVibeZA%20-%20Early%20Access" target="_blank" class="text-green-400 underline">message the founder directly on WhatsApp</a>
+        <br><span class="text-sm opacity-70">(replies in under 60 seconds, 24/7)</span>
+      </p>
+    </div>
+  </div>
+</main>
+
+<!-- 2. WHY TRUST US -->
+<section class="py-32 px-6 bg-zinc-950">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-5xl sm:text-6xl md:text-7xl font-black text-center mb-20">
+      Why South African Law Firms Can Trust CraftVibeZA
+    </h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+      <div class="bg-zinc-900/70 backdrop-blur border border-zinc-700 rounded-3xl p-10 text-center">
+        <div class="text-8xl font-black text-green-400 mb-4">100%</div>
+        <h3 class="text-2xl font-black mb-3">POPIA Compliant</h3>
+        <p class="opacity-90">Fully audited, data never leaves South Africa</p>
+      </div>
+      <div class="bg-zinc-900/70 backdrop-blur border border-zinc-700 rounded-3xl p-10 text-center">
+        <div class="text-8xl font-black text-green-400 mb-4">0</div>
+        <h3 class="text-2xl font-black mb-3">Trust Account Risk</h3>
+        <p class="opacity-90">Blocks illegal transfers and reduces errors</p>
+      </div>
+      <div class="bg-zinc-900/70 backdrop-blur border border-zinc-700 rounded-3xl p-10 text-center">
+        <div class="text-8xl font-black text-green-400 mb-4">SA</div>
+        <h3 class="text-2xl font-black mb-3">Designed for SA Law Firms</h3>
+        <p class="opacity-90">Matches local legal workflows</p>
+      </div>
+      <div class="bg-zinc-900/70 backdrop-blur border border-zinc-700 rounded-3xl p-10 text-center">
+        <div class="text-8xl font-black text-green-400 mb-4">24/7</div>
+        <h3 class="text-2xl font-black mb-3">Founder Access</h3>
+        <p class="opacity-90">Direct contact, no sales team</p>
+      </div>
+    </div>
   </div>
 </section>
-  <!-- PRICING -->
+
+ <!-- PRICING -->
   <section id="pricing" class="py-20 px-6 bg-black">
     <div class="max-w-7xl mx-auto text-center">
       <h2 class="text-5xl sm:text-6xl md:text-7xl font-black mb-8">Early Access Pricing<br><span class="text-2xl md:text-4xl opacity-80">(permanent for your firm)</span></h2>
@@ -205,30 +189,6 @@
         </div>
       </div>
 
-      <!-- WhatsApp CTA -->
-      <div class="mt-32 max-w-3xl mx-auto bg-zinc-900/90 backdrop-blur-xl border-4 border-green-500 rounded-3xl p-16 shadow-2xl">
-        <h3 class="text-5xl sm:text-6xl font-black text-center mb-12 text-green-400">Secure One of the 500 Spots Forever</h3>
-        <button onclick="startQuiz()" class="block w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-black font-black text-4xl sm:text-5xl py-14 rounded-3xl shadow-2xl hover:scale-105 transition">
-          APPLY IN 90 SECONDS
-        </button>
-        <p class="mt-10 text-center text-xl opacity-80">or message the founder directly on WhatsApp (replies in under 60 seconds)</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- REFERRAL PROGRAMME – YOUR EXACT WORDING -->
-  <section class="py-24 px-6 bg-zinc-950">
-    <div class="max-w-4xl mx-auto text-center">
-      <h2 class="text-4xl md:text-5xl font-black mb-8">Founding Member Referral Rewards</h2>
-      <div class="text-lg md:text-xl opacity-90 space-y-6 leading-relaxed">
-        <p>• Refer 1 firm → Your next 12 months FREE</p>
-        <p>• Refer 2 firms → Your account <strong class="text-green-400">FREE FOREVER</strong></p>
-        <p>• Only your two longest-paying referrals count</p>
-        <p>• Credit applied after their 6th paid invoice</p>
-      </div>
-      <p class="mt-10 text-base opacity-70">Unlimited referrals allowed • We manually verify every referral</p>
-    </div>
-  </section>
 
 <!-- FINAL FEATURE TABLE – EXACT FLOW & WORDING YOU WANT (Dec 2025 version) -->
 <section id="features" class="py-20 px-6 bg-black">
@@ -338,58 +298,77 @@
     </div>
   </div>
 </section>
-
-  <!-- FINAL CTA -->
-  <section class="py-32 px-6 bg-gradient-to-b from-black to-zinc-950">
-    <div class="max-w-4xl mx-auto text-center">
-      <h2 class="text-5xl md:text-7xl font-black mb-12">Only 500 Early Access places will ever be made available</h2>
-      <p class="text-xl md:text-2xl opacity-90 mb-16">Applications close permanently at midnight, 28 February 2026</p>
-      <div class="space-y-8">
-        <button onclick="startQuiz()" class="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-black font-black text-3xl sm:text-4xl px-16 py-12 rounded-full shadow-2xl hover:scale-105 transition">
-          START 90-SECOND APPLICATION
-        </button>
-        <p class="text-lg opacity-80">or message the founder directly on WhatsApp (replies in under 60 seconds, 24/7)</p>
+<!-- 5. HOW IT WORKS -->
+<section class="py-32 px-6 bg-zinc-950">
+  <div class="max-w-5xl mx-auto text-center">
+    <h2 class="text-5xl sm:text-6xl font-black mb-20">How It Works</h2>
+    <div class="grid md:grid-cols-cols-3 gap-16">
+      <div class="space-y-6">
+        <div class="text-8xl font-black text-green-400">1</div>
+        <h3 class="text-3xl font-black">Take 90-Second Quiz</h3>
+        <p class="text-xl opacity-90">90-second firm qualification</p>
       </div>
-    </div>
-  </section>
-
-  <!-- QUIZ OVERLAY & RESULTS -->
-  <div id="quiz-overlay" class="fixed inset-0 bg-black/98 backdrop-blur-2xl flex items-center justify-center z-[1000] hidden px-4 overflow-y-auto">
-    <div class="w-full max-w-lg mx-auto my-8">
-      <div class="h-3 bg-zinc-800 rounded-full mb-8 overflow-hidden"><div id="quiz-progress" class="h-full bg-gradient-to-r from-green-500 to-emerald-600 transition-all duration-700" style="width:0%"></div></div>
-      <h2 id="quiz-question-text" class="text-4xl sm:text-5xl font-black text-center mb-10 leading-tight"></h2>
-      <div id="quiz-options" class="grid grid-cols-1 gap-5"></div>
+      <div class="space-y-6">
+        <div class="text-8xl font-black text-green-400">2</div>
+        <h3 class="text-3xl font-black">Select Tier & Pay First Month</h3>
+        <p class="text-xl opacity-90">Secure your founding rate</p>
+      </div>
+      <div class="space-y-6">
+        <div class="text-8xl font-black text-green-400">3</div>
+        <h3 class="text-3xl font-black">WhatsApp Onboarding</h3>
+        <p class="text-xl opacity-90">Founding team gets you live in days</p>
+      </div>
     </div>
   </div>
+</section>
 
-  <section id="quiz-results" class="py-20 px-6 bg-black hidden">
-    <div class="max-w-5xl mx-auto text-center">
-      <h2 class="text-4xl md:text-6xl font-black mb-10 text-green-400">Your Perfect Founding Plan</h2>
-      <div class="relative inline-block mb-12">
-        <div id="tier-name" class="px-16 py-8 rounded-full text-5xl md:text-7xl font-black text-black bg-gradient-to-r from-green-500 to-emerald-600 shadow-2xl">CALCULATING...</div>
-        <div id="popular-badge" class="founding-badge" style="display:none">FOUNDING PRICE – LOCKED FOREVER</div>
-      </div>
-      <div id="tier-price" class="text-6xl md:text-8xl font-black text-green-400 mb-8"></div>
-      <div id="final-total" class="text-4xl opacity-80 mb-12"></div>
-      <div id="recommended-list" class="max-w-4xl mx-auto text-left text-xl leading-relaxed bg-zinc-900/50 rounded-3xl p-10"></div>
-      <form id="quiz-payfast-form" class="payfast-form mt-16 max-w-2xl mx-auto" data-tier="Dominance"></form>
+<!-- 6. REFERRAL REWARDS -->
+<section class="py-24 px-6 bg-black">
+  <div class="max-w-4xl mx-auto text-center">
+    <h2 class="text-5xl font-black mb-10">Founding Member Referral Rewards</h2>
+    <div class="text-xl space-y-5">
+      <p>Refer 1 firm → 12 months free</p>
+      <p>Refer 2 firms → Account <strong class="text-green-400">free forever</strong></p>
+      <p class="mt-8 text-lg opacity-70">Unlimited referrals • Manually verified after 6th paid invoice</p>
     </div>
-  </section>
-
-  <!-- Floating WhatsApp -->
-  <div class="fixed bottom-6 right-6 z-50">
-    <a href="https://wa.me/27764312871?text=Hi%20CraftVibeZA!%20Early%20Access" target="_blank" class="flex items-center gap-3 bg-white text-black rounded-full shadow-2xl pl-5 pr-7 py-4 font-bold text-base transition-all hover:scale-110">
-      <span class="absolute inset-0 rounded-full bg-green-500 opacity-75 animate-ping"></span>
-      <div class="relative flex items-center gap-3">
-        <i class="fab fa-whatsapp text-3xl text-green-500"></i>
-        <div class="hidden md:block text-sm"><div class="opacity-70">Chat with founder</div><div>Reply in under 60 seconds</div></div>
-      </div>
-    </a>
   </div>
+</section>
+
+<!-- 7. SECURITY / COMPLIANCE -->
+<section class="py-24 px-6 bg-zinc-950">
+  <div class="max-w-4xl mx-auto text-center">
+    <h2 class="text-5xl font-black mb-10">Security & Compliance</h2>
+    <div class="text-xl space-y-4 opacity-90">
+      <p>Data hosted in South Africa only</p>
+      <p>End-to-end encryption</p>
+      <p>Independent security audits every year</p>
+    </div>
+  </div>
+</section>
+
+<!-- 8. FINAL CTA -->
+<section class="py-32 px-6 bg-gradient-to-b from-black to-zinc-950">
+  <div class="max-w-4xl mx-auto text-center">
+    <h2 class="text-6xl md:text-7xl font-black mb-8">Only 500 Early Access Spots<br>Will Ever Exist</h2>
+    <p class="text-2xl opacity-90 mb-16">Applications close permanently at midnight, 28 February 2026</p>
+    <button onclick="startQuiz()" class="bg-gradient-to-r from-green-500 to-emerald-600 text-black font-black text-4xl sm:text-6xl px-20 py-12 rounded-full shadow-2xl hover:scale-105 transition">
+      APPLY IN 90 SECONDS
+    </button>
+    <p class="mt-8 text-xl opacity-80">
+      or <a href="https://wa.me/27764312871?text=Hi%20CraftVibeZA%20-%20Early%20Access" target="_blank" class="text-green-400 underline">message the founder on WhatsApp</a>
+      <br><span class="text-sm opacity-70">(replies in under 60 seconds)</span>
+    </p>
+  </div>
+</section>
+
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/27764312871?text=Hi%20CraftVibeZA!%20Early%20Access" target="_blank" class="fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-white text-black rounded-full shadow-2xl pl-5 pr-7 py-4 font-bold hover:scale-110 transition">
+  <span class="absolute inset-0 rounded-full bg-green-500 opacity-75 animate-ping"></span>
+  <i class="fab fa-whatsapp text-4xl text-green-500"></i>
+  <span class="hidden md:block">Chat with founder<br><small>Reply in under 60 sec</small></span>
+</a>
 
 <div id="footer-placeholder" class="mt-auto"></div>
-
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
-
