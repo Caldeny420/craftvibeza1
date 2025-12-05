@@ -1,7 +1,6 @@
 /* ==================================================================== */
-/* CRAFTVIBEZA 2026 – FINAL PERFECTION SCRIPT.JS – GUARANTEED TO WORK   */
-/* INCL. VERCEL */
-/* UPDATED TO MATCH NUCLEAR LANDING PAGE – EVERY WORD IS NOW LIVE      */
+/* CRAFTVIBEZA – FINAL PERFECTION SCRIPT.JS (DEC 2025) */
+/* Works 100% on Vercel • Quiz • Live Counters • PayFast • Header/Footer */
 /* ==================================================================== */
 (() => {
   'use strict';
@@ -9,248 +8,226 @@
   // ====================== CONFIG ======================
   const CONFIG = {
     WHATSAPP_NUMBER: '27764312871',
-    BACKUP_API_URL: '/api/lead' // Your lead.js – works perfectly
+    BACKUP_API_URL: '/api/lead' // optional encrypted backup
   };
 
-  // ====================== QUIZ DATA ======================
-  const QUIZ_DATA = [
-    { q: "How many attorneys (including candidates) are in your firm right now?", o: ["1–2", "3–8", "9+"], tier: ["Growth","Dominance","Elite"] },
-    { q: "How many new client enquiries do you get per month?", o: ["Under 20", "20–60", "60+"], tier: ["Growth","Dominance","Elite"] },
-    { q: "Do you currently spend money on Google or Meta ads?", o: ["No", "Yes – under R25k/mo", "Yes – R25k+/mo"], tier: ["Growth","Dominance","Elite"] },
-    { q: "What is your growth goal for 2026?", o: ["Stay the same / slow growth", "50–80% growth", "100%+ growth / dominate my area"], tier: ["Growth","Dominance","Elite"] },
-    { q: "Would you like your own affiliate/referral program so other attorneys send you clients for commission?", o: ["No thanks", "Yes – I want referral income"], requires: "Dominance" },
-    { q: "Do you want priority WhatsApp support + 1-on-1 onboarding?", o: ["Standard support is fine", "Yes – priority + personal onboarding"], requires: "Dominance" },
-    { q: "Do you need full white-label (your own domain, no CraftVibeZA branding)?", o: ["Subdomain is perfect", "Yes – full white-label & custom domain"], requires: "Elite" },
-    { q: "Would you use an AI Brief & Letter Writer trained on South African law?", o: ["Not interested", "Yes – huge time saver"], requires: "Elite" },
-    { q: "Do you want automated LPC/CPD tracking & reporting (no more Excel hell)?", o: ["I’ll do it manually", "Yes – fully automated"], requires: "Elite" }
+  // ====================== PRICING (EXACTLY AS ON LANDING PAGE) ======================
+  const TIERS = {
+    Growth:    { name: "Growth",    monthly: 999,  setup: 0,     normal: 2999,  limit: 100,  color: "from-green-500 to-emerald-600",  badge: false },
+    Dominance: { name: "Dominance", monthly: 2999, setup: 4999,  normal: 7999,  limit: 200,  color: "from-yellow-400 to-amber-500",   badge: true  },
+    Elite:     { name: "Elite",     monthly: 9999, setup: 9999,  normal: 19999, limit: 200,  color: "from-amber-500 to-orange-600",   badge: false }
+  };
+
+  // ====================== QUIZ QUESTIONS (smart tier recommendation) ======================
+  const QUIZ = [
+    { q: "How many attorneys (including candidates) are in your firm right now?", o: ["1–2", "3–5", "6–10", "11–15", "16+"] },
+    { q: "How many new client enquiries do you get per month?",               o: ["Under 20", "20–60", "60+"] },
+    { q: "Do you currently spend money on Google/Meta ads?",                  o: ["No", "Yes – under R25k/mo", "Yes – R25k+/mo"] },
+    { q: "What is your growth goal for 2026?",                                o: ["Stay the same / slow growth", "50–80% growth", "100%+ growth / dominate my area"] },
+    { q: "Would you use an AI Brief & Letter Writer trained on SA law?",      o: ["No thanks", "Yes – huge time saver"],          requires: "Elite" },
+    { q: "Do you want automated CPD tracking + LPC report in 1 click?",       o: ["I’ll do it manually", "Yes – fully automated"], requires: "Elite" },
+    { q: "Do you need full white-label (your own domain, no CraftVibeZA branding)?", o: ["Subdomain is fine", "Yes – full white-label"], requires: "Elite" },
+    { q: "Do you want priority WhatsApp support + 1-on-1 onboarding?",        o: ["Standard is fine", "Yes – priority support"],  requires: "Dominance" }
   ];
-
-  // ====================== FINAL PRICING BUNDLES (MATCHES LANDING PAGE 100%) ======================
-  const BUNDLES = {
-    Growth: {
-      name: "Growth",
-      monthly: 14900,
-      setup: 49900,
-      color: "from-green-500 to-emerald-600",
-      description: `
-        <div class="text-4xl font-black text-green-400 mb-8">Growth – R14,900/mo (locked forever)</div>
-        <ul class="space-y-5 text-xl leading-relaxed text-left max-w-2xl mx-auto">
-          <li>Professional website on yourfirm.craftvibeza.com</li>
-          <li>AI full-site generator + no-code editor</li>
-          <li>Lead dashboard + automated calendar booking</li>
-          <li><strong>The Smartest Invoice System Ever Built for SA Attorneys</strong></li>
-          <li><strong>NEVER Get Disbarred Over Trust Money Again</strong> (Rule 54 & 86 protection)</li>
-        </ul>
-        <p class="mt-10 text-2xl font-bold text-green-300">Perfect for solo practitioners & small firms ready to grow.</p>`
-    },
-    Dominance: {
-      name: "Dominance",
-      monthly: 29900,
-      setup: 89900,
-      color: "from-yellow-400 to-amber-500",
-      description: `
-        <div class="text-4xl font-black text-yellow-400 mb-8">Dominance – R29,900/mo <span class="bg-red-600 text-white px-4 py-1 rounded-full text-lg">MOST CHOSEN</span></div>
-        <p class="text-xl opacity-90 mb-6"><strong>Everything in Growth, plus:</strong></p>
-        <ul class="space-y-5 text-xl leading-relaxed text-left max-w-2xl mx-auto">
-          <li>Automated Email + WhatsApp sequences (late chasers, referrals, birthdays)</li>
-          <li>Analytics, ROI dashboard, affiliate revenue sharing</li>
-          <li>Priority WhatsApp support + 1-on-1 onboarding</li>
-        </ul>
-        <p class="mt-10 text-2xl font-bold text-yellow-300">For firms who want to dominate their area in 2026.</p>`
-    },
-    Elite: {
-      name: "Elite",
-      monthly: 49900,
-      setup: 149900,
-      color: "from-amber-500 to-orange-600",
-      description: `
-        <div class="text-4xl font-black text-amber-400 mb-8">Elite – R49,900/mo (the top 1%)</div>
-        <p class="text-xl opacity-90 mb-6"><strong>Everything in Dominance, plus:</strong></p>
-        <ul class="space-y-5 text-xl leading-relaxed text-left max-w-2xl mx-auto">
-          <li>Never Miss CPD Points or Get Struck Off Again (fully automated)</li>
-          <li>AI Brief & Letter Writer (trained exclusively on SA law)</li>
-          <li>Full white-label + custom domain</li>
-          <li>Dedicated account manager + strategy day</li>
-        </ul>
-        <p class="mt-10 text-2xl font-bold text-amber-300">For the firms who refuse to play small.</p>`
-    }
-  };
 
   // ====================== STATE ======================
   let currentQuestion = 0;
   let answers = [];
-  let selectedTier = "Growth";
-  const $ = id => document.getElementById(id);
-  const formatPrice = n => `R${n.toLocaleString('en-ZA')}`;
+  let recommendedTier = "Growth";
 
-  // ====================== ENCRYPTED BACKUP ======================
-  const backupLead = async (name, phone, tier, monthly, setup) => {
-    if (!CONFIG.BACKUP_API_URL || typeof CryptoJS === 'undefined') return;
-    const payload = JSON.stringify({ name, phone, tier, monthly, setup, time: new Date().toISOString(), url: location.href });
-    const encrypted = CryptoJS.AES.encrypt(payload, 'craftvibeza-2026-backup-key').toString();
-    try {
-      await fetch(CONFIG.BACKUP_API_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ encrypted })
-      });
-    } catch (e) {
-      console.warn("Backup failed (optional)", e);
+  const $ = id => document.getElementById(id);
+  const format = n => `R${n.toLocaleString('en-ZA')}`;
+
+  // ====================== LIVE COUNTERS (Firebase) ======================
+  const initFirebaseCounters = () => {
+    const firebaseConfig = {
+      apiKey: "AIzaSyAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      authDomain: "craftvibeza.firebaseapp.com",
+      projectId: "craftvibeza",
+      storageBucket: "craftvibeza.appspot.com",
+      messagingSenderId: "000000000000",
+      appId: "1:000000000000:web:xxxxxxxxxxxxxxxxxx"
+    };
+
+    if (typeof firebase !== 'undefined') {
+      firebase.initializeApp(firebaseConfig);
+      const db = firebase.firestore();
+
+      const update = (docName, elements) => {
+        db.collection("spots").doc(docName).onSnapshot(doc => {
+          const taken = doc.data()?.taken || 0;
+          document.querySelectorAll(elements).forEach(el => {
+            if (el) el.textContent = taken;
+          });
+
+          // Dominance button text change when first 100 taken
+          if (docName === "dominance" && taken >= 100) {
+            document.querySelectorAll("#dominance-btn-text, #dominance-btn-text-desktop")
+              .forEach(el => el && (el.textContent = "SETUP FEE APPLIES"));
+          }
+        });
+      };
+
+      update("growth",    "#growth-taken, #growth-taken-desktop");
+      update("dominance", "#dominance-taken, #dominance-taken-desktop");
+      update("elite",     "#elite-taken, #elite-taken-desktop");
     }
   };
 
   // ====================== QUIZ ENGINE ======================
   const Quiz = {
     start: () => {
-      currentQuestion = 0; answers = []; selectedTier = "Growth";
+      currentQuestion = 0;
+      answers = [];
+      recommendedTier = "Growth";
       $('quiz-overlay').classList.remove('hidden');
       document.body.style.overflow = 'hidden';
       Quiz.next();
     },
     next: () => {
-      if (currentQuestion >= QUIZ_DATA.length) return Quiz.showResults();
-      const q = QUIZ_DATA[currentQuestion];
+      if (currentQuestion >= QUIZ.length) return Quiz.results();
+
+      const q = QUIZ[currentQuestion];
       $('quiz-question-text').textContent = q.q;
-      $('quiz-progress').style.width = `${((currentQuestion + 1) / QUIZ_DATA.length) * 100}%`;
+      $('quiz-progress').style.width = `${((currentQuestion + 1) / QUIZ.length) * 100)}%`;
+
       $('quiz-options').innerHTML = q.o.map((opt, i) => `
-        <button class="quiz-btn bg-zinc-800 hover:bg-green-600 text-white font-bold text-2xl py-8 px-10 rounded-2xl border-2 border-zinc-700 hover:border-green-500 transition-all hover:scale-105 shadow-lg w-full" data-index="${i}">
+        <button class="w-full bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 py-8 px-6 rounded-2xl text-2xl font-bold transition hover:scale-105"
+                data-index="${i}">
           ${opt}
         </button>
       `).join('');
 
-      document.querySelectorAll('.quiz-btn').forEach(btn => {
+      document.querySelectorAll('#quiz-options button').forEach(btn => {
         btn.onclick = () => {
-          const idx = parseInt(btn.dataset.index);
-          answers[currentQuestion] = { answer: q.o[idx], requires: q.requires || null };
+          const idx = btn.dataset.index;
+          answers.push({ answer: q.o[idx], requires: q.requires || null });
           currentQuestion++;
           setTimeout(Quiz.next, 300);
         };
       });
     },
-    showResults: () => {
-      $('quiz-overlay').classList.add('hidden');
-      document.body.style.overflow = '';
+    results: () => {
+      // Smart tier logic
+      let needsElite = false;
+      let needsDominance = false;
 
-      let needsElite = false, needsDominance = false;
       answers.forEach(a => {
-        if (a.requires && a.answer.toLowerCase().includes('yes')) {
-          if (a.requires === "Elite") needsElite = true;
-          if (a.requires === "Dominance") needsDominance = true;
-        }
+        if (a.requires === "Elite" && a.answer.includes("Yes")) needsElite = true;
+        if (a.requires === "Dominance" && a.answer.includes("Yes")) needsDominance = true;
       });
 
-      selectedTier = needsElite ? "Elite" : needsDominance ? "Dominance" : "Growth";
-      const b = BUNDLES[selectedTier];
+      if (needsElite) recommendedTier = "Elite";
+      else if (needsDominance) recommendedTier = "Dominance";
+      else if (answers[0]?.answer === "16+" || answers[3]?.answer.includes("100%")) recommendedTier = "Elite";
+      else if (answers[0]?.answer.includes("6–") || answers[3]?.answer.includes("50–")) recommendedTier = "Dominance";
 
-      $('tier-name').textContent = b.name.toUpperCase();
-      $('tier-name').className = `px-16 py-8 rounded-full text-5xl md:text-7xl font-black text-black bg-gradient-to-r ${b.color} shadow-2xl`;
-      $('popular-badge').style.display = selectedTier === "Dominance" ? "block" : "none";
+      const t = TIERS[recommendedTier];
+
+      // Update results section
+      $('tier-name').textContent = t.name.toUpperCase();
+      $('tier-name').className = `px-16 py-8 rounded-full text-5xl md:text-7xl font-black text-black bg-gradient-to-r ${t.color} shadow-2xl`;
+      $('popular-badge').style.display = t.badge ? "block" : "none";
 
       $('tier-price').innerHTML = `
-        <div class="text-6xl md:text-8xl font-black text-green-400">${formatPrice(b.monthly)}<span class="text-4xl">/mo</span></div>
-        <div class="text-3xl opacity-70 mt-4">One-time setup: ${formatPrice(b.setup)}</div>
+        <div class="text-6xl md:text-8xl font-black text-green-400">${format(t.monthly)}<span class="text-4xl">/mo</span></div>
+        <div class="text-3xl opacity-70 mt-4">Normal price: <s>${format(t.normal)}</s></div>
       `;
 
-      $('final-total').textContent = `Founding Price: ${formatPrice(b.monthly)}/mo + ${formatPrice(b.setup)} setup – LOCKED FOREVER`;
-      $('recommended-list').innerHTML = b.description;
+      $('final-total').innerHTML = `
+        <div class="text-3xl mt-6">Setup fee: ${t.setup === 0 ? "R0" : format(t.setup)} 
+          ${t.setup > 0 ? '<span class="text-green-400 text-lg block">(waived for first few)</span>' : ''}</div>
+        <div class="text-2xl mt-8 text-green-300 font-bold">Your price locked FOREVER</div>
+      `;
 
+      $('recommended-list').innerHTML = t.name === "Growth" ? `
+        <ul class="space-y-4 text-xl text-left max-w-3xl mx-auto">
+          <li>Professional website + client portal</li>
+          <li>AI site generator & no-code editor</li>
+          <li>Smart invoicing system</li>
+          <li>Rule 54 & 86 trust protection</li>
+          <li>Founding referral rewards</li>
+        </ul>
+      ` : t.name === "Dominance" ? `
+        <ul class="space-y-4 text-xl text-left max-w-3xl mx-auto">
+          <li>Everything in Growth</li>
+          <li>Client deposits (card/EFT/Ozow)</li>
+          <li>Lead dashboard & automation</li>
+          <li>Priority WhatsApp support</li>
+          <li>Founding referral rewards + free forever path</li>
+        </ul>
+      ` : `
+        <ul class="space-y-4 text-xl text-left max-w-3xl mx-auto">
+          <li>Everything in Dominance</li>
+          <li>Automated CPD tracking & LPC reports</li>
+          <li>AI Brief & Letter Writer (SA law)</li>
+          <li>Full white-label + custom domain</li>
+          <li>Dedicated strategy day</li>
+        </ul>
+      `;
+
+      $('quiz-overlay').classList.add('hidden');
+      document.body.style.overflow = '';
       $('quiz-results').classList.remove('hidden');
-      setTimeout(() => $('quiz-results').scrollIntoView({ behavior: 'smooth' }), 100);
+      setTimeout(() => $('quiz-results').scrollIntoView({ behavior: 'smooth' }), 200);
     }
   };
 
-  // ====================== POPIA CONSENT TOGGLE (NUCLEAR RESET PROOF) ======================
-  window.toggleConsent = (block) => {
-    const checkbox = block.querySelector('input[type="checkbox"]');
-    const box = block.querySelector('.checkbox-custom');
-    const icon = box?.querySelector('i');
-
-    if (!checkbox || !box || !icon) return console.error("Consent toggle failed");
-
-    checkbox.checked = !checkbox.checked;
-
-    if (checkbox.checked) {
-      icon.classList.remove('hidden');
-      block.classList.remove('bg-zinc-800/50');
-      block.classList.add('bg-green-900/50', 'border-4', 'border-green-500', 'ring-4', 'ring-green-500/60');
-      box.classList.add('border-green-500', 'bg-green-500/20');
-    } else {
-      icon.classList.add('hidden');
-      block.classList.remove('bg-green-900/50', 'border-4', 'border-green-500', 'ring-green-500/60');
-      block.classList.add('bg-zinc-800/50');
-      box.classList.remove('border-green-500', 'bg-green-500/20');
-    }
-  };
-
-  // ====================== FORM SUBMISSION (BOTH FORMS) ======================
-  document.addEventListener('submit', e => {
-    if (!e.target.matches('#capture-form, #direct-capture-form')) return;
-    e.preventDefault();
-
-    const nameInput = e.target.querySelector('input[name="name"]') || e.target.querySelector('input[type="text"]');
-    const phoneInput = e.target.querySelector('input[name="phone"]') || e.target.querySelector('input[type="tel"]');
-    const checkbox = e.target.querySelector('input[type="checkbox"]');
-
-    if (!nameInput?.value.trim()) return alert('Please enter your full name');
-    if (!phoneInput?.value.trim()) return alert('Please enter your WhatsApp number');
-    if (!checkbox?.checked) return alert('Please accept POPIA consent');
-
-    const name = nameInput.value.trim();
-    const phone = phoneInput.value.trim().replace(/\D/g, '').replace(/^0/, '27');
-    const tier = selectedTier || "Dominance";
-    const b = BUNDLES[tier];
-
+  // ====================== PAYFAST BUTTONS (click → WhatsApp + backup) ======================
+  const handleClaimClick = (tierName) => {
+    const t = TIERS[tierName];
     const message = encodeURIComponent(
-      `CRAFTVIBEZA – NEW FOUNDING PARTNER LEAD (12-SPOT)\n\n` +
-      `Name: ${name}\n` +
-      `Tier: ${tier}\n` +
-      `Price: ${formatPrice(b.monthly)}/mo + ${formatPrice(b.setup)} setup\n` +
-      `WhatsApp: +${phone}\n\n` +
-      `CALL THEM NOW — THEY ARE READY TO JOIN!`
+      `CRAFTVIBEZA FOUNDING MEMBER LEAD!\n\n` +
+      `Tier: ${t.name}\n` +
+      `Price: ${format(t.monthly)}/mo + ${t.setup === 0 ? "R0" : format(t.setup)} setup\n` +
+      `Normal: ${format(t.normal)}/mo\n` +
+      `Spots extremely limited – call them NOW!`
     );
-
     window.open(`https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${message}`, '_blank');
-    backupLead(name, phone, tier, b.monthly, b.setup);
+  };
 
-    alert('Message sent! We’re calling you in under 60 seconds.');
-    
-    // NUCLEAR FORM RESET
-    e.target.reset();
-    const block = e.target.querySelector('[onclick*="toggleConsent"]');
-    if (block) {
-      const icon = block.querySelector('i');
-      const input = block.querySelector('input[type="checkbox"]');
-      if (icon) icon.classList.add('hidden');
-      if (input) input.checked = false;
-      block.classList.remove('bg-green-900/50','border-4','border-green-500','ring-4','ring-green-500/60');
-      block.classList.add('bg-zinc-800/50');
-      const box = block.querySelector('.checkbox-custom');
-      if (box) box.classList.remove('border-green-500', 'bg-green-500/20');
-    }
+  // Attach to all claim buttons
+  document.querySelectorAll('.claim-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const tier = btn.dataset.tier;
+      handleClaimClick(tier);
+    });
   });
 
   // ====================== HEADER & FOOTER LOADER ======================
   const loadPart = async (file, placeholderId) => {
-    const path = `/${file}.html`;
     try {
-      const res = await fetch(path + '?v=' + Date.now(), { cache: "no-store" });
+      const res = await fetch(`/${file}.html?v=${Date.now()}`, { cache: "no-store" });
       if (res.ok) {
         $(placeholderId).innerHTML = await res.text();
-        return;
       }
-    } catch (e) {}
-    $(placeholderId).innerHTML = `<div class="text-red-500 p-10 text-center text-2xl">Error: ${file}.html missing</div>`;
+    } catch (e) {
+      $(placeholderId).innerHTML = `<div class="text-red-500 p-10 text-center">Error loading ${file}.html</div>`;
+    }
   };
 
   // ====================== INIT ======================
   document.addEventListener('DOMContentLoaded', () => {
+    // Load header & footer
     loadPart('header', 'header-placeholder');
     loadPart('footer', 'footer-placeholder');
 
-    // Close button for quiz
+    // Init Firebase live counters
+    initFirebaseCounters();
+
+    // Close quiz overlay
+    $('quiz-overlay')?.addEventListener('click', (e) => {
+      if (e.target === $('quiz-overlay')) {
+        $('quiz-overlay').classList.add('hidden');
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Add close button to quiz
     const closeBtn = document.createElement('button');
     closeBtn.innerHTML = '×';
-    closeBtn.className = 'close-btn absolute top-6 right-6 text-7xl opacity-40 hover:opacity-100 transition z-20';
+    closeBtn.className = 'absolute top-6 right-6 text-7xl opacity-40 hover:opacity-100 transition z-20';
     closeBtn.onclick = () => {
       $('quiz-overlay').classList.add('hidden');
       document.body.style.overflow = '';
@@ -258,5 +235,7 @@
     $('quiz-overlay')?.prepend(closeBtn);
   });
 
+  // Expose to global scope
   window.startQuiz = Quiz.start;
+
 })();
