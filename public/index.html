@@ -10,8 +10,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Firebase -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
@@ -20,18 +18,20 @@
     body { font-family:'Inter',sans-serif; background:#000; color:#fff; margin:0; overflow-x:hidden; }
     .badge-new { @apply inline-block bg-amber-500 text-black font-black px-5 py-2 rounded-full text-xs sm:text-sm tracking-widest; }
     .founding-badge {
-      @apply absolute -top-6 left-1/2 -translate-x-1/2 bg-gradient-to-r from-yellow-400 via-orange-400 to-amber-500 text-black font-black px-8 py-3 rounded-full text-sm uppercase tracking-widest shadow-2xl animate-pulse border-4 border-black;
+      @apply absolute -top-7 left-1/2 -translate-x-1/2 bg-gradient-to-r from-yellow-400 via-orange-400 to-amber-500 text-black font-black px-8 py-3 rounded-full text-sm uppercase tracking-widest shadow-2xl animate-pulse border-4 border-black z-10;
       letter-spacing: 2px;
     }
-    @keyframes pulse { 0%,100% { transform:scale(1); opacity:0.95; } 50% { transform:scale(1.05); opacity:1; } }
+    @keyframes pulse { 0%,100% { transform:scale(1); } 50% { transform:scale(1.05); } }
+    .pricing-card { @apply relative bg-gradient-to-b from-zinc-900 to-black rounded-3xl p-8 text-center flex flex-col justify-between; min-height:640px; max-width:380px; margin:0 auto; }
+    .pricing-card-popular { @apply ring-4 ring-green-500 ring-opacity-70 shadow-2xl transform scale-105; min-height:680px; }
+    .referral-card { @apply bg-gradient-to-br from-zinc-900 to-black rounded-3xl p-10 text-center border flex flex-col justify-center; min-height:460px; }
     .pricing-scroll { -webkit-overflow-scrolling: touch; scrollbar-width: none; }
     .pricing-scroll::-webkit-scrollbar { display: none; }
-    .table-wrapper { overflow-x:auto; -webkit-overflow-scrolling:touch; }
     @media (max-width:768px) {
       .feature-table thead { display:none; }
-      .feature-table tr { display:block; margin-bottom:2rem; border:1px solid #333; border-radius:1rem; padding:1.5rem; background:#111; }
-      .feature-table td { display:flex; justify-content:space-between; padding:0.75rem 0; border:none; }
-      .feature-table td:before { content:attr(data-label); font-weight:900; color:#ccc; }
+      .feature-table tr { display:block; margin-bottom:2rem; background:#111; border-radius:1.5rem; padding:1.5rem; border:1px solid #333; }
+      .feature-table td { display:flex; justify-content:space-between; padding:1rem 0; font-size:1.1rem; }
+      .feature-table td:before { content:attr(data-label); font-weight:900; color:#aaa; }
     }
   </style>
 </head>
@@ -40,7 +40,7 @@
 <div id="header-placeholder"></div>
 
   <!-- HERO -->
-  <main class="flex-1 pt-52 sm:pt-56 md:pt-60 lg:pt-32 xl:pt-28 px-6 text-center">
+  <main class="flex-1 pt-40 sm:pt-48 md:pt-56 lg:pt-44 xl:pt-36 px-6 text-center">
     <div class="max-w-5xl mx-auto">
       <div class="badge-new mb-8">FOUNDING MEMBERS • ONLY 500 FOREVER • LIVE END FEB 2026</div>
       <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-tight mb-8">
@@ -49,7 +49,7 @@
       <p class="text-xl md:text-3xl opacity-90 mb-12 max-w-4xl mx-auto">
         Full systems delivered and live <strong>by end February 2026</strong> — price locked forever.
       </p>
-      <ul class="space-y-4 text-xl max-w-3xl mx-auto mb-12 opacity-90">
+      <ul class="space-y-4 text-lg md:text-xl max-w-4xl mx-auto mb-12 opacity-90">
         <li class="flex items-center justify-center gap-2"><i class="fas fa-check text-green-400"></i> Smart AI invoicing & trust compliance to never get disbarred</li>
         <li class="flex items-center justify-center gap-2"><i class="fas fa-check text-green-400"></i> Professional AI-generated websites with lead dashboards</li>
         <li class="flex items-center justify-center gap-2"><i class="fas fa-check text-green-400"></i> Automated growth sequences for referrals & passive income</li>
@@ -73,137 +73,131 @@
       <h2 class="text-5xl sm:text-6xl md:text-7xl font-black mb-6">Founding Member Pricing</h2>
       <p class="text-xl sm:text-2xl opacity-80 mb-16">Only 500 firms ever get this pricing — <strong class="text-red-500">forever</strong></p>
 
-      <!-- MOBILE CARDS -->
-      <div class="block md:hidden overflow-x-auto pricing-scroll pb-12 -mx-6 px-6">
-        <div class="inline-flex gap-8 min-w-max items-start">
+      <!-- MOBILE -->
+      <div class="block md:hidden overflow-x-auto pricing-scroll pb-12">
+        <div class="inline-flex gap-8 min-w-max">
           <!-- Growth -->
-          <div class="w-80 flex-shrink-0 bg-gradient-to-b from-zinc-900 to-black border-2 border-zinc-700 rounded-3xl p-8 text-center">
-            <h3 class="text-4xl font-black text-green-400 mb-4">Growth</h3>
-            <div class="text-6xl font-black text-green-400">R999<span class="text-3xl">/mo</span></div>
-            <p class="text-lg opacity-70 my-4">Normal: <s>R2,999</s></p>
-            <p class="text-xl">Setup: R0</p>
-            <p class="text-lg mt-4">Taken: <span id="growth-taken" class="font-black text-green-400">0</span> / 100</p>
-            <button data-tier="Growth" class="claim-btn mt-8 w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-black font-black text-2xl py-6 rounded-2xl shadow-2xl hover:scale-105 transition">
-              CLAIM GROWTH SPOT
-            </button>
+          <div class="pricing-card border-2 border-zinc-700">
+            <h3 class="text-4xl font-black text-green-400 mb-6">Growth</h3>
+            <div class="text-7xl font-black text-green-400 leading-none">R999<span class="text-4xl">/mo</span></div>
+            <p class="opacity-70 my-5 text-lg"><s>R2,999</s></p>
+            <p class="text-xl">Setup R0</p>
+            <p class="text-lg mt-8">Taken: <span id="growth-taken">0</span>/100</p>
+            <button data-tier="Growth" class="claim-btn mt-12 w-full bg-gradient-to-r from-green-500 to-emerald-600 text-black font-black text-2xl py-6 rounded-2xl">CLAIM GROWTH SPOT</button>
             <div class="payfast-form hidden mt-6" data-tier="Growth"></div>
           </div>
 
-          <!-- Dominance – FIXED TO NEVER SHIFT -->
-          <div class="relative w-80 flex-shrink-0 bg-gradient-to-b from-green-900/30 to-black border-4 border-green-500 rounded-3xl p-8 sm:p-10 shadow-2xl text-center">
-            <div class="founding-badge">FOUNDING PRICE – LOCKED FOREVER</div>
-            <h3 class="text-4xl sm:text-5xl font-black text-yellow-400 mt-6 mb-3">Dominance</h3>
-            <div class="text-6xl sm:text-7xl font-black text-green-400 leading-none">R2,999<span class="text-3xl sm:text-4xl">/mo</span></div>
-            <p class="text-lg opacity-70 my-3">Normal: <s>R7,999</s></p>
-            <p class="text-xl sm:text-2xl">Setup: R4,999 <span class="text-green-400 text-sm block">(waived first 100)</span></p>
-            <p class="text-lg mt-4">Taken: <span id="dominance-taken" class="font-black text-yellow-400">0</span> / 200</p>
-            <button data-tier="Dominance" class="claim-btn mt-8 w-full bg-yellow-400 hover:bg-yellow-300 text-black font-black text-2xl py-6 rounded-2xl shadow-2xl hover:scale-105 transition">
-              MOST POPULAR – CLAIM NOW
-            </button>
+          <!-- Dominance -->
+          <div class="pricing-card pricing-card-popular" id="popular-card-mobile">
+            <div class="founding-badge" id="popular-badge-mobile">MOST POPULAR</div>
+            <h3 class="text-5xl font-black text-yellow-400 mt-10 mb-4">Dominance</h3>
+            <div class="text-7xl font-black text-green-400 leading-none">R2,999<span class="text-4xl">/mo</span></div>
+            <p class="opacity-70 my-5 text-lg"><s>R7,999</s></p>
+            <p class="text-xl">Setup R4,999 <span class="text-green-400 text-sm block">(waived first 100)</span></p>
+            <p class="text-lg mt-8">Taken: <span id="dominance-taken">0</span>/200</p>
+            <button data-tier="Dominance" class="claim-btn mt-12 w-full bg-yellow-400 text-black font-black text-2xl py-6 rounded-2xl">MOST POPULAR – CLAIM NOW</button>
             <div class="payfast-form hidden mt-6" data-tier="Dominance"></div>
           </div>
 
           <!-- Elite -->
-          <div class="w-80 flex-shrink-0 bg-gradient-to-b from-zinc-900 to-black border-2 border-yellow-600 rounded-3xl p-8 text-center">
-            <h3 class="text-4xl font-black text-yellow-400 mb-4">Elite</h3>
-            <div class="text-6xl font-black text-green-400">R9,999<span class="text-3xl">/mo</span></div>
-            <p class="text-lg opacity-70 my-4">Normal: <s>R19,999</s></p>
-            <p class="text-xl">Setup: R9,999 <span class="text-green-400 text-sm block">(waived first 50)</span></p>
-            <p class="text-lg mt-4">Taken: <span id="elite-taken" class="font-black text-yellow-400">0</span> / 200</p>
-            <button data-tier="Elite" class="claim-btn mt-8 w-full bg-gradient-to-r from-amber-500 to-orange-600 text-black font-black text-2xl py-6 rounded-2xl shadow-2xl hover:scale-105 transition">
-              CLAIM ELITE SPOT
-            </button>
+          <div class="pricing-card border-2 border-amber-600">
+            <h3 class="text-4xl font-black text-amber-400 mb-6">Elite</h3>
+            <div class="text-7xl font-black text-green-400 leading-none">R9,999<span class="text-4xl">/mo</span></div>
+            <p class="opacity-70 my-5 text-lg"><s>R19,999</s></p>
+            <p class="text-xl">Setup R9,999 <span class="text-green-400 text-sm block">(waived first 50)</span></p>
+            <p class="text-lg mt-8">Taken: <span id="elite-taken">0</span>/200</p>
+            <button data-tier="Elite" class="claim-btn mt-12 w-full bg-gradient-to-r from-amber-500 to-orange-600 text-black font-black text-2xl py-6 rounded-2xl">CLAIM ELITE SPOT</button>
             <div class="payfast-form hidden mt-6" data-tier="Elite"></div>
           </div>
         </div>
       </div>
 
-      <!-- DESKTOP CARDS – Dominance perfectly centred -->
+      <!-- DESKTOP -->
       <div class="hidden md:grid md:grid-cols-3 gap-10 max-w-7xl mx-auto">
-        <div class="bg-gradient-to-b from-zinc-900 to-black border-2 border-zinc-700 rounded-3xl p-12 hover:border-green-500 transition text-center">
-          <h3 class="text-5xl font-black text-green-400 mb-6">Growth</h3>
-          <div class="text-8xl font-black text-green-400">R999<span class="text-4xl">/mo</span></div>
-          <p class="opacity-70 my-4"><s>R2,999</s></p>
+        <div class="pricing-card border-2 border-zinc-700">
+          <h3 class="text-5xl font-black text-green-400 mb-8">Growth</h3>
+          <div class="text-8xl font-black text-green-400 leading-none">R999<span class="text-4xl">/mo</span></div>
+          <p class="opacity-70 my-6 text-xl"><s>R2,999</s></p>
           <p class="text-2xl">Setup R0</p>
-          <p class="text-lg mt-8">Taken: <span id="growth-taken-desktop" class="font-black text-green-400">0</span>/100</p>
-          <button data-tier="Growth" class="claim-btn mt-10 w-full bg-gradient-to-r from-green-500 to-emerald-600 text-black font-black text-3xl py-7 rounded-2xl">CLAIM GROWTH SPOT</button>
+          <p class="text-lg mt-10">Taken: <span id="growth-taken-desktop">0</span>/100</p>
+          <button data-tier="Growth" class="claim-btn mt-12 w-full bg-gradient-to-r from-green-500 to-emerald-600 text-black font-black text-3xl py-8 rounded-2xl">CLAIM GROWTH SPOT</button>
           <div class="payfast-form hidden mt-8" data-tier="Growth"></div>
         </div>
 
-        <div class="relative bg-gradient-to-b from-green-900/20 to-black border-4 border-green-500 rounded-3xl p-16 shadow-2xl text-center">
-          <div class="founding-badge">FOUNDING PRICE – LOCKED FOREVER</div>
-          <h3 class="text-6xl font-black text-yellow-400 mt-10 mb-6">Dominance</h3>
+        <div class="pricing-card pricing-card-popular relative" id="popular-card-desktop">
+          <div class="founding-badge" id="popular-badge-desktop">MOST POPULAR</div>
+          <h3 class="text-6xl font-black text-yellow-400 mt-12 mb-6">Dominance</h3>
           <div class="text-8xl font-black text-green-400 leading-none">R2,999<span class="text-4xl">/mo</span></div>
-          <p class="opacity-70 my-4"><s>R7,999</s></p>
-          <p class="text-3xl mt-6">Setup R4,999 <span class="text-green-400 text-lg block">(waived first 100)</span></p>
-          <p class="text-lg mt-8">Taken: <span id="dominance-taken-desktop" class="font-black text-yellow-400">0</span>/200</p>
-          <button data-tier="Dominance" class="claim-btn mt-10 w-full bg-yellow-400 hover:bg-yellow-300 text-black font-black text-3xl py-8 rounded-2xl">MOST POPULAR – CLAIM NOW</button>
+          <p class="opacity-70 my-6 text-xl"><s>R7,999</s></p>
+          <p class="text-3xl">Setup R4,999 <span class="text-green-400 text-lg block">(waived first 100)</span></p>
+          <p class="text-lg mt-10">Taken: <span id="dominance-taken-desktop">0</span>/200</p>
+          <button data-tier="Dominance" class="claim-btn mt-12 w-full bg-yellow-400 text-black font-black text-3xl py-8 rounded-2xl">MOST POPULAR – CLAIM NOW</button>
           <div class="payfast-form hidden mt-8" data-tier="Dominance"></div>
         </div>
 
-        <div class="bg-gradient-to-b from-zinc-900 to-black border-2 border-yellow-600 rounded-3xl p-12 hover:border-yellow-500 transition text-center">
-          <h3 class="text-5xl font-black text-yellow-400 mb-6">Elite</h3>
-          <div class="text-8xl font-black text-green-400">R9,999<span class="text-4xl">/mo</span></div>
-          <p class="opacity-70 my-4"><s>R19,999</s></p>
+        <div class="pricing-card border-2 border-amber-600">
+          <h3 class="text-5xl font-black text-amber-400 mb-8">Elite</h3>
+          <div class="text-8xl font-black text-green-400 leading-none">R9,999<span class="text-4xl">/mo</span></div>
+          <p class="opacity-70 my-6 text-xl"><s>R19,999</s></p>
           <p class="text-2xl">Setup R9,999 <span class="text-green-400 text-lg block">(waived first 50)</span></p>
-          <p class="text-lg mt-8">Taken: <span id="elite-taken-desktop" class="font-black text-yellow-400">0</span>/200</p>
-          <button data-tier="Elite" class="claim-btn mt-10 w-full bg-gradient-to-r from-amber-500 to-orange-600 text-black font-black text-3xl py-7 rounded-2xl">CLAIM ELITE SPOT</button>
+          <p class="text-lg mt-10">Taken: <span id="elite-taken-desktop">0</span>/200</p>
+          <button data-tier="Elite" class="claim-btn mt-12 w-full bg-gradient-to-r from-amber-500 to-orange-600 text-black font-black text-3xl py-8 rounded-2xl">CLAIM ELITE SPOT</button>
           <div class="payfast-form hidden mt-8" data-tier="Elite"></div>
         </div>
       </div>
 
       <!-- WhatsApp CTA -->
-      <div class="mt-20 max-w-2xl mx-auto bg-zinc-900/80 backdrop-blur-xl border-4 border-green-500 rounded-3xl p-8 sm:p-12 shadow-2xl">
+      <div class="mt-24 max-w-2xl mx-auto bg-zinc-900/80 backdrop-blur-xl border-4 border-green-500 rounded-3xl p-12 shadow-2xl">
         <h3 class="text-4xl sm:text-5xl font-black text-center mb-10 text-green-400">Secure One of the 500 Spots Forever</h3>
-        <a href="https://wa.me/27764312871?text=Hi%20CraftVibeZA!%20I%20want%20one%20of%20the%20500%20Founding%20spots%20before%20Feb%202026" target="_blank" class="w-full block bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-black font-black text-2xl sm:text-4xl py-10 rounded-3xl shadow-2xl hover:scale-105 transition">
+        <a href="https://wa.me/27764312871?text=Hi%20CraftVibeZA!%20Founding%20spot" target="_blank" class="block w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-black font-black text-3xl sm:text-4xl py-12 rounded-3xl shadow-2xl hover:scale-105 transition">
           YES – CONTACT ME NOW
         </a>
-        <p class="mt-8 text-center opacity-80 text-lg">Only 500 Founding Members forever • Reply instantly 24/7</p>
+        <p class="mt-8 text-center opacity-80 text-lg">Reply in under 60 seconds • 24/7</p>
       </div>
     </div>
   </section>
 
-  <!-- NEW REFERRAL SECTION – PURE FREE MONTHS / FREE FOREVER -->
+  <!-- REFERRAL SECTION -->
   <section class="py-24 px-6 bg-gradient-to-b from-black to-zinc-950">
     <div class="max-w-7xl mx-auto text-center">
       <h2 class="text-5xl sm:text-7xl font-black mb-8 text-green-400">Founding Members Get Paid to Grow</h2>
       <p class="text-2xl md:text-3xl opacity-90 mb-16">Only the first 500 will ever have this perk – gone forever after Feb 2026</p>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-5xl mx-auto">
-        <div class="bg-gradient-to-br from-zinc-900 to-black border border-zinc-700 rounded-3xl p-12">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-6xl mx-auto">
+        <div class="referral-card border-zinc-700">
           <div class="text-9xl mb-8">1</div>
           <h3 class="text-4xl font-black text-green-400 mb-6">Refer 1 Firm</h3>
-          <p class="text-6xl font-black text-green-400">12 Months FREE</p>
+          <p class="text-5xl sm:text-6xl font-black text-green-400">12 Months FREE</p>
         </div>
 
-        <div class="relative bg-gradient-to-br from-green-900/40 to-black border-4 border-green-500 rounded-3xl p-16 shadow-2xl transform md:scale-110">
+        <div class="referral-card border-green-500 shadow-2xl transform md:scale-110">
           <div class="founding-badge">BEST DEAL</div>
           <div class="text-9xl mb-8">2</div>
           <h3 class="text-5xl font-black text-yellow-400 mb-6">Refer 2 Firms</h3>
-          <p class="text-7xl font-black text-green-400">FREE FOREVER</p>
+          <p class="text-6xl sm:text-7xl font-black text-green-400">FREE FOREVER</p>
         </div>
 
-        <div class="bg-gradient-to-br from-zinc-900 to-black border border-amber-600 rounded-3xl p-12">
+        <div class="referral-card border-amber-600">
           <div class="text-9xl mb-8">∞</div>
           <h3 class="text-4xl font-black text-amber-400 mb-6">Unlimited Referrals</h3>
-          <p class="text-xl leading-relaxed opacity-90">Only your 2 longest-paying referrals count toward free months.<br>Every extra referral still helps the community.</p>
+          <p class="text-xl leading-relaxed opacity-90">Only your 2 longest-paying referrals count.<br>Every extra referral still helps the profession.</p>
         </div>
       </div>
 
       <p class="mt-16 text-lg opacity-70 max-w-3xl mx-auto">
-        Reward auto-applied the day the referred firm pays their <strong>6th invoice</strong>.<br>
-        We manually verify every referral — zero gaming, zero fake firms.
+        Reward auto-applied after the referred firm pays their <strong>6th invoice</strong>.<br>
+        We manually verify every referral — zero gaming allowed.
       </p>
     </div>
   </section>
 
-  <!-- FEATURES TABLE – ORIGINAL WORDING + NEW REFERRAL ROW -->
+  <!-- FEATURE TABLE – ROWS SWAPPED AS YOU REQUESTED -->
   <section id="features" class="py-20 px-6 bg-black">
     <div class="max-w-7xl mx-auto">
       <h2 class="text-5xl sm:text-6xl md:text-7xl font-black text-center mb-16">Complete Feature Breakdown</h2>
-      <div class="table-wrapper">
+      <div class="table-wrapper overflow-x-auto">
         <table class="feature-table w-full min-w-[700px] text-left">
-          <thead class="bg-gradient-to-r from-zinc-900 to-black">
+          <thead class="bg-gradient-to-r from-zinc-900 to-black hidden md:table-header-group">
             <tr>
               <th class="px-6 py-5 text-lg font-black">Feature</th>
               <th class="text-center px-6 py-5 text-xl font-black text-green-400">Growth</th>
@@ -213,37 +207,36 @@
           </thead>
           <tbody class="text-lg md:text-xl">
             <tr class="border-b border-gray-800 bg-zinc-900/50">
-              <td class="py-6 font-bold text-xl">Team Size (Attorneys + Staff)</td>
-              <td class="text-center text-green-400 font-black text-2xl">1–5</td>
-              <td class="text-center text-yellow-400 font-black text-3xl">5–15</td>
-              <td class="text-center text-amber-400 font-black text-3xl">Unlimited</td>
+              <td data-label="Feature" class="py-6 font-bold text-xl">Team Size (Attorneys + Staff)</td>
+              <td data-label="Growth" class="text-center text-green-400 font-black text-2xl">1–5</td>
+              <td data-label="Dominance" class="text-center text-yellow-400 font-black text-3xl">5–15</td>
+              <td data-label="Elite" class="text-center text-amber-400 font-black text-3xl">Unlimited</td>
             </tr>
-            <tr class="border-b border-gray-800"><td class="py-6">Professional website on yourfirm.craftvibeza.com</td><td class="text-green-400 font-bold text-center">Yes</td><td class="text-green-400 font-bold text-center">Yes</td><td class="text-green-400 font-bold text-center">Yes</td></tr>
-            <tr class="border-b border-gray-800"><td class="py-6">AI full-site generator + no-code editor</td><td class="text-green-400 font-bold text-center">Yes</td><td class="text-green-400 font-bold text-center">Yes</td><td class="text-green-400 font-bold text-center">Yes</td></tr>
-            <tr class="border-b border-gray-800"><td class="py-6">Lead dashboard + calendar booking</td><td class="text-green-400 font-bold text-center">Yes</td><td class="text-green-400 font-bold text-center">Yes</td><td class="text-green-400 font-bold text-center">Yes</td></tr>
+            <tr class="border-b border-gray-800"><td data-label="Feature" class="py-6">Professional website on yourfirm.craftvibeza.com</td><td data-label="Growth" class="text-green-400 font-bold text-center">Yes</td><td data-label="Dominance" class="text-green-400 font-bold text-center">Yes</td><td data-label="Elite" class="text-green-400 font-bold text-center">Yes</td></tr>
+            <tr class="border-b border-gray-800"><td data-label="Feature" class="py-6">AI full-site generator + no-code editor</td><td data-label="Growth" class="text-green-400 font-bold text-center">Yes</td><td data-label="Dominance" class="text-green-400 font-bold text-center">Yes</td><td data-label="Elite" class="text-green-400 font-bold text-center">Yes</td></tr>
+            <tr class="border-b border-gray-800"><td data-label="Feature" class="py-6">Lead dashboard + calendar booking</td><td data-label="Growth" class="text-green-400 font-bold text-center">Yes</td><td data-label="Dominance" class="text-green-400 font-bold text-center">Yes</td><td data-label="Elite" class="text-green-400 font-bold text-center">Yes</td></tr>
             <tr class="bg-green-900/20 border-b-8 border-green-500">
-              <td class="py-10 font-black text-3xl leading-tight text-green-300">
+              <td data-label="Feature" class="py-10 font-black text-3xl leading-tight text-green-300">
                 The Smartest Invoice System Ever Built for SA Attorneys<br>
                 <span class="text-lg font-normal opacity-95 mt-2 block">• Timer or type service → auto-pulls client, balances, VAT & interest<br>• Bulk invoice 50 matters in 60 sec • PDF sent instantly</span>
               </td>
-              <td class="text-green-400 font-bold text-center text-4xl animate-pulse">YES</td>
-              <td class="text-green-400 font-bold text-center text-4xl animate-pulse">YES</td>
-              <td class="text-green-400 font-bold text-center text-4xl animate-pulse">YES</td>
+              <td data-label="Growth" class="text-green-400 font-bold text-center text-4xl animate-pulse">YES</td>
+              <td data-label="Dominance" class="text-green-400 font-bold text-center text-4xl animate-pulse">YES</td>
+              <td data-label="Elite" class="text-green-400 font-bold text-center text-4xl animate-pulse">YES</td>
             </tr>
             <tr class="bg-red-900/30 border-b-8 border-red-600">
-              <td class="py-10 font-black text-3xl leading-tight text-red-400">
+              <td data-label="Feature" class="py-10 font-black text-3xl leading-tight text-red-400">
                 NEVER Get Disbarred Over Trust Money Again<br>
                 <span class="text-lg font-normal opacity-95 mt-2 block">Real-time Rule 54 & 86 alerts — stops illegal transfers</span>
               </td>
-              <td class="text-green-400 font-bold text-center text-4xl animate-pulse">YES</td>
-              <td class="text-green-400 font-bold text-center text-4xl animate-pulse">YES</td>
-              <td class="text-green-400 font-bold text-center text-4xl animate-pulse">YES</td>
+              <td data-label="Growth" class="text-green-400 font-bold text-center text-4xl animate-pulse">YES</td>
+              <td data-label="Dominance" class="text-green-400 font-bold text-center text-4xl animate-pulse">YES</td>
+              <td data-label="Elite" class="text-green-400 font-bold text-center text-4xl animate-pulse">YES</td>
             </tr>
-            <tr class="border-b border-gray-800"><td class="py-6 text-green-300">Automated sequences (chaser, nurturing, referrals)</td><td class="text-red-500 font-black text-center">No</td><td class="text-green-400 font-bold text-center">Yes</td><td class="text-green-400 font-bold text-center">Yes</td></tr>
 
-            <!-- NEW REFERRAL ROW – PURE FREE MONTHS -->
+            <!-- THESE TWO ROWS ARE NOW SWAPPED AS YOU ASKED -->
             <tr class="bg-green-900/30 border-t-8 border-b-8 border-green-500">
-              <td class="py-12 font-black text-3xl text-green-300">
+              <td data-label="Feature" class="py-12 font-black text-3xl text-green-300">
                 Founding Member Referral Rewards<br>
                 <span class="text-lg block mt-3 opacity-95">
                   • Refer 1 firm → Your next 12 months FREE<br>
@@ -251,39 +244,44 @@
                   • Unlimited referrals allowed • Only first 500 members get this
                 </span>
               </td>
-              <td class="text-center text-green-400 text-5xl font-black animate-pulse">YES</td>
-              <td class="text-center text-green-400 text-5xl font-black animate-pulse">YES</td>
-              <td class="text-center text-amber-400 text-6xl font-black animate-pulse">YES</td>
+              <td data-label="Growth" class="text-center text-green-400 text-5xl font-black animate-pulse">YES</td>
+              <td data-label="Dominance" class="text-center text-green-400 text-5xl font-black animate-pulse">YES</td>
+              <td data-label="Elite" class="text-center text-amber-400 text-6xl font-black animate-pulse">YES</td>
             </tr>
 
+            <tr class="border-b border-gray-800">
+              <td data-label="Feature" class="py-6 text-green-300">Automated sequences (chaser, nurturing, referrals)</td>
+              <td data-label="Growth" class="text-red-500 font-black text-center">No</td>
+              <td data-label="Dominance" class="text-green-400 font-bold text-center">Yes</td>
+              <td data-label="Elite" class="text-green-400 font-bold text-center">Yes</td>
+            </tr>
+            <!-- END OF SWAPPED ROWS -->
+
             <tr class="bg-orange-900/30 border-b-8 border-orange-600">
-              <td class="py-10 font-black text-3xl leading-tight text-orange-300">
+              <td data-label="Feature" class="py-10 font-black text-3xl leading-tight text-orange-300">
                 Never Miss CPD Points Again<br>
                 <span class="text-lg font-normal opacity-95 mt-2 block">Auto-tracks everything · LPC report in 1 click</span>
               </td>
-              <td class="text-red-500 font-black text-center text-4xl">No</td>
-              <td class="text-red-500 font-black text-center text-4xl">No</td>
-              <td class="text-green-400 font-bold text-center text-5xl animate-pulse">YES</td>
+              <td data-label="Growth" class="text-red-500 font-black text-center text-4xl">No</td>
+              <td data-label="Dominance" class="text-red-500 font-black text-center text-4xl">No</td>
+              <td data-label="Elite" class="text-green-400 font-bold text-center text-5xl animate-pulse">YES</td>
             </tr>
-            <tr class="border-b border-gray-800"><td class="py-6 text-yellow-300">AI Brief & Letter Writer (SA-law trained)</td><td class="text-red-500 font-black text-center">No</td><td class="text-red-500 font-black text-center">No</td><td class="text-green-400 font-bold text-center">Yes</td></tr>
-            <tr class="border-b border-gray-800"><td class="py-6">White-label, custom domain, strategy day</td><td class="text-red-500 font-black text-center">No</td><td class="text-red-500 font-black text-center">No</td><td class="text-green-400 font-bold text-center">Yes</td></tr>
+            <tr class="border-b border-gray-800"><td data-label="Feature" class="py-6 text-yellow-300">AI Brief & Letter Writer (SA-law trained)</td><td data-label="Growth" class="text-red-500 font-black text-center">No</td><td data-label="Dominance" class="text-red-500 font-black text-center">No</td><td data-label="Elite" class="text-green-400 font-bold text-center">Yes</td></tr>
+            <tr class="border-b border-gray-800"><td data-label="Feature" class="py-6">White-label, custom domain, strategy day</td><td data-label="Growth" class="text-red-500 font-black text-center">No</td><td data-label="Dominance" class="text-red-500 font-black text-center">No</td><td data-label="Elite" class="text-green-400 font-bold text-center">Yes</td></tr>
             <tr class="bg-green-900/50 border-t-8 border-b-8 border-green-500">
-              <td class="py-10 font-black text-3xl leading-tight text-green-400">
+              <td data-label="Feature" class="py-10 font-black text-3xl leading-tight text-green-400">
                 Your Price Locked Forever at Founding Rate<br>
                 <span class="text-lg opacity-95">Even when public price hits R19,999+/month</span>
               </td>
-              <td class="text-green-400 font-bold text-center text-4xl">YES</td>
-              <td class="text-green-400 font-bold text-center text-4xl">YES</td>
-              <td class="text-green-400 font-bold text-center text-4xl">YES</td>
+              <td data-label="Growth" class="text-green-400 font-bold text-center text-4xl">YES</td>
+              <td data-label="Dominance" class="text-green-400 font-bold text-center text-4xl">YES</td>
+              <td data-label="Elite" class="text-green-400 font-bold text-center text-4xl">YES</td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
   </section>
-
-  <!-- SCARCITY BAR, FAQ, QUIZ, FLOATING WA – ALL KEPT EXACTLY AS YOU HAD THEM -->
-  <!-- ... (everything from your original code below this line is unchanged) ... -->
 
   <!-- SCARCITY BAR -->
   <section class="py-16 bg-gradient-to-r from-green-900/60 to-emerald-900/60 border-y-4 border-green-500">
@@ -309,15 +307,16 @@
     </div>
   </section>
 
-  <!-- QUIZ OVERLAY & RESULTS -->
-  <div id="quiz-overlay" class="fixed inset-0 bg-black/98 backdrop-blur-2xl flex items-center justify-center z-[1000] hidden px-4">
-    <div class="w-full max-w-2xl">
-      <div class="h-2 bg-zinc-800 rounded-full mb-10 overflow-hidden"><div id="quiz-progress" class="h-full bg-gradient-to-r from-green-500 to-emerald-600 transition-all duration-700" style="width:0%"></div></div>
-      <h2 id="quiz-question-text" class="text-4xl md:text-6xl font-black text-center mb-12 leading-tight"></h2>
-      <div id="quiz-options" class="grid gap-5 sm:gap-6"></div>
+  <!-- QUIZ OVERLAY -->
+  <div id="quiz-overlay" class="fixed inset-0 bg-black/98 backdrop-blur-2xl flex items-center justify-center z-[1000] hidden px-4 overflow-y-auto">
+    <div class="w-full max-w-lg mx-auto my-8">
+      <div class="h-3 bg-zinc-800 rounded-full mb-8 overflow-hidden"><div id="quiz-progress" class="h-full bg-gradient-to-r from-green-500 to-emerald-600 transition-all duration-700" style="width:0%"></div></div>
+      <h2 id="quiz-question-text" class="text-4xl sm:text-5xl font-black text-center mb-10 leading-tight"></h2>
+      <div id="quiz-options" class="grid grid-cols-1 gap-5"></div>
     </div>
   </div>
 
+  <!-- QUIZ RESULTS -->
   <section id="quiz-results" class="py-20 px-6 bg-black hidden">
     <div class="max-w-5xl mx-auto text-center">
       <h2 class="text-4xl md:text-6xl font-black mb-10 text-green-400">Your Perfect Founding Plan</h2>
@@ -345,7 +344,8 @@
 
 <div id="footer-placeholder" class="mt-auto"></div>
 
-  <!-- ALL JAVASCRIPT MOVED TO script.js -->
+  <!-- ALL JS IN script.js -->
   <script src="script.js"></script>
 </body>
 </html>
+
