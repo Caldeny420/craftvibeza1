@@ -22,24 +22,30 @@
       @apply absolute -top-6 left-1/2 -translate-x-1/2 bg-gradient-to-r from-yellow-400 via-orange-400 to-amber-500 text-black font-black px-8 py-3 rounded-full text-sm uppercase tracking-widest shadow-2xl animate-pulse border-4 border-black;
       letter-spacing: 2px;
     }
+    @keyframes pulse { 0%,100% { transform:scale(1); } 50% { transform:scale(1.05); } }
 
-    /* HERO — EXACT SAME AS YOUR REFUND PAGE */
+    /* HERO – EXACT SAME HEIGHT AS YOUR REFUND PAGE */
     main { padding-top: 13rem; }
     @media (min-width: 640px) { main { padding-top: 14rem; } }
     @media (min-width: 768px) { main { padding-top: 15rem; } }
     @media (min-width: 1024px) { main { padding-top: 8rem; } }
     @media (min-width: 1280px) { main { padding-top: 7rem; } }
 
-    /* YOUR ORIGINAL PRICING CARDS — FIXED */
-    .mobile-pricing-card {
-      @apply w-80 flex-shrink-0 bg-gradient-to-b from-zinc-900 to-black rounded-3xl p-8 text-center;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    /* ORIGINAL PRICING CARDS – BACK AND THEY WORK ON EVERY DEVICE */
+    .pricing-card {
+      @apply relative bg-gradient-to-b from-zinc-900 to-black rounded-3xl p-8 text-center border-2;
+      width: 340px;
+      min-height: 640px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
-    .desktop-pricing-card {
-      @apply bg-gradient-to-b from-zinc-900 to-black rounded-3xl p-10 hover:border-green-500 transition text-center;
-      max-width: 420px;
-      margin: 0 auto;
+    .pricing-card-popular {
+      @apply border-green-500 shadow-2xl;
+      transform: scale(1.05);
+      z-index: 10;
     }
+
     .pricing-scroll { -webkit-overflow-scrolling: touch; scrollbar-width: none; }
     .pricing-scroll::-webkit-scrollbar { display: none; }
   </style>
@@ -48,8 +54,8 @@
 
 <div id="header-placeholder"></div>
 
-  <!-- HERO — PERFECT HEIGHT -->
-  <main class="flex-1 px-6 text-center">
+  <!-- HERO -->
+  <main class="flex-1 pt-0 px-6 text-center">
     <div class="max-w-5xl mx-auto">
       <div class="badge-new mb-8">FOUNDING MEMBERS • ONLY 500 FOREVER • LIVE END FEB 2026</div>
       <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-tight mb-8">
@@ -59,11 +65,11 @@
         Full systems delivered and live <strong>by end February 2026</strong> — price locked forever.
       </p>
       <ul class="space-y-4 text-xl max-w-3xl mx-auto mb-12 opacity-90">
-        <li class="flex items-center justify-center gap-2"><i class="fas fa-check text-green-400"></i> Smart AI invoicing & trust compliance to never get disbarred</li>
-        <li class="flex items-center justify-center gap-2"><i class="fas fa-check text-green-400"></i> Professional AI-generated websites with lead dashboards</li>
-        <li class="flex items-center justify-center gap-2"><i class="fas fa-check text-green-400"></i> Automated growth sequences for referrals & passive income</li>
-        <li class="flex items-center justify-center gap-2"><i class="fas fa-check text-green-400"></i> CPD auto-tracking & SA-law trained AI tools</li>
-        <li class="flex items-center justify-center gap-2"><i class="fas fa-check text-green-400"></i> 100% POPIA compliant, proudly South African</li>
+        <li class="flex items-center justify-center gap-2">Smart AI invoicing & trust compliance to never get disbarred</li>
+        <li class="flex items-center justify-center gap-2">Professional AI-generated websites with lead dashboards</li>
+        <li class="flex items-center justify-center gap-2">Automated growth sequences for referrals & passive income</li>
+        <li class="flex items-center justify-center gap-2">CPD auto-tracking & SA-law trained AI tools</li>
+        <li class="flex items-center justify-center gap-2">100% POPIA compliant, proudly South African</li>
       </ul>
       <button onclick="startQuiz()" class="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-black font-black text-3xl sm:text-4xl md:text-5xl px-12 sm:px-16 py-8 sm:py-10 rounded-full shadow-2xl hover:scale-105 transition">
         SEE IF YOU QUALIFY (90 Sec)
@@ -76,76 +82,91 @@
     </div>
   </main>
 
-  <!-- PRICING — YOUR ORIGINAL CARDS, FIXED FOR MOBILE & DESKTOP -->
+  <!-- PRICING — YOUR ORIGINAL CARDS ARE BACK AND PERFECT -->
   <section id="pricing" class="py-20 px-6 bg-black">
     <div class="max-w-7xl mx-auto text-center">
       <h2 class="text-5xl sm:text-6xl md:text-7xl font-black mb-6">Founding Member Pricing</h2>
       <p class="text-xl sm:text-2xl opacity-80 mb-16">Only 500 firms ever get this pricing — <strong class="text-red-500">forever</strong></p>
 
-      <!-- MOBILE — HORIZONTAL SCROLL (your original style) -->
+      <!-- MOBILE — HORIZONTAL SCROLL, ORIGINAL STYLE -->
       <div class="block md:hidden overflow-x-auto pricing-scroll pb-12 -mx-6 px-6">
         <div class="inline-flex gap-8 min-w-max items-start">
           <!-- Growth -->
-          <div class="mobile-pricing-card border-2 border-zinc-700">
+          <div class="pricing-card border-zinc-700">
             <h3 class="text-4xl font-black text-green-400 mb-4">Growth</h3>
             <div class="text-6xl font-black text-green-400">R999<span class="text-3xl">/mo</span></div>
             <p class="text-lg opacity-70 my-4">Normal: <s>R2,999</s></p>
             <p class="text-xl">Setup: R0</p>
             <p class="text-lg mt-4">Taken: <span id="growth-taken">0</span> / 100</p>
-            <form data-tier="Growth" class="payfast-form mt-6"></form>
+            <button data-tier="Growth" class="claim-btn mt-10 w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-black font-black text-2xl py-6 rounded-2xl shadow-2xl hover:scale-105 transition">
+              CLAIM GROWTH SPOT
+            </button>
+            <div class="payfast-form hidden mt-6" data-tier="Growth"></div>
           </div>
 
           <!-- Dominance -->
-          <div class="relative mobile-pricing-card border-4 border-green-500" id="popular-card-mobile">
+          <div class="relative pricing-card border-green-500" id="popular-card-mobile">
             <div class="founding-badge" id="popular-badge-mobile">FOUNDING PRICE – LOCKED FOREVER</div>
             <h3 class="text-5xl font-black text-yellow-400 mb-4 mt-4">Dominance</h3>
-            <div class="text-7xl font-black text-green-400">R2,999<span class="text-4xl">/mo</span>
+            <div class="text-7xl font-black text-green-400">R2,999<span class="text-4xl">/mo</span></div>
             <p class="text-lg opacity-70 my-4">Normal: <s>R7,999</s></p>
             <p class="text-2xl">Setup: R4,999 <span class="text-green-400 text-sm block">(waived first 100)</span></p>
             <p class="text-lg mt-4">Taken: <span id="dominance-taken">0</span> / 200</p>
-            <form data-tier="Dominance" class="payfast-form mt-6"></form>
+            <button data-tier="Dominance" class="claim-btn mt-10 w-full bg-yellow-400 hover:bg-yellow-300 text-black font-black text-2xl py-6 rounded-2xl shadow-2xl hover:scale-105 transition">
+              MOST POPULAR – CLAIM NOW
+            </button>
+            <div class="payfast-form hidden mt-6" data-tier="Dominance"></div>
           </div>
 
           <!-- Elite -->
-          <div class="mobile-pricing-card border-2 border-yellow-600">
+          <div class="pricing-card border-yellow-600">
             <h3 class="text-4xl font-black text-yellow-400 mb-4">Elite</h3>
             <div class="text-6xl font-black text-green-400">R9,999<span class="text-3xl">/mo</span></div>
             <p class="text-lg opacity-70 my-4">Normal: <s>R19,999</s></p>
             <p class="text-xl">Setup: R9,999 <span class="text-green-400 text-sm block">(waived first 50)</span></p>
             <p class="text-lg mt-4">Taken: <span id="elite-taken">0</span> / 200</p>
-            <form data-tier="Elite" class="payfast-form mt-6"></form>
+            <button data-tier="Elite" class="claim-btn mt-10 w-full bg-gradient-to-r from-amber-500 to-orange-600 text-black font-black text-2xl py-6 rounded-2xl shadow-2xl hover:scale-105 transition">
+              CLAIM ELITE SPOT
+            </button>
+            <div class="payfast-form hidden mt-6" data-tier="Elite"></div>
           </div>
         </div>
       </div>
 
       <!-- DESKTOP — ORIGINAL CARDS, NO OVERFLOW -->
-      <div class="hidden md:grid md:grid-cols-3 gap-10 max-w-6xl mx-auto">
-        <div class="desktop-pricing-card border-2 border-zinc-700">
+      <div class="hidden md:grid md:grid-cols-3 gap-10 max-w-7xl mx-auto">
+        <!-- Growth -->
+        <div class="pricing-card border-zinc-700">
           <h3 class="text-5xl font-black text-green-400 mb-6">Growth</h3>
           <div class="text-8xl font-black text-green-400">R999<span class="text-4xl">/mo</span></div>
           <p class="opacity-70 my-6 text-xl"><s>R2,999</s></p>
           <p class="text-2xl">Setup R0</p>
           <p class="text-lg mt-8">Taken: <span id="growth-taken-desktop">0</span>/100</p>
-          <form data-tier="Growth" class="payfast-form mt-10"></form>
+          <button data-tier="Growth" class="claim-btn mt-12 w-full bg-gradient-to-r from-green-500 to-emerald-600 text-black font-black text-3xl py-8 rounded-2xl">CLAIM GROWTH SPOT</button>
+          <div class="payfast-form hidden mt-8" data-tier="Growth"></div>
         </div>
 
-        <div class="relative desktop-pricing-card border-4 border-green-500 transform scale-105" id="popular-card-desktop">
+        <!-- Dominance -->
+        <div class="relative pricing-card border-green-500 transform scale-105" id="popular-card-desktop">
           <div class="founding-badge" id="popular-badge-desktop">FOUNDING PRICE – LOCKED FOREVER</div>
           <h3 class="text-6xl font-black text-yellow-400 mt-10 mb-6">Dominance</h3>
           <div class="text-8xl font-black text-green-400">R2,999<span class="text-4xl">/mo</span></div>
           <p class="opacity-70 my-6 text-xl"><s>R7,999</s></p>
           <p class="text-3xl">Setup R4,999 <span class="text-green-400 text-lg block">(waived first 100)</span></p>
           <p class="text-lg mt-8">Taken: <span id="dominance-taken-desktop">0</span>/200</p>
-          <form data-tier="Dominance" class="payfast-form mt-10"></form>
+          <button data-tier="Dominance" class="claim-btn mt-12 w-full bg-yellow-400 text-black font-black text-3xl py-8 rounded-2xl">MOST POPULAR – CLAIM NOW</button>
+          <div class="payfast-form hidden mt-8" data-tier="Dominance"></div>
         </div>
 
-        <div class="desktop-pricing-card border-2 border-yellow-600">
-          <h3 class="text-5xl font-black text-amber-400 mb-6">Elite</h3>
+        <!-- Elite -->
+        <div class="pricing-card border-yellow-600">
+          <h3 class="text-5xl font-black text-yellow-400 mb-6">Elite</h3>
           <div class="text-8xl font-black text-green-400">R9,999<span class="text-4xl">/mo</span></div>
           <p class="opacity-70 my-6 text-xl"><s>R19,999</s></p>
           <p class="text-2xl">Setup R9,999 <span class="text-green-400 text-lg block">(waived first 50)</span></p>
           <p class="text-lg mt-8">Taken: <span id="elite-taken-desktop">0</span>/200</p>
-          <form data-tier="Elite" class="payfast-form mt-10"></form>
+          <button data-tier="Elite" class="claim-btn mt-12 w-full bg-gradient-to-r from-amber-500 to-orange-600 text-black font-black text-3xl py-8 rounded-2xl">CLAIM ELITE SPOT</button>
+          <div class="payfast-form hidden mt-8" data-tier="Elite"></div>
         </div>
       </div>
 
@@ -160,28 +181,49 @@
     </div>
   </section>
 
-  <!-- REFERRAL SECTION — VERTICAL ON MOBILE (BEST UX) -->
+  <!-- REFERRAL SECTION — VERTICAL ON MOBILE, HORIZONTAL ON DESKTOP -->
   <section class="py-24 px-6 bg-gradient-to-b from-black to-zinc-950">
-    <div class="max-w-5xl mx-auto text-center">
+    <div class="max-w-7xl mx-auto text-center">
       <h2 class="text-5xl sm:text-7xl font-black mb-8 text-green-400">Founding Members Get Paid to Grow</h2>
-      <p class="text-xl sm:text-2xl opacity-90 mb-16">Only the first 500 will ever have this perk</p>
+      <p class="text-xl sm:text-2xl opacity-90 mb-16 max-w-4xl mx-auto">Only the first 500 will ever have this perk — gone forever after Feb 2026</p>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+      <!-- MOBILE: VERTICAL -->
+      <div class="block md:hidden space-y-10">
         <div class="bg-gradient-to-br from-zinc-900 to-black rounded-3xl p-12 border border-zinc-700">
-          <div class="text-9xl mb-8">1</div>
-          <h3 class="text-4xl font-black text-green-400 mb-6">Refer 1 Firm</h3>
-          <p class="text-5xl sm:text-6xl font-black text-green-400">12 Months FREE</p>
+          <div class="text-9xl mb-6">1</div>
+          <h3 class="text-4xl font-black text-green-400 mb-4">Refer 1 Firm</h3>
+          <p class="text-6xl font-black text-green-400">12 Months FREE</p>
         </div>
         <div class="relative bg-gradient-to-br from-green-900/40 to-black rounded-3xl p-16 border-4 border-green-500 shadow-2xl">
           <div class="founding-badge">BEST DEAL</div>
-          <div class="text-9xl mb-8">2</div>
-          <h3 class="text-5xl font-black text-yellow-400 mb-6">Refer 2 Firms</h3>
-          <p class="text-6xl sm:text-7xl font-black text-green-400">FREE FOREVER</p>
+          <div class="text-9xl mb-6">2</div>
+          <h3 class="text-5xl font-black text-yellow-400 mb-4">Refer 2 Firms</h3>
+          <p class="text-7xl font-black text-green-400">FREE FOREVER</p>
         </div>
         <div class="bg-gradient-to-br from-zinc-900 to-black rounded-3xl p-12 border border-amber-600">
-          <div class="text-9xl mb-8">∞</div>
-          <h3 class="text-4xl font-black text-amber-400 mb-6">Unlimited Referrals</h3>
+          <div class="text-9xl mb-6">∞</div>
+          <h3 class="text-4xl font-black text-amber-400 mb-4">Unlimited Referrals</h3>
           <p class="text-xl opacity-90">Only your 2 longest-paying count toward free months</p>
+        </div>
+      </div>
+
+      <!-- DESKTOP: HORIZONTAL -->
+      <div class="hidden md:grid md:grid-cols-3 gap-12 max-w-6xl mx-auto">
+        <div class="bg-gradient-to-br from-zinc-900 to-black rounded-3xl p-16 border border-zinc-700">
+          <div class="text-9xl mb-8">1</div>
+          <h3 class="text-5xl font-black text-green-400 mb-6">Refer 1 Firm</h3>
+          <p class="text-7xl font-black text-green-400">12 Months FREE</p>
+        </div>
+        <div class="relative bg-gradient-to-br from-green-900/40 to-black rounded-3xl p-20 border-4 border-green-500 shadow-2xl">
+          <div class="founding-badge">BEST DEAL</div>
+          <div class="text-9xl mb-8">2</div>
+          <h3 class="text-6xl font-black text-yellow-400 mb-6">Refer 2 Firms</h3>
+          <p class="text-8xl font-black text-green-400 leading-none">FREE<br>FOREVER</p>
+        </div>
+        <div class="bg-gradient-to-br from-zinc-900 to-black rounded-3xl p-16 border border-amber-600">
+          <div class="text-9xl mb-8">∞</div>
+          <h3 class="text-5xl font-black text-amber-400 mb-6">Unlimited Referrals</h3>
+          <p class="text-xl opacity-90 leading-relaxed">Only your 2 longest-paying count<br>toward free months</p>
         </div>
       </div>
     </div>
@@ -341,4 +383,5 @@
   <script src="script.js"></script>
 </body>
 </html>
+
 
