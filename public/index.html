@@ -14,7 +14,7 @@
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
   <style>
-    :root { --green:#10b981; --yellow:#fbbf24; --amber:#f59e0b; --red:#ef4444; }
+    :root { --green:#10b981; --yellow:#fbbf24; --amber:#f59e0b; --red:#ef4444c4; }
     body { font-family:'Inter',sans-serif; background:#000; color:#fff; margin:0; overflow-x:hidden; }
 
     .badge-new { @apply inline-block bg-amber-500 text-black font-black px-6 py-3 rounded-full text-sm sm:text-base tracking-widest; }
@@ -23,13 +23,14 @@
       letter-spacing: 2px;
     }
 
-    /* HERO – PERFECT ON EVERY DEVICE (mobile & desktop) */
-    main { padding-top: 9rem; }
-    @media (min-width: 640px) { main { padding-top: 11rem; } }
-    @media (min-width: 768px) { main { padding-top: 13rem; } }
-    @media (min-width: 1024px) { main { padding-top: 12rem; } }
-    @media (min-width: 1280px) { main { padding-top: 11rem; } }
+    /* HERO – EXACT SAME HEIGHT AS YOUR REFUND POLICY PAGE */
+    main { padding-top: 13rem; }
+    @media (min-width: 640px) { main { padding-top: 14rem; } }
+    @media (min-width: 768px) { main { padding-top: 15rem; } }
+    @media (min-width: 1024px) { main { padding-top: 8rem; } }
+    @media (min-width: 1280px) { main { padding-top: 7rem; } }
 
+    /* PRICING CARDS */
     .pricing-card {
       @apply relative w-80 flex-shrink-0 bg-gradient-to-b from-zinc-900 to-black rounded-3xl p-8 text-center border-2;
       min-height: 640px;
@@ -37,6 +38,7 @@
     }
     .pricing-card-popular { @apply border-green-500 shadow-2xl; transform: scale(1.04); z-index:10; }
 
+    /* MOBILE – 1.4 CARD PEEK + SCROLL */
     .mobile-pricing-wrapper { @apply relative overflow-hidden; }
     .mobile-pricing-scroll {
       @apply flex gap-8 pb-12 overflow-x-auto scroll-smooth snap-x snap-mandatory;
@@ -54,7 +56,7 @@
 
 <div id="header-placeholder"></div>
 
-  <!-- HERO – FIXED & BEAUTIFUL -->
+    <!-- HERO – FIXED & BEAUTIFUL -->
   <main class="flex-1 px-6 text-center">
     <div class="max-w-5xl mx-auto">
       <div class="badge-new mb-8 sm:mb-12">FOUNDING MEMBERS • ONLY 500 FOREVER • LIVE END FEB 2026</div>
@@ -82,60 +84,12 @@
     </div>
   </main>
 
-  <!-- EARLY ACCESS SECTION -->
-  <section class="py-20 px-6 bg-black">
-    <div class="max-w-5xl mx-auto text-center">
-      <h2 class="text-4xl md:text-6xl font-black mb-8">Secure your Early Access place<br><span class="text-2xl md:text-4xl opacity-80">(limited to 500 firms)</span></h2>
-      <p class="text-lg md:text-xl opacity-90 mb-16 max-w-4xl mx-auto leading-relaxed">
-        We are opening the platform to a controlled group of 500 South African law firms before public release.<br>
-        Early Access members receive permanent founding pricing and priority onboarding — benefits that will never be available again after February 2026.
-      </p>
-      <button onclick="startQuiz()" class="bg-white text-black font-black text-2xl sm:text-3xl px-12 py-8 rounded-full hover:scale-105 transition shadow-2xl">
-        APPLY IN 90 SECONDS
-      </button>
-    </div>
-  </section>
-
-  <!-- WHY JOIN EARLY -->
-  <section class="py-20 px-6 bg-zinc-950">
-    <div class="max-w-6xl mx-auto">
-      <h2 class="text-4xl md:text-5xl font-black text-center mb-16">Why South African law firms are joining early</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-lg">
-        <div class="bg-zinc-900/50 rounded-2xl p-8 border border-zinc-800">
-          <h3 class="text-2xl font-bold text-green-400 mb-4">Smart AI invoicing & trust accounting compliance</h3>
-          <ul class="space-y-3 opacity-90">
-            <li>• Real-time Rule 54 & Rule 86 alerts</li>
-            <li>• Prevents disallowed transfers</li>
-            <li>• Bulk invoicing (50 matters in under 60 seconds)</li>
-          </ul>
-        </div>
-        <div class="bg-zinc-900/50 rounded-2xl p-8 border border-zinc-800">
-          <h3 class="text-2xl font-bold text-green-400 mb-4">Professional firm website & client portal</h3>
-          <ul class="space-y-3 opacity-90">
-            <li>• YourFirm.craftvibeza.com</li>
-            <li>• AI-generated • Fully editable</li>
-            <li>• Integrated booking & lead dashboard</li>
-          </ul>
-        </div>
-        <div class="bg-zinc-900/50 rounded-2xl p-8 border border-zinc-800">
-          <h3 class="text-2xl font-bold text-green-400 mb-4">Automated CPD tracking & one-click LPC reporting</h3>
-          <p class="opacity-90">Never miss points again • Automatic capture from emails, calendars and documents</p>
-        </div>
-        <div class="bg-zinc-900/50 rounded-2xl p-8 border border-zinc-800">
-          <h3 class="text-2xl font-bold text-green-400 mb-4">SA-law trained AI brief & letter drafter (Elite only)</h3>
-          <p class="opacity-90">Draft pleadings, opinions and correspondence in seconds</p>
-        </div>
-      </div>
-      <p class="text-center mt-12 text-lg opacity-80">All data hosted in South Africa • End-to-end encryption • Regular independent security audits</p>
-    </div>
-  </section>
-
-  <!-- PRICING – YOUR ORIGINAL CARDS + MOBILE 1.4 CARD PEEK -->
+  <!-- PRICING -->
   <section id="pricing" class="py-20 px-6 bg-black">
     <div class="max-w-7xl mx-auto text-center">
       <h2 class="text-5xl sm:text-6xl md:text-7xl font-black mb-8">Early Access Pricing<br><span class="text-2xl md:text-4xl opacity-80">(permanent for your firm)</span></h2>
 
-      <!-- MOBILE -->
+      <!-- MOBILE – 1.4 CARD PEEK + SCROLL -->
       <div class="block md:hidden mobile-pricing-wrapper">
         <div class="scroll-fade-left"></div>
         <div class="scroll-fade-right"></div>
@@ -182,9 +136,8 @@
         </div>
       </div>
 
-      <!-- DESKTOP -->
+      <!-- DESKTOP GRID -->
       <div class="hidden md:grid md:grid-cols-3 gap-12 max-w-7xl mx-auto">
-        <!-- Growth -->
         <div class="pricing-card border-zinc-700">
           <h3 class="text-5xl font-black text-green-400 mb-6">Growth</h3>
           <div class="text-8xl font-black text-green-400">R999<span class="text-4xl">/mo</span></div>
@@ -195,7 +148,6 @@
           <div class="payfast-form hidden mt-8" data-tier="Growth"></div>
         </div>
 
-        <!-- Dominance -->
         <div class="relative pricing-card border-green-500 transform scale-105" id="popular-card-desktop">
           <div class="founding-badge" id="popular-badge-desktop">FOUNDING PRICE – LOCKED FOREVER</div>
           <h3 class="text-6xl font-black text-yellow-400 mt-10 mb-6">Dominance</h3>
@@ -209,7 +161,6 @@
           <div class="payfast-form hidden mt-8" data-tier="Dominance"></div>
         </div>
 
-        <!-- Elite -->
         <div class="pricing-card border-yellow-600">
           <h3 class="text-5xl font-black text-yellow-400 mb-6">Elite</h3>
           <div class="text-8xl font-black text-green-400">R9,999<span class="text-4xl">/mo</span></div>
@@ -232,20 +183,21 @@
     </div>
   </section>
 
-  <!-- REFERRAL CREDIT PROGRAMME – FIXED & CLEAR -->
+  <!-- REFERRAL PROGRAMME – YOUR EXACT WORDING -->
   <section class="py-24 px-6 bg-zinc-950">
     <div class="max-w-4xl mx-auto text-center">
-      <h2 class="text-4xl md:text-5xl font-black mb-8">Referral Credit Programme<br><span class="text-xl md:text-2xl opacity-80">(Early Access only)</span></h2>
-      <p class="text-lg md:text-xl opacity-90 mb-12 leading-relaxed max-w-3xl mx-auto">
-        Every successful referral earns 12 months of service credit.<br>
-        Only your two longest-paying referrals count toward free months.<br>
-        Credit is applied automatically after the referred firm has paid their 6th invoice.
-      </p>
-      <p class="text-base opacity-70">Refer two firms and your practice will never pay again.<br>Available only to the first 500 Early Access members.</p>
+      <h2 class="text-4xl md:text-5xl font-black mb-8">Founding Member Referral Rewards</h2>
+      <div class="text-lg md:text-xl opacity-90 space-y-6 leading-relaxed">
+        <p>• Refer 1 firm → Your next 12 months FREE</p>
+        <p>• Refer 2 firms → Your account <strong class="text-green-400">FREE FOREVER</strong></p>
+        <p>• Only your two longest-paying referrals count</p>
+        <p>• Credit applied after their 6th paid invoice</p>
+      </div>
+      <p class="mt-10 text-base opacity-70">Unlimited referrals allowed • We manually verify every referral</p>
     </div>
   </section>
 
-  <!-- FULL FEATURE COMPARISON – YOUR ORIGINAL TABLE -->
+  <!-- FULL FEATURE TABLE -->
   <section id="features" class="py-20 px-6 bg-black">
     <div class="max-w-7xl mx-auto">
       <h2 class="text-5xl sm:text-6xl md:text-7xl font-black text-center mb-16">Complete Feature Breakdown</h2>
@@ -347,7 +299,7 @@
     </div>
   </section>
 
-  <!-- QUIZ OVERLAY & RESULTS – FULLY KEPT -->
+  <!-- QUIZ OVERLAY & RESULTS -->
   <div id="quiz-overlay" class="fixed inset-0 bg-black/98 backdrop-blur-2xl flex items-center justify-center z-[1000] hidden px-4 overflow-y-auto">
     <div class="w-full max-w-lg mx-auto my-8">
       <div class="h-3 bg-zinc-800 rounded-full mb-8 overflow-hidden"><div id="quiz-progress" class="h-full bg-gradient-to-r from-green-500 to-emerald-600 transition-all duration-700" style="width:0%"></div></div>
@@ -386,5 +338,3 @@
   <script src="script.js"></script>
 </body>
 </html>
-
-
