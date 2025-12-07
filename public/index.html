@@ -10,401 +10,428 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
   <script src="https://cdn.tailwindcss.com"></script>
-
   <style>
-    :root { --green:#10b981; --yellow:#fbbf24; --amber:#f59e0b; }
-    body { font-family:'Inter',sans-serif; background:#000; color:#fff; margin:0; overflow-x:hidden; }
-    .badge { @apply inline-block bg-amber-500 text-black font-black px-6 py-3 rounded-full text-sm sm:text-base tracking-widest; }
-    .founding-badge { @apply absolute -top-6 left-1/2 -translate-x-1/2 bg-gradient-to-r from-yellow-400 via-orange-400 to-amber-500 text-black font-black px-8 py-3 rounded-full text-sm uppercase tracking-widest shadow-2xl animate-pulse border-4 border-black; }
-    main { padding-top: 13rem; }
-    @media (min-width: 640px) { main { padding-top: 14rem; } }
-    @media (min-width: 768px) { main { padding-top: 15rem; } }
-    @media (min-width: 1024px) { main { padding-top: 8rem; } }
-    .pricing-card {
-      @apply relative w-80 flex-shrink-0 bg-gradient-to-b from-zinc-900 to-black rounded-3xl p-8 text-center border-2 shadow-2xl;
-      min-height: 660px;
+    :root {
+      --green: #10b981;
+      --yellow: #fbbf24;
+      --amber: #f59e0b;
     }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #000;
+      color: #fff;
+      margin: 0;
+      overflow-x: hidden;
+    }
+    .badge {
+      @apply inline-block bg-amber-500 text-black font-black px-6 py-3 rounded-full text-sm sm:text-base tracking-widest;
+    }
+    .founding-badge {
+      @apply absolute -top-6 left-1/2 -translate-x-1/2 bg-gradient-to-r from-yellow-400 via-orange-400 to-amber-500 text-black font-black px-8 py-3 rounded:rounded-full text-sm uppercase tracking-widest shadow-2xl animate-pulse border-4 border-black z-10;
+    }
+    main {
+      padding-top: 12rem;
+    }
+    @media (min-width: 640px) { main { padding-top: 13rem; } }
+    @media (min-width: 768px) { main { padding-top: 14rem; } }
+    @media (min-width: 1024px) { main { padding-top: 8rem; } }
+    /* Pricing Cards */
+    .pricing-card {
+      @apply relative w-full max-w-sm mx-auto flex-shrink-0 bg-gradient-to-b from-zinc-900 to-black rounded-3xl p-8 text-center border-2 shadow-2xl;
+      min-height: 640px;
+    }
+    /* Mobile Horizontal Scroll */
     .mobile-pricing-scroll {
-      @apply flex gap-8 pb-12 overflow-x-auto scroll-smooth snap-x snap-mandatory -mx-6 px-6;
-      scrollbar-width: none;
-      padding-left: calc((100vw - 320px)/2);
-      padding-right: calc((100vw - 320px)/2);
+      @apply flex gap-4 pb-12 overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-hide;
+      padding-left: max(0.5rem, calc((100vw - 300px) / 2));
+      padding-right: max(0.5rem, calc((100vw - 300px) / 2));
+    }
+    .mobile-pricing-scroll > * {
+      scroll-snap-align: start;
+      min-width: calc(80% - 1rem); /* Adjusted for ~1.4 cards visible: full card + partial next */
+      max-width: 340px;
     }
     .mobile-pricing-scroll::-webkit-scrollbar { display: none; }
-    .mobile-pricing-scroll > * { scroll-snap-align: center; }
-    .scroll-fade-left  { @apply absolute top-0 bottom-0 left-0 w-32 pointer-events-none z-10 bg-gradient-to-r from-black to-transparent; }
-    .scroll-fade-right { @apply absolute top-0 bottom-0 right-0 w-32 pointer-events-none z-10 bg-gradient-to-l from-black to-transparent; }
+    /* Desktop Grid */
+    .desktop-pricing-grid {
+      @apply hidden md:grid md:grid-cols-3 gap-6 max-w-7xl mx-auto;
+    }
+    @media (min-width: 768px) {
+      .desktop-pricing-grid { display: grid; }
+    }
+    /* Feature Table */
+    .feature-table-container {
+      @apply overflow-x-auto rounded-3xl border border-zinc-800 -mx-4 md:mx-0;
+    }
+    .feature-table-container table {
+      min-width: 100%; /* Made responsive, no fixed min-width */
+    }
+    @media (max-width: 767px) {
+      .feature-table-container table {
+        font-size: 0.875rem; /* Smaller font on mobile for more content visibility */
+      }
+      .feature-table-container table td, .feature-table-container table th {
+        padding: 0.75rem 1rem; /* Tighter padding on mobile */
+      }
+    }
+    /* Scrollbar hide */
+    .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+    .scrollbar-hide::-webkit-scrollbar { display: none; }
+    /* Consistent max-width across sections */
+    section > div, main > div {
+      @apply max-w-6xl mx-auto; /* Standardized to max-w-6xl for consistency, no overlaps */
+    }
+    /* Why Trust Us Cards Adjustments */
+    .why-trust-card {
+      @apply bg-zinc-900/70 backdrop-blur border border-zinc-700 rounded-3xl p-6 sm:p-8 md:p-10 text-center;
+      /* Reduced padding slightly for better fit, especially on mobile */
+    }
+    .why-trust-card > div:first-child {
+      @apply text-6xl sm:text-7xl md:text-8xl font-black text-green-400 mb-4;
+    }
+    .why-trust-card h3 {
+      @apply text-xl sm:text-2xl font-black mb-3;
+    }
+    .why-trust-card p {
+      @apply opacity-90 text-base sm:text-lg;
+    }
+    /* Hero adjustments to prevent any potential overlap */
+    main .max-w-5xl {
+      @apply max-w-6xl px-4 sm:px-6;
+    }
   </style>
 </head>
 <body class="min-h-screen flex flex-col">
-<div id="header-placeholder"></div>
-<!-- 1. HERO SECTION -->
-<main class="flex-1 px-6 text-center pt-32 pb-20">
-  <div class="max-w-5xl mx-auto">
-    <div class="badge mb-8">FOUNDING MEMBERS • ONLY 500 FOREVER • LIVE END FEB 2026</div>
-
-    <h1 class="text-5xl xs:text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black leading-none mb-10">
-      CraftVibeZA<br class="sm:hidden"> – AI-assisted<br class="hidden sm:block">practice platform<br class="hidden lg:block">
-      for <span class="text-green-400">South African law firms</span>
-    </h1>
-
-    <p class="text-xl md:text-2xl lg:text-3xl opacity-90 mb-12">
-      Launching February 2026 • Proudly South African • 100% POPIA compliant • Locally hosted
-    </p>
-
-    <div class="max-w-3xl mx-auto text-left space-y-5 text-lg md:text-xl mb-16">
-      <p>0 Trust Account Risk – Real-time Rule 54 & 86 alerts prevent trust account errors</p>
-      <p>24/7 Founder Access – WhatsApp replies under 60 seconds, no sales team</p>
-      <p>Automated invoicing, AI drafting, CPD tracking</p>
-    </div>
-
-    <div class="space-y-6">
-      <button onclick="startQuiz()" class="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-black font-black text-3xl xs:text-4xl sm:text-5xl px-12 sm:px-16 py-8 sm:py-10 rounded-full shadow-2xl hover:scale-105 transition">
-          APPLY IN 90 SECONDS
-      </button>
-      <p class="text-lg opacity-80">
-        or <a href="https://wa.me/27764312871?text=Hi%20CraftVibeZA%20-%20Early%20Access" target="_blank" class="text-green-400 underline">message the founder directly on WhatsApp</a>
-        <br><span class="text-sm opacity-70">(replies in under 60 seconds, 24/7)</span>
+  <div id="header-placeholder"></div>
+  <!-- 1. HERO SECTION -->
+  <main class="flex-1 px-4 sm:px-6 text-center">
+    <div class="max-w-6xl mx-auto">
+      <div class="badge mb-8">FOUNDING MEMBERS • ONLY 500 FOREVER • LIVE END FEB 2026</div>
+      <h1 class="text-5xl xs:text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black leading-tight mb-10">
+        CraftVibeZA<br class="sm:hidden"> – AI-assisted<br class="hidden sm:block"> practice platform<br class="hidden lg:block">
+        for <span class="text-green-400">South African law firms</span>
+      </h1>
+      <p class="text-xl md:text-2xl lg:text-3xl opacity-90 mb-12">
+        Launching February 2026 • Proudly South African • 100% POPIA compliant • Locally hosted
       </p>
-    </div>
-  </div>
-</main>
-
-<!-- 2. WHY TRUST US -->
-<section class="py-32 px-6 bg-zinc-950">
-  <div class="max-w-6xl mx-auto">
-    <h2 class="text-5xl sm:text-6xl md:text-7xl font-black text-center mb-20">
-      Why South African Law Firms Can Trust CraftVibeZA
-    </h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-      <div class="bg-zinc-900/70 backdrop-blur border border-zinc-700 rounded-3xl p-10 text-center">
-        <div class="text-8xl font-black text-green-400 mb-4">100%</div>
-        <h3 class="text-2xl font-black mb-3">POPIA Compliant</h3>
-        <p class="opacity-90">Fully audited, data never leaves South Africa</p>
+      <div class="max-w-3xl mx-auto text-left space-y-5 text-lg md:text-xl mb-16">
+        <p>0 Trust Account Risk – Real-time Rule 54 & 86 alerts prevent trust account errors</p>
+        <p>24/7 Founder Access – WhatsApp replies under 60 seconds, no sales team</p>
+        <p>Automated invoicing, AI drafting, CPD tracking</p>
       </div>
-      <div class="bg-zinc-900/70 backdrop-blur border border-zinc-700 rounded-3xl p-10 text-center">
-        <div class="text-8xl font-black text-green-400 mb-4">0</div>
-        <h3 class="text-2xl font-black mb-3">Trust Account Risk</h3>
-        <p class="opacity-90">Blocks illegal transfers and reduces errors</p>
-      </div>
-      <div class="bg-zinc-900/70 backdrop-blur border border-zinc-700 rounded-3xl p-10 text-center">
-        <div class="text-8xl font-black text-green-400 mb-4">SA</div>
-        <h3 class="text-2xl font-black mb-3">Designed for SA Law Firms</h3>
-        <p class="opacity-90">Matches local legal workflows</p>
-      </div>
-      <div class="bg-zinc-900/70 backdrop-blur border border-zinc-700 rounded-3xl p-10 text-center">
-        <div class="text-8xl font-black text-green-400 mb-4">24/7</div>
-        <h3 class="text-2xl font-black mb-3">Founder Access</h3>
-        <p class="opacity-90">Direct contact, no sales team</p>
+      <div class="space-y-6">
+        <button onclick="startQuiz()" class="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-black font-black text-3xl xs:text-4xl sm:text-5xl px-12 sm:px-16 py-8 sm:py-10 rounded-full shadow-2xl hover:scale-105 transition">
+          APPLY IN 90 SECONDS
+        </button>
+        <p class="text-lg opacity-80">
+          or <a href="https://wa.me/27764312871?text=Hi%20CraftVibeZA%20-%20Early%20Access" target="_blank" class="text-green-400 underline">message the founder directly on WhatsApp</a>
+          <br><span class="text-sm opacity-70">(replies in under 60 seconds, 24/7)</span>
+        </p>
       </div>
     </div>
-  </div>
-</section>
-
- <!-- PRICING -->
-<!-- PRICING – FINAL VERSION (MOBILE HORIZONTAL SCROLL + DESKTOP GRID) -->
-<section id="pricing" class="py-24 px-6 bg-black">
-  <div class="max-w-7xl mx-auto text-center">
-    <h2 class="text-5xl sm:text-6xl md:text-7xl font-black mb-8 leading-tight">
-      Early Access Pricing<br>
-      <span class="text-2xl md:text-4xl opacity-80 font-normal">(permanent for your firm)</span>
-    </h2>
-
-    <!-- MOBILE: HORIZONTAL SCROLL -->
-    <div class="block md:hidden -mx-6">
-      <div class="flex gap-10 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-12 px-6 scrollbar-hide">
-        <!-- Growth Card -->
-        <div class="pricing-card border-zinc-700 snap-center">
-          <h3 class="text-5xl font-black text-green-400 mb-6">Growth</h3>
-          <div class="text-7xl font-black text-green-400 leading-none">R999<span class="text-4xl">/mo</span></div>
-          <p class="text-xl opacity-70 my-5"><s>R2,999</s></p>
-          <p class="text-2xl mb-4">Setup R0</p>
-          <p class="text-lg mt-8">Taken: <span id="growth-taken">0</span>/100</p>
-          <button data-tier="Growth" class="claim-btn mt-12 w-full bg-gradient-to-r from-green-500 to-emerald-600 text-black font-black text-2xl py-6 rounded-2xl hover:scale-105 transition">
+  </main>
+  <!-- 2. WHY TRUST US -->
+  <section class="py-32 px-6 bg-zinc-950">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-5xl sm:text-6xl md:text-7xl font-black text-center mb-20">
+        Why South African Law Firms Can Trust CraftVibeZA
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div class="why-trust-card">
+          <div class="text-8xl font-black text-green-400 mb-4">100%</div>
+          <h3 class="text-2xl font-black mb-3">POPIA Compliant</h3>
+          <p class="opacity-90">Fully audited, data never leaves South Africa</p>
+        </div>
+        <div class="why-trust-card">
+          <div class="text-8xl font-black text-green-400 mb-4">0</div>
+          <h3 class="text-2xl font-black mb-3">Trust Account Risk</h3>
+          <p class="opacity-90">Blocks illegal transfers and reduces errors</p>
+        </div>
+        <div class="why-trust-card">
+          <div class="text-8xl font-black text-green-400 mb-4">SA</div>
+          <h3 class="text-2xl font-black mb-3">Designed for SA Law Firms</h3>
+          <p class="opacity-90">Matches local legal workflows</p>
+        </div>
+        <div class="why-trust-card">
+          <div class="text-8xl font-black text-green-400 mb-4">24/7</div>
+          <h3 class="text-2xl font-black mb-3">Founder Access</h3>
+          <p class="opacity-90">Direct contact, no sales team</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- PRICING -->
+  <section id="pricing" class="py-24 px-6 bg-black">
+    <div class="max-w-6xl mx-auto text-center">
+      <h2 class="text-5xl sm:text-6xl md:text-7xl font-black mb-8 leading-tight">
+        Early Access Pricing<br>
+        <span class="text-2xl md:text-4xl opacity-80 font-normal">(permanent for your firm)</span>
+      </h2>
+      <!-- Mobile: Horizontal Scroll -->
+      <div class="block md:hidden">
+        <div class="mobile-pricing-scroll">
+          <!-- Growth -->
+          <div class="pricing-card border-zinc-700">
+            <h3 class="text-5xl font-black text-green-400 mb-6">Growth</h3>
+            <div class="text-7xl font-black text-green-400 leading-none">R999<span class="text-4xl">/mo</span></div>
+            <p class="text-xl opacity-70 my-5"><s>R2,999</s></p>
+            <p class="text-2xl mb-4">Setup R0</p>
+            <p class="text-lg mt-8">Taken: <span id="growth-taken">0</span>/100</p>
+            <button data-tier="Growth" class="claim-btn mt-12 w-full bg-gradient-to-r from-green-500 to-emerald-600 text-black font-black text-2xl py-6 rounded-2xl hover:scale-105 transition">
+              CLAIM GROWTH SPOT
+            </button>
+            <div class="payfast-form hidden mt-6" data-tier="Growth"></div>
+          </div>
+          <!-- Dominance (Popular) -->
+          <div class="pricing-card border-green-500 relative transform scale-105">
+            <div class="founding-badge">FOUNDING PRICE – LOCKED FOREVER</div>
+            <h3 class="text-5xl font-black text-yellow-400 mt-8 mb-6">Dominance</h3>
+            <div class="text-7xl font-black text-green-400 leading-none">R2,999<span class="text-4xl">/mo</span></div>
+            <p class="text-xl opacity-70 my-5"><s>R7,999</s></p>
+            <p class="text-2xl mb-4">Setup R4,999 <span class="text-green-400 text-sm block">(waived first 100)</span></p>
+            <p class="text-lg mt-8">Taken: <span id="dominance-taken">0</span>/200</p>
+            <button data-tier="Dominance" class="claim-btn mt-10 w-full bg-yellow-400 text-black font-black text-2xl py-6 rounded-2xl hover:scale-105 transition">
+              <span id="dominance-btn-text">CLAIM DOMINANCE SPOT</span>
+            </button>
+            <div class="payfast-form hidden mt-6" data-tier="Dominance"></div>
+          </div>
+          <!-- Elite -->
+          <div class="pricing-card border-amber-600">
+            <h3 class="text-5xl font-black text-amber-400 mb-6">Elite</h3>
+            <div class="text-7xl font-black text-green-400 leading-none">R9,999<span class="text-4xl">/mo</span></div>
+            <p class="text-xl opacity-70 my-5"><s>R19,999</s></p>
+            <p class="text-2xl mb-4">Setup R9,999 <span class="text-green-400 text-sm block">(waived first 50)</span></p>
+            <p class="text-lg mt-8">Taken: <span id="elite-taken">0</span>/200</p>
+            <button data-tier="Elite" class="claim-btn mt-10 w-full bg-gradient-to-r from-amber-500 to-orange-600 text-black font-black text-2xl py-6 rounded-2xl hover:scale-105 transition">
+              CLAIM ELITE SPOT
+            </button>
+            <div class="payfast-form hidden mt-6" data-tier="Elite"></div>
+          </div>
+        </div>
+      </div>
+      <!-- Desktop: Grid -->
+      <div class="desktop-pricing-grid mt-20">
+        <!-- Growth -->
+        <div class="pricing-card border-zinc-700">
+          <h3 class="text-6xl font-black text-green-400 mb-8">Growth</h3>
+          <div class="text-8xl font-black text-green-400 leading-none">R999<span class="text-5xl">/mo</span></div>
+          <p class="text-2xl opacity-70 my-6"><s>R2,999</s></p>
+          <p class="text-3xl mb-6">Setup R0</p>
+          <p class="text-xl mt-10">Taken: <span id="growth-taken-desktop">0</span>/100</p>
+          <button data-tier="Growth" class="claim-btn mt-12 w-full bg-gradient-to-r from-green-500 to-emerald-600 text-black font-black text-3xl py-8 rounded-2xl hover:scale-105 transition">
             CLAIM GROWTH SPOT
           </button>
-          <div class="payfast-form hidden mt-6" data-tier="Growth"></div>
+          <div class="payfast-form hidden mt-8" data-tier="Growth"></div>
         </div>
-
-        <!-- Dominance Card (Popular) -->
-        <div class="pricing-card border-green-500 snap-center relative transform scale-105">
+        <!-- Dominance -->
+        <div class="pricing-card border-green-500 relative transform scale-105">
           <div class="founding-badge">FOUNDING PRICE – LOCKED FOREVER</div>
-          <h3 class="text-5xl font-black text-yellow-400 mt-8 mb-6">Dominance</h3>
-          <div class="text-7xl font-black text-green-400 leading-none">R2,999<span class="text-4xl">/mo</span></div>
-          <p class="text-xl opacity-70 my-5"><s>R7,999</s></p>
-          <p class="text-2xl mb-4">Setup R4,999 <span class="text-green-400 text-sm block">(waived first 100)</span></p>
-          <p class="text-lg mt-8">Taken: <span id="dominance-taken">0</span>/200</p>
-          <button data-tier="Dominance" class="claim-btn mt-10 w-full bg-yellow-400 text-black font-black text-2xl py-6 rounded-2xl hover:scale-105 transition">
-            <span id="dominance-btn-text">CLAIM DOMINANCE SPOT</span>
+          <h3 class="text-7xl font-black text-yellow-400 mt-12 mb-8">Dominance</h3>
+          <div class="text-8xl font-black text-green-400 leading-none">R2,999<span class="text-5xl">/mo</span></div>
+          <p class="text-2xl opacity-70 my-6"><s>R7,999</s></p>
+          <p class="text-3xl mb-6">Setup R4,999 <span class="text-green-400 text-xl block">(waived first 100)</span></p>
+          <p class="text-xl mt-10">Taken: <span id="dominance-taken-desktop">0</span>/200</p>
+          <button data-tier="Dominance" class="claim-btn mt-12 w-full bg-yellow-400 text-black font-black text-3xl py-8 rounded-2xl hover:scale-105 transition">
+            <span id="dominance-btn-text-desktop">CLAIM DOMINANCE SPOT</span>
           </button>
-          <div class="payfast-form hidden mt-6" data-tier="Dominance"></div>
+          <div class="payfast-form hidden mt-8" data-tier="Dominance"></div>
         </div>
-
-        <!-- Elite Card -->
-        <div class="pricing-card border-amber-600 snap-center">
-          <h3 class="text-5xl font-black text-amber-400 mb-6">Elite</h3>
-          <div class="text-7xl font-black text-green-400 leading-none">R9,999<span class="text-4xl">/mo</span></div>
-          <p class="text-xl opacity-70 my-5"><s>R19,999</s></p>
-          <p class="text-2xl mb-4">Setup R9,999 <span class="text-green-400 text-sm block">(waived first 50)</span></p>
-          <p class="text-lg mt-8">Taken: <span id="elite-taken">0</span>/200</p>
-          <button data-tier="Elite" class="claim-btn mt-10 w-full bg-gradient-to-r from-amber-500 to-orange-600 text-black font-black text-2xl py-6 rounded-2xl hover:scale-105 transition">
+        <!-- Elite -->
+        <div class="pricing-card border-amber-600">
+          <h3 class="text-6xl font-black text-amber-400 mb-8">Elite</h3>
+          <div class="text-8xl font-black text-green-400 leading-none">R9,999<span class="text-5xl">/mo</span></div>
+          <p class="text-2xl opacity-70 my-6"><s>R19,999</s></p>
+          <p class="text-3xl mb-6">Setup R9,999 <span class="text-green-400 text-xl block">(waived first 50)</span></p>
+          <p class="text-xl mt-10">Taken: <span id="elite-taken-desktop">0</span>/200</p>
+          <button data-tier="Elite" class="claim-btn mt-12 w-full bg-gradient-to-r from-amber-500 to-orange-600 text-black font-black text-3xl py-8 rounded-2xl hover:scale-105 transition">
             CLAIM ELITE SPOT
           </button>
-          <div class="payfast-form hidden mt-6" data-tier="Elite"></div>
+          <div class="payfast-form hidden mt-8" data-tier="Elite"></div>
         </div>
       </div>
     </div>
-
-    <!-- DESKTOP: 3-COLUMN GRID -->
-    <div class="hidden md:grid md:grid-cols-3 gap-12 max-w-7xl mx-auto mt-20">
-      <!-- Growth -->
-      <div class="pricing-card border-zinc-700">
-        <h3 class="text-6xl font-black text-green-400 mb-8">Growth</h3>
-        <div class="text-8xl font-black text-green-400 leading-none">R999<span class="text-5xl">/mo</span></div>
-        <p class="text-2xl opacity-70 my-6"><s>R2,999</s></p>
-        <p class="text-3xl mb-6">Setup R0</p>
-        <p class="text-xl mt-10">Taken: <span id="growth-taken-desktop">0</span>/100</p>
-        <button data-tier="Growth" class="claim-btn mt-12 w-full bg-gradient-to-r from-green-500 to-emerald-600 text-black font-black text-3xl py-8 rounded-2xl hover:scale-105 transition">
-          CLAIM GROWTH SPOT
-        </button>
-        <div class="payfast-form hidden mt-8" data-tier="Growth"></div>
-      </div>
-
-      <!-- Dominance (Popular) -->
-      <div class="pricing-card border-green-500 relative transform scale-105">
-        <div class="founding-badge">FOUNDING PRICE – LOCKED FOREVER</div>
-        <h3 class="text-7xl font-black text-yellow-400 mt-12 mb-8">Dominance</h3>
-        <div class="text-8xl font-black text-green-400 leading-none">R2,999<span class="text-5xl">/mo</span></div>
-        <p class="text-2xl opacity-70 my-6"><s>R7,999</s></p>
-        <p class="text-3xl mb-6">Setup R4,999 <span class="text-green-400 text-xl block">(waived first 100)</span></p>
-        <p class="text-xl mt-10">Taken: <span id="dominance-taken-desktop">0</span>/200</p>
-        <button data-tier="Dominance" class="claim-btn mt-12 w-full bg-yellow-400 text-black font-black text-3xl py-8 rounded-2xl hover:scale-105 transition">
-          <span id="dominance-btn-text-desktop">CLAIM DOMINANCE SPOT</span>
-        </button>
-        <div class="payfast-form hidden mt-8" data-tier="Dominance"></div>
-      </div>
-
-      <!-- Elite -->
-      <div class="pricing-card border-amber-600">
-        <h3 class="text-6xl font-black text-amber-400 mb-8">Elite</h3>
-        <div class="text-8xl font-black text-green-400 leading-none">R9,999<span class="text-5xl">/mo</span></div>
-        <p class="text-2xl opacity-70 my-6"><s>R19,999</s></p>
-        <p class="text-3xl mb-6">Setup R9,999 <span class="text-green-400 text-xl block">(waived first 50)</span></p>
-        <p class="text-xl mt-10">Taken: <span id="elite-taken-desktop">0</span>/200</p>
-        <button data-tier="Elite" class="claim-btn mt-12 w-full bg-gradient-to-r from-amber-500 to-orange-600 text-black font-black text-3xl py-8 rounded-2xl hover:scale-105 transition">
-          CLAIM ELITE SPOT
-        </button>
-        <div class="payfast-form hidden mt-8" data-tier="Elite"></div>
-      </div>
-    </div>
-
-
-<!-- FINAL FEATURE TABLE – EXACT FLOW & WORDING YOU WANT (Dec 2025 version) -->
-<section id="features" class="py-20 px-6 bg-black">
-  <div class="max-w-7xl mx-auto">
-    <h2 class="text-5xl sm:text-6xl md:text-7xl font-black text-center mb-16">Complete Feature Breakdown</h2>
-    
-    <div class="overflow-x-auto rounded-3xl border border-zinc-800">
-      <table class="w-full min-w-[900px] text-left">
-        <thead class="bg-gradient-to-r from-zinc-900 to-black">
-          <tr>
-            <th class="px-8 py-6 text-lg font-black">Feature</th>
-            <th class="text-center px-8 py-6 text-2xl font-black text-green-400">Growth</th>
-            <th class="text-center px-8 py-6 text-2xl font-black text-yellow-400">Dominance</th>
-            <th class="text-center px-8 py-6 text-2xl font-black text-amber-400">Elite</th>
-          </tr>
-        </thead>
-        <tbody class="text-lg">
-
-          <!-- 1. Team Size -->
-          <tr class="border-b border-zinc-800 bg-zinc-900/30">
-            <td class="px-8 py-7 font-bold text-xl">Team Size (Attorneys + Staff)</td>
-            <td class="text-center text-green-400 font-black text-2xl">1–5</td>
-            <td class="text-center text-yellow-400 font-black text-3xl">5–15</td>
-            <td class="text-center text-amber-400 font-black text-3xl">Unlimited</td>
-          </tr>
-
-          <!-- 2–4. Core (all tiers) -->
-          <tr class="border-b border-zinc-800"><td class="px-8 py-6">Professional website on yourfirm.craftvibeza.com</td><td class="text-center text-green-400 font-bold">Yes</td><td class="text-center text-green-400 font-bold">Yes</td><td class="text-center text-green-400 font-bold">Yes</td></tr>
-          <tr class="border-b border-zinc-800"><td class="px-8 py-6">AI full-site generator + no-code editor</td><td class="text-center text-green-400 font-bold">Yes</td><td class="text-center text-green-400 font-bold">Yes</td><td class="text-center text-green-400 font-bold">Yes</td></tr>
-          <tr class="border-b border-zinc-800"><td class="px-8 py-6">Calendar booking</td><td class="text-center text-green-400 font-bold">Yes</td><td class="text-center text-green-400 font-bold">Yes</td><td class="text-center text-green-400 font-bold">Yes</td></tr>
-
-          <!-- 5. Smart Invoicing – your original hype copy -->
-          <tr class="bg-green-900/20 border-b-4 border-green-600">
-            <td class="px-8 py-10 font-bold text-2xl text-green-300 leading-tight">
-              The Smartest Invoice System Ever Built for SA Attorneys<br>
-              <span class="block mt-3 text-base font-normal opacity-90">
-                • Timer or type service → auto-pulls client, balances, VAT & interest<br>
-                • Bulk invoice 50 matters in 60 sec • PDF sent instantly
-              </span>
-            </td>
-            <td class="text-center text-green-400 font-bold text-4xl">YES</td>
-            <td class="text-center text-green-400 font-bold text-4xl">YES</td>
-            <td class="text-center text-green-400 font-bold text-4xl">YES</td>
-          </tr>
-
-          <!-- 6. Trust Compliance – original red hype copy -->
-          <tr class="bg-red-900/20 border-b-4 border-red-700">
-            <td class="px-8 py-10 font-bold text-2xl text-red-300 leading-tight">
-              NEVER Get Disbarred Over Trust Money Again<br>
-              <span class="block mt-3 text-base font-normal opacity-90">
-                Real-time Rule 54 & 86 alerts — stops illegal transfers
-              </span>
-            </td>
-            <td class="text-center text-green-400 font-bold text-4xl">YES</td>
-            <td class="text-center text-green-400 font-bold text-4xl">YES</td>
-            <td class="text-center text-green-400 font-bold text-4xl">YES</td>
-          </tr>
-
-          <!-- 7–8. Dominance unlocks -->
-          <tr class="border-b border-zinc-800"><td class="px-8 py-6">Client deposit capture (card / EFT / Ozow)</td><td class="text-center text-red-500 font-bold">No</td><td class="text-center text-green-400 font-bold">Yes</td><td class="text-center text-green-400 font-bold">Yes</td></tr>
-          <tr class="border-b border-zinc-800"><td class="px-8 py-6">Lead dashboard</td><td class="text-center text-red-500 font-bold">No</td><td class="text-center text-green-400 font-bold">Yes</td><td class="text-center text-green-400 font-bold">Yes</td></tr>
-          <tr class="border-b border-zinc-800"><td class="px-8 py-6">Automated sequences (chaser, nurturing, referrals)</td><td class="text-center text-red-500 font-bold">No</td><td class="text-center text-green-400 font-bold">Yes</td><td class="text-center text-green-400 font-bold">Yes</td></tr>
-
-          <!-- 9–11. Elite only -->
-          <tr class="bg-amber-900/20 border-b-4 border-amber-700">
-            <td class="px-8 py-10 font-bold text-2xl text-amber-300 leading-tight">
-              Never Miss CPD Points Again<br>
-              <span class="block mt-3 text-base font-normal opacity-90">
-                Auto-tracks everything · LPC report in 1 click
-              </span>
-            </td>
-            <td class="text-center text-red-500 font-bold">No</td>
-            <td class="text-center text-red-500 font-bold">No</td>
-            <td class="text-center text-green-400 font-bold text-5xl">YES</td>
-          </tr>
-          <tr class="border-b border-zinc-800"><td class="px-8 py-6 text-amber-200">AI Brief & Letter Writer (SA-law trained)</td><td class="text-center text-red-500 font-bold">No</td><td class="text-center text-red-500 font-bold">No</td><td class="text-center text-green-400 font-bold">Yes</td></tr>
-          <tr class="border-b border-zinc-800"><td class="px-8 py-6">White-label, custom domain, strategy day</td><td class="text-center text-red-500 font-bold">No</td><td class="text-center text-red-500 font-bold">No</td><td class="text-center text-green-400 font-bold">Yes</td></tr>
-
-          <!-- 12–13. Founding benefits (both rows – everyone gets them) -->
-          <tr class="bg-green-900/30 border-t-4 border-b-4 border-green-600">
-            <td class="px-8 py-10 font-bold text-2xl text-green-300">
-              Founding Member Referral Rewards<br>
-              <span class="block mt-4 text-base font-normal opacity-95 leading-relaxed">
-                • Refer 1 firm → Your next 12 months FREE<br>
-                • Refer 2 firms → Your account <strong class="text-green-400">FREE FOREVER</strong><br>
-                • Only your two longest-paying referrals count<br>
-                • Credit applied after their 6th paid invoice
-              </span>
-            </td>
-            <td class="text-center text-green-400 font-bold text-4xl">YES</td>
-            <td class="text-center text-green-400 font-bold text-4xl">YES</td>
-            <td class="text-center text-green-400 font-bold text-4xl">YES</td>
-          </tr>
-
-          <tr class="bg-green-900/40 border-t-4 border-green-600">
-            <td class="px-8 py-10 font-bold text-2xl text-green-400">
-              Your Price Locked Forever at Founding Rate<br>
-              <span class="text-base opacity-90">Even when public price hits R19,999+/month</span>
-            </td>
-            <td class="text-center text-green-400 font-bold text-4xl">YES</td>
-            <td class="text-center text-green-400 font-bold text-4xl">YES</td>
-            <td class="text-center text-green-400 font-bold text-4xl">YES</td>
-          </tr>
-
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-<!-- 5. HOW IT WORKS -->
-<section class="py-32 px-6 bg-zinc-950">
-  <div class="max-w-5xl mx-auto text-center">
-    <h2 class="text-5xl sm:text-6xl font-black mb-20">How It Works</h2>
-    <div class="grid md:grid-cols-cols-3 gap-16">
-      <div class="space-y-6">
-        <div class="text-8xl font-black text-green-400">1</div>
-        <h3 class="text-3xl font-black">Take 90-Second Quiz</h3>
-        <p class="text-xl opacity-90">90-second firm qualification</p>
-      </div>
-      <div class="space-y-6">
-        <div class="text-8xl font-black text-green-400">2</div>
-        <h3 class="text-3xl font-black">Select Tier & Pay First Month</h3>
-        <p class="text-xl opacity-90">Secure your founding rate</p>
-      </div>
-      <div class="space-y-6">
-        <div class="text-8xl font-black text-green-400">3</div>
-        <h3 class="text-3xl font-black">WhatsApp Onboarding</h3>
-        <p class="text-xl opacity-90">Founding team gets you live in days</p>
+  </section>
+  <!-- FEATURE TABLE -->
+  <section id="features" class="py-20 px-6 bg-black">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-5xl sm:text-6xl md:text-7xl font-black text-center mb-16">Complete Feature Breakdown</h2>
+      <div class="feature-table-container">
+        <table class="w-full text-left">
+          <thead class="bg-gradient-to-r from-zinc-900 to-black">
+            <tr>
+              <th class="px-8 py-6 text-lg font-black">Feature</th>
+              <th class="text-center px-8 py-6 text-2xl font-black text-green-400">Growth</th>
+              <th class="text-center px-8 py-6 text-2xl font-black text-yellow-400">Dominance</th>
+              <th class="text-center px-8 py-6 text-2xl font-black text-amber-400">Elite</th>
+            </tr>
+          </thead>
+          <tbody class="text-lg">
+            <tr class="border-b border-zinc-800 bg-zinc-900/30">
+              <td class="px-8 py-7 font-bold text-xl">Team Size (Attorneys + Staff)</td>
+              <td class="text-center text-green-400 font-black text-2xl">1–5</td>
+              <td class="text-center text-yellow-400 font-black text-3xl">5–15</td>
+              <td class="text-center text-amber-400 font-black text-3xl">Unlimited</td>
+            </tr>
+            <tr class="border-b border-zinc-800"><td class="px-8 py-6">Professional website on yourfirm.craftvibeza.com</td><td class="text-center text-green-400 font-bold">Yes</td><td class="text-center text-green-400 font-bold">Yes</td><td class="text-center text-green-400 font-bold">Yes</td></tr>
+            <tr class="border-b border-zinc-800"><td class="px-8 py-6">AI full-site generator + no-code editor</td><td class="text-center text-green-400 font-bold">Yes</td><td class="text-center text-green-400 font-bold">Yes</td><td class="text-center text-green-400 font-bold">Yes</td></tr>
+            <tr class="border-b border-zinc-800"><td class="px-8 py-6">Calendar booking</td><td class="text-center text-green-400 font-bold">Yes</td><td class="text-center text-green-400 font-bold">Yes</td><td class="text-center text-green-400 font-bold">Yes</td></tr>
+            <tr class="bg-green-900/20 border-b-4 border-green-600">
+              <td class="px-8 py-10 font-bold text-2xl text-green-300 leading-tight">
+                The Smartest Invoice System Ever Built for SA Attorneys<br>
+                <span class="block mt-3 text-base font-normal opacity-90">
+                  • Timer or type service → auto-pulls client, balances, VAT & interest<br>
+                  • Bulk invoice 50 matters in 60 sec • PDF sent instantly
+                </span>
+              </td>
+              <td class="text-center text-green-400 font-bold text-4xl">YES</td>
+              <td class="text-center text-green-400 font-bold text-4xl">YES</td>
+              <td class="text-center text-green-400 font-bold text-4xl">YES</td>
+            </tr>
+            <tr class="bg-red-900/20 border-b-4 border-red-700">
+              <td class="px-8 py-10 font-bold text-2xl text-red-300 leading-tight">
+                NEVER Get Disbarred Over Trust Money Again<br>
+                <span class="block mt-3 text-base font-normal opacity-90">
+                  Real-time Rule 54 & 86 alerts — stops illegal transfers
+                </span>
+              </td>
+              <td class="text-center text-green-400 font-bold text-4xl">YES</td>
+              <td class="text-center text-green-400 font-bold text-4xl">YES</td>
+              <td class="text-center text-green-400 font-bold text-4xl">YES</td>
+            </tr>
+            <tr class="border-b border-zinc-800"><td class="px-8 py-6">Client deposit capture (card / EFT / Ozow)</td><td class="text-center text-red-500 font-bold">No</td><td class="text-center text-green-400 font-bold">Yes</td><td class="text-center text-green-400 font-bold">Yes</td></tr>
+            <tr class="border-b border-zinc-800"><td class="px-8 py-6">Lead dashboard</td><td class="text-center text-red-500 font-bold">No</td><td class="text-center text-green-400 font-bold">Yes</td><td class="text-center text-green-400 font-bold">Yes</td></tr>
+            <tr class="border-b border-zinc-800"><td class="px-8 py-6">Automated sequences (chaser, nurturing, referrals)</td><td class="text-center text-red-500 font-bold">No</td><td class="text-center text-green-400 font-bold">Yes</td><td class="text-center text-green-400 font-bold">Yes</td></tr>
+            <tr class="bg-amber-900/20 border-b-4 border-amber-700">
+              <td class="px-8 py-10 font-bold text-2xl text-amber-300 leading-tight">
+                Never Miss CPD Points Again<br>
+                <span class="block mt-3 text-base font-normal opacity-90">
+                  Auto-tracks everything · LPC report in 1 click
+                </span>
+              </td>
+              <td class="text-center text-red-500 font-bold">No</td>
+              <td class="text-center text-red-500 font-bold">No</td>
+              <td class="text-center text-green-400 font-bold text-5xl">YES</td>
+            </tr>
+            <tr class="border-b border-zinc-800"><td class="px-8 py-6 text-amber-200">AI Brief & Letter Writer (SA-law trained)</td><td class="text-center text-red-500 font-bold">No</td><td class="text-center text-red-500 font-bold">No</td><td class="text-center text-green-400 font-bold">Yes</td></tr>
+            <tr class="border-b border-zinc-800"><td class="px-8 py-6">White-label, custom domain, strategy day</td><td class="text-center text-red-500 font-bold">No</td><td class="text-center text-red-500 font-bold">No</td><td class="text-center text-green-400 font-bold">Yes</td></tr>
+            <tr class="bg-green-900/30 border-t-4 border-b-4 border-green-600">
+              <td class="px-8 py-10 font-bold text-2xl text-green-300">
+                Founding Member Referral Rewards<br>
+                <span class="block mt-4 text-base font-normal opacity-95 leading-relaxed">
+                  • Refer 1 firm → Your next 12 months FREE<br>
+                  • Refer 2 firms → Your account <strong class="text-green-400">FREE FOREVER</strong><br>
+                  • Only your two longest-paying referrals count<br>
+                  • Credit applied after their 6th paid invoice
+                </span>
+              </td>
+              <td class="text-center text-green-400 font-bold text-4xl">YES</td>
+              <td class="text-center text-green-400 font-bold text-4xl">YES</td>
+              <td class="text-center text-green-400 font-bold text-4xl">YES</td>
+            </tr>
+            <tr class="bg-green-900/40 border-t-4 border-green-600">
+              <td class="px-8 py-10 font-bold text-2xl text-green-400">
+                Your Price Locked Forever at Founding Rate<br>
+                <span class="text-base opacity-90">Even when public price hits R19,999+/month</span>
+              </td>
+              <td class="text-center text-green-400 font-bold text-4xl">YES</td>
+              <td class="text-center text-green-400 font-bold text-4xl">YES</td>
+              <td class="text-center text-green-400 font-bold text-4xl">YES</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- 6. REFERRAL REWARDS -->
-<section class="py-24 px-6 bg-black">
-  <div class="max-w-4xl mx-auto text-center">
-    <h2 class="text-5xl font-black mb-10">Founding Member Referral Rewards</h2>
-    <div class="text-xl space-y-5">
-      <p>Refer 1 firm → 12 months free</p>
-      <p>Refer 2 firms → Account <strong class="text-green-400">free forever</strong></p>
-      <p class="mt-8 text-lg opacity-70">Unlimited referrals • Manually verified after 6th paid invoice</p>
+  </section>
+  <!-- HOW IT WORKS -->
+  <section class="py-32 px-6 bg-zinc-950">
+    <div class="max-w-6xl mx-auto text-center">
+      <h2 class="text-5xl sm:text-6xl font-black mb-20">How It Works</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-16">
+        <div class="space-y-6">
+          <div class="text-8xl font-black text-green-400">1</div>
+          <h3 class="text-3xl font-black">Take 90-Second Quiz</h3>
+          <p class="text-xl opacity-90">90-second firm qualification</p>
+        </div>
+        <div class="space-y-6">
+          <div class="text-8xl font-black text-green-400">2</div>
+          <h3 class="text-3xl font-black">Select Tier & Pay First Month</h3>
+          <p class="text-xl opacity-90">Secure your founding rate</p>
+        </div>
+        <div class="space-y-6">
+          <div class="text-8xl font-black text-green-400">3</div>
+          <h3 class="text-3xl font-black">WhatsApp Onboarding</h3>
+          <p class="text-xl opacity-90">Founding team gets you live in days</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- REFERRAL REWARDS -->
+  <section class="py-24 px-6 bg-black">
+    <div class="max-w-6xl mx-auto text-center">
+      <h2 class="text-5xl font-black mb-10">Founding Member Referral Rewards</h2>
+      <div class="text-xl space-y-5">
+        <p>Refer 1 firm → 12 months free</p>
+        <p>Refer 2 firms → Account <strong class="text-green-400">free forever</strong></p>
+        <p class="mt-8 text-lg opacity-70">Unlimited referrals • Manually verified after 6th paid invoice</p>
+      </div>
+    </div>
+  </section>
+  <!-- SECURITY / COMPLIANCE -->
+  <section class="py-24 px-6 bg-zinc-950">
+    <div class="max-w-6xl mx-auto text-center">
+      <h2 class="text-5xl font-black mb-10">Security & Compliance</h2>
+      <div class="text-xl space-y-4 opacity-90">
+        <p>Data hosted in South Africa only</p>
+        <p>End-to-end encryption</p>
+        <p>Independent security audits every year</p>
+      </div>
+    </div>
+  </section>
+  <!-- FINAL CTA -->
+  <section class="py-32 px-6 bg-gradient-to-b from-black to-zinc-950">
+    <div class="max-w-6xl mx-auto text-center">
+      <h2 class="text-6xl md:text-7xl font-black mb-8">Only 500 Early Access Spots<br>Will Ever Exist</h2>
+      <p class="text-2xl opacity-90 mb-16">Applications close permanently at midnight, 28 February 2026</p>
+      <button onclick="startQuiz()" class="bg-gradient-to-r from-green-500 to-emerald-600 text-black font-black text-4xl sm:text-6xl px-20 py-12 rounded-full shadow-2xl hover:scale-105 transition">
+        APPLY IN 90 SECONDS
+      </button>
+      <p class="mt-8 text-xl opacity-80">
+        or <a href="https://wa.me/27764312871?text=Hi%20CraftVibeZA%20-%20Early%20Access" target="_blank" class="text-green-400 underline">message the founder on WhatsApp</a>
+        <br><span class="text-sm opacity-70">(replies in under 60 seconds)</span>
+      </p>
+    </div>
+  </section>
+  <!-- QUIZ OVERLAY -->
+  <div id="quiz-overlay" class="fixed inset-0 bg-black/98 backdrop-blur-2xl flex items-center justify-center z-[1000] hidden px-4 overflow-y-auto">
+    <div class="w-full max-w-lg mx-auto my-8">
+      <div class="h-3 bg-zinc-800 rounded-full mb-8 overflow-hidden">
+        <div id="quiz-progress" class="h-full bg-gradient-to-r from-green-500 to-emerald-600 transition-all duration-700" style="width:0%"></div>
+      </div>
+      <h2 id="quiz-question-text" class="text-4xl sm:text-5xl font-black text-center mb-10 leading-tight"></h2>
+      <div id="quiz-options" class="grid grid-cols-1 gap-5"></div>
     </div>
   </div>
-</section>
-
-<!-- 7. SECURITY / COMPLIANCE -->
-<section class="py-24 px-6 bg-zinc-950">
-  <div class="max-w-4xl mx-auto text-center">
-    <h2 class="text-5xl font-black mb-10">Security & Compliance</h2>
-    <div class="text-xl space-y-4 opacity-90">
-      <p>Data hosted in South Africa only</p>
-      <p>End-to-end encryption</p>
-      <p>Independent security audits every year</p>
+  <section id="quiz-results" class="py-20 px-6 bg-black hidden">
+    <div class="max-w-5xl mx-auto text-center">
+      <h2 class="text-4xl md:text-6xl font-black mb-10 text-green-400">Your Perfect Founding Plan</h2>
+      <div class="relative inline-block mb-12">
+        <div id="tier-name" class="px-16 py-8 rounded-full text-5xl md:text-7xl font-black text-black bg-gradient-to-r from-green-500 to-emerald-600 shadow-2xl">CALCULATING...</div>
+        <div id="popular-badge" class="founding-badge" style="display:none">FOUNDING PRICE – LOCKED FOREVER</div>
+      </div>
+      <div id="tier-price" class="text-6xl md:text-8xl font-black text-green-400 mb-8"></div>
+      <div id="final-total" class="text-4xl opacity-80 mb-12"></div>
+      <div id="recommended-list" class="max-w-4xl mx-auto text-left text-xl leading-relaxed bg-zinc-900/50 rounded-3xl p-10"></div>
+      <form id="quiz-payfast-form" class="payfast-form mt-16 max-w-2xl mx-auto" data-tier="Dominance"></form>
     </div>
-  </div>
-</section>
-
-<!-- 8. FINAL CTA -->
-<section class="py-32 px-6 bg-gradient-to-b from-black to-zinc-950">
-  <div class="max-w-4xl mx-auto text-center">
-    <h2 class="text-6xl md:text-7xl font-black mb-8">Only 500 Early Access Spots<br>Will Ever Exist</h2>
-    <p class="text-2xl opacity-90 mb-16">Applications close permanently at midnight, 28 February 2026</p>
-    <button onclick="startQuiz()" class="bg-gradient-to-r from-green-500 to-emerald-600 text-black font-black text-4xl sm:text-6xl px-20 py-12 rounded-full shadow-2xl hover:scale-105 transition">
-      APPLY IN 90 SECONDS
-    </button>
-    <p class="mt-8 text-xl opacity-80">
-      or <a href="https://wa.me/27764312871?text=Hi%20CraftVibeZA%20-%20Early%20Access" target="_blank" class="text-green-400 underline">message the founder on WhatsApp</a>
-      <br><span class="text-sm opacity-70">(replies in under 60 seconds)</span>
-    </p>
-  </div>
-</section>
-<!-- QUIZ OVERLAY & RESULTS (MISSING FROM YOUR INDEX.HTML) -->
-<div id="quiz-overlay" class="fixed inset-0 bg-black/98 backdrop-blur-2xl flex items-center justify-center z-[1000] hidden px-4 overflow-y-auto">
-  <div class="w-full max-w-lg mx-auto my-8">
-    <div class="h-3 bg-zinc-800 rounded-full mb-8 overflow-hidden">
-      <div id="quiz-progress" class="h-full bg-gradient-to-r from-green-500 to-emerald-600 transition-all duration-700" style="width:0%"></div>
-    </div>
-    <h2 id="quiz-question-text" class="text-4xl sm:text-5xl font-black text-center mb-10 leading-tight"></h2>
-    <div id="quiz-options" class="grid grid-cols-1 gap-5"></div>
-  </div>
-</div>
-<section id="quiz-results" class="py-20 px-6 bg-black hidden">
-  <div class="max-w-5xl mx-auto text-center">
-    <h2 class="text-4xl md:text-6xl font-black mb-10 text-green-400">Your Perfect Founding Plan</h2>
-    <div class="relative inline-block mb-12">
-      <div id="tier-name" class="px-16 py-8 rounded-full text-5xl md:text-7xl font-black text-black bg-gradient-to-r from-green-500 to-emerald-600 shadow-2xl">CALCULATING...</div>
-      <div id="popular-badge" class="founding-badge" style="display:none">FOUNDING PRICE – LOCKED FOREVER</div>
-    </div>
-    <div id="tier-price" class="text-6xl md:text-8xl font-black text-green-400 mb-8"></div>
-    <div id="final-total" class="text-4xl opacity-80 mb-12"></div>
-    <div id="recommended-list" class="max-w-4xl mx-auto text-left text-xl leading-relaxed bg-zinc-900/50 rounded-3xl p-10"></div>
-    <form id="quiz-payfast-form" class="payfast-form mt-16 max-w-2xl mx-auto" data-tier="Dominance"></form>
-  </div>
-</section>
-<!-- Floating WhatsApp -->
-<a href="https://wa.me/27764312871?text=Hi%20CraftVibeZA!%20Early%20Access" target="_blank" class="fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-white text-black rounded-full shadow-2xl pl-5 pr-7 py-4 font-bold hover:scale-110 transition">
-  <span class="absolute inset-0 rounded-full bg-green-500 opacity-75 animate-ping"></span>
-  <i class="fab fa-whatsapp text-4xl text-green-500"></i>
-  <span class="hidden md:block">Chat with founder<br><small>Reply in under 60 sec</small></span>
-</a>
-
-<div id="footer-placeholder" class="mt-auto"></div>
-<script src="script.js"></script>
+  </section>
+  <!-- Floating WhatsApp -->
+  <a href="https://wa.me/27764312871?text=Hi%20CraftVibeZA!%20Early%20Access" target="_blank" class="fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-white text-black rounded-full shadow-2xl pl-5 pr-7 py-4 font-bold hover:scale-110 transition">
+    <span class="absolute inset-0 rounded-full bg-green-500 opacity-75 animate-ping"></span>
+    <i class="fab fa-whatsapp text-4xl text-green-500"></i>
+    <span class="hidden md:block">Chat with founder<br><small>Reply in under 60 sec</small></span>
+  </a>
+  <div id="footer-placeholder" class="mt-auto"></div>
+  <script src="script.js"></script>
 </body>
 </html>
-
-
-
-
 
