@@ -102,92 +102,101 @@
 </section>
 
  <!-- PRICING -->
-  <section id="pricing" class="py-20 px-6 bg-black">
-    <div class="max-w-7xl mx-auto text-center">
-      <h2 class="text-5xl sm:text-6xl md:text-7xl font-black mb-8">Early Access Pricing<br><span class="text-2xl md:text-4xl opacity-80">(permanent for your firm)</span></h2>
+<!-- PRICING – FINAL VERSION (MOBILE HORIZONTAL SCROLL + DESKTOP GRID) -->
+<section id="pricing" class="py-24 px-6 bg-black">
+  <div class="max-w-7xl mx-auto text-center">
+    <h2 class="text-5xl sm:text-6xl md:text-7xl font-black mb-8 leading-tight">
+      Early Access Pricing<br>
+      <span class="text-2xl md:text-4xl opacity-80 font-normal">(permanent for your firm)</span>
+    </h2>
 
-      <!-- MOBILE – 1.4 CARD PEEK + SCROLL -->
-      <div class="block md:hidden mobile-pricing-wrapper">
-        <div class="scroll-fade-left"></div>
-        <div class="scroll-fade-right"></div>
-        <div class="mobile-pricing-scroll">
-          <!-- Growth -->
-          <div class="pricing-card border-zinc-700">
-            <h3 class="text-4xl font-black text-green-400 mb-4">Growth</h3>
-            <div class="text-6xl font-black text-green-400">R999<span class="text-3xl">/mo</span></div>
-            <p class="text-lg opacity-70 my-4">Normal: <s>R2,999</s></p>
-            <p class="text-xl">Setup: R0</p>
-            <p class="text-lg mt-4">Taken: <span id="growth-taken">0</span>/100</p>
-            <button data-tier="Growth" class="claim-btn mt-10 w-full bg-gradient-to-r from-green-500 to-emerald-600 text-black font-black text-2xl py-6 rounded-2xl shadow-2xl hover:scale-105 transition">
-              CLAIM GROWTH SPOT
-            </button>
-            <div class="payfast-form hidden mt-6" data-tier="Growth"></div>
-          </div>
-
-          <!-- Dominance -->
-          <div class="relative pricing-card border-green-500" id="popular-card-mobile">
-            <div class="founding-badge" id="popular-badge-mobile">FOUNDING PRICE – LOCKED FOREVER</div>
-            <h3 class="text-5xl font-black text-yellow-400 mb-4 mt-4">Dominance</h3>
-            <div class="text-7xl font-black text-green-400">R2,999<span class="text-4xl">/mo</span></div>
-            <p class="text-lg opacity-70 my-4">Normal: <s>R7,999</s></p>
-            <p class="text-2xl">Setup: R4,999 <span class="text-green-400 text-sm block">(waived first 100)</span></p>
-            <p class="text-lg mt-4">Taken: <span id="dominance-taken">0</span>/200</p>
-            <button data-tier="Dominance" class="claim-btn mt-10 w-full bg-yellow-400 text-black font-black text-2xl py-6 rounded-2xl shadow-2xl hover:scale-105 transition">
-              <span id="dominance-btn-text">CLAIM DOMINANCE SPOT</span>
-            </button>
-            <div class="payfast-form hidden mt-6" data-tier="Dominance"></div>
-          </div>
-
-          <!-- Elite -->
-          <div class="pricing-card border-yellow-600">
-            <h3 class="text-4xl font-black text-yellow-400 mb-4">Elite</h3>
-            <div class="text-6xl font-black text-green-400">R9,999<span class="text-3xl">/mo</span></div>
-            <p class="text-lg opacity-70 my-4">Normal: <s>R19,999</s></p>
-            <p class="text-xl">Setup: R9,999 <span class="text-green-400 text-sm block">(waived first 50)</span></p>
-            <p class="text-lg mt-4">Taken: <span id="elite-taken">0</span>/200</p>
-            <button data-tier="Elite" class="claim-btn mt-10 w-full bg-gradient-to-r from-amber-500 to-orange-600 text-black font-black text-2xl py-6 rounded-2xl shadow-2xl hover:scale-105 transition">
-              CLAIM ELITE SPOT
-            </button>
-            <div class="payfast-form hidden mt-6" data-tier="Elite"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- DESKTOP GRID -->
-      <div class="hidden md:grid md:grid-cols-3 gap-12 max-w-7xl mx-auto">
-        <div class="pricing-card border-zinc-700">
+    <!-- MOBILE: HORIZONTAL SCROLL -->
+    <div class="block md:hidden -mx-6">
+      <div class="flex gap-10 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-12 px-6 scrollbar-hide">
+        <!-- Growth Card -->
+        <div class="pricing-card border-zinc-700 snap-center">
           <h3 class="text-5xl font-black text-green-400 mb-6">Growth</h3>
-          <div class="text-8xl font-black text-green-400">R999<span class="text-4xl">/mo</span></div>
-          <p class="opacity-70 my-6 text-xl"><s>R2,999</s></p>
-          <p class="text-2xl">Setup R0</p>
-          <p class="text-lg mt-8">Taken: <span id="growth-taken-desktop">0</span>/100</p>
-          <button data-tier="Growth" class="claim-btn mt-12 w-full bg-gradient-to-r from-green-500 to-emerald-600 text-black font-black text-3xl py-8 rounded-2xl">CLAIM GROWTH SPOT</button>
-          <div class="payfast-form hidden mt-8" data-tier="Growth"></div>
-        </div>
-
-        <div class="relative pricing-card border-green-500 transform scale-105" id="popular-card-desktop">
-          <div class="founding-badge" id="popular-badge-desktop">FOUNDING PRICE – LOCKED FOREVER</div>
-          <h3 class="text-6xl font-black text-yellow-400 mt-10 mb-6">Dominance</h3>
-          <div class="text-8xl font-black text-green-400">R2,999<span class="text-4xl">/mo</span></div>
-          <p class="opacity-70 my-6 text-xl"><s>R7,999</s></p>
-          <p class="text-3xl">Setup R4,999 <span class="text-green-400 text-lg block">(waived first 100)</span></p>
-          <p class="text-lg mt-8">Taken: <span id="dominance-taken-desktop">0</span>/200</p>
-          <button data-tier="Dominance" class="claim-btn mt-12 w-full bg-yellow-400 text-black font-black text-3xl py-8 rounded-2xl">
-            <span id="dominance-btn-text-desktop">CLAIM DOMINANCE SPOT</span>
+          <div class="text-7xl font-black text-green-400 leading-none">R999<span class="text-4xl">/mo</span></div>
+          <p class="text-xl opacity-70 my-5"><s>R2,999</s></p>
+          <p class="text-2xl mb-4">Setup R0</p>
+          <p class="text-lg mt-8">Taken: <span id="growth-taken">0</span>/100</p>
+          <button data-tier="Growth" class="claim-btn mt-12 w-full bg-gradient-to-r from-green-500 to-emerald-600 text-black font-black text-2xl py-6 rounded-2xl hover:scale-105 transition">
+            CLAIM GROWTH SPOT
           </button>
-          <div class="payfast-form hidden mt-8" data-tier="Dominance"></div>
+          <div class="payfast-form hidden mt-6" data-tier="Growth"></div>
         </div>
 
-        <div class="pricing-card border-yellow-600">
-          <h3 class="text-5xl font-black text-yellow-400 mb-6">Elite</h3>
-          <div class="text-8xl font-black text-green-400">R9,999<span class="text-4xl">/mo</span></div>
-          <p class="opacity-70 my-6 text-xl"><s>R19,999</s></p>
-          <p class="text-2xl">Setup R9,999 <span class="text-green-400 text-lg block">(waived first 50)</span></p>
-          <p class="text-lg mt-8">Taken: <span id="elite-taken-desktop">0</span>/200</p>
-          <button data-tier="Elite" class="claim-btn mt-12 w-full bg-gradient-to-r from-amber-500 to-orange-600 text-black font-black text-3xl py-8 rounded-2xl">CLAIM ELITE SPOT</button>
-          <div class="payfast-form hidden mt-8" data-tier="Elite"></div>
+        <!-- Dominance Card (Popular) -->
+        <div class="pricing-card border-green-500 snap-center relative transform scale-105">
+          <div class="founding-badge">FOUNDING PRICE – LOCKED FOREVER</div>
+          <h3 class="text-5xl font-black text-yellow-400 mt-8 mb-6">Dominance</h3>
+          <div class="text-7xl font-black text-green-400 leading-none">R2,999<span class="text-4xl">/mo</span></div>
+          <p class="text-xl opacity-70 my-5"><s>R7,999</s></p>
+          <p class="text-2xl mb-4">Setup R4,999 <span class="text-green-400 text-sm block">(waived first 100)</span></p>
+          <p class="text-lg mt-8">Taken: <span id="dominance-taken">0</span>/200</p>
+          <button data-tier="Dominance" class="claim-btn mt-10 w-full bg-yellow-400 text-black font-black text-2xl py-6 rounded-2xl hover:scale-105 transition">
+            <span id="dominance-btn-text">CLAIM DOMINANCE SPOT</span>
+          </button>
+          <div class="payfast-form hidden mt-6" data-tier="Dominance"></div>
+        </div>
+
+        <!-- Elite Card -->
+        <div class="pricing-card border-amber-600 snap-center">
+          <h3 class="text-5xl font-black text-amber-400 mb-6">Elite</h3>
+          <div class="text-7xl font-black text-green-400 leading-none">R9,999<span class="text-4xl">/mo</span></div>
+          <p class="text-xl opacity-70 my-5"><s>R19,999</s></p>
+          <p class="text-2xl mb-4">Setup R9,999 <span class="text-green-400 text-sm block">(waived first 50)</span></p>
+          <p class="text-lg mt-8">Taken: <span id="elite-taken">0</span>/200</p>
+          <button data-tier="Elite" class="claim-btn mt-10 w-full bg-gradient-to-r from-amber-500 to-orange-600 text-black font-black text-2xl py-6 rounded-2xl hover:scale-105 transition">
+            CLAIM ELITE SPOT
+          </button>
+          <div class="payfast-form hidden mt-6" data-tier="Elite"></div>
         </div>
       </div>
+    </div>
+
+    <!-- DESKTOP: 3-COLUMN GRID -->
+    <div class="hidden md:grid md:grid-cols-3 gap-12 max-w-7xl mx-auto mt-20">
+      <!-- Growth -->
+      <div class="pricing-card border-zinc-700">
+        <h3 class="text-6xl font-black text-green-400 mb-8">Growth</h3>
+        <div class="text-8xl font-black text-green-400 leading-none">R999<span class="text-5xl">/mo</span></div>
+        <p class="text-2xl opacity-70 my-6"><s>R2,999</s></p>
+        <p class="text-3xl mb-6">Setup R0</p>
+        <p class="text-xl mt-10">Taken: <span id="growth-taken-desktop">0</span>/100</p>
+        <button data-tier="Growth" class="claim-btn mt-12 w-full bg-gradient-to-r from-green-500 to-emerald-600 text-black font-black text-3xl py-8 rounded-2xl hover:scale-105 transition">
+          CLAIM GROWTH SPOT
+        </button>
+        <div class="payfast-form hidden mt-8" data-tier="Growth"></div>
+      </div>
+
+      <!-- Dominance (Popular) -->
+      <div class="pricing-card border-green-500 relative transform scale-105">
+        <div class="founding-badge">FOUNDING PRICE – LOCKED FOREVER</div>
+        <h3 class="text-7xl font-black text-yellow-400 mt-12 mb-8">Dominance</h3>
+        <div class="text-8xl font-black text-green-400 leading-none">R2,999<span class="text-5xl">/mo</span></div>
+        <p class="text-2xl opacity-70 my-6"><s>R7,999</s></p>
+        <p class="text-3xl mb-6">Setup R4,999 <span class="text-green-400 text-xl block">(waived first 100)</span></p>
+        <p class="text-xl mt-10">Taken: <span id="dominance-taken-desktop">0</span>/200</p>
+        <button data-tier="Dominance" class="claim-btn mt-12 w-full bg-yellow-400 text-black font-black text-3xl py-8 rounded-2xl hover:scale-105 transition">
+          <span id="dominance-btn-text-desktop">CLAIM DOMINANCE SPOT</span>
+        </button>
+        <div class="payfast-form hidden mt-8" data-tier="Dominance"></div>
+      </div>
+
+      <!-- Elite -->
+      <div class="pricing-card border-amber-600">
+        <h3 class="text-6xl font-black text-amber-400 mb-8">Elite</h3>
+        <div class="text-8xl font-black text-green-400 leading-none">R9,999<span class="text-5xl">/mo</span></div>
+        <p class="text-2xl opacity-70 my-6"><s>R19,999</s></p>
+        <p class="text-3xl mb-6">Setup R9,999 <span class="text-green-400 text-xl block">(waived first 50)</span></p>
+        <p class="text-xl mt-10">Taken: <span id="elite-taken-desktop">0</span>/200</p>
+        <button data-tier="Elite" class="claim-btn mt-12 w-full bg-gradient-to-r from-amber-500 to-orange-600 text-black font-black text-3xl py-8 rounded-2xl hover:scale-105 transition">
+          CLAIM ELITE SPOT
+        </button>
+        <div class="payfast-form hidden mt-8" data-tier="Elite"></div>
+      </div>
+    </div>
 
 
 <!-- FINAL FEATURE TABLE – EXACT FLOW & WORDING YOU WANT (Dec 2025 version) -->
@@ -394,6 +403,7 @@
 <script src="script.js"></script>
 </body>
 </html>
+
 
 
 
