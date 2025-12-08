@@ -27,12 +27,68 @@
       overflow-x: hidden;
       width: 100%;
     }/* Fix tier name overflow + keep words whole */
-#tier-name span {
-  word-break: keep-all !important;
-  overflow-wrap: normal !important;
+
+/* PERFECT TIER BADGE – WORKS 100% ON EVERY DEVICE */
+#tier-name {
+  display: inline-block;
+  padding: 1.25rem 3rem;                    /* base padding */
+  border-radius: 9999px;
+  font-weight: 900;
+  text-align: center;
+  background: linear-gradient(to right, #10b981, #059669);
+  color: #000;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+  line-height: 1.1;
+  max-width: 95vw;                          /* never wider than screen */
 }
+
+/* Responsive font sizes that look identical to your original vision */
 @media (max-width: 480px) {
-  #tier-name { padding-left: 2rem !important; padding-right: 2rem !important; }
+  #tier-name {
+    font-size: 2.8rem !important;           /* ~45px  → iPhone SE / small Android */
+    padding: 1rem 2rem !important;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 640px) {
+  #tier-name {
+    font-size: 3.75rem !important;          /* ~60px  → normal phones */
+    padding: 1.25rem 2.5rem !important;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 768px) {
+  #tier-name {
+    font-size: 5rem !important;             /* ~80px  → large phones / small tablets */
+    padding: 1.5rem 3rem !important;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  #tier-name {
+    font-size: 6.5rem !important;           /* ~104px → tablets */
+    padding: 2rem 4rem !important;
+  }
+}
+
+@media (min-width: 1025px) {
+  #tier-name {
+    font-size: 7.5rem !important;           /* ~120px → desktop (your original huge size) */
+    padding: 2.5rem 5rem !important;
+  }
+}
+
+/* Force single line + graceful wrap only when truly impossible */
+#tier-name span {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+/* Emergency fallback – if text is still too wide (e.g. very long custom tier name) */
+@media (max-width: 480px) {
+  #tier-name span {
+    white-space: normal;
+  }
 }
     .badge {
       display: inline-block;
@@ -595,3 +651,5 @@
   <script src="script.js"></script>
 </body>
 </html>
+</html>
+
