@@ -26,7 +26,14 @@
       margin: 0;
       overflow-x: hidden;
       width: 100%;
-    }
+    }/* Fix tier name overflow + keep words whole */
+#tier-name span {
+  word-break: keep-all !important;
+  overflow-wrap: normal !important;
+}
+@media (max-width: 480px) {
+  #tier-name { padding-left: 2rem !important; padding-right: 2rem !important; }
+}
     .badge {
       display: inline-block;
       background: #f59e0b;
@@ -563,10 +570,15 @@
   <section id="quiz-results" class="py-20 px-6 bg-black hidden">
     <div class="max-w-5xl mx-auto text-center">
       <h2 class="text-4xl md:text-6xl font-black mb-10 text-green-400">Your Perfect Founding Plan</h2>
-      <div class="relative inline-block mb-12">
-        <div id="tier-name" class="px-16 py-8 rounded-full text-5xl md:text-7xl font-black text-black bg-gradient-to-r from-green-500 to-emerald-600 shadow-2xl">CALCULATING...</div>
-        <div id="popular-badge" class="founding-badge" style="display:none">FOUNDING PRICE – LOCKED FOREVER</div>
-      </div>
+   <div class="relative inline-block mb-12">
+  <div id="tier-name" 
+       class="inline-block px-6 sm:px-10 md:px-16 py-5 sm:py-7 md:py-8 
+              rounded-full text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl 
+              font-black text-black shadow-2xl text-center leading-none">
+    <span class="inline-block max-w-full">CALCULATING...</span>
+  </div>
+  <div id="popular-badge" class="founding-badge" style="display:none">FOUNDING PRICE – LOCKED FOREVER</div>
+</div>
       <div id="tier-price" class="text-6xl md:text-8xl font-black text-green-400 mb-8"></div>
       <div id="final-total" class="text-4xl opacity-80 mb-12"></div>
       <div id="recommended-list" class="max-w-4xl mx-auto text-left text-xl leading-relaxed bg-zinc-900/50 rounded-3xl p-10"></div>
