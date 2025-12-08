@@ -1,7 +1,8 @@
 /* ==================================================================== */
-/* CRAFTVIBEZA – FINAL DECEMBER 2025 SCRIPT.JS – 100% COMPLETE        */
+/* CRAFTVIBEZA – FINAL DECEMBER 2025 SCRIPT.JS – 100% COMPLETE & FIXED */
 /* Works on Vercel • Quiz • Counters • Header/Footer • Forms • Backup */
 /* ==================================================================== */
+
 (() => {
   'use strict';
 
@@ -11,14 +12,14 @@
     BACKUP_API_URL: '/api/lead' // optional encrypted backup
   };
 
-  // ====================== CURRENT TIERS (EXACTLY AS ON LIVE SITE) ======================
+  // ====================== CURRENT FOUNDING TIERS (DEC 2025) ======================
   const TIERS = {
-    Growth:    { name: "Growth",    monthly: 999,  setup: 0,     normal: 2999,  limit: 100,  color: "from-green-500 to-emerald-600",  badge: false },
-    Dominance: { name: "Dominance", monthly: 2999, setup: 4999,  normal: 7999,  limit: 200,  color: "from-yellow-400 to-amber-500",   badge: true },
-    Elite:     { name: "Elite",     monthly: 9999, setup: 9999,  normal: 19999, limit: 200,  color: "from-amber-500 to-orange-600",   badge: false }
+    Growth: { name: "Growth", monthly: 999, setup: 0, normal: 2999, limit: 100, color: "from-green-500 to-emerald-600", badge: false },
+    Dominance: { name: "Dominance", monthly: 2999, setup: 4999, normal: 7999, limit: 200, color: "from-yellow-400 to-amber-500", badge: true },
+    Elite: { name: "Elite", monthly: 9999, setup: 9999, normal: 19999, limit: 200, color: "from-amber-500 to-orange-600", badge: false }
   };
 
-  // ====================== QUIZ – SMART RECOMMENDATION BASED ON CURRENT FEATURES ======================
+  // ====================== QUIZ QUESTIONS ======================
   const QUIZ = [
     { q: "How many attorneys + staff will use the platform?", o: ["1–5", "5–15", "16+ / Unlimited"] },
     { q: "Do you want client deposit capture (card / Ozow / EFT)?", o: ["No thanks", "Yes – I need it"], requires: "Dominance" },
@@ -36,7 +37,7 @@
   const $ = id => document.getElementById(id);
   const format = n => `R${n.toLocaleString('en-ZA')}`;
 
-  // ====================== FIREBASE LIVE COUNTERS ======================
+  // ====================== FIREBASE COUNTERS ======================
   const initCounters = () => {
     if (typeof firebase === 'undefined') return;
     const db = firebase.firestore();
@@ -53,9 +54,9 @@
       });
     };
 
-    update("growth",    "#growth-taken, #growth-taken-desktop");
+    update("growth", "#growth-taken, #growth-taken-desktop");
     update("dominance", "#dominance-taken, #dominance-taken-desktop");
-    update("elite",     "#elite-taken, #elite-taken-desktop");
+    update("elite", "#elite-taken, #elite-taken-desktop");
   };
 
   // ====================== QUIZ ENGINE ======================
@@ -68,6 +69,7 @@
       document.body.style.overflow = 'hidden';
       Quiz.next();
     },
+
     next: () => {
       if (currentQuestion >= QUIZ.length) return Quiz.results();
 
@@ -76,8 +78,7 @@
       $('quiz-progress').style.width = `${((currentQuestion + 1) / QUIZ.length) * 100}%`;
 
       $('quiz-options').innerHTML = q.o.map((opt, i) => `
-        <button class="w-full bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 py-10 px-8 rounded-2xl text-2xl font-bold transition-all hover:scale-105 hover:border-green-500"
-                data-index="${i}">
+        <button class="w-full bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 py-10 px-8 rounded-2xl text-2xl font-bold transition-all hover:scale-105 hover:border-green-500" data-index="${i}">
           ${opt}
         </button>
       `).join('');
@@ -91,22 +92,27 @@
         };
       });
     },
-    results: () => {
-      // Smart tier logic
-      const needsElite = answers.some(a => a.requires === "Elite" && a.answer.includes("Yes"));
-      const needsDominance = answers.some(a => a.requires === "Dominance" && a.answer.includes("Yes"));
 
-      if (needsElite || answers[0]?.answer === "16+ / Unlimited") {
+    results: () => {
+      // Smart recommendation logic
+      const needsElite = answers.some(a => a.requires === "Elite" && (a.answer.includes("Yes") || a.answer.includes("never miss") || a.answer.includes("full white-label")));
+      const needsDominance = answers.some(a => a.requires === "Dominance" && a.answer.includes("Yes"));
+      const userCount = answers[0]?.answer;
+
+      if (needsElite || userCount === "16+ / Unlimited") {
         finalTier = "Elite";
-      } else if (needsDominance || answers[0]?.answer === "5–15") {
+      } else if (needsDominance || userCount === "5–15") {
         finalTier = "Dominance";
+      } else {
+        finalTier = "Growth";
       }
 
       const t = TIERS[finalTier];
 
-      // Update results section
+      // Update UI
       $('tier-name').textContent = t.name.toUpperCase();
       $('tier-name').className = `px-16 py-8 rounded-full text-5xl md:text-7xl font-black text-black bg-gradient-to-r ${t.color} shadow-2xl`;
+
       $('popular-badge').style.display = t.badge ? "block" : "none";
 
       $('tier-price').innerHTML = `
@@ -115,21 +121,24 @@
       `;
 
       $('final-total').innerHTML = `
-        <div class="text-3xl mt-8">Setup: ${t.setup === 0 ? "R0" : format(t.setup)} 
-          ${t.setup > 0 ? '<span class="text-green-400 text-lg block">(waived for first few)</span>' : ''}</div>
+        <div class="text-3xl mt-8">Setup: ${t.setup === 0 ? "R0" : format(t.setup)}
+          ${t.setup > 0 ? '<span class="text-green-400 text-lg block">(waived for first 100)</span>' : ''}
+        </div>
         <div class="text-2xl mt-6 text-green-300 font-bold">Your founding price locked FOREVER</div>
       `;
 
-      // Feature highlights
+      // Feature list with REAL checkmarks
       const highlights = {
         Growth: ["Professional website", "AI site generator", "Smart invoicing", "Rule 54 & 86 protection", "Founding referral rewards"],
-        Dominance: ["Everything in Growth", "Client deposits (card/Ozow)", "Lead dashboard", "Automated sequences", "Priority support"],
-        Elite: ["Everything in Dominance", "Automated CPD + LPC reports", "AI Brief & Letter Writer", "Full white-label", "Strategy day"]
+        Dominance: ["Everything in Growth", "Client deposits (card/Ozow/EFT)", "Lead dashboard", "Automated email/WhatsApp sequences", "Priority support"],
+        Elite: ["Everything in Dominance", "Automated CPD tracking + LPC reports", "AI Brief & Letter Writer (SA law)", "Full white-label (your domain)", "1-hour strategy call"]
       };
 
       $('recommended-list').innerHTML = highlights[finalTier]
-        .map(f => `<li class="text-xl py-2">Checkmark ${f}</li>`).join('');
+        .map(f => `<li class="text-xl py-3 flex items-center gap-4"><i class="fas fa-check-circle text-green-400 text-2xl"></i> ${f}</li>`)
+        .join('');
 
+      // Show results
       $('quiz-overlay').classList.add('hidden');
       document.body.style.overflow = '';
       $('quiz-results').classList.remove('hidden');
@@ -137,44 +146,53 @@
     }
   };
 
-  // ====================== CLAIM BUTTONS → WHATSAPP ======================
+  // ====================== WHATSAPP CLAIM BUTTONS ======================
   document.addEventListener('click', e => {
     const btn = e.target.closest('.claim-btn');
     if (!btn) return;
     e.preventDefault();
+
     const tier = btn.dataset.tier;
     const t = TIERS[tier];
+
     const msg = encodeURIComponent(
-      `CRAFTVIBEZA FOUNDING MEMBER LEAD!\n\n` +
+      `CRAFTVIBEZA FOUNDING MEMBER LEAD! 🔥\n\n` +
       `Tier: ${t.name}\n` +
       `Price: ${format(t.monthly)}/mo${t.setup > 0 ? ` + ${format(t.setup)} setup` : ""}\n` +
       `Normal: ${format(t.normal)}/mo\n\n` +
-      `CALL THEM NOW — READY TO PAY!`
+      `CALL THEM NOW — READY TO PAY! 🚀`
     );
+
     window.open(`https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${msg}`, '_blank');
   });
 
-  // ====================== ENCRYPTED BACKUP LEAD (optional) ======================
+  // ====================== BACKUP LEAD (ENCRYPTED) ======================
   const backupLead = async (name, phone, tier) => {
     if (!CONFIG.BACKUP_API_URL || typeof CryptoJS === 'undefined') return;
     const payload = { name, phone, tier, time: new Date().toISOString(), url: location.href };
     const encrypted = CryptoJS.AES.encrypt(JSON.stringify(payload), 'craftvibeza-2026-backup-key').toString();
+
     try {
       await fetch(CONFIG.BACKUP_API_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ encrypted })
       });
-    } catch (e) { console.warn("Backup failed", e); }
+    } catch (e) {
+      console.warn("Backup failed", e);
+    }
   };
 
-  // ====================== POPIA CONSENT TOGGLE (NUCLEAR PROOF) ======================
+  // ====================== POPIA CONSENT TOGGLE ======================
   window.toggleConsent = (block) => {
     const checkbox = block.querySelector('input[type="checkbox"]');
     const box = block.querySelector('.checkbox-custom');
     const icon = box?.querySelector('i');
+
     if (!checkbox || !box || !icon) return;
+
     checkbox.checked = !checkbox.checked;
+
     if (checkbox.checked) {
       icon.classList.remove('hidden');
       block.classList.remove('bg-zinc-800/50');
@@ -194,9 +212,7 @@
       const res = await fetch(`/${file}.html?v=${Date.now()}`, { cache: "no-store" });
       if (res.ok) {
         $(placeholderId).innerHTML = await res.text();
-      } else {
-        throw new Error();
-      }
+      } else throw new Error();
     } catch (e) {
       $(placeholderId).innerHTML = `<div class="text-red-500 p-10 text-center text-2xl">Error: ${file}.html missing</div>`;
     }
@@ -208,7 +224,7 @@
     loadPart('footer', 'footer-placeholder');
     initCounters();
 
-    // Close quiz overlay
+    // Close overlay on background click
     $('quiz-overlay')?.addEventListener('click', e => {
       if (e.target === $('quiz-overlay')) {
         $('quiz-overlay').classList.add('hidden');
@@ -216,10 +232,10 @@
       }
     });
 
-    // X button
+    // Add X close button
     const x = document.createElement('button');
-    x.innerHTML = 'Close';
-    x.className = 'absolute top-6 right-6 text-7xl opacity-40 hover:opacity-100 z-20';
+    x.innerHTML = '×';
+    x.className = 'absolute top-6 right-6 text-7xl opacity-40 hover:opacity-100 z-50 text-white';
     x.onclick = () => {
       $('quiz-overlay').classList.add('hidden');
       document.body.style.overflow = '';
@@ -227,6 +243,7 @@
     $('quiz-overlay')?.prepend(x);
   });
 
+  // Expose to global
   window.startQuiz = Quiz.start;
 
 })();
