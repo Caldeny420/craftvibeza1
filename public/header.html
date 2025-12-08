@@ -13,44 +13,54 @@
 
     <div class="flex flex-col lg:flex-row items-center justify-between gap-4">
 
-      <!-- Logo + Name – exactly like before -->
+      <!-- Logo + Name – always visible -->
       <a href="/" class="flex items-center gap-4 group">
         <img src="/images/lexpilot-logo.jpg" alt="LexPilot Logo"
-             class="h-10 md:h-12 rounded-full shadow-2xl ring-4 ring-green-500/30 transition-all duration-300
-                    group-hover:scale-110 group-hover:ring-green-400 group-hover:shadow-green-500/50">
+             class="h-10 md:h-12 rounded-full shadow-2xl ring-4 ring-green-500/30 
+                    transition-all duration-300 group-hover:scale-110 group-hover:ring-green-400">
         <span class="hidden md:flex items-baseline font-black tracking-tighter leading-none">
           <span class="text-3xl md:text-4xl text-white">Lex</span>
           <span class="text-4xl md:text-5xl text-green-400">Pilot</span>
         </span>
       </a>
 
-      <!-- Scarcity Banner – mobile-friendly width -->
+      <!-- Scarcity Banner – perfect on every screen -->
       <div class="bg-gradient-to-r from-red-600 to-red-700 text-white font-black 
                       px-5 py-2.5 md:px-6 md:py-3 rounded-full text-sm md:text-base 
                       animate-pulse shadow-2xl border-2 border-yellow-400/50 
-                      flex items-center gap-2.5 whitespace-nowrap max-w-full overflow-hidden">
-        <i class="fas fa-fire-flame-curved text-yellow-300 flex-shrink-0"></i>
+                      flex items-center gap-2.5 whitespace-nowrap">
         ONLY <span class="text-yellow-300 text-lg md:text-xl font-black">500</span> FOUNDING PARTNER SPOTS LEFT
-        <i class="fas fa-fire-flame-curved text-yellow-300 flex-shrink-0"></i>
       </div>
 
-      <!-- WhatsApp CTA – exactly like before -->
-      <button onclick="startQuiz()"
-              class="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700
-                      text-black font-black px-7 py-4 rounded-full shadow-2xl hover:scale-110 transition-all
-                      text-sm md:text-lg flex items-center gap-3 whitespace-nowrap border-2 border-green-400/50">
-        <i class="fab fa-whatsapp text-2xl"></i>
-        <span class="hidden xs:inline">SECURE MY SPOT NOW</span>
-        <span class="xs:hidden">APPLY</span>
-      </button>
+      <!-- Right side: Nav + WhatsApp CTA -->
+      <div class="flex items-center gap-6 lg:gap-10">
+
+        <!-- Navigation – shown on tablets & up only (820px+) -->
+        <nav class="hidden lg:flex items-center gap-10 text-base font-bold">
+          <a href="#pricing"  class="text-white/80 hover:text-green-400 transition">Pricing</a>
+          <a href="#features" class="text-white/80 hover:text-green-400 transition">Features</a>
+        </nav>
+
+        <!-- WhatsApp CTA – always visible -->
+        <button onclick="startQuiz()"
+                class="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700
+                        text-black font-black px-7 py-4 rounded-full shadow-2xl hover:scale-110 transition-all
+                        text-sm md:text-lg flex items-center gap-3 whitespace-nowrap border-2 border-green-400/50">
+          <i class="fab fa-whatsapp text-2xl"></i>
+          <span class="hidden xs:inline">SECURE MY SPOT NOW</span>
+          <span class="xs:hidden">APPLY</span>
+        </button>
+
+      </div>
 
     </div>
   </div>
 </header>
 
-<!-- One spacer that works everywhere -->
+<!-- One perfect spacer for all devices -->
 <div class="h-24 lg:h-28"></div>
 
 </body>
 </html>
+
 
