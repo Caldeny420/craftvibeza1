@@ -8,64 +8,49 @@
 </head>
 <body>
 
-<header class="fixed top-0 left-0 right-0 z-[999] bg-black/95 backdrop-blur-2xl border-b border-green-500/20 shadow-2xl">
-  <div class="max-w-7xl mx-auto px-4 py-3 md:py-4">
+<header class="fixed top-0 left-0 right-0 z-[999] bg-black/95 backdrop-blur-2xl border-b border-green-500/20">
+  <div class="max-w-7xl mx-auto px-5 py-4">
 
-    <div class="flex flex-wrap items-center justify-between gap-4">
+    <div class="flex flex-col lg:flex-row items-center justify-between gap-4">
 
-      <!-- Logo + Brand Name (kept exactly as you love it) -->
-      <a href="/" class="flex items-center gap-4 group" aria-label="LexPilot Home">
-        <img
-          src="/images/lexpilot-logo.jpg"
-          alt="LexPilot Logo"
-          class="h-10 md:h-12 rounded-full shadow-2xl ring-4 ring-green-500/30 transition-all duration-300
-                 group-hover:scale-110 group-hover:ring-green-400 group-hover:shadow-green-500/50"
-          loading="eager"
-        >
+      <!-- Logo + Name – exactly like before -->
+      <a href="/" class="flex items-center gap-4 group">
+        <img src="/images/lexpilot-logo.jpg" alt="LexPilot Logo"
+             class="h-10 md:h-12 rounded-full shadow-2xl ring-4 ring-green-500/30 transition-all duration-300
+                    group-hover:scale-110 group-hover:ring-green-400 group-hover:shadow-green-500/50">
         <span class="hidden md:flex items-baseline font-black tracking-tighter leading-none">
           <span class="text-3xl md:text-4xl text-white">Lex</span>
           <span class="text-4xl md:text-5xl text-green-400">Pilot</span>
         </span>
       </a>
 
-      <!-- Scarcity Banner – Always visible, never too big -->
-      <div class="order-first lg:order-none">
-        <div class="bg-gradient-to-r from-red-600 to-red-700 text-white font-black 
-                        px-5 py-2.5 md:px-6 md:py-3 rounded-full text-sm md:text-base 
-                        animate-pulse shadow-2xl border-2 border-yellow-400/50 
-                        flex items-center gap-2.5 whitespace-nowrap">
-          <i class="fas fa-fire-flame-curved text-yellow-300 text-lg"></i>
-          ONLY <span class="text-yellow-300 text-lg md:text-xl font-black">500</span> FOUNDING PARTNER SPOTS LEFT
-          <i class="fas fa-fire-flame-curved text-yellow-300 text-lg"></i>
-        </div>
+      <!-- Scarcity Banner – mobile-friendly width -->
+      <div class="bg-gradient-to-r from-red-600 to-red-700 text-white font-black 
+                      px-5 py-2.5 md:px-6 md:py-3 rounded-full text-sm md:text-base 
+                      animate-pulse shadow-2xl border-2 border-yellow-400/50 
+                      flex items-center gap-2.5 whitespace-nowrap max-w-full overflow-hidden">
+        <i class="fas fa-fire-flame-curved text-yellow-300 flex-shrink-0"></i>
+        ONLY <span class="text-yellow-300 text-lg md:text-xl font-black">500</span> FOUNDING PARTNER SPOTS LEFT
+        <i class="fas fa-fire-flame-curved text-yellow-300 flex-shrink-0"></i>
       </div>
 
-      <!-- Nav + WhatsApp CTA -->
-      <div class="flex items-center gap-5 md:gap-8 w-full lg:w-auto justify-between lg:justify-end">
-        <nav class="hidden lg:flex items-center gap-10 text-base font-bold">
-          <a href="#pricing" class="text-white/80 hover:text-green-400 transition">Pricing</a>
-          <a href="#features" class="text-white/80 hover:text-green-400 transition">Features</a>
-          <a href="#faq" class="text-white/80 hover:text-green-400 transition">FAQ</a>
-        </nav>
-
-        <button
-          onclick="startQuiz()"
-          class="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700
-                  text-black font-black px-6 py-3 md:px-7 md:py-4 rounded-full shadow-2xl 
-                  hover:scale-110 transition-all duration-300 text-sm md:text-lg 
-                  flex items-center gap-3 whitespace-nowrap border-2 border-green-400/50">
-          <i class="fab fa-whatsapp text-2xl"></i>
-          <span class="hidden xs:inline">SECURE MY SPOT NOW</span>
-          <span class="xs:hidden">APPLY</span>
-        </button>
-      </div>
+      <!-- WhatsApp CTA – exactly like before -->
+      <button onclick="startQuiz()"
+              class="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700
+                      text-black font-black px-7 py-4 rounded-full shadow-2xl hover:scale-110 transition-all
+                      text-sm md:text-lg flex items-center gap-3 whitespace-nowrap border-2 border-green-400/50">
+        <i class="fab fa-whatsapp text-2xl"></i>
+        <span class="hidden xs:inline">SECURE MY SPOT NOW</span>
+        <span class="xs:hidden">APPLY</span>
+      </button>
 
     </div>
   </div>
 </header>
 
-<!-- Perfect spacer so content never hides under fixed header -->
-<div class="h-20 md:h-24 lg:h-28"></div>
+<!-- One spacer that works everywhere -->
+<div class="h-24 lg:h-28"></div>
 
 </body>
 </html>
+
