@@ -310,50 +310,73 @@
       .content-container { padding: 0 2rem; }
     }
    
-    /* Why Trust Us Cards */
-    .why-trust-card {
-      background: rgba(24, 24, 27, 0.7);
-      backdrop-filter: blur(10px);
-      border: 1px solid #3f3f46;
-      border-radius: 1.5rem;
-      padding: 2rem 1.5rem;
-      text-align: center;
-    }
-    @media (min-width: 640px) {
-      .why-trust-card { padding: 2.5rem 2rem; }
-    }
-    @media (min-width: 768px) {
-      .why-trust-card { padding: 3rem 2.5rem; }
-    }
-    .why-trust-card > div:first-child {
-      font-size: 4rem;
-      font-weight: 900;
-      color: #10b981;
-      margin-bottom: 1rem;
-      line-height: 1;
-    }
-    @media (min-width: 640px) {
-      .why-trust-card > div:first-child { font-size: 5rem; }
-    }
-    @media (min-width: 768px) {
-      .why-trust-card > div:first-child { font-size: 6rem; }
-    }
-    .why-trust-card h3 {
-      font-size: 1.25rem;
-      font-weight: 900;
-      margin-bottom: 0.75rem;
-    }
-    @media (min-width: 640px) {
-      .why-trust-card h3 { font-size: 1.5rem; }
-    }
-    .why-trust-card p {
-      opacity: 0.9;
-      font-size: 0.95rem;
-      line-height: 1.6;
-    }
-    @media (min-width: 640px) {
-      .why-trust-card p { font-size: 1.05rem; }
-    }
+/* Why Trust Us Cards – FIXED & IMPROVED FOR ALL DEVICES */
+.why-trust-card {
+  background: rgba(24, 24, 27, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid #3f3f46;
+  border-radius: 1.5rem;
+  padding: 2rem 1.5rem;          /* mobile */
+  text-align: center;
+  min-height: unset;             /* allows card to grow naturally if needed */
+}
+
+@media (min-width: 640px) {
+  .why-trust-card { 
+    padding: 2.5rem 2rem; 
+  }
+}
+
+@media (min-width: 768px) {
+  .why-trust-card { 
+    padding: 4rem 2.5rem;        /* extra breathing room on desktop/tablet */
+  }
+}
+
+/* The big number (100%, 0, SA, 24/7) */
+.why-trust-card > div:first-child {
+  font-size: 4.5rem;             /* mobile – slightly bigger than original 4rem */
+  font-weight: 900;
+  color: #10b981;
+  margin-bottom: 1.5rem;         /* more consistent spacing */
+  line-height: 1;
+}
+
+@media (min-width: 640px) {
+  .why-trust-card > div:first-child { 
+    font-size: 5.5rem; 
+  }
+}
+
+@media (min-width: 768px) {
+  .why-trust-card > div:first-child { 
+    font-size: 5.5rem;           /* was 6rem → now perfect, no cropping ever */
+  }
+}
+
+/* Heading under the number */
+.why-trust-card h3 {
+  font-size: 1.25rem;
+  font-weight: 900;
+  margin-bottom: 0.75rem;
+}
+@media (min-width: 640px) {
+  .why-trust-card h3 { 
+    font-size: 1.5rem; 
+  }
+}
+
+/* Description paragraph */
+.why-trust-card p {
+  opacity: 0.9;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+@media (min-width: 640px) {
+  .why-trust-card p { 
+    font-size: 1.05rem; 
+  }
+}
   </style>
 </head>
 <body class="min-h-screen flex flex-col">
@@ -651,5 +674,3 @@
   <script src="script.js"></script>
 </body>
 </html>
-</html>
-
