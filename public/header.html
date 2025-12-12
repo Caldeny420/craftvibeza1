@@ -5,43 +5,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Make header height predictable – matches main padding calc in index.html */
+    header {
+      min-height: 220px; /* Mobile stacked layout */
+    }
+    @media (min-width: 640px) { header { min-height: 200px; } }
+    @media (min-width: 768px) { header { min-height: 180px; } }
+    @media (min-width: 1024px) { header { min-height: 140px; } } /* Desktop inline layout */
+  </style>
 </head>
 <body>
-
 <header class="fixed top-0 left-0 right-0 z-[999] bg-black/95 backdrop-blur-2xl border-b border-green-500/20">
   <div class="max-w-7xl mx-auto px-5 py-4">
-
     <div class="flex flex-col lg:flex-row items-center justify-between gap-4">
-
-      <!-- Logo + Name – always visible -->
+      <!-- Logo + Name -->
       <a href="/" class="flex items-center gap-4 group">
         <img src="/images/lexpilot-logo.jpg" alt="LexPilot Logo"
-             class="h-10 md:h-12 rounded-full shadow-2xl ring-4 ring-green-500/30 
+             class="h-10 md:h-12 rounded-full shadow-2xl ring-4 ring-green-500/30
                     transition-all duration-300 group-hover:scale-110 group-hover:ring-green-400">
         <span class="hidden md:flex items-baseline font-black tracking-tighter leading-none">
           <span class="text-3xl md:text-4xl text-white">Lex</span>
           <span class="text-4xl md:text-5xl text-green-400">Pilot</span>
         </span>
       </a>
-
-      <!-- Scarcity Banner – perfect on every screen -->
-      <div class="bg-gradient-to-r from-red-600 to-red-700 text-white font-black 
-                      px-5 py-2.5 md:px-6 md:py-3 rounded-full text-sm md:text-base 
-                      animate-pulse shadow-2xl border-2 border-yellow-400/50 
+      <!-- Scarcity Banner -->
+      <div class="bg-gradient-to-r from-red-600 to-red-700 text-white font-black
+                      px-5 py-2.5 md:px-6 md:py-3 rounded-full text-sm md:text-base
+                      animate-pulse shadow-2xl border-2 border-yellow-400/50
                       flex items-center gap-2.5 whitespace-nowrap">
-        ONLY <span class="text-yellow-300 text-lg md:text-xl font-black">500</span> FOUNDING PARTNER SPOTS LEFT
+        ONLY <span class="text-yellow-300 text-lg md:text-xl font-black">500</span> FOUNDING PARTNER SPOTS
       </div>
-
       <!-- Right side: Nav + WhatsApp CTA -->
       <div class="flex items-center gap-6 lg:gap-10">
-
-        <!-- Navigation – shown on tablets & up only (820px+) -->
         <nav class="hidden lg:flex items-center gap-10 text-base font-bold">
-          <a href="#pricing"  class="text-white/80 hover:text-green-400 transition">Pricing</a>
+          <a href="#pricing" class="text-white/80 hover:text-green-400 transition">Pricing</a>
           <a href="#features" class="text-white/80 hover:text-green-400 transition">Features</a>
         </nav>
-
-        <!-- WhatsApp CTA – always visible -->
         <button onclick="startQuiz()"
                 class="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700
                         text-black font-black px-7 py-4 rounded-full shadow-2xl hover:scale-110 transition-all
@@ -50,16 +50,13 @@
           <span class="hidden xs:inline">SECURE MY SPOT NOW</span>
           <span class="xs:hidden">APPLY</span>
         </button>
-
       </div>
-
     </div>
   </div>
 </header>
 
-<!-- One perfect spacer for all devices -->
-<div class="h-24 lg:h-28"></div>
-
+<!-- REMOVE THIS SPACER – no longer needed with calc() padding in index.html -->
+<!-- <div class="h-24 lg:h-28"></div> -->
 </body>
 </html>
 
