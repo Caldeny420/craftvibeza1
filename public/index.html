@@ -26,70 +26,53 @@
       margin: 0;
       overflow-x: hidden;
       width: 100%;
-    }/* Fix tier name overflow + keep words whole */
+    }
 
-/* PERFECT TIER BADGE – WORKS 100% ON EVERY DEVICE */
-#tier-name {
-  display: inline-block;
-  padding: 1.25rem 3rem;                    /* base padding */
-  border-radius: 9999px;
-  font-weight: 900;
-  text-align: center;
-  background: linear-gradient(to right, #10b981, #059669);
-  color: #000;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
-  line-height: 1.1;
-  max-width: 95vw;                          /* never wider than screen */
-}
+    /* === HEADER HEIGHT CONTROL (for consistency with main padding) === */
+    header {
+      min-height: 220px; /* Mobile stacked */
+    }
+    @media (min-width: 640px) { header { min-height: 200px; } }
+    @media (min-width: 768px) { header { min-height: 180px; } }
+    @media (min-width: 1024px) { header { min-height: 140px; } } /* Desktop inline */
 
-/* Responsive font sizes that look identical to your original vision */
-@media (max-width: 480px) {
-  #tier-name {
-    font-size: 2.8rem !important;           /* ~45px  → iPhone SE / small Android */
-    padding: 1rem 2rem !important;
-  }
-}
+    /* === MAIN PADDING – PERFECT CLEARANCE FOR FIXED HEADER ON ALL DEVICES === */
+    main {
+      padding-top: calc(220px + env(safe-area-inset-top, 0px)); /* Mobile/small */
+      width: 100%;
+    }
+    @media (min-width: 640px) {
+      main { padding-top: calc(200px + env(safe-area-inset-top, 0px)); }
+    }
+    @media (min-width: 768px) {
+      main { padding-top: calc(180px + env(safe-area-inset-top, 0px)); }
+    }
+    @media (min-width: 1024px) {
+      main { padding-top: calc(140px + env(safe-area-inset-top, 0px)); } /* Laptop/desktop */
+    }
 
-@media (min-width: 481px) and (max-width: 640px) {
-  #tier-name {
-    font-size: 3.75rem !important;          /* ~60px  → normal phones */
-    padding: 1.25rem 2.5rem !important;
-  }
-}
+    /* === TIER NAME BADGE === */
+    #tier-name {
+      display: inline-block;
+      padding: 1.25rem 3rem;
+      border-radius: 9999px;
+      font-weight: 900;
+      text-align: center;
+      background: linear-gradient(to right, #10b981, #059669);
+      color: #000;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+      line-height: 1.1;
+      max-width: 95vw;
+    }
+    @media (max-width: 480px) { #tier-name { font-size: 2.8rem !important; padding: 1rem 2rem !important; } }
+    @media (min-width: 481px) and (max-width: 640px) { #tier-name { font-size: 3.75rem !important; padding: 1.25rem 2.5rem !important; } }
+    @media (min-width: 641px) and (max-width: 768px) { #tier-name { font-size: 5rem !important; padding: 1.5rem 3rem !important; } }
+    @media (min-width: 769px) and (max-width: 1024px) { #tier-name { font-size: 6.5rem !important; padding: 2rem 4rem !important; } }
+    @media (min-width: 1025px) { #tier-name { font-size: 7.5rem !important; padding: 2.5rem 5rem !important; } }
+    #tier-name span { display: inline-block; white-space: nowrap; }
+    @media (max-width: 480px) { #tier-name span { white-space: normal; } }
 
-@media (min-width: 641px) and (max-width: 768px) {
-  #tier-name {
-    font-size: 5rem !important;             /* ~80px  → large phones / small tablets */
-    padding: 1.5rem 3rem !important;
-  }
-}
-
-@media (min-width: 769px) and (max-width: 1024px) {
-  #tier-name {
-    font-size: 6.5rem !important;           /* ~104px → tablets */
-    padding: 2rem 4rem !important;
-  }
-}
-
-@media (min-width: 1025px) {
-  #tier-name {
-    font-size: 7.5rem !important;           /* ~120px → desktop (your original huge size) */
-    padding: 2.5rem 5rem !important;
-  }
-}
-
-/* Force single line + graceful wrap only when truly impossible */
-#tier-name span {
-  display: inline-block;
-  white-space: nowrap;
-}
-
-/* Emergency fallback – if text is still too wide (e.g. very long custom tier name) */
-@media (max-width: 480px) {
-  #tier-name span {
-    white-space: normal;
-  }
-}
+    /* === BADGES === */
     .badge {
       display: inline-block;
       background: #f59e0b;
@@ -100,9 +83,8 @@
       font-size: 0.875rem;
       letter-spacing: 0.1em;
     }
-    @media (min-width: 640px) {
-      .badge { font-size: 1rem; padding: 0.875rem 1.75rem; }
-    }
+    @media (min-width: 640px) { .badge { font-size: 1rem; padding: 0.875rem 1.75rem; } }
+
     .founding-badge {
       position: absolute;
       top: -1.5rem;
@@ -122,18 +104,9 @@
       z-index: 10;
       white-space: nowrap;
     }
-    @media (min-width: 640px) {
-      .founding-badge { padding: 0.875rem 2rem; font-size: 0.875rem; }
-    }
-    main {
-      padding-top: 6rem;
-      width: 100%;
-    }
-    @media (min-width: 640px) { main { padding-top: 7rem; } }
-    @media (min-width: 768px) { main { padding-top: 8rem; } }
-    @media (min-width: 1024px) { main { padding-top: 6rem; } }
-   
-    /* Pricing Cards */
+    @media (min-width: 640px) { .founding-badge { padding: 0.875rem 2rem; font-size: 0.875rem; } }
+
+    /* === PRICING CARDS === */
     .pricing-card {
       position: relative;
       flex-shrink: 0;
@@ -146,17 +119,12 @@
       min-height: 520px;
       display: flex;
       flex-direction: column;
-      width: 80vw; /* Optimized to fit mobile screen width, showing ~1.4 cards */
+      width: 80vw;
       max-width: 320px;
     }
-    @media (min-width: 640px) {
-      .pricing-card { padding: 2rem 1.5rem; min-height: 560px; width: 90vw; max-width: 360px; }
-    }
-    @media (min-width: 768px) {
-      .pricing-card { width: 30vw; max-width: none; }
-    }
-   
-    /* Horizontal Scroll for Pricing on All Devices, Scrollable on Mobile */
+    @media (min-width: 640px) { .pricing-card { padding: 2rem 1.5rem; min-height: 560px; width: 90vw; max-width: 360px; } }
+    @media (min-width: 768px) { .pricing-card { width: 30vw; max-width: none; } }
+
     .pricing-scroll-container {
       display: flex;
       flex-direction: row;
@@ -170,47 +138,15 @@
       max-width: 100%;
       justify-content: flex-start;
     }
-    .pricing-scroll-container::-webkit-scrollbar {
-      height: 8px;
-    }
-    .pricing-scroll-container::-webkit-scrollbar-track {
-      background: #18181b;
-      border-radius: 10px;
-    }
-    .pricing-scroll-container::-webkit-scrollbar-thumb {
-      background: #10b981;
-      border-radius: 10px;
-    }
-    .pricing-scroll-container > * {
-      scroll-snap-align: start;
-    }
-    @media (min-width: 640px) {
-      .pricing-scroll-container {
-        padding: 2rem 1.5rem 3rem 1.5rem;
-        gap: 1.25rem;
-      }
-    }
-    @media (min-width: 768px) {
-      .pricing-scroll-container {
-        overflow-x: visible; /* No scroll on larger screens if fits */
-        justify-content: center;
-        gap: 1.5rem;
-      }
-    }
-    @media (min-width: 1024px) {
-      .pricing-scroll-container {
-        gap: 2rem;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 2rem 0;
-      }
-    }
-   
-    /* Feature Table - Optimized for Mobile Scrolling */
-    .feature-table-wrapper {
-      position: relative;
-      width: 100%;
-    }
+    .pricing-scroll-container::-webkit-scrollbar { height: 8px; }
+    .pricing-scroll-container::-webkit-scrollbar-track { background: #18181b; border-radius: 10px; }
+    .pricing-scroll-container::-webkit-scrollbar-thumb { background: #10b981; border-radius: 10px; }
+    .pricing-scroll-container > * { scroll-snap-align: start; }
+    @media (min-width: 640px) { .pricing-scroll-container { padding: 2rem 1.5rem 3rem 1.5rem; gap: 1.25rem; } }
+    @media (min-width: 768px) { .pricing-scroll-container { overflow-x: visible; justify-content: center; gap: 1.5rem; } }
+    @media (min-width: 1024px) { .pricing-scroll-container { gap: 2rem; max-width: 1200px; margin: 0 auto; padding: 2rem 0; } }
+
+    /* === FEATURE TABLE === */
     .feature-table-container {
       overflow-x: auto;
       border-radius: 1.5rem;
@@ -219,24 +155,10 @@
       scrollbar-color: #10b981 #18181b;
       -webkit-overflow-scrolling: touch;
     }
-    .feature-table-container::-webkit-scrollbar {
-      height: 8px;
-    }
-    .feature-table-container::-webkit-scrollbar-track {
-      background: #18181b;
-      border-radius: 10px;
-    }
-    .feature-table-container::-webkit-scrollbar-thumb {
-      background: #10b981;
-      border-radius: 10px;
-    }
-   
-    /* Mobile: Compact table for better scrolling */
-    .feature-table-container table {
-      width: 100%;
-      min-width: 650px;
-      border-collapse: collapse;
-    }
+    .feature-table-container::-webkit-scrollbar { height: 8px; }
+    .feature-table-container::-webkit-scrollbar-track { background: #18181b; border-radius: 10px; }
+    .feature-table-container::-webkit-scrollbar-thumb { background: #10b981; border-radius: 10px; }
+    .feature-table-container table { width: 100%; min-width: 650px; border-collapse: collapse; }
     .feature-table-container table td,
     .feature-table-container table th {
       padding: 0.875rem 1rem;
@@ -249,134 +171,73 @@
       min-width: 200px;
       max-width: 250px;
     }
-   
     @media (min-width: 640px) {
-      .feature-table-container table {
-        min-width: 750px;
-      }
+      .feature-table-container table { min-width: 750px; }
       .feature-table-container table td,
-      .feature-table-container table th {
-        padding: 1rem 1.25rem;
-        font-size: 0.875rem;
-      }
+      .feature-table-container table th { padding: 1rem 1.25rem; font-size: 0.875rem; }
       .feature-table-container table td:first-child,
-      .feature-table-container table th:first-child {
-        min-width: 250px;
-        max-width: 300px;
-      }
-    }
-   
-    @media (min-width: 768px) {
-      .feature-table-container table {
-        min-width: 100%;
-      }
-      .feature-table-container table td,
-      .feature-table-container table th {
-        padding: 1.5rem 2rem;
-        font-size: 1rem;
-        white-space: normal;
-      }
-      .feature-table-container table td:first-child,
-      .feature-table-container table th:first-child {
-        min-width: auto;
-        max-width: none;
-      }
-    }
-   
-    /* Scroll indicator for mobile */
-    .scroll-indicator {
-      display: block;
-      text-align: center;
-      color: #10b981;
-      font-size: 0.75rem;
-      margin-top: 0.5rem;
-      opacity: 0.8;
+      .feature-table-container table th:first-child { min-width: 250px; max-width: 300px; }
     }
     @media (min-width: 768px) {
-      .scroll-indicator { display: none; }
+      .feature-table-container table { min-width: 100%; }
+      .feature-table-container table td,
+      .feature-table-container table th { padding: 1.5rem 2rem; font-size: 1rem; white-space: normal; }
+      .feature-table-container table td:first-child,
+      .feature-table-container table th:first-child { min-width: auto; max-width: none; }
     }
-   
-    /* Consistent Container Width - Matching Hero (max-w-6xl) */
+
+    .scroll-indicator { display: block; text-align: center; color: #10b981; font-size: 0.75rem; margin-top: 0.5rem; opacity: 0.8; }
+    @media (min-width: 768px) { .scroll-indicator { display: none; } }
+
+    /* === CONTAINER WIDTH === */
     .content-container {
       width: 100%;
-      max-width: 1280px; /* max-w-6xl is 1152px approx, but adjusted to 1280 for consistency */
+      max-width: 1280px;
       margin: 0 auto;
       padding: 0 1rem;
     }
+    @media (min-width: 640px) { .content-container { padding: 0 1.5rem; } }
+    @media (min-width: 1024px) { .content-container { padding: 0 2rem; } }
+
+    /* === WHY TRUST US CARDS – FINAL: NO BLEED, NO CUT-OFF === */
+    .why-trust-card {
+      background: rgba(24, 24, 27, 0.7);
+      backdrop-filter: blur(10px);
+      border: 1px solid #3f3f46;
+      border-radius: 1.5rem;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      min-height: unset;
+      overflow: hidden;
+    }
+    @media (min-width: 640px) { .why-trust-card { padding: 2.5rem 2rem; } }
+    @media (min-width: 768px) { .why-trust-card { padding: 4rem 2.5rem; } }
+
+    .why-trust-card > div:first-child {
+      font-size: 4.5rem;
+      font-weight: 900;
+      color: #10b981;
+      margin-bottom: 1.5rem;
+      line-height: 1;
+    }
+    /* 100% card only – safe size + right padding to contain % perfectly */
+    .why-trust-card:first-child > div:first-child {
+      font-size: 4.2rem;
+      padding-right: 1rem;
+    }
     @media (min-width: 640px) {
-      .content-container { padding: 0 1.5rem; }
+      .why-trust-card > div:first-child { font-size: 5.5rem; }
+      .why-trust-card:first-child > div:first-child { font-size: 5.1rem; }
     }
-    @media (min-width: 1024px) {
-      .content-container { padding: 0 2rem; }
+    @media (min-width: 768px) {
+      .why-trust-card > div:first-child { font-size: 5.5rem; }
+      .why-trust-card:first-child > div:first-child { font-size: 5.1rem; }
     }
-   
-/* Why Trust Us Cards – FIXED & IMPROVED FOR ALL DEVICES */
-.why-trust-card {
-  background: rgba(24, 24, 27, 0.7);
-  backdrop-filter: blur(10px);
-  border: 1px solid #3f3f46;
-  border-radius: 1.5rem;
-  padding: 2rem 1.5rem;          /* mobile */
-  text-align: center;
-  min-height: unset;             /* allows card to grow naturally if needed */
-}
 
-@media (min-width: 640px) {
-  .why-trust-card { 
-    padding: 2.5rem 2rem; 
-  }
-}
-
-@media (min-width: 768px) {
-  .why-trust-card { 
-    padding: 4rem 2.5rem;        /* extra breathing room on desktop/tablet */
-  }
-}
-
-/* The big number (100%, 0, SA, 24/7) */
-.why-trust-card > div:first-child {
-  font-size: 4.5rem;             /* mobile – slightly bigger than original 4rem */
-  font-weight: 900;
-  color: #10b981;
-  margin-bottom: 1.5rem;         /* more consistent spacing */
-  line-height: 1;
-}
-
-@media (min-width: 640px) {
-  .why-trust-card > div:first-child { 
-    font-size: 5.5rem; 
-  }
-}
-
-@media (min-width: 768px) {
-  .why-trust-card > div:first-child { 
-    font-size: 5.5rem;           /* was 6rem → now perfect, no cropping ever */
-  }
-}
-
-/* Heading under the number */
-.why-trust-card h3 {
-  font-size: 1.25rem;
-  font-weight: 900;
-  margin-bottom: 0.75rem;
-}
-@media (min-width: 640px) {
-  .why-trust-card h3 { 
-    font-size: 1.5rem; 
-  }
-}
-
-/* Description paragraph */
-.why-trust-card p {
-  opacity: 0.9;
-  font-size: 0.95rem;
-  line-height: 1.6;
-}
-@media (min-width: 640px) {
-  .why-trust-card p { 
-    font-size: 1.05rem; 
-  }
-}
+    .why-trust-card h3 { font-size: 1.25rem; font-weight: 900; margin-bottom: 0.75rem; }
+    @media (min-width: 640px) { .why-trust-card h3 { font-size: 1.5rem; } }
+    .why-trust-card p { opacity: 0.9; font-size: 0.95rem; line-height: 1.6; }
+    @media (min-width: 640px) { .why-trust-card p { font-size: 1.05rem; } }
   </style>
 </head>
 <body class="min-h-screen flex flex-col">
