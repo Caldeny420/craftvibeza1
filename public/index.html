@@ -28,14 +28,6 @@
       width: 100%;
     }
 
-    /* === HEADER HEIGHT CONTROL (for consistency with main padding) === */
-    header {
-      min-height: 220px; /* Mobile stacked */
-    }
-    @media (min-width: 640px) { header { min-height: 200px; } }
-    @media (min-width: 768px) { header { min-height: 180px; } }
-    @media (min-width: 1024px) { header { min-height: 140px; } } /* Desktop inline */
-
     /* === MAIN PADDING – PERFECT CLEARANCE FOR FIXED HEADER ON ALL DEVICES === */
     main {
       padding-top: calc(220px + env(safe-area-inset-top, 0px)); /* Mobile/small */
@@ -199,7 +191,7 @@
     @media (min-width: 640px) { .content-container { padding: 0 1.5rem; } }
     @media (min-width: 1024px) { .content-container { padding: 0 2rem; } }
 
-    /* === WHY TRUST US CARDS – FINAL: NO BLEED, NO CUT-OFF === */
+    /* === WHY TRUST US CARDS – ORIGINAL 100% SIZE RESTORED (as requested) === */
     .why-trust-card {
       background: rgba(24, 24, 27, 0.7);
       backdrop-filter: blur(10px);
@@ -220,18 +212,11 @@
       margin-bottom: 1.5rem;
       line-height: 1;
     }
-    /* 100% card only – safe size + right padding to contain % perfectly */
-    .why-trust-card:first-child > div:first-child {
-      font-size: 4.2rem;
-      padding-right: 1rem;
-    }
     @media (min-width: 640px) {
       .why-trust-card > div:first-child { font-size: 5.5rem; }
-      .why-trust-card:first-child > div:first-child { font-size: 5.1rem; }
     }
     @media (min-width: 768px) {
       .why-trust-card > div:first-child { font-size: 5.5rem; }
-      .why-trust-card:first-child > div:first-child { font-size: 5.1rem; }
     }
 
     .why-trust-card h3 { font-size: 1.25rem; font-weight: 900; margin-bottom: 0.75rem; }
@@ -240,6 +225,7 @@
     @media (min-width: 640px) { .why-trust-card p { font-size: 1.05rem; } }
   </style>
 </head>
+
 <body class="min-h-screen flex flex-col">
   <div id="header-placeholder"></div>
   <!-- 1. HERO SECTION -->
