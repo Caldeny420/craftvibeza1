@@ -1,6 +1,9 @@
 /* ==================================================================== */
-/* LEXPLOT – FINAL DECEMBER 2025 SCRIPT.JS – FULLY FIXED & OPTIMIZED   */
-/* Quiz • Counters • Header/Footer • Waived Setup • No Duplicates      */
+/* LEXPLOT → FIXED: LEXPLOT → LEXPLOT → LEXPLOT → LEXPLOT → LEXPLOT    */
+/* LEXPLOT → FIXED: LEXPLOT → LEXPLOT → LEXPLOT → LEXPLOT → LEXPLOT    */
+/* LEXPLOT → FIXED: LEXPLOT → LEXPLOT → LEXPLOT → LEXPLOT → LEXPLOT    */
+/* LEXPLOT → FIXED: LEXPLOT → LEXPLOT → LEXPLOT → LEXPLOT → LEXPLOT    */
+/* LEXPLOT → FIXED: LEXPLOT → LEXPLOT → LEXPLOT → LEXPLOT → LEXPLOT    */
 /* ==================================================================== */
 
 (() => {
@@ -48,12 +51,10 @@
         if (!doc.exists) return;
         const taken = doc.data()?.taken || 0;
 
-        // Update all matching elements safely
         document.querySelectorAll(displaySelectors).forEach(el => {
           if (el) el.textContent = taken;
         });
 
-        // Optional: Change Dominance button text when waiver ends
         if (tierKey === "Dominance" && taken >= 100) {
           document.querySelectorAll("#dominance-btn-text").forEach(el => {
             if (el) el.textContent = "CLAIM DOMINANCE SPOT (Setup applies)";
@@ -62,7 +63,6 @@
       });
     };
 
-    // Only run if elements exist (safe when counters removed)
     if ($('growth-taken')) updateCounter("Growth", "#growth-taken");
     if ($('dominance-taken')) updateCounter("Dominance", "#dominance-taken");
     if ($('elite-taken')) updateCounter("Elite", "#elite-taken");
@@ -120,14 +120,14 @@
 
       const t = TIERS[finalTier];
 
-      // Get taken counts safely (in case counters removed)
+      // Taken counts (safe if removed)
       const takenDominance = parseInt($('dominance-taken')?.textContent || '0');
       const takenElite = parseInt($('elite-taken')?.textContent || '0');
       const isWaived = (finalTier === "Dominance" && takenDominance < t.waiveLimit) ||
                        (finalTier === "Elite" && takenElite < t.waiveLimit) ||
                        finalTier === "Growth";
 
-      // Update UI safely
+      // Update UI
       if ($('tier-name')) {
         $('tier-name').textContent = t.name.toUpperCase();
         $('tier-name').className = `inline-block px-6 sm:px-10 md:px-16 py-5 sm:py-7 md:py-8 rounded-full text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-black bg-gradient-to-r ${t.color} shadow-2xl text-center leading-none`;
@@ -164,13 +164,13 @@
           .join('');
       }
 
-      // === REMOVE OLD WHATSAPP CTA (prevents duplicates) ===
+      // Remove old CTA to prevent duplicates
       const oldCta = $('recommended-list')?.nextElementSibling;
       if (oldCta && oldCta.querySelector('a[href^="https://wa.me"]')) {
         oldCta.remove();
       }
 
-      // === ADD NEW WHATSAPP CTA ===
+      // Add new WhatsApp CTA
       const waMsg = encodeURIComponent(
         `Hi LexPilot! Just finished the quiz — recommended ${t.name} tier.\n\n` +
         `Monthly: ${format(t.monthly)}/mo${t.setup > 0 ? ` + ${format(t.setup)} setup${isWaived ? " (WAIVED!)" : ""}` : ""}\n` +
@@ -188,7 +188,7 @@
         </div>
       `);
 
-      // Show results section
+      // Show results
       $('quiz-overlay')?.classList.add('hidden');
       document.body.style.overflow = '';
       $('quiz-results')?.classList.remove('hidden');
@@ -216,7 +216,7 @@
     const setupText = t.setup === 0 ? "" : ` + ${format(t.setup)} setup${isWaived ? " (WAIVED!)" : ""}`;
 
     const msg = encodeURIComponent(
-      `LEXPLOT FOUNDING LEAD! 🔥\n\n` +
+      `LexPilot FOUNDING LEAD! 🔥\n\n` +
       `Tier: ${t.name}\n` +
       `Price: ${format(t.monthly)}/mo${setupText}\n` +
       `Normal: ${format(t.normal)}/mo\n\n` +
@@ -248,7 +248,6 @@
     loadPart('footer', 'footer-placeholder');
     initCounters();
 
-    // Close overlay on background click
     $('quiz-overlay')?.addEventListener('click', e => {
       if (e.target === $('quiz-overlay')) {
         $('quiz-overlay').classList.add('hidden');
@@ -256,7 +255,6 @@
       }
     });
 
-    // Add close X button
     const closeBtn = document.createElement('button');
     closeBtn.innerHTML = '×';
     closeBtn.className = 'absolute top-6 right-6 text-7xl opacity-40 hover:opacity-100 z-50 text-white';
@@ -267,6 +265,5 @@
     $('quiz-overlay')?.prepend(closeBtn);
   });
 
-  // Global expose
   window.startQuiz = Quiz.start;
 })();
