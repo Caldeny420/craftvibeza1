@@ -12,12 +12,12 @@
     Growth: {
       name: "Growth",
       monthly: 999,
-      setup: 2999, // Displayed as waived even if actually R0
+      setup: 0, // NO SETUP FEE EVER
       normal: 2999,
       limit: 100,
       color: "from-green-500 to-emerald-600",
       badge: false,
-      waiveLimit: 999 // always waived
+      waiveLimit: 999 // irrelevant, since setup is 0
     },
     Dominance: {
       name: "Dominance",
@@ -70,7 +70,6 @@
         if (!doc.exists) return;
         const taken = doc.data()?.taken || 0;
         if ($(displaySelector)) $(displaySelector).textContent = taken;
-        // Optional: Update Dominance button text when limit reached
         if (tierKey === "Dominance" && taken >= TIERS.Dominance.waiveLimit) {
           document.querySelectorAll('.claim-btn[data-tier="Dominance"] span, #dominance-btn-text').forEach(el => {
             el.textContent = "CLAIM DOMINANCE SPOT (Setup applies)";
@@ -155,8 +154,7 @@
       if ($('final-total')) {
         $('final-total').innerHTML = `
           <div class="text-3xl mt-8">
-            Setup: ${format(t.setup)}
-            ${isWaived ? '<span class="text-green-400 text-2xl block font-bold"> (WAIVED!)</span>' : '<span class="text-green-400 text-lg block">(waived for first ' + t.waiveLimit + ')</span>'}
+            ${t.setup > 0 ? `Setup: ${format(t.setup)}${isWaived ? '<span class="text-green-400 text-2xl block font-bold"> (WAIVED!)</span>' : '<span class="text-green-400 text-lg block">(waived for first ' + t.waiveLimit + ')</span>'}` : 'No Setup Fee'}
           </div>
           <div class="text-2xl mt-6 text-green-300 font-bold">Your founding price locked FOREVER</div>
         `;
@@ -178,11 +176,12 @@
       const oldCta = $('recommended-list')?.nextElementSibling;
       if (oldCta?.querySelector('a[href^="https://wa.me"]')) oldCta.remove();
 
-      // POST-QUIZ STICKY CTA - Uses the FOUNDING LEAD format (NOT Early Access)
+      // POST-QUIZ STICKY CTA (Founding LEAD format)
+      const setupText = t.setup > 0 ? ` + ${format(t.setup)} setup${isWaived ? " (WAIVED!)" : ""}` : "";
       const waMsg = encodeURIComponent(
         `LexPilot FOUNDING LEAD! ` +
         `Tier: ${t.name} ` +
-        `Price: ${format(t.monthly)}/mo + ${format(t.setup)} setup${isWaived ? " (WAIVED!)" : ""} ` +
+        `Price: ${format(t.monthly)}/mo${setupText} ` +
         `Normal: ${format(t.normal)}/mo ` +
         `Ready to secure my spot!`
       );
@@ -220,10 +219,12 @@
                      (tier === "Elite" && takenElite < TIERS.Elite.waiveLimit) ||
                      tier === "Growth";
 
+    const setupText = t.setup > 0 ? ` + ${format(t.setup)} setup${isWaived ? " (WAIVED!)" : ""}` : "";
+
     const msg = encodeURIComponent(
       `LexPilot FOUNDING LEAD! ` +
       `Tier: ${t.name} ` +
-      `Price: ${format(t.monthly)}/mo + ${format(t.setup)} setup${isWaived ? " (WAIVED!)" : ""} ` +
+      `Price: ${format(t.monthly)}/mo${setupText} ` +
       `Normal: ${format(t.normal)}/mo ` +
       `Ready to secure my spot!`
     );
