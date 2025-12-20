@@ -1,11 +1,3 @@
-/* ==================================================================== */
-/* LEXPLOT → FIXED: LEXPLOT → LEXPLOT → LEXPLOT → LEXPLOT → LEXPLOT    */
-/* LEXPLOT → FIXED: LEXPLOT → LEXPLOT → LEXPLOT → LEXPLOT → LEXPLOT    */
-/* LEXPLOT → FIXED: LEXPLOT → LEXPLOT → LEXPLOT → LEXPLOT → LEXPLOT    */
-/* LEXPLOT → FIXED: LEXPLOT → LEXPLOT → LEXPLOT → LEXPLOT → LEXPLOT    */
-/* LEXPLOT → FIXED: LEXPLOT → LEXPLOT → LEXPLOT → LEXPLOT → LEXPLOT    */
-/* ==================================================================== */
-
 (() => {
   'use strict';
 
@@ -17,9 +9,36 @@
 
   // ====================== TIERS ======================
   const TIERS = {
-    Growth: { name: "Growth", monthly: 999, setup: 0, normal: 2999, limit: 100, color: "from-green-500 to-emerald-600", badge: false, waiveLimit: 999 },
-    Dominance: { name: "Dominance", monthly: 2999, setup: 4999, normal: 7999, limit: 200, color: "from-yellow-400 to-amber-500", badge: true, waiveLimit: 100 },
-    Elite: { name: "Elite", monthly: 9999, setup: 9999, normal: 19999, limit: 200, color: "from-amber-500 to-orange-600", badge: false, waiveLimit: 50 }
+    Growth: {
+      name: "Growth",
+      monthly: 999,
+      setup: 2999, // Displayed as waived even if actually R0
+      normal: 2999,
+      limit: 100,
+      color: "from-green-500 to-emerald-600",
+      badge: false,
+      waiveLimit: 999 // always waived
+    },
+    Dominance: {
+      name: "Dominance",
+      monthly: 2999,
+      setup: 7999,
+      normal: 7999,
+      limit: 200,
+      color: "from-yellow-400 to-amber-500",
+      badge: true,
+      waiveLimit: 100
+    },
+    Elite: {
+      name: "Elite",
+      monthly: 9999,
+      setup: 9999,
+      normal: 19999,
+      limit: 200,
+      color: "from-amber-500 to-orange-600",
+      badge: false,
+      waiveLimit: 50
+    }
   };
 
   // ====================== QUIZ QUESTIONS ======================
@@ -36,36 +55,33 @@
   let currentQuestion = 0;
   let answers = [];
   let finalTier = "Growth";
+
   const $ = id => document.getElementById(id);
   const format = n => `R${n.toLocaleString('en-ZA')}`;
 
-  // ====================== FIREBASE COUNTERS (SAFE) ======================
+  // ====================== FIREBASE COUNTERS ======================
   const initCounters = () => {
     if (typeof firebase === 'undefined') return;
-
     const db = firebase.firestore();
 
-    const updateCounter = (tierKey, displaySelectors) => {
+    const updateCounter = (tierKey, displaySelector) => {
       const docRef = db.collection("spots").doc(tierKey.toLowerCase());
       docRef.onSnapshot(doc => {
         if (!doc.exists) return;
         const taken = doc.data()?.taken || 0;
-
-        document.querySelectorAll(displaySelectors).forEach(el => {
-          if (el) el.textContent = taken;
-        });
-
-        if (tierKey === "Dominance" && taken >= 100) {
-          document.querySelectorAll("#dominance-btn-text").forEach(el => {
-            if (el) el.textContent = "CLAIM DOMINANCE SPOT (Setup applies)";
+        if ($(displaySelector)) $(displaySelector).textContent = taken;
+        // Optional: Update Dominance button text when limit reached
+        if (tierKey === "Dominance" && taken >= TIERS.Dominance.waiveLimit) {
+          document.querySelectorAll('.claim-btn[data-tier="Dominance"] span, #dominance-btn-text').forEach(el => {
+            el.textContent = "CLAIM DOMINANCE SPOT (Setup applies)";
           });
         }
       });
     };
 
-    if ($('growth-taken')) updateCounter("Growth", "#growth-taken");
-    if ($('dominance-taken')) updateCounter("Dominance", "#dominance-taken");
-    if ($('elite-taken')) updateCounter("Elite", "#elite-taken");
+    updateCounter("Growth", "growth-taken");
+    updateCounter("Dominance", "dominance-taken");
+    updateCounter("Elite", "elite-taken");
   };
 
   // ====================== QUIZ ENGINE ======================
@@ -81,24 +97,22 @@
 
     next: () => {
       if (currentQuestion >= QUIZ.length) return Quiz.results();
-
       const q = QUIZ[currentQuestion];
       if ($('quiz-question-text')) $('quiz-question-text').textContent = q.q;
       if ($('quiz-progress')) $('quiz-progress').style.width = `${((currentQuestion + 1) / QUIZ.length) * 100}%`;
-
       if ($('quiz-options')) {
         $('quiz-options').innerHTML = q.o.map((opt, i) => `
           <button class="w-full bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 py-10 px-8 rounded-2xl text-2xl font-bold transition-all hover:scale-105 hover:border-green-500" data-index="${i}">
             ${opt}
           </button>
         `).join('');
-
         document.querySelectorAll('#quiz-options button').forEach(btn => {
           btn.onclick = () => {
             const choice = q.o[btn.dataset.index];
             answers.push({ answer: choice, requires: q.requires || null });
             currentQuestion++;
-            setTimeout(Quiz.next, 300);
+            btn.classList.add('border-green-500', 'bg-zinc-700');
+            setTimeout(Quiz.next, 400);
           };
         });
       }
@@ -108,7 +122,7 @@
       // Recommendation logic
       const needsElite = answers.some(a => a.requires === "Elite" && (a.answer.includes("Yes") || a.answer.includes("never miss") || a.answer.includes("full white-label")));
       const needsDominance = answers.some(a => a.requires === "Dominance" && a.answer.includes("Yes"));
-      const userCount = answers[0]?.answer;
+      const userCount = answers[0]?.answer || "1–5";
 
       if (needsElite || userCount === "16+ / Unlimited") {
         finalTier = "Elite";
@@ -119,12 +133,10 @@
       }
 
       const t = TIERS[finalTier];
-
-      // Taken counts (safe if removed)
       const takenDominance = parseInt($('dominance-taken')?.textContent || '0');
       const takenElite = parseInt($('elite-taken')?.textContent || '0');
-      const isWaived = (finalTier === "Dominance" && takenDominance < t.waiveLimit) ||
-                       (finalTier === "Elite" && takenElite < t.waiveLimit) ||
+      const isWaived = (finalTier === "Dominance" && takenDominance < TIERS.Dominance.waiveLimit) ||
+                       (finalTier === "Elite" && takenElite < TIERS.Elite.waiveLimit) ||
                        finalTier === "Growth";
 
       // Update UI
@@ -140,18 +152,16 @@
           <div class="text-3xl opacity-70 mt-4"><s>${format(t.normal)}</s></div>
         `;
       }
-
       if ($('final-total')) {
         $('final-total').innerHTML = `
-          <div class="text-3xl mt-8">Setup: ${t.setup === 0 ? "R0" : format(t.setup)}
-            ${t.setup > 0 && isWaived ? '<span class="text-green-400 text-2xl block font-bold">WAIVED FOR YOU!</span>' :
-              t.setup > 0 ? '<span class="text-green-400 text-lg block">(waived for first ' + (finalTier === "Elite" ? "50" : "100") + ')</span>' : ''}
+          <div class="text-3xl mt-8">
+            Setup: ${format(t.setup)}
+            ${isWaived ? '<span class="text-green-400 text-2xl block font-bold"> (WAIVED!)</span>' : '<span class="text-green-400 text-lg block">(waived for first ' + t.waiveLimit + ')</span>'}
           </div>
           <div class="text-2xl mt-6 text-green-300 font-bold">Your founding price locked FOREVER</div>
         `;
       }
 
-      // Feature list
       const highlights = {
         Growth: ["Professional website", "AI site generator", "Smart invoicing", "Rule 54 & 86 protection", "Founding referral rewards"],
         Dominance: ["Everything in Growth", "Client deposits (card/Ozow/EFT)", "Lead dashboard", "Automated sequences", "Priority support"],
@@ -164,18 +174,17 @@
           .join('');
       }
 
-      // Remove old CTA to prevent duplicates
+      // Remove old CTA
       const oldCta = $('recommended-list')?.nextElementSibling;
-      if (oldCta && oldCta.querySelector('a[href^="https://wa.me"]')) {
-        oldCta.remove();
-      }
+      if (oldCta?.querySelector('a[href^="https://wa.me"]')) oldCta.remove();
 
-      // Add new WhatsApp CTA
+      // POST-QUIZ STICKY CTA - Uses the FOUNDING LEAD format (NOT Early Access)
       const waMsg = encodeURIComponent(
-        `Hi LexPilot! Just finished the quiz — recommended ${t.name} tier.\n\n` +
-        `Monthly: ${format(t.monthly)}/mo${t.setup > 0 ? ` + ${format(t.setup)} setup${isWaived ? " (WAIVED!)" : ""}` : ""}\n` +
-        `Normal price: ${format(t.normal)}/mo\n\n` +
-        `Ready to claim my founding spot! 🚀`
+        `LexPilot FOUNDING LEAD! ` +
+        `Tier: ${t.name} ` +
+        `Price: ${format(t.monthly)}/mo + ${format(t.setup)} setup${isWaived ? " (WAIVED!)" : ""} ` +
+        `Normal: ${format(t.normal)}/mo ` +
+        `Ready to secure my spot!`
       );
 
       $('recommended-list')?.insertAdjacentHTML('afterend', `
@@ -188,7 +197,6 @@
         </div>
       `);
 
-      // Show results
       $('quiz-overlay')?.classList.add('hidden');
       document.body.style.overflow = '';
       $('quiz-results')?.classList.remove('hidden');
@@ -206,21 +214,18 @@
     if (!TIERS[tier]) return;
 
     const t = TIERS[tier];
-
     const takenDominance = parseInt($('dominance-taken')?.textContent || '0');
     const takenElite = parseInt($('elite-taken')?.textContent || '0');
-    const isWaived = (tier === "Dominance" && takenDominance < t.waiveLimit) ||
-                     (tier === "Elite" && takenElite < t.waiveLimit) ||
+    const isWaived = (tier === "Dominance" && takenDominance < TIERS.Dominance.waiveLimit) ||
+                     (tier === "Elite" && takenElite < TIERS.Elite.waiveLimit) ||
                      tier === "Growth";
 
-    const setupText = t.setup === 0 ? "" : ` + ${format(t.setup)} setup${isWaived ? " (WAIVED!)" : ""}`;
-
     const msg = encodeURIComponent(
-      `LexPilot FOUNDING LEAD! 🔥\n\n` +
-      `Tier: ${t.name}\n` +
-      `Price: ${format(t.monthly)}/mo${setupText}\n` +
-      `Normal: ${format(t.normal)}/mo\n\n` +
-      `Hot lead — ready to pay! Call now! 🚀`
+      `LexPilot FOUNDING LEAD! ` +
+      `Tier: ${t.name} ` +
+      `Price: ${format(t.monthly)}/mo + ${format(t.setup)} setup${isWaived ? " (WAIVED!)" : ""} ` +
+      `Normal: ${format(t.normal)}/mo ` +
+      `Ready to secure my spot!`
     );
 
     window.open(`https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${msg}`, '_blank');
@@ -232,11 +237,8 @@
     if (!el) return;
     try {
       const res = await fetch(`/${file}.html?v=${Date.now()}`, { cache: "no-store" });
-      if (res.ok) {
-        el.innerHTML = await res.text();
-      } else {
-        el.innerHTML = `<div class="text-red-500 p-10 text-center text-2xl">Error: ${file}.html missing</div>`;
-      }
+      if (res.ok) el.innerHTML = await res.text();
+      else el.innerHTML = `<div class="text-red-500 p-10 text-center text-2xl">Error: ${file}.html missing</div>`;
     } catch (e) {
       el.innerHTML = `<div class="text-red-500 p-10 text-center text-2xl">Failed to load ${file}.html</div>`;
     }
