@@ -10,7 +10,7 @@
   <style>
     body { font-family: 'Inter', sans-serif; background: #000; color: #fff; margin: 0; padding: 0; }
     .break-words { word-break: break-word; hyphens: auto; overflow-wrap: break-word; }
-    /* Fluid typography for perfect horizontal fit */
+    /* Fluid typography for perfect horizontal fit on all devices */
     .fluid-body { font-size: clamp(1rem, 4vw, 1.25rem); line-height: 1.5; }
     .fluid-title { font-size: clamp(1.75rem, 6vw, 3rem); line-height: 1.2; }
     .fluid-heading { font-size: clamp(3rem, 12vw, 6rem); line-height: 1.1; }
@@ -19,44 +19,7 @@
   </style>
 </head>
 <body class="min-h-screen flex flex-col">
-<header class="fixed top-0 left-0 right-0 z-[999] bg-black/95 backdrop-blur-2xl border-b border-green-500/20">
-  <div class="max-w-7xl mx-auto px-5 py-4">
-    <div class="flex flex-col lg:flex-row items-center justify-between gap-4">
-      <!-- Logo + Name -->
-      <a href="/" class="flex items-center gap-4 group">
-        <img src="/images/lexpilot-logo.jpg" alt="LexPilot Logo"
-             class="h-10 md:h-12 rounded-full shadow-2xl ring-4 ring-green-500/30
-                    transition-all duration-300 group-hover:scale-110 group-hover:ring-green-400">
-        <span class="hidden md:flex items-baseline font-black tracking-tighter leading-none">
-          <span class="text-3xl md:text-4xl text-white">Lex</span>
-          <span class="text-4xl md:text-5xl text-green-400">Pilot</span>
-        </span>
-      </a>
-      <!-- Scarcity Banner -->
-      <div class="bg-gradient-to-r from-red-600 to-red-700 text-white font-black
-                      px-5 py-2.5 md:px-6 md:py-3 rounded-full text-sm md:text-base
-                      animate-pulse shadow-2xl border-2 border-yellow-400/50
-                      flex items-center gap-2.5 whitespace-nowrap">
-        ONLY <span class="text-yellow-300 text-lg md:text-xl font-black">500</span> FOUNDING PARTNER SPOTS
-      </div>
-      <!-- Right side: Nav + WhatsApp CTA -->
-      <div class="flex items-center gap-6 lg:gap-10">
-        <nav class="hidden lg:flex items-center gap-10 text-base font-bold">
-          <a href="#pricing" class="text-white/80 hover:text-green-400 transition">Pricing</a>
-          <a href="#features" class="text-white/80 hover:text-green-400 transition">Features</a>
-        </nav>
-        <button onclick="startQuiz()"
-                class="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700
-                        text-black font-black px-7 py-4 rounded-full shadow-2xl hover:scale-110 transition-all
-                        text-sm md:text-lg flex items-center gap-3 whitespace-nowrap border-2 border-green-400/50">
-          <i class="fab fa-whatsapp text-2xl"></i>
-          <span class="hidden xs:inline">SECURE MY SPOT NOW</span>
-          <span class="xs:hidden">APPLY</span>
-        </button>
-      </div>
-    </div>
-  </div>
-</header>
+<div id="header-placeholder"></div>
 
 <main class="flex-1 pt-56 sm:pt-64 md:pt-72 lg:pt-36 xl:pt-32 px-4 sm:px-6 text-center">
   <div class="max-w-5xl mx-auto break-words">
@@ -102,9 +65,21 @@
 </main>
 
 <div id="footer-placeholder" class="mt-auto"></div>
+
 <script>
-  // Fetch footer if needed (header is inline now)
-  fetch('footer.html?v='+Date.now()).then(r=>r.ok?r.text():'').then(f=>document.getElementById('footer-placeholder').innerHTML=f);
+  // Dynamically load header (assumes header.html exists and contains the full <header> code)
+  fetch('header.html?v='+Date.now())
+    .then(r => r.ok ? r.text() : '')
+    .then(h => {
+      document.getElementById('header-placeholder').innerHTML = h;
+    });
+
+  // Dynamically load footer if you have a footer.html
+  fetch('footer.html?v='+Date.now())
+    .then(r => r.ok ? r.text() : '')
+    .then(f => {
+      document.getElementById('footer-placeholder').innerHTML = f;
+    });
 </script>
 </body>
 </html>
