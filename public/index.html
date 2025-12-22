@@ -27,7 +27,6 @@
       overflow-x: hidden;
       width: 100%;
     }
-
     /* === MAIN PADDING – PERFECT CLEARANCE FOR FIXED HEADER ON ALL DEVICES === */
     main {
       padding-top: calc(220px + env(safe-area-inset-top, 0px)); /* Mobile/small */
@@ -42,7 +41,6 @@
     @media (min-width: 1024px) {
       main { padding-top: calc(140px + env(safe-area-inset-top, 0px)); } /* Laptop/desktop */
     }
-
     /* === TIER NAME BADGE === */
     #tier-name {
       display: inline-block;
@@ -63,7 +61,6 @@
     @media (min-width: 1025px) { #tier-name { font-size: 7.5rem !important; padding: 2.5rem 5rem !important; } }
     #tier-name span { display: inline-block; white-space: nowrap; }
     @media (max-width: 480px) { #tier-name span { white-space: normal; } }
-
     /* === BADGES === */
     .badge {
       display: inline-block;
@@ -76,7 +73,6 @@
       letter-spacing: 0.1em;
     }
     @media (min-width: 640px) { .badge { font-size: 1rem; padding: 0.875rem 1.75rem; } }
-
     .founding-badge {
       position: absolute;
       top: -1.5rem;
@@ -97,7 +93,6 @@
       white-space: nowrap;
     }
     @media (min-width: 640px) { .founding-badge { padding: 0.875rem 2rem; font-size: 0.875rem; } }
-
     /* === PRICING CARDS === */
     .pricing-card {
       position: relative;
@@ -116,7 +111,6 @@
     }
     @media (min-width: 640px) { .pricing-card { padding: 2rem 1.5rem; min-height: 560px; width: 90vw; max-width: 360px; } }
     @media (min-width: 768px) { .pricing-card { width: 30vw; max-width: none; } }
-
     .pricing-scroll-container {
       display: flex;
       flex-direction: row;
@@ -137,7 +131,6 @@
     @media (min-width: 640px) { .pricing-scroll-container { padding: 2rem 1.5rem 3rem 1.5rem; gap: 1.25rem; } }
     @media (min-width: 768px) { .pricing-scroll-container { overflow-x: visible; justify-content: center; gap: 1.5rem; } }
     @media (min-width: 1024px) { .pricing-scroll-container { gap: 2rem; max-width: 1200px; margin: 0 auto; padding: 2rem 0; } }
-
     /* === FEATURE TABLE === */
     .feature-table-container {
       overflow-x: auto;
@@ -177,10 +170,8 @@
       .feature-table-container table td:first-child,
       .feature-table-container table th:first-child { min-width: auto; max-width: none; }
     }
-
     .scroll-indicator { display: block; text-align: center; color: #10b981; font-size: 0.75rem; margin-top: 0.5rem; opacity: 0.8; }
     @media (min-width: 768px) { .scroll-indicator { display: none; } }
-
     /* === CONTAINER WIDTH === */
     .content-container {
       width: 100%;
@@ -190,42 +181,59 @@
     }
     @media (min-width: 640px) { .content-container { padding: 0 1.5rem; } }
     @media (min-width: 1024px) { .content-container { padding: 0 2rem; } }
-
-    /* === WHY TRUST US CARDS – ORIGINAL 100% SIZE RESTORED (as requested) === */
-    .why-trust-card {
-      background: rgba(24, 24, 27, 0.7);
-      backdrop-filter: blur(10px);
-      border: 1px solid #3f3f46;
-      border-radius: 1.5rem;
-      padding: 2rem 1.5rem;
-      text-align: center;
-      min-height: unset;
-      overflow: hidden;
-    }
-    @media (min-width: 640px) { .why-trust-card { padding: 2.5rem 2rem; } }
-    @media (min-width: 768px) { .why-trust-card { padding: 4rem 2.5rem; } }
-
-    .why-trust-card > div:first-child {
-      font-size: 4.5rem;
-      font-weight: 900;
-      color: #10b981;
-      margin-bottom: 1.5rem;
-      line-height: 1;
-    }
-    @media (min-width: 640px) {
-      .why-trust-card > div:first-child { font-size: 5.5rem; }
-    }
-    @media (min-width: 768px) {
-      .why-trust-card > div:first-child { font-size: 5.5rem; }
-    }
-
-    .why-trust-card h3 { font-size: 1.25rem; font-weight: 900; margin-bottom: 0.75rem; }
-    @media (min-width: 640px) { .why-trust-card h3 { font-size: 1.5rem; } }
-    .why-trust-card p { opacity: 0.9; font-size: 0.95rem; line-height: 1.6; }
-    @media (min-width: 640px) { .why-trust-card p { font-size: 1.05rem; } }
+    /* === WHY TRUST US CARDS – PERFECT POSITIONING FOR 100% AND 24/7 === */
+.why-trust-card {
+  background: rgba(24, 24, 27, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid #3f3f46;
+  border-radius: 1.5rem;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 280px; /* Ensures consistent card height */
+}
+.why-trust-card .big-number {
+  font-size: 4rem; /* Balanced base size */
+  font-weight: 900;
+  color: #10b981;
+  line-height: 1;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80px; /* Perfect centering for "24/7" */
+}
+@media (min-width: 640px) {
+  .why-trust-card .big-number { font-size: 5rem; min-height: 100px; }
+}
+@media (min-width: 768px) {
+  .why-trust-card .big-number { font-size: 5.5rem; min-height: 110px; }
+}
+@media (min-width: 1024px) {
+  .why-trust-card .big-number { font-size: 6rem; min-height: 120px; }
+}
+.why-trust-card h3 {
+  font-size: 1.25rem;
+  font-weight: 900;
+  margin-bottom: 0.75rem;
+  min-height: 3rem;
+}
+@media (min-width: 640px) {
+  .why-trust-card h3 { font-size: 1.5rem; }
+}
+.why-trust-card p {
+  opacity: 0.9;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+@media (min-width: 640px) {
+  .why-trust-card p { font-size: 1.05rem; }
+}
   </style>
 </head>
-
 <body class="min-h-screen flex flex-col">
   <div id="header-placeholder"></div>
   <!-- 1. HERO SECTION -->
@@ -255,36 +263,36 @@
       </div>
     </div>
   </main>
-  <!-- 2. WHY TRUST US -->
-  <section class="py-32 px-6 bg-zinc-950">
-    <div class="max-w-6xl mx-auto">
-      <h2 class="text-5xl sm:text-6xl md:text-7xl font-black text-center mb-20">
-        Why South African Law Firms Can Trust LexPilot
-      </h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-        <div class="why-trust-card">
-          <div class="text-8xl font-black text-green-400 mb-4">100%</div>
-          <h3 class="text-2xl font-black mb-3">POPIA Compliant</h3>
-          <p class="opacity-90">Fully audited, data never leaves South Africa</p>
-        </div>
-        <div class="why-trust-card">
-          <div class="text-8xl font-black text-green-400 mb-4">0</div>
-          <h3 class="text-2xl font-black mb-3">Trust Account Risk</h3>
-          <p class="opacity-90">Blocks illegal transfers and reduces errors</p>
-        </div>
-        <div class="why-trust-card">
-          <div class="text-8xl font-black text-green-400 mb-4">SA</div>
-          <h3 class="text-2xl font-black mb-3">Designed for SA Law Firms</h3>
-          <p class="opacity-90">Matches local legal workflows</p>
-        </div>
-        <div class="why-trust-card">
-          <div class="text-8xl font-black text-green-400 mb-4">24/7</div>
-          <h3 class="text-2xl font-black mb-3">Founder Access</h3>
-          <p class="opacity-90">Direct contact, no sales team</p>
-        </div>
+<!-- 2. WHY TRUST US – PERFECTLY BALANCED NOW -->
+<section class="py-32 px-6 bg-zinc-950">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-5xl sm:text-6xl md:text-7xl font-black text-center mb-20">
+      Why South African Law Firms Can Trust LexPilot
+    </h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+      <div class="why-trust-card">
+        <div class="big-number">100%</div>
+        <h3>POPIA Compliant</h3>
+        <p>Fully audited, data never leaves South Africa</p>
+      </div>
+      <div class="why-trust-card">
+        <div class="big-number">0</div>
+        <h3>Trust Account Risk</h3>
+        <p>Blocks illegal transfers and reduces errors</p>
+      </div>
+      <div class="why-trust-card">
+        <div class="big-number">SA</div>
+        <h3>Designed for SA Law Firms</h3>
+        <p>Matches local legal workflows</p>
+      </div>
+      <div class="why-trust-card">
+        <div class="big-number">24/7</div>
+        <h3>Founder Access</h3>
+        <p>Direct contact, no sales team</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
   <!-- PRICING -->
   <section id="pricing" class="py-24 px-6 bg-black">
     <div class="max-w-6xl mx-auto text-center">
@@ -299,7 +307,7 @@
           <div class="text-6xl sm:text-7xl font-black text-green-400 leading-none">R999<span class="text-3xl sm:text-4xl">/mo</span></div>
           <p class="text-lg sm:text-xl opacity-70 my-3 sm:my-5"><s>R2,999</s></p>
           <p class="text-xl sm:text-2xl mb-3 sm:mb-4">Setup R0</p>
-       
+        
           <button data-tier="Growth" class="claim-btn mt-8 sm:mt-12 w-full bg-gradient-to-r from-green-500 to-emerald-600 text-black font-black text-xl sm:text-2xl py-4 sm:py-6 rounded-2xl hover:scale-105 transition">
             CLAIM GROWTH SPOT
           </button>
@@ -312,7 +320,7 @@
           <div class="text-6xl sm:text-7xl font-black text-green-400 leading-none">R2,999<span class="text-3xl sm:text-4xl">/mo</span></div>
           <p class="text-lg sm:text-xl opacity-70 my-3 sm:my-5"><s>R7,999</s></p>
           <p class="text-xl sm:text-2xl mb-3 sm:mb-4">Setup R4,999 <span class="text-green-400 text-xs sm:text-sm block">(waived first 100)</span></p>
-     
+    
           <button data-tier="Dominance" class="claim-btn mt-8 sm:mt-10 w-full bg-yellow-400 text-black font-black text-xl sm:text-2xl py-4 sm:py-6 rounded-2xl hover:scale-105 transition">
             <span id="dominance-btn-text">CLAIM DOMINANCE SPOT</span>
           </button>
@@ -357,34 +365,33 @@
             <tr class="border-b border-zinc-800"><td class="px-8 py-6">Professional website on yourfirm.LexPilot.com</td><td class="text-center text-green-400 font-bold">Yes</td><td class="text-center text-green-400 font-bold">Yes</td><td class="text-center text-green-400 font-bold">Yes</td></tr>
             <tr class="border-b border-zinc-800"><td class="px-8 py-6">AI full-site generator + no-code editor</td><td class="text-center text-green-400 font-bold">Yes</td><td class="text-center text-green-400 font-bold">Yes</td><td class="text-center text-green-400 font-bold">Yes</td></tr>
             <tr class="border-b border-zinc-800"><td class="px-8 py-6">Calendar booking</td><td class="text-center text-green-400 font-bold">Yes</td><td class="text-center text-green-400 font-bold">Yes</td><td class="text-center text-green-400 font-bold">Yes</td></tr>
-          <tr class="bg-green-900/20 border-b-4 border-green-600">
-  <td class="px-8 py-10 font-bold text-2xl text-green-300 leading-tight">
-    The Smartest Billing System Ever Built for SA Attorneys<br>
-    <span class="block mt-3 text-base font-normal opacity-90">
-      • Timer or manual entry → auto-pulls client, case, rate, VAT & trust balance<br>
-      • Pause + add multiple services in one session (no lost time, no extra modals)<br>
-      • Bulk invoice 50 matters in 60 seconds • PDF generated & sent instantly<br>
-      • One-click Payfast links in every invoice → auto-marks paid on receipt
-    </span>
-  </td>
-  <td class="text-center text-green-400 font-bold text-4xl">YES</td>
-  <td class="text-center text-green-400 font-bold text-4xl">YES</td>
-  <td class="text-center text-green-400 font-bold text-4xl">YES</td>
-</tr>
-
-<tr class="bg-red-900/20 border-b-4 border-red-700">
-  <td class="px-8 py-10 font-bold text-2xl text-red-300 leading-tight">
-    Never Risk Trust Account Violations Again<br>
-    <span class="block mt-3 text-base font-normal opacity-90">
-      • Real-time Rule 54 & 86 alerts — stops overdraws before they happen<br>
-      • Auto-caps trust deductions to available balance only<br>
-      • Full audit trail & trust ledger per client/case
-    </span>
-  </td>
-  <td class="text-center text-green-400 font-bold text-4xl">YES</td>
-  <td class="text-center text-green-400 font-bold text-4xl">YES</td>
-  <td class="text-center text-green-400 font-bold text-4xl">YES</td>
-</tr>
+            <tr class="bg-green-900/20 border-b-4 border-green-600">
+              <td class="px-8 py-10 font-bold text-2xl text-green-300 leading-tight">
+                The Smartest Billing System Ever Built for SA Attorneys<br>
+                <span class="block mt-3 text-base font-normal opacity-90">
+                  • Timer or manual entry → auto-pulls client, case, rate, VAT & trust balance<br>
+                  • Pause + add multiple services in one session (no lost time, no extra modals)<br>
+                  • Bulk invoice 50 matters in 60 seconds • PDF generated & sent instantly<br>
+                  • One-click Payfast links in every invoice → auto-marks paid on receipt
+                </span>
+              </td>
+              <td class="text-center text-green-400 font-bold text-4xl">YES</td>
+              <td class="text-center text-green-400 font-bold text-4xl">YES</td>
+              <td class="text-center text-green-400 font-bold text-4xl">YES</td>
+            </tr>
+            <tr class="bg-red-900/20 border-b-4 border-red-700">
+              <td class="px-8 py-10 font-bold text-2xl text-red-300 leading-tight">
+                Never Risk Trust Account Violations Again<br>
+                <span class="block mt-3 text-base font-normal opacity-90">
+                  • Real-time Rule 54 & 86 alerts — stops overdraws before they happen<br>
+                  • Auto-caps trust deductions to available balance only<br>
+                  • Full audit trail & trust ledger per client/case
+                </span>
+              </td>
+              <td class="text-center text-green-400 font-bold text-4xl">YES</td>
+              <td class="text-center text-green-400 font-bold text-4xl">YES</td>
+              <td class="text-center text-green-400 font-bold text-4xl">YES</td>
+            </tr>
             <tr class="border-b border-zinc-800"><td class="px-8 py-6">Client deposit capture (card / EFT / Ozow)</td><td class="text-center text-red-500 font-bold">No</td><td class="text-center text-green-400 font-bold">Yes</td><td class="text-center text-green-400 font-bold">Yes</td></tr>
             <tr class="border-b border-zinc-800"><td class="px-8 py-6">Lead dashboard</td><td class="text-center text-red-500 font-bold">No</td><td class="text-center text-green-400 font-bold">Yes</td><td class="text-center text-green-400 font-bold">Yes</td></tr>
             <tr class="border-b border-zinc-800"><td class="px-8 py-6">Automated sequences (chaser, nurturing, referrals)</td><td class="text-center text-red-500 font-bold">No</td><td class="text-center text-green-400 font-bold">Yes</td><td class="text-center text-green-400 font-bold">Yes</td></tr>
@@ -401,18 +408,17 @@
             </tr>
             <tr class="border-b border-zinc-800"><td class="px-8 py-6 text-amber-200">AI Brief & Letter Writer (SA-law trained)</td><td class="text-center text-red-500 font-bold">No</td><td class="text-center text-red-500 font-bold">No</td><td class="text-center text-green-400 font-bold">Yes</td></tr>
             <tr class="border-b border-zinc-800"><td class="px-8 py-6">White-label, custom domain, strategy day</td><td class="text-center text-red-500 font-bold">No</td><td class="text-center text-red-500 font-bold">No</td><td class="text-center text-green-400 font-bold">Yes</td></tr>
-          <tr class="bg-green-900/30 border-t-4 border-b-4 border-green-600">
-  <td class="px-8 py-10 font-bold text-2xl text-green-300">
-    Founding Member Referral Rewards<br>
-    <span class="block mt-4 text-base font-normal opacity-95 leading-relaxed">
-      • Refer 1 firm → Your next 12 months FREE<br>
-      • Refer 2 firms → Your account <strong class="text-green-400">FREE FOREVER</strong><br>
-      • Only your two longest-paying referrals count<br>
-      • Credit applied after their 6th paid invoice and manual verification of legitimate, independent firms<br>
-      • We reserve the right to deny or revoke credits for suspected abuse or collusion
-    </span>
-  </td>
-
+            <tr class="bg-green-900/30 border-t-4 border-b-4 border-green-600">
+              <td class="px-8 py-10 font-bold text-2xl text-green-300">
+                Founding Member Referral Rewards<br>
+                <span class="block mt-4 text-base font-normal opacity-95 leading-relaxed">
+                  • Refer 1 firm → Your next 12 months FREE<br>
+                  • Refer 2 firms → Your account <strong class="text-green-400">FREE FOREVER</strong><br>
+                  • Only your two longest-paying referrals count<br>
+                  • Credit applied after their 6th paid invoice and manual verification of legitimate, independent firms<br>
+                  • We reserve the right to deny or revoke credits for suspected abuse or collusion
+                </span>
+              </td>
               <td class="text-center text-green-400 font-bold text-4xl">YES</td>
               <td class="text-center text-green-400 font-bold text-4xl">YES</td>
               <td class="text-center text-green-400 font-bold text-4xl">YES</td>
@@ -454,21 +460,21 @@
       </div>
     </div>
   </section>
-<!-- REFERRAL REWARDS -->
-<section class="py-24 px-6 bg-black">
-  <div class="max-w-6xl mx-auto text-center">
-    <h2 class="text-5xl font-black mb-10">Founding Member Referral Rewards</h2>
-    <div class="text-xl space-y-5 max-w-3xl mx-auto">
-      <p>Refer 1 firm → Your next 12 months FREE</p>
-      <p>Refer 2 firms → Your account <strong class="text-green-400">FREE FOREVER</strong></p>
-      <p class="mt-8 text-lg opacity-70">
-        • Unlimited referrals • Only your two longest-paying referrals count<br>
-        • Credit applied after their 6th paid invoice and manual verification of legitimate, independent firms<br>
-        • We reserve the right to deny or revoke credits for suspected abuse or collusion
-      </p>
+  <!-- REFERRAL REWARDS -->
+  <section class="py-24 px-6 bg-black">
+    <div class="max-w-6xl mx-auto text-center">
+      <h2 class="text-5xl font-black mb-10">Founding Member Referral Rewards</h2>
+      <div class="text-xl space-y-5 max-w-3xl mx-auto">
+        <p>Refer 1 firm → Your next 12 months FREE</p>
+        <p>Refer 2 firms → Your account <strong class="text-green-400">FREE FOREVER</strong></p>
+        <p class="mt-8 text-lg opacity-70">
+          • Unlimited referrals • Only your two longest-paying referrals count<br>
+          • Credit applied after their 6th paid invoice and manual verification of legitimate, independent firms<br>
+          • We reserve the right to deny or revoke credits for suspected abuse or collusion
+        </p>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
   <!-- SECURITY / COMPLIANCE -->
   <section class="py-24 px-6 bg-zinc-950">
     <div class="max-w-6xl mx-auto text-center">
@@ -507,28 +513,28 @@
   <section id="quiz-results" class="py-20 px-6 bg-black hidden">
     <div class="max-w-5xl mx-auto text-center">
       <h2 class="text-4xl md:text-6xl font-black mb-10 text-green-400">Your Perfect Founding Plan</h2>
-   <div class="relative inline-block mb-12">
-  <div id="tier-name" 
-       class="inline-block px-6 sm:px-10 md:px-16 py-5 sm:py-7 md:py-8 
-              rounded-full text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl 
-              font-black text-black shadow-2xl text-center leading-none">
-    <span class="inline-block max-w-full">CALCULATING...</span>
-  </div>
-  <div id="popular-badge" class="founding-badge" style="display:none">FOUNDING PRICE – LOCKED FOREVER</div>
-</div>
+      <div class="relative inline-block mb-12">
+        <div id="tier-name"
+             class="inline-block px-6 sm:px-10 md:px-16 py-5 sm:py-7 md:py-8
+                    rounded-full text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl
+                    font-black text-black shadow-2xl text-center leading-none">
+          <span class="inline-block max-w-full">CALCULATING...</span>
+        </div>
+        <div id="popular-badge" class="founding-badge" style="display:none">FOUNDING PRICE – LOCKED FOREVER</div>
+      </div>
       <div id="tier-price" class="text-6xl md:text-8xl font-black text-green-400 mb-8"></div>
       <div id="final-total" class="text-4xl opacity-80 mb-12"></div>
       <div id="recommended-list" class="max-w-4xl mx-auto text-left text-xl leading-relaxed bg-zinc-900/50 rounded-3xl p-10"></div>
       <form id="quiz-payfast-form" class="payfast-form mt-16 max-w-2xl mx-auto" data-tier="Dominance"></form>
     </div>
   </section>
-<!-- Floating WhatsApp Button (Pre-Quiz Early Access CTA) -->
-<a href="https://wa.me/27764312871?text=Hi%20LexPilot!%20I%E2%80%99m%20interested%20in%20Early%20Access%20Founding%20Partner%20spot.%20I%E2%80%99d%20like%20to%20see%20which%20tier%20fits%20my%20firm%20best%20and%20lock%20in%20my%20spot."
-   class="fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-white text-black rounded-full shadow-2xl pl-5 pr-7 py-4 font-bold hover:scale-110 transition">
-  <span class="absolute inset-0 rounded-full bg-green-500 opacity-75 animate-ping"></span>
-  <i class="fab fa-whatsapp text-4xl text-green-500"></i>
-  <span class="hidden md:block">Chat with founder<br><small>Reply in under 60 sec</small></span>
-</a>
+  <!-- Floating WhatsApp Button (Pre-Quiz Early Access CTA) -->
+  <a href="https://wa.me/27764312871?text=Hi%20LexPilot!%20I%E2%80%99m%20interested%20in%20Early%20Access%20Founding%20Partner%20spot.%20I%E2%80%99d%20like%20to%20see%20which%20tier%20fits%20my%20firm%20best%20and%20lock%20in%20my%20spot."
+     class="fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-white text-black rounded-full shadow-2xl pl-5 pr-7 py-4 font-bold hover:scale-110 transition">
+    <span class="absolute inset-0 rounded-full bg-green-500 opacity-75 animate-ping"></span>
+    <i class="fab fa-whatsapp text-4xl text-green-500"></i>
+    <span class="hidden md:block">Chat with founder<br><small>Reply in under 60 sec</small></span>
+  </a>
   <div id="footer-placeholder" class="mt-auto"></div>
   <script src="script.js"></script>
 </body>
