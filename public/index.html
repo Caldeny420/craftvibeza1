@@ -181,64 +181,67 @@
     }
     @media (min-width: 640px) { .content-container { padding: 0 1.5rem; } }
     @media (min-width: 1024px) { .content-container { padding: 0 2rem; } }
- .why-trust-card {
-  background: rgba(24, 24, 27, 0.7);
-  backdrop-filter: blur(10px);
-  border: 1px solid #3f3f46;
-  border-radius: 1.5rem;
-  padding: 2rem 1.5rem;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 280px;
-  overflow: hidden;
-  box-sizing: border-box;
-}
-.why-trust-card .big-number {
-  font-size: 4rem;
-  font-weight: 900;
-  color: #10b981;
-  line-height: 1;
-  margin-bottom: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  max-width: 100%; /* Prevents overflow */
-  min-height: 80px;
-  padding: 0 0.5rem;
-}
-@media (min-width: 640px) {
-  .why-trust-card .big-number { font-size: 4.5rem; min-height: 90px; }
-}
-@media (min-width: 768px) {
-  .why-trust-card .big-number { font-size: 5rem; min-height: 100px; }
-}
-@media (min-width: 1024px) {
-  .why-trust-card .big-number { font-size: 5.5rem; min-height: 110px; }
-}
-@media (min-width: 1280px) {
-  .why-trust-card .big-number { font-size: 6rem; min-height: 120px; }
-}
-.why-trust-card h3 {
-  font-size: 1.25rem;
-  font-weight: 900;
-  margin-bottom: 0.75rem;
-  min-height: 3rem;
-}
-@media (min-width: 640px) {
-  .why-trust-card h3 { font-size: 1.5rem; }
-}
-.why-trust-card p {
-  opacity: 0.9;
-  font-size: 0.95rem;
-  line-height: 1.6;
-}
-@media (min-width: 640px) {
-  .why-trust-card p { font-size: 1.05rem; }
-}
+    /* === WHY TRUST US CARDS – FIXED TO PREVENT EDGE TOUCHING === */
+    .why-trust-card {
+      background: rgba(24, 24, 27, 0.7);
+      backdrop-filter: blur(10px);
+      border: 1px solid #3f3f46;
+      border-radius: 1.5rem;
+      padding: 2.5rem 2rem; /* Increased padding for breathing room */
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 280px;
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+    .why-trust-card .big-number {
+      font-size: 3.5rem; /* Reduced base size to fit comfortably */
+      font-weight: 900;
+      color: #10b981;
+      line-height: 1;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 90%; /* Caps width to prevent touching edges */
+      min-height: 70px;
+      padding: 0 1rem; /* Extra horizontal padding */
+      background: rgba(16, 185, 129, 0.1); /* Subtle glow for better separation */
+      border-radius: 1rem;
+    }
+    @media (min-width: 640px) {
+      .why-trust-card .big-number { font-size: 4rem; min-height: 80px; max-width: 95%; }
+    }
+    @media (min-width: 768px) {
+      .why-trust-card .big-number { font-size: 4.5rem; min-height: 90px; }
+    }
+    @media (min-width: 1024px) {
+      .why-trust-card .big-number { font-size: 5rem; min-height: 100px; max-width: 100%; }
+    }
+    @media (min-width: 1280px) {
+      .why-trust-card .big-number { font-size: 5.5rem; min-height: 110px; }
+    }
+    .why-trust-card h3 {
+      font-size: 1.25rem;
+      font-weight: 900;
+      margin-bottom: 0.75rem;
+      min-height: 3rem;
+    }
+    @media (min-width: 640px) {
+      .why-trust-card h3 { font-size: 1.5rem; }
+    }
+    .why-trust-card p {
+      opacity: 0.9;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    @media (min-width: 640px) {
+      .why-trust-card p { font-size: 1.05rem; }
+    }
   </style>
 </head>
 <body class="min-h-screen flex flex-col">
@@ -270,36 +273,36 @@
       </div>
     </div>
   </main>
-<!-- 2. WHY TRUST US – PERFECTLY BALANCED NOW -->
-<section class="py-32 px-6 bg-zinc-950">
-  <div class="max-w-6xl mx-auto">
-    <h2 class="text-5xl sm:text-6xl md:text-7xl font-black text-center mb-20">
-      Why South African Law Firms Can Trust LexPilot
-    </h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-      <div class="why-trust-card">
-        <div class="big-number">100%</div>
-        <h3>POPIA Compliant</h3>
-        <p>Fully audited, data never leaves South Africa</p>
-      </div>
-      <div class="why-trust-card">
-        <div class="big-number">0</div>
-        <h3>Trust Account Risk</h3>
-        <p>Blocks illegal transfers and reduces errors</p>
-      </div>
-      <div class="why-trust-card">
-        <div class="big-number">SA</div>
-        <h3>Designed for SA Law Firms</h3>
-        <p>Matches local legal workflows</p>
-      </div>
-      <div class="why-trust-card">
-        <div class="big-number">24/7</div>
-        <h3>Founder Access</h3>
-        <p>Direct contact, no sales team</p>
+  <!-- 2. WHY TRUST US – FIXED TO PREVENT EDGE TOUCHING -->
+  <section class="py-32 px-6 bg-zinc-950">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-5xl sm:text-6xl md:text-7xl font-black text-center mb-20">
+        Why South African Law Firms Can Trust LexPilot
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div class="why-trust-card">
+          <div class="big-number">100%</div>
+          <h3>POPIA Compliant</h3>
+          <p>Fully audited, data never leaves South Africa</p>
+        </div>
+        <div class="why-trust-card">
+          <div class="big-number">0</div>
+          <h3>Trust Account Risk</h3>
+          <p>Blocks illegal transfers and reduces errors</p>
+        </div>
+        <div class="why-trust-card">
+          <div class="big-number">SA</div>
+          <h3>Designed for SA Law Firms</h3>
+          <p>Matches local legal workflows</p>
+        </div>
+        <div class="why-trust-card">
+          <div class="big-number">24/7</div>
+          <h3>Founder Access</h3>
+          <p>Direct contact, no sales team</p>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
   <!-- PRICING -->
   <section id="pricing" class="py-24 px-6 bg-black">
     <div class="max-w-6xl mx-auto text-center">
