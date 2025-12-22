@@ -1,27 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Acceptable Use Policy – LexPilot</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com"></script>
-<style>
-  body { font-family: 'Inter', sans-serif; background: #000; color: #fff; }
-  .break-words { word-break: break-word; hyphens: auto; overflow-wrap: break-word; }
-  /* Fluid typography – keeps text fitting horizontally */
-  .fluid-body { font-size: clamp(1rem, 4vw, 1.25rem); line-height: 1.5; }
-  .fluid-title { font-size: clamp(1.75rem, 6vw, 3rem); line-height: 1.2; }
-  .fluid-heading { font-size: clamp(3rem, 12vw, 6rem); line-height: 1.1; }
-  .fluid-subheading { font-size: clamp(2.5rem, 8vw, 4rem); line-height: 1.2; }
-  .fluid-question { font-size: clamp(2rem, 7vw, 3.5rem); line-height: 1.2; }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acceptable Use Policy – LexPilot</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: 'Inter', sans-serif; background: #000; color: #fff; margin: 0; padding: 0; }
+    .break-words { word-break: break-word; hyphens: auto; overflow-wrap: break-word; }
+    /* Fluid typography for perfect horizontal fit */
+    .fluid-body { font-size: clamp(1rem, 4vw, 1.25rem); line-height: 1.5; }
+    .fluid-title { font-size: clamp(1.75rem, 6vw, 3rem); line-height: 1.2; }
+    .fluid-heading { font-size: clamp(3rem, 12vw, 6rem); line-height: 1.1; }
+    .fluid-subheading { font-size: clamp(2.5rem, 8vw, 4rem); line-height: 1.2; }
+    .fluid-question { font-size: clamp(2rem, 7vw, 3.5rem); line-height: 1.2; }
+  </style>
 </head>
 <body class="min-h-screen flex flex-col">
-<div id="header-placeholder"></div>
-<main class="flex-1 pt-48 sm:pt-56 md:pt-64 lg:pt-32 xl:pt-28 px-4 sm:px-6 text-center">
+<header class="fixed top-0 left-0 right-0 z-[999] bg-black/95 backdrop-blur-2xl border-b border-green-500/20">
+  <div class="max-w-7xl mx-auto px-5 py-4">
+    <div class="flex flex-col lg:flex-row items-center justify-between gap-4">
+      <!-- Logo + Name -->
+      <a href="/" class="flex items-center gap-4 group">
+        <img src="/images/lexpilot-logo.jpg" alt="LexPilot Logo"
+             class="h-10 md:h-12 rounded-full shadow-2xl ring-4 ring-green-500/30
+                    transition-all duration-300 group-hover:scale-110 group-hover:ring-green-400">
+        <span class="hidden md:flex items-baseline font-black tracking-tighter leading-none">
+          <span class="text-3xl md:text-4xl text-white">Lex</span>
+          <span class="text-4xl md:text-5xl text-green-400">Pilot</span>
+        </span>
+      </a>
+      <!-- Scarcity Banner -->
+      <div class="bg-gradient-to-r from-red-600 to-red-700 text-white font-black
+                      px-5 py-2.5 md:px-6 md:py-3 rounded-full text-sm md:text-base
+                      animate-pulse shadow-2xl border-2 border-yellow-400/50
+                      flex items-center gap-2.5 whitespace-nowrap">
+        ONLY <span class="text-yellow-300 text-lg md:text-xl font-black">500</span> FOUNDING PARTNER SPOTS
+      </div>
+      <!-- Right side: Nav + WhatsApp CTA -->
+      <div class="flex items-center gap-6 lg:gap-10">
+        <nav class="hidden lg:flex items-center gap-10 text-base font-bold">
+          <a href="#pricing" class="text-white/80 hover:text-green-400 transition">Pricing</a>
+          <a href="#features" class="text-white/80 hover:text-green-400 transition">Features</a>
+        </nav>
+        <button onclick="startQuiz()"
+                class="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700
+                        text-black font-black px-7 py-4 rounded-full shadow-2xl hover:scale-110 transition-all
+                        text-sm md:text-lg flex items-center gap-3 whitespace-nowrap border-2 border-green-400/50">
+          <i class="fab fa-whatsapp text-2xl"></i>
+          <span class="hidden xs:inline">SECURE MY SPOT NOW</span>
+          <span class="xs:hidden">APPLY</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="flex-1 pt-56 sm:pt-64 md:pt-72 lg:pt-36 xl:pt-32 px-4 sm:px-6 text-center">
   <div class="max-w-5xl mx-auto break-words">
-    <h1 class="fluid-heading font-black text-green-400 leading-none">ACCEPTABLE<br class="sm:hidden"> USE POLICY</h1>
+    <h1 class="fluid-heading font-black text-green-400 leading-none mt-4">ACCEPTABLE<br class="sm:hidden"> USE POLICY</h1>
     <div class="mt-12 sm:mt-16 bg-zinc-900/90 backdrop-blur border-4 border-green-500 rounded-3xl p-6 sm:p-10 md:p-16 lg:p-20">
       <p class="fluid-subheading font-black text-green-400 mb-12">LexPilot Acceptable Use Policy</p>
       <p class="fluid-body opacity-90 mb-8">This Acceptable Use Policy ("AUP") outlines the rules for using LexPilot. Violation may result in suspension or termination of your account. This supplements the Terms of Service.</p>
@@ -61,9 +100,10 @@
     </div>
   </div>
 </main>
+
 <div id="footer-placeholder" class="mt-auto"></div>
 <script>
-  fetch('header.html?v='+Date.now()).then(r=>r.ok?r.text():'').then(h=>document.getElementById('header-placeholder').innerHTML=h);
+  // Fetch footer if needed (header is inline now)
   fetch('footer.html?v='+Date.now()).then(r=>r.ok?r.text():'').then(f=>document.getElementById('footer-placeholder').innerHTML=f);
 </script>
 </body>
