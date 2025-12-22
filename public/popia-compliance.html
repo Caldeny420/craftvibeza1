@@ -1,44 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>POPIA Compliance – LexPilot</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com"></script>
-<style>body{font-family:'Inter',sans-serif;background:#000;color:#fff;}</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>POPIA Compliance – LexPilot</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: 'Inter', sans-serif; background: #000; color: #fff; margin: 0; padding: 0; }
+    .break-words { word-break: break-word; hyphens: auto; overflow-wrap: break-word; }
+    /* Fluid typography for perfect horizontal fit on all devices */
+    .fluid-body { font-size: clamp(1rem, 4vw, 1.25rem); line-height: 1.5; }
+    .fluid-title { font-size: clamp(1.75rem, 6vw, 3rem); line-height: 1.2; }
+    .fluid-heading { font-size: clamp(3rem, 12vw, 6rem); line-height: 1.1; }
+    .fluid-subheading { font-size: clamp(2.5rem, 8vw, 4rem); line-height: 1.2; }
+    .fluid-question { font-size: clamp(2rem, 7vw, 3.5rem); line-height: 1.2; }
+  </style>
 </head>
 <body class="min-h-screen flex flex-col">
 <div id="header-placeholder"></div>
-<main class="flex-1 pt-52 sm:pt-56 md:pt-60 lg:pt-32 xl:pt-28 px-6 text-center">
-  <div class="max-w-5xl mx-auto">
-    <h1 class="text-7xl sm:text-8xl md:text-9xl font-black text-green-400 leading-none">POPIA<br class="sm:hidden"> COMPLIANCE</h1>
-    <div class="mt-20 bg-zinc-900/90 backdrop-blur border-4 border-green-500 rounded-3xl p-12 sm:p-20 lg:p-32">
-      <p class="text-5xl sm:text-6xl lg:text-7xl font-black text-green-400 mb-20">Fully Compliant with South Africa's Protection of Personal Information Act</p>
-      <ul class="space-y-14 text-2xl sm:text-3xl lg:text-4xl font-medium text-left max-w-4xl mx-auto leading-relaxed">
-        <li class="text-green-300 font-black text-3xl sm:text-4xl">1. Our POPIA Commitment</li>
+
+<main class="flex-1 pt-56 sm:pt-64 md:pt-72 lg:pt-36 xl:pt-32 px-4 sm:px-6 text-center">
+  <div class="max-w-5xl mx-auto break-words">
+    <h1 class="fluid-heading font-black text-green-400 leading-none mt-4">POPIA<br class="sm:hidden"> COMPLIANCE</h1>
+    <div class="mt-12 sm:mt-16 bg-zinc-900/90 backdrop-blur border-4 border-green-500 rounded-3xl p-6 sm:p-10 md:p-16 lg:p-20">
+      <p class="fluid-subheading font-black text-green-400 mb-12">Fully Compliant with South Africa's Protection of Personal Information Act</p>
+      <ul class="space-y-8 sm:space-y-12 fluid-body font-medium text-left max-w-4xl mx-auto leading-relaxed break-words">
+        <li class="text-green-300 font-black fluid-title">1. Our POPIA Commitment</li>
         <li class="ml-8">LexPilot is 100% compliant with the Protection of Personal Information Act (POPIA), Act 4 of 2013. We process personal information responsibly, lawfully, and transparently to protect the privacy of our users and their clients.</li>
         
-        <li class="text-amber-300 font-black text-3xl sm:text-4xl mt-12">2. Data Residency</li>
+        <li class="text-amber-300 font-black fluid-title mt-8">2. Data Residency</li>
         <li class="ml-8">All personal data is stored and processed exclusively in South Africa (Johannesburg region). No data is transferred outside South Africa without explicit consent.</li>
         
-        <li class="text-green-300 font-black text-3xl sm:text-4xl mt-12">3. Lawful Basis for Processing</li>
+        <li class="text-green-300 font-black fluid-title mt-8">3. Lawful Basis for Processing</li>
         <li class="ml-8">We process data primarily on the basis of:<br>
           • Contractual necessity (to provide the Service).<br>
           • Legitimate interests (service improvements, security).<br>
           • Consent (where required, e.g., marketing).</li>
         
-        <li class="text-amber-300 font-black text-3xl sm:text-4xl mt-12">4. Accountability & Responsible Party</li>
+        <li class="text-amber-300 font-black fluid-title mt-8">4. Accountability & Responsible Party</li>
         <li class="ml-8">LexPilot acts as the Responsible Party (or Processor where applicable). We maintain records of processing activities and appoint an Information Officer (contact: privacy@lexpilot.co.za).</li>
         
-        <li class="text-green-300 font-black text-3xl sm:text-4xl mt-12">5. Security Measures</li>
+        <li class="text-green-300 font-black fluid-title mt-8">5. Security Measures</li>
         <li class="ml-8">We implement reasonable technical and organisational measures:<br>
           • Encryption (in transit and at rest).<br>
           • Access controls and RBAC.<br>
           • Regular audits and vulnerability scans.<br>
           • Breach notification to Regulator and affected parties within 72 hours.</li>
         
-        <li class="text-amber-300 font-black text-3xl sm:text-4xl mt-12">6. Data Subject Rights</li>
+        <li class="text-amber-300 font-black fluid-title mt-8">6. Data Subject Rights</li>
         <li class="ml-8">You have the right to:<br>
           • Access your personal information.<br>
           • Request correction or deletion.<br>
@@ -46,24 +57,37 @@
           • Lodge complaints with the Information Regulator.<br>
           Contact: privacy@lexpilot.co.za or WhatsApp 076 431 2871.</li>
         
-        <li class="text-green-300 font-black text-3xl sm:text-4xl mt-12">7. Sub-Processors</li>
+        <li class="text-green-300 font-black fluid-title mt-8">7. Sub-Processors</li>
         <li class="ml-8">We use trusted sub-processors (e.g., PayFast for payments, Firebase in SA region) bound by strict agreements. Full list available on request.</li>
         
-        <li class="text-amber-300 font-black text-3xl sm:text-4xl mt-12">8. Training & Policies</li>
+        <li class="text-amber-300 font-black fluid-title mt-8">8. Training & Policies</li>
         <li class="ml-8">All team members undergo POPIA training. We maintain internal policies for data handling, retention, and deletion.</li>
         
-        <li class="mt-12 text-2xl font-medium">• Effective Date: 20 December 2025<br>
+        <li class="mt-8 fluid-body">• Effective Date: 20 December 2025<br>
           • Last Updated: 20 December 2025<br>
           • Information Officer: privacy@lexpilot.co.za or WhatsApp 076 431 2871</li>
       </ul>
-      <p class="mt-24 text-yellow-400 font-black text-4xl sm:text-5xl lg:text-6xl text-center">Questions? WhatsApp 076 431 2871</p>
+      <p class="mt-16 fluid-question text-yellow-400 font-black text-center">Questions? WhatsApp 076 431 2871</p>
     </div>
   </div>
 </main>
+
 <div id="footer-placeholder" class="mt-auto"></div>
+
 <script>
-  fetch('header.html?v='+Date.now()).then(r=>r.ok?r.text():'').then(h=>document.getElementById('header-placeholder').innerHTML=h);
-  fetch('footer.html?v='+Date.now()).then(r=>r.ok?r.text():'').then(f=>document.getElementById('footer-placeholder').innerHTML=f);
+  // Dynamically load header
+  fetch('header.html?v='+Date.now())
+    .then(r => r.ok ? r.text() : '')
+    .then(h => {
+      document.getElementById('header-placeholder').innerHTML = h;
+    });
+
+  // Dynamically load footer
+  fetch('footer.html?v='+Date.now())
+    .then(r => r.ok ? r.text() : '')
+    .then(f => {
+      document.getElementById('footer-placeholder').innerHTML = f;
+    });
 </script>
 </body>
 </html>
