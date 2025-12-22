@@ -1,68 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Data Processing Agreement – LexPilot</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com"></script>
-<style>body{font-family:'Inter',sans-serif;background:#000;color:#fff;}</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Processing Agreement – LexPilot</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: 'Inter', sans-serif; background: #000; color: #fff; margin: 0; padding: 0; }
+    .break-words { word-break: break-word; hyphens: auto; overflow-wrap: break-word; }
+    /* Fluid typography for perfect horizontal fit on all devices */
+    .fluid-body { font-size: clamp(1rem, 4vw, 1.25rem); line-height: 1.5; }
+    .fluid-title { font-size: clamp(1.75rem, 6vw, 3rem); line-height: 1.2; }
+    .fluid-heading { font-size: clamp(3rem, 12vw, 6rem); line-height: 1.1; }
+    .fluid-subheading { font-size: clamp(2.5rem, 8vw, 4rem); line-height: 1.2; }
+    .fluid-question { font-size: clamp(2rem, 7vw, 3.5rem); line-height: 1.2; }
+  </style>
 </head>
 <body class="min-h-screen flex flex-col">
 <div id="header-placeholder"></div>
-<main class="flex-1 pt-52 sm:pt-56 md:pt-60 lg:pt-32 xl:pt-28 px-6 text-center">
-  <div class="max-w-5xl mx-auto">
-    <h1 class="text-7xl sm:text-8xl md:text-9xl font-black text-green-400 leading-none">DATA PROCESSING<br class="sm:hidden"> AGREEMENT</h1>
-    <div class="mt-20 bg-zinc-900/90 backdrop-blur border-4 border-green-500 rounded-3xl p-12 sm:p-20 lg:p-32">
-      <p class="text-5xl sm:text-6xl lg:text-7xl font-black text-green-400 mb-20">POPIA-Compliant Data Processing Agreement</p>
-      <p class="text-2xl opacity-90 mb-12">This Data Processing Agreement ("DPA") supplements the Terms of Service and Privacy Policy. It applies where LexPilot processes personal data on behalf of the Client (the "Firm") as a Processor under POPIA.</p>
-      <ul class="space-y-14 text-2xl sm:text-3xl lg:text-4xl font-medium text-left max-w-4xl mx-auto leading-relaxed">
-        <li class="text-green-300 font-black text-3xl sm:text-4xl">1. Definitions</li>
+
+<main class="flex-1 pt-56 sm:pt-64 md:pt-72 lg:pt-36 xl:pt-32 px-4 sm:px-6 text-center">
+  <div class="max-w-5xl mx-auto break-words">
+    <h1 class="fluid-heading font-black text-green-400 leading-none mt-4">DATA PROCESSING<br class="sm:hidden"> AGREEMENT</h1>
+    <div class="mt-12 sm:mt-16 bg-zinc-900/90 backdrop-blur border-4 border-green-500 rounded-3xl p-6 sm:p-10 md:p-16 lg:p-20">
+      <p class="fluid-subheading font-black text-green-400 mb-12">POPIA-Compliant Data Processing Agreement</p>
+      <p class="fluid-body opacity-90 mb-8">This Data Processing Agreement ("DPA") supplements the Terms of Service and Privacy Policy. It applies where LexPilot processes personal data on behalf of the Client (the "Firm") as a Processor under POPIA.</p>
+      <ul class="space-y-8 sm:space-y-12 fluid-body font-medium text-left max-w-4xl mx-auto leading-relaxed break-words">
+        <li class="text-green-300 font-black fluid-title">1. Definitions</li>
         <li class="ml-8">• "Personal Data": Any information relating to an identified or identifiable natural person.<br>
           • "Processing": Any operation performed on Personal Data.<br>
           • "Processor": LexPilot (or its sub-processors).<br>
           • "Controller": The Firm (as the data controller under POPIA).</li>
         
-        <li class="text-amber-300 font-black text-3xl sm:text-4xl mt-12">2. Processing Instructions</li>
+        <li class="text-amber-300 font-black fluid-title mt-8">2. Processing Instructions</li>
         <li class="ml-8">LexPilot processes Personal Data only on the Firm's documented instructions, including for providing the Service (billing, AI drafting, CPD tracking, trust alerts). The Firm instructs LexPilot to process data in South Africa only.</li>
         
-        <li class="text-green-300 font-black text-3xl sm:text-4xl mt-12">3. Purpose & Scope</li>
+        <li class="text-green-300 font-black fluid-title mt-8">3. Purpose & Scope</li>
         <li class="ml-8">Processing is limited to: Firm management, client data input/output, billing, compliance alerts. Categories: Firm staff, clients (names, contacts, case details). No special categories (e.g., health, race) unless explicitly provided by the Firm.</li>
         
-        <li class="text-amber-300 font-black text-3xl sm:text-4xl mt-12">4. Security Measures</li>
+        <li class="text-amber-300 font-black fluid-title mt-8">4. Security Measures</li>
         <li class="ml-8">LexPilot implements technical and organisational measures: end-to-end encryption, access controls, annual audits, breach notification within 72 hours. Data stored in Johannesburg region.</li>
         
-        <li class="text-green-300 font-black text-3xl sm:text-4xl mt-12">5. Sub-Processors</li>
+        <li class="text-green-300 font-black fluid-title mt-8">5. Sub-Processors</li>
         <li class="ml-8">Authorised sub-processors: PayFast (payments), Firebase (Google Cloud – Johannesburg region), email providers (for onboarding). List available on request. Firm may object with reasonable cause.</li>
         
-        <li class="text-amber-300 font-black text-3xl sm:text-4xl mt-12">6. Data Subject Rights</li>
+        <li class="text-amber-300 font-black fluid-title mt-8">6. Data Subject Rights</li>
         <li class="ml-8">LexPilot assists the Firm in responding to data subject requests (access, rectification, deletion). The Firm remains responsible for handling requests.</li>
         
-        <li class="text-green-300 font-black text-3xl sm:text-4xl mt-12">7. Data Deletion & Return</li>
+        <li class="text-green-300 font-black fluid-title mt-8">7. Data Deletion & Return</li>
         <li class="ml-8">Upon termination, LexPilot deletes or returns all Personal Data within 30 days, unless required by law.</li>
         
-        <li class="text-amber-300 font-black text-3xl sm:text-4xl mt-12">8. Audits & Inspections</li>
+        <li class="text-amber-300 font-black fluid-title mt-8">8. Audits & Inspections</li>
         <li class="ml-8">The Firm may audit LexPilot's compliance with this DPA once per year (reasonable notice, no disruption). LexPilot provides necessary documentation.</li>
         
-        <li class="text-green-300 font-black text-3xl sm:text-4xl mt-12">9. Governing Law</li>
+        <li class="text-green-300 font-black fluid-title mt-8">9. Governing Law</li>
         <li class="ml-8">This DPA is governed by South African law. Disputes resolved in Johannesburg courts.</li>
         
-        <li class="text-amber-300 font-black text-3xl sm:text-4xl mt-12">10. Duration & Termination</li>
+        <li class="text-amber-300 font-black fluid-title mt-8">10. Duration & Termination</li>
         <li class="ml-8">Effective during the Service term. Survives termination for obligations on data deletion and confidentiality.</li>
         
-        <li class="mt-12 text-2xl font-medium">• Effective Date: 20 December 2025<br>
+        <li class="mt-8 fluid-body">• Effective Date: 20 December 2025<br>
           • Last Updated: 20 December 2025<br>
           • Contact: privacy@lexpilot.co.za or WhatsApp 076 431 2871</li>
       </ul>
-      <p class="mt-24 text-yellow-400 font-black text-4xl sm:text-5xl lg:text-6xl text-center">Questions? WhatsApp 076 431 2871</p>
+      <p class="mt-16 fluid-question text-yellow-400 font-black text-center">Questions? WhatsApp 076 431 2871</p>
     </div>
   </div>
 </main>
+
 <div id="footer-placeholder" class="mt-auto"></div>
+
 <script>
-  fetch('header.html?v='+Date.now()).then(r=>r.ok?r.text():'').then(h=>document.getElementById('header-placeholder').innerHTML=h);
-  fetch('footer.html?v='+Date.now()).then(r=>r.ok?r.text():'').then(f=>document.getElementById('footer-placeholder').innerHTML=f);
+  // Dynamically load header
+  fetch('header.html?v='+Date.now())
+    .then(r => r.ok ? r.text() : '')
+    .then(h => {
+      document.getElementById('header-placeholder').innerHTML = h;
+    });
+
+  // Dynamically load footer
+  fetch('footer.html?v='+Date.now())
+    .then(r => r.ok ? r.text() : '')
+    .then(f => {
+      document.getElementById('footer-placeholder').innerHTML = f;
+    });
 </script>
 </body>
 </html>
+
 
