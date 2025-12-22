@@ -181,8 +181,7 @@
     }
     @media (min-width: 640px) { .content-container { padding: 0 1.5rem; } }
     @media (min-width: 1024px) { .content-container { padding: 0 2rem; } }
-    /* === WHY TRUST US CARDS – PERFECT POSITIONING FOR 100% AND 24/7 === */
-.why-trust-card {
+ .why-trust-card {
   background: rgba(24, 24, 27, 0.7);
   backdrop-filter: blur(10px);
   border: 1px solid #3f3f46;
@@ -193,10 +192,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 280px; /* Ensures consistent card height */
+  min-height: 280px;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 .why-trust-card .big-number {
-  font-size: 4rem; /* Balanced base size */
+  font-size: 4rem;
   font-weight: 900;
   color: #10b981;
   line-height: 1;
@@ -204,15 +205,21 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 80px; /* Perfect centering for "24/7" */
+  width: 100%;
+  max-width: 100%; /* Prevents overflow */
+  min-height: 80px;
+  padding: 0 0.5rem;
 }
 @media (min-width: 640px) {
-  .why-trust-card .big-number { font-size: 5rem; min-height: 100px; }
+  .why-trust-card .big-number { font-size: 4.5rem; min-height: 90px; }
 }
 @media (min-width: 768px) {
-  .why-trust-card .big-number { font-size: 5.5rem; min-height: 110px; }
+  .why-trust-card .big-number { font-size: 5rem; min-height: 100px; }
 }
 @media (min-width: 1024px) {
+  .why-trust-card .big-number { font-size: 5.5rem; min-height: 110px; }
+}
+@media (min-width: 1280px) {
   .why-trust-card .big-number { font-size: 6rem; min-height: 120px; }
 }
 .why-trust-card h3 {
