@@ -6,12 +6,18 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
+    body {
+      margin: 0;
+      padding: 0;
+      padding-top: 0 !important; /* Will be overridden by JS on the main page */
+    }
     header {
       box-shadow: 0 4px 20px rgba(0, 255, 0, 0.1);
     }
   </style>
 </head>
-<body>
+<body class="bg-gray-900 min-h-screen text-white">
+
 <header class="fixed top-0 left-0 right-0 z-[999] bg-black/95 backdrop-blur-2xl border-b border-green-500/20">
   <div class="max-w-7xl mx-auto px-5 py-4">
     <!-- Desktop Layout -->
@@ -79,5 +85,6 @@
     </div>
   </div>
 </header>
+
 </body>
 </html>
