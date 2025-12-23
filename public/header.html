@@ -6,23 +6,21 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    header {
-      height: auto;
-    }
     body {
       margin: 0;
       padding: 0;
+      padding-top: 0 !important; /* Will be overridden by JS on the main page */
     }
     header {
       box-shadow: 0 4px 20px rgba(0, 255, 0, 0.1);
     }
   </style>
 </head>
-<body class="bg-gray-900 min-h-screen">
+<body class="bg-gray-900 min-h-screen text-white">
+
 <header class="fixed top-0 left-0 right-0 z-[999] bg-black/95 backdrop-blur-2xl border-b border-green-500/20">
   <div class="max-w-7xl mx-auto px-5 py-4">
-
-    <!-- Desktop Layout – unchanged, perfect as original -->
+    <!-- Desktop Layout -->
     <div class="hidden lg:flex items-center justify-between gap-8">
       <a href="/" class="flex items-center gap-4 group">
         <img src="/images/lexpilot-logo.jpg" alt="LexPilot Logo"
@@ -33,14 +31,12 @@
           <span class="text-4xl md:text-5xl text-green-400">Pilot</span>
         </span>
       </a>
-
       <div class="bg-gradient-to-r from-red-600 to-red-700 text-white font-black
                   px-5 py-2.5 md:px-6 md:py-3 rounded-full text-sm md:text-base
                   animate-pulse shadow-2xl border-2 border-yellow-400/50
                   flex items-center gap-2.5 whitespace-nowrap">
         ONLY <span class="text-yellow-300 text-lg md:text-xl font-black">500</span> FOUNDING PARTNER SPOTS
       </div>
-
       <div class="flex items-center gap-6 lg:gap-10">
         <nav class="flex items-center gap-10 text-base font-bold">
           <a href="#pricing" class="text-white/80 hover:text-green-400 transition duration-300">Pricing</a>
@@ -57,9 +53,8 @@
       </div>
     </div>
 
-    <!-- Mobile Layout – Logo + Apply on top row, Banner perfectly centered below -->
+    <!-- Mobile Layout -->
     <div class="lg:hidden flex flex-col">
-      <!-- Top row: Logo left + Apply button right -->
       <div class="flex items-center justify-between mb-3">
         <a href="/" class="flex items-center gap-3 group">
           <img src="/images/lexpilot-logo.jpg" alt="LexPilot Logo"
@@ -70,7 +65,6 @@
             <span class="text-3xl text-green-400">Pilot</span>
           </span>
         </a>
-
         <button onclick="startQuiz()"
                 class="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700
                         text-black font-black px-5 py-3 rounded-full shadow-2xl hover:scale-110 transition-all duration-300
@@ -80,8 +74,6 @@
           <span class="xs:hidden">APPLY</span>
         </button>
       </div>
-
-      <!-- Bottom row: Scarcity banner perfectly centered -->
       <div class="flex justify-center">
         <div class="bg-gradient-to-r from-red-600 to-red-700 text-white font-black
                     px-5 py-2.5 rounded-full text-sm
@@ -91,6 +83,8 @@
         </div>
       </div>
     </div>
-
   </div>
 </header>
+
+</body>
+</html>
