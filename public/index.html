@@ -27,20 +27,6 @@
       overflow-x: hidden;
       width: 100%;
     }
-    /* === MAIN PADDING – PERFECT CLEARANCE FOR FIXED HEADER ON ALL DEVICES === */
-    main {
-      padding-top: calc(220px + env(safe-area-inset-top, 0px)); /* Mobile/small */
-      width: 100%;
-    }
-    @media (min-width: 640px) {
-      main { padding-top: calc(200px + env(safe-area-inset-top, 0px)); }
-    }
-    @media (min-width: 768px) {
-      main { padding-top: calc(180px + env(safe-area-inset-top, 0px)); }
-    }
-    @media (min-width: 1024px) {
-      main { padding-top: calc(140px + env(safe-area-inset-top, 0px)); } /* Laptop/desktop */
-    }
     /* === TIER NAME BADGE === */
     #tier-name {
       display: inline-block;
@@ -170,169 +156,160 @@
       .feature-table-container table td:first-child,
       .feature-table-container table th:first-child { min-width: auto; max-width: none; }
     }
-    .scroll-indicator { display: block; text-align: center; color: #10b981; font-size: 0.75rem; margin-top: 0.5rem; opacity: 0.8; }
-    @media (min-width: 768px) { .scroll-indicator { display: none; } }
-    /* === CONTAINER WIDTH === */
-    .content-container {
-      width: 100%;
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0 1rem;
+    .why-trust-card {
+      background: rgba(24, 24, 27, 0.7);
+      backdrop-filter: blur(10px);
+      border: 1px solid #3f3f46;
+      border-radius: 1.5rem;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 280px;
+      overflow: hidden;
+      box-sizing: border-box;
     }
-    @media (min-width: 640px) { .content-container { padding: 0 1.5rem; } }
-    @media (min-width: 1024px) { .content-container { padding: 0 2rem; } }
- .why-trust-card {
-  background: rgba(24, 24, 27, 0.7);
-  backdrop-filter: blur(10px);
-  border: 1px solid #3f3f46;
-  border-radius: 1.5rem;
-  padding: 2rem 1.5rem;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 280px;
-  overflow: hidden;
-  box-sizing: border-box;
-}
-.why-trust-card .big-number {
-  font-size: 4rem;
-  font-weight: 900;
-  color: #10b981;
-  line-height: 1;
-  margin-bottom: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  max-width: 100%; /* Prevents overflow */
-  min-height: 80px;
-  padding: 0 0.5rem;
-}
-@media (min-width: 640px) {
-  .why-trust-card .big-number { font-size: 4.5rem; min-height: 90px; }
-}
-@media (min-width: 768px) {
-  .why-trust-card .big-number { font-size: 5rem; min-height: 100px; }
-}
-@media (min-width: 1024px) {
-  .why-trust-card .big-number { font-size: 5.5rem; min-height: 110px; }
-}
-@media (min-width: 1280px) {
-  .why-trust-card .big-number { font-size: 6rem; min-height: 120px; }
-}
-.why-trust-card h3 {
-  font-size: 1.25rem;
-  font-weight: 900;
-  margin-bottom: 0.75rem;
-  min-height: 3rem;
-}
-@media (min-width: 640px) {
-  .why-trust-card h3 { font-size: 1.5rem; }
-}
-.why-trust-card p {
-  opacity: 0.9;
-  font-size: 0.95rem;
-  line-height: 1.6;
-}
-@media (min-width: 640px) {
-  .why-trust-card p { font-size: 1.05rem; }
-}
+    .why-trust-card .big-number {
+      font-size: 4rem;
+      font-weight: 900;
+      color: #10b981;
+      line-height: 1;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 100%;
+      min-height: 80px;
+      padding: 0 0.5rem;
+    }
+    @media (min-width: 640px) {
+      .why-trust-card .big-number { font-size: 4.5rem; min-height: 90px; }
+    }
+    @media (min-width: 768px) {
+      .why-trust-card .big-number { font-size: 5rem; min-height: 100px; }
+    }
+    @media (min-width: 1024px) {
+      .why-trust-card .big-number { font-size: 5.5rem; min-height: 110px; }
+    }
+    @media (min-width: 1280px) {
+      .why-trust-card .big-number { font-size: 6rem; min-height: 120px; }
+    }
+    .why-trust-card h3 {
+      font-size: 1.25rem;
+      font-weight: 900;
+      margin-bottom: 0.75rem;
+      min-height: 3rem;
+    }
+    @media (min-width: 640px) {
+      .why-trust-card h3 { font-size: 1.5rem; }
+    }
+    .why-trust-card p {
+      opacity: 0.9;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    @media (min-width: 640px) {
+      .why-trust-card p { font-size: 1.05rem; }
+    }
   </style>
 </head>
-<body class="min-h-screen flex flex-col">
+<body class="min-h-screen flex flex-col bg-black">
+
+  <!-- DYNAMIC HEADER PLACEHOLDER -->
   <div id="header-placeholder"></div>
-<main class="flex-1 px-4 sm:px-6 lg:px-8 text-center pt-16 sm:pt-20 md:pt-24 lg:pt-28 xl:pt-32">
-  <div class="max-w-7xl mx-auto">
-   
- <!-- Scarcity Badge - Brought back your original banner text & style, perfectly positioned -->
-    <div class="badge mb-8 sm:mb-10 lg:mb-12 text-base xs:text-lg sm:text-xl lg:text-2xl font-bold tracking-wider">
-      FOUNDING MEMBERS • ONLY 500 FOREVER • LIVE END FEB 2026
-    </div>
-    
-   
-    <!-- Main Headline -->
-    <h1 class="font-black leading-[0.92] mb-8 sm:mb-10 lg:mb-12 xl:mb-14 tracking-tighter">
-      <span class="block text-5xl xs:text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] 2xl:text-[11rem]">
-        Never risk a
-      </span>
-      <span class="block text-6xl xs:text-7xl sm:text-8xl md:text-9xl lg:text-[10rem] xl:text-[11rem] 2xl:text-[12rem] bg-gradient-to-r from-green-400 via-green-300 to-emerald-400 bg-clip-text text-transparent">
-        trust account
-      </span>
-      <span class="block text-5xl xs:text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] 2xl:text-[11rem]">
-        mistake
-      </span>
-    </h1>
-   
-    <!-- Subheadline -->
-    <p class="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-semibold opacity-95 mb-12 sm:mb-14 lg:mb-16 xl:mb-20 max-w-5xl mx-auto leading-relaxed px-4">
-      Real-time Rule 54 & 86 alerts protect your firm <span class="text-green-400 font-black">instantly</span>
-    </p>
-   
-    <!-- CTA Section -->
-    <div class="space-y-8 sm:space-y-10 lg:space-y-12">
-      <button onclick="startQuiz()" 
-              class="block w-auto mx-auto bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 
-                     text-black font-black rounded-full shadow-2xl hover:scale-105 hover:shadow-green-500/30 transition-all duration-300
-                     px-10 py-6 text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl
-                     sm:px-14 sm:py-8 lg:px-20 lg:py-10 xl:px-24 xl:py-12 border-4 border-green-400/50">
-        <span class="drop-shadow-lg">APPLY IN 90 SECONDS</span>
-      </button>
-     
-      <p class="text-base xs:text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl opacity-80 leading-relaxed px-4">
-        or 
-        <a href="https://wa.me/27764312871?text=Hi%20LexPilot%20-%20Early%20Access" 
-           target="_blank" 
-           class="text-green-400 underline hover:text-green-300 font-bold hover:no-underline transition">
-          message the founder on WhatsApp
-        </a>
-        <br class="sm:hidden">
-        <span class="text-sm xs:text-base sm:text-lg md:text-xl opacity-70 block mt-2">
-          (replies &lt;60s, 24/7)
+
+  <main class="flex-1">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <!-- Scarcity Badge -->
+      <div class="badge mb-8 sm:mb-10 lg:mb-12 text-base xs:text-lg sm:text-xl lg:text-2xl font-bold tracking-wider">
+        FOUNDING MEMBERS • ONLY 500 FOREVER • LIVE END FEB 2026
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="font-black leading-[0.92] mb-8 sm:mb-10 lg:mb-12 xl:mb-14 tracking-tighter">
+        <span class="block text-5xl xs:text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] 2xl:text-[11rem]">
+          Never risk a
         </span>
+        <span class="block text-6xl xs:text-7xl sm:text-8xl md:text-9xl lg:text-[10rem] xl:text-[11rem] 2xl:text-[12rem] bg-gradient-to-r from-green-400 via-green-300 to-emerald-400 bg-clip-text text-transparent">
+          trust account
+        </span>
+        <span class="block text-5xl xs:text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] 2xl:text-[11rem]">
+          mistake
+        </span>
+      </h1>
+
+      <!-- Subheadline -->
+      <p class="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-semibold opacity-95 mb-12 sm:mb-14 lg:mb-16 xl:mb-20 max-w-5xl mx-auto leading-relaxed px-4">
+        Real-time Rule 54 & 86 alerts protect your firm <span class="text-green-400 font-black">instantly</span>
       </p>
-    </div>
-   
-    <!-- Credibility Block -->
-    <div class="mt-20 sm:mt-24 lg:mt-28 xl:mt-32 text-base xs:text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl opacity-90 px-4">
-      <p class="font-black tracking-wider">
-        Proudly South African • 100% POPIA-compliant • Locally hosted • Fully audited
-      </p>
-    </div>
-   
-  </div>
-</main>
-<!-- 2. WHY TRUST US – PERFECTLY BALANCED NOW -->
-<section class="py-32 px-6 bg-zinc-950">
-  <div class="max-w-6xl mx-auto">
-    <h2 class="text-5xl sm:text-6xl md:text-7xl font-black text-center mb-20">
-      Why South African Law Firms Can Trust LexPilot
-    </h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-      <div class="why-trust-card">
-        <div class="big-number">100%</div>
-        <h3>POPIA Compliant</h3>
-        <p>Fully audited, data never leaves South Africa</p>
+
+      <!-- CTA Section -->
+      <div class="space-y-8 sm:space-y-10 lg:space-y-12">
+        <button onclick="startQuiz()"
+                class="block w-auto mx-auto bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700
+                       text-black font-black rounded-full shadow-2xl hover:scale-105 hover:shadow-green-500/30 transition-all duration-300
+                       px-10 py-6 text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl
+                       sm:px-14 sm:py-8 lg:px-20 lg:py-10 xl:px-24 xl:py-12 border-4 border-green-400/50">
+          <span class="drop-shadow-lg">APPLY IN 90 SECONDS</span>
+        </button>
+
+        <p class="text-base xs:text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl opacity-80 leading-relaxed px-4">
+          or
+          <a href="https://wa.me/27764312871?text=Hi%20LexPilot%20-%20Early%20Access"
+             target="_blank"
+             class="text-green-400 underline hover:text-green-300 font-bold hover:no-underline transition">
+            message the founder on WhatsApp
+          </a>
+          <br class="sm:hidden">
+          <span class="text-sm xs:text-base sm:text-lg md:text-xl opacity-70 block mt-2">
+            (replies &lt;60s, 24/7)
+          </span>
+        </p>
       </div>
-      <div class="why-trust-card">
-        <div class="big-number">0</div>
-        <h3>Trust Account Risk</h3>
-        <p>Blocks illegal transfers and reduces errors</p>
-      </div>
-      <div class="why-trust-card">
-        <div class="big-number">SA</div>
-        <h3>Designed for SA Law Firms</h3>
-        <p>Matches local legal workflows</p>
-      </div>
-      <div class="why-trust-card">
-        <div class="big-number">24/7</div>
-        <h3>Founder Access</h3>
-        <p>Direct contact, no sales team</p>
+
+      <!-- Credibility Block -->
+      <div class="mt-20 sm:mt-24 lg:mt-28 xl:mt-32 text-base xs:text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl opacity-90 px-4">
+        <p class="font-black tracking-wider">
+          Proudly South African • 100% POPIA-compliant • Locally hosted • Fully audited
+        </p>
       </div>
     </div>
-  </div>
-</section>
+  </main>
+
+  <!-- WHY TRUST US -->
+  <section class="py-32 px-6 bg-zinc-950">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-5xl sm:text-6xl md:text-7xl font-black text-center mb-20">
+        Why South African Law Firms Can Trust LexPilot
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div class="why-trust-card">
+          <div class="big-number">100%</div>
+          <h3>POPIA Compliant</h3>
+          <p>Fully audited, data never leaves South Africa</p>
+        </div>
+        <div class="why-trust-card">
+          <div class="big-number">0</div>
+          <h3>Trust Account Risk</h3>
+          <p>Blocks illegal transfers and reduces errors</p>
+        </div>
+        <div class="why-trust-card">
+          <div class="big-number">SA</div>
+          <h3>Designed for SA Law Firms</h3>
+          <p>Matches local legal workflows</p>
+        </div>
+        <div class="why-trust-card">
+          <div class="big-number">24/7</div>
+          <h3>Founder Access</h3>
+          <p>Direct contact, no sales team</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- PRICING -->
   <section id="pricing" class="py-24 px-6 bg-black">
     <div class="max-w-6xl mx-auto text-center">
@@ -347,7 +324,6 @@
           <div class="text-6xl sm:text-7xl font-black text-green-400 leading-none">R999<span class="text-3xl sm:text-4xl">/mo</span></div>
           <p class="text-lg sm:text-xl opacity-70 my-3 sm:my-5"><s>R2,999</s></p>
           <p class="text-xl sm:text-2xl mb-3 sm:mb-4">Setup R0</p>
-        
           <button data-tier="Growth" class="claim-btn mt-8 sm:mt-12 w-full bg-gradient-to-r from-green-500 to-emerald-600 text-black font-black text-xl sm:text-2xl py-4 sm:py-6 rounded-2xl hover:scale-105 transition">
             CLAIM GROWTH SPOT
           </button>
@@ -360,7 +336,6 @@
           <div class="text-6xl sm:text-7xl font-black text-green-400 leading-none">R2,999<span class="text-3xl sm:text-4xl">/mo</span></div>
           <p class="text-lg sm:text-xl opacity-70 my-3 sm:my-5"><s>R7,999</s></p>
           <p class="text-xl sm:text-2xl mb-3 sm:mb-4">Setup R4,999 <span class="text-green-400 text-xs sm:text-sm block">(waived first 100)</span></p>
-    
           <button data-tier="Dominance" class="claim-btn mt-8 sm:mt-10 w-full bg-yellow-400 text-black font-black text-xl sm:text-2xl py-4 sm:py-6 rounded-2xl hover:scale-105 transition">
             <span id="dominance-btn-text">CLAIM DOMINANCE SPOT</span>
           </button>
@@ -372,7 +347,6 @@
           <div class="text-6xl sm:text-7xl font-black text-green-400 leading-none">R9,999<span class="text-3xl sm:text-4xl">/mo</span></div>
           <p class="text-lg sm:text-xl opacity-70 my-3 sm:my-5"><s>R19,999</s></p>
           <p class="text-xl sm:text-2xl mb-3 sm:mb-4">Setup R9,999 <span class="text-green-400 text-xs sm:text-sm block">(waived first 50)</span></p>
-    
           <button data-tier="Elite" class="claim-btn mt-8 sm:mt-10 w-full bg-gradient-to-r from-amber-500 to-orange-600 text-black font-black text-xl sm:text-2xl py-4 sm:py-6 rounded-2xl hover:scale-105 transition">
             CLAIM ELITE SPOT
           </button>
@@ -381,6 +355,7 @@
       </div>
     </div>
   </section>
+
   <!-- FEATURE TABLE -->
   <section id="features" class="py-20 px-6 bg-black">
     <div class="max-w-6xl mx-auto">
@@ -477,6 +452,7 @@
       </div>
     </div>
   </section>
+
   <!-- HOW IT WORKS -->
   <section class="py-32 px-6 bg-zinc-950">
     <div class="max-w-6xl mx-auto text-center">
@@ -500,6 +476,7 @@
       </div>
     </div>
   </section>
+
   <!-- REFERRAL REWARDS -->
   <section class="py-24 px-6 bg-black">
     <div class="max-w-6xl mx-auto text-center">
@@ -515,6 +492,7 @@
       </div>
     </div>
   </section>
+
   <!-- SECURITY / COMPLIANCE -->
   <section class="py-24 px-6 bg-zinc-950">
     <div class="max-w-6xl mx-auto text-center">
@@ -526,6 +504,7 @@
       </div>
     </div>
   </section>
+
   <!-- FINAL CTA -->
   <section class="py-32 px-6 bg-gradient-to-b from-black to-zinc-950">
     <div class="max-w-6xl mx-auto text-center">
@@ -540,6 +519,7 @@
       </p>
     </div>
   </section>
+
   <!-- QUIZ OVERLAY -->
   <div id="quiz-overlay" class="fixed inset-0 bg-black/98 backdrop-blur-2xl flex items-center justify-center z-[1000] hidden px-4 overflow-y-auto">
     <div class="w-full max-w-lg mx-auto my-8">
@@ -550,6 +530,7 @@
       <div id="quiz-options" class="grid grid-cols-1 gap-5"></div>
     </div>
   </div>
+
   <section id="quiz-results" class="py-20 px-6 bg-black hidden">
     <div class="max-w-5xl mx-auto text-center">
       <h2 class="text-4xl md:text-6xl font-black mb-10 text-green-400">Your Perfect Founding Plan</h2>
@@ -568,14 +549,58 @@
       <form id="quiz-payfast-form" class="payfast-form mt-16 max-w-2xl mx-auto" data-tier="Dominance"></form>
     </div>
   </section>
-  <!-- Floating WhatsApp Button (Pre-Quiz Early Access CTA) -->
+
+  <!-- Floating WhatsApp Button -->
   <a href="https://wa.me/27764312871?text=Hi%20LexPilot!%20I%E2%80%99m%20interested%20in%20Early%20Access%20Founding%20Partner%20spot.%20I%E2%80%99d%20like%20to%20see%20which%20tier%20fits%20my%20firm%20best%20and%20lock%20in%20my%20spot."
      class="fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-white text-black rounded-full shadow-2xl pl-5 pr-7 py-4 font-bold hover:scale-110 transition">
     <span class="absolute inset-0 rounded-full bg-green-500 opacity-75 animate-ping"></span>
     <i class="fab fa-whatsapp text-4xl text-green-500"></i>
     <span class="hidden md:block">Chat with founder<br><small>Reply in under 60 sec</small></span>
   </a>
+
+  <!-- FOOTER PLACEHOLDER -->
   <div id="footer-placeholder" class="mt-auto"></div>
+
+  <!-- DYNAMIC HEADER LOADING + PERFECT FIXED POSITIONING -->
+  <script>
+    // Load header from header.html
+    fetch('header.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('header-placeholder').innerHTML = data;
+        adjustForHeader();
+      })
+      .catch(err => console.error('Header load error:', err));
+
+    // Load footer if you have one
+    fetch('footer.html')
+      .then(response => response.text())
+      .then(data => document.getElementById('footer-placeholder').innerHTML = data)
+      .catch(() => { /* no footer yet */ });
+
+    // Push all content perfectly below the fixed header
+    function adjustForHeader() {
+      const header = document.querySelector('header');
+      if (header) {
+        const height = header.offsetHeight;
+        document.body.style.paddingTop = `${height}px`;
+      }
+    }
+
+    // Use MutationObserver to catch dynamic header insertion
+    const observer = new MutationObserver(() => {
+      if (document.querySelector('header')) {
+        adjustForHeader();
+        observer.disconnect();
+      }
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    // Fallbacks
+    window.addEventListener('load', adjustForHeader);
+    window.addEventListener('resize', adjustForHeader);
+  </script>
+
   <script src="script.js"></script>
 </body>
 </html>
