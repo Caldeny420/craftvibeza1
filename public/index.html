@@ -243,8 +243,8 @@
 </head>
 <body class="min-h-screen flex flex-col">
   <div id="header-placeholder"></div>
-<main class="flex-1 px-4 sm:px-6 text-center">
-  <div class="max-w-6xl mx-auto">
+<main class="flex-1 px-4 sm:px-6 lg:px-8 text-center pt-16 sm:pt-20 md:pt-24 lg:pt-28 xl:pt-32">
+  <div class="max-w-7xl mx-auto">
    
  <!-- Scarcity Badge - Brought back your original banner text & style, perfectly positioned -->
     <div class="badge mb-8 sm:mb-10 lg:mb-12 text-base xs:text-lg sm:text-xl lg:text-2xl font-bold tracking-wider">
@@ -253,33 +253,50 @@
     
    
     <!-- Main Headline -->
-    <h1 class="text-5xl xs:text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-black leading-[0.95] mb-8 sm:mb-10 lg:mb-12 tracking-tight">
-      Never risk a<br class="hidden xs:block"> trust account<br class="hidden lg:block"> mistake
+    <h1 class="font-black leading-[0.92] mb-8 sm:mb-10 lg:mb-12 xl:mb-14 tracking-tighter">
+      <span class="block text-5xl xs:text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] 2xl:text-[11rem]">
+        Never risk a
+      </span>
+      <span class="block text-6xl xs:text-7xl sm:text-8xl md:text-9xl lg:text-[10rem] xl:text-[11rem] 2xl:text-[12rem] bg-gradient-to-r from-green-400 via-green-300 to-emerald-400 bg-clip-text text-transparent">
+        trust account
+      </span>
+      <span class="block text-5xl xs:text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] 2xl:text-[11rem]">
+        mistake
+      </span>
     </h1>
    
     <!-- Subheadline -->
-    <p class="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl opacity-95 mb-14 sm:mb-16 lg:mb-20 max-w-4xl mx-auto leading-relaxed px-4">
-      Real-time Rule 54 & 86 alerts protect your firm instantly
+    <p class="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-semibold opacity-95 mb-12 sm:mb-14 lg:mb-16 xl:mb-20 max-w-5xl mx-auto leading-relaxed px-4">
+      Real-time Rule 54 & 86 alerts protect your firm <span class="text-green-400 font-black">instantly</span>
     </p>
    
     <!-- CTA Section -->
-    <div class="space-y-8 sm:space-y-10">
-      <button onclick="startQuiz()" class="block w-auto mx-auto bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-700 hover:to-emerald-800 text-black font-black text-3xl xs:text-4xl sm:text-5xl lg:text-6xl px-12 sm:px-16 lg:px-20 py-7 sm:py-9 lg:py-11 rounded-full shadow-2xl hover:scale-105 hover:shadow-3xl transition-all duration-300">
-        APPLY IN 90 SECONDS
+    <div class="space-y-8 sm:space-y-10 lg:space-y-12">
+      <button onclick="startQuiz()" 
+              class="block w-auto mx-auto bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 
+                     text-black font-black rounded-full shadow-2xl hover:scale-105 hover:shadow-green-500/30 transition-all duration-300
+                     px-10 py-6 text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl
+                     sm:px-14 sm:py-8 lg:px-20 lg:py-10 xl:px-24 xl:py-12 border-4 border-green-400/50">
+        <span class="drop-shadow-lg">APPLY IN 90 SECONDS</span>
       </button>
      
-      <p class="text-base xs:text-lg sm:text-xl lg:text-2xl opacity-80 leading-relaxed px-4">
-        or <a href="https://wa.me/27764312871?text=Hi%20LexPilot%20-%20Early%20Access" target="_blank" class="text-green-400 underline hover:text-green-300 font-semibold">
+      <p class="text-base xs:text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl opacity-80 leading-relaxed px-4">
+        or 
+        <a href="https://wa.me/27764312871?text=Hi%20LexPilot%20-%20Early%20Access" 
+           target="_blank" 
+           class="text-green-400 underline hover:text-green-300 font-bold hover:no-underline transition">
           message the founder on WhatsApp
         </a>
         <br class="sm:hidden">
-        <span class="text-sm xs:text-base sm:text-lg opacity-70">(replies &lt;60s, 24/7)</span>
+        <span class="text-sm xs:text-base sm:text-lg md:text-xl opacity-70 block mt-2">
+          (replies &lt;60s, 24/7)
+        </span>
       </p>
     </div>
    
-    <!-- Optional Credibility Block -->
-    <div class="max-w-5xl mx-auto mt-20 sm:mt-24 lg:mt-28 text-lg xs:text-xl sm:text-2xl lg:text-3xl opacity-90 px-4">
-      <p class="font-black">
+    <!-- Credibility Block -->
+    <div class="mt-20 sm:mt-24 lg:mt-28 xl:mt-32 text-base xs:text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl opacity-90 px-4">
+      <p class="font-black tracking-wider">
         Proudly South African • 100% POPIA-compliant • Locally hosted • Fully audited
       </p>
     </div>
