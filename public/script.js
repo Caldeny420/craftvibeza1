@@ -44,7 +44,7 @@
   // ====================== QUIZ QUESTIONS ======================
   const QUIZ = [
     { q: "How many attorneys + staff will use the platform?", o: ["1–5", "5–15", "16+ / Unlimited"] },
-    { q: "Do you want client deposit capture (card / Ozow / EFT)?", o: ["No thanks", "Yes – I need it"], requires: "Dominance" },
+    { q: "Do you want client deposit capture (card / EFT / Payfast)?", o: ["No thanks", "Yes – I need it"], requires: "Dominance" },
     { q: "Do you want automated email/WhatsApp sequences (chasers, referrals, etc)?", o: ["No", "Yes"], requires: "Dominance" },
     { q: "Do you need automated CPD tracking + 1-click LPC report?", o: ["I’ll do it manually", "Yes – never miss points again"], requires: "Elite" },
     { q: "Would you use an AI Brief & Letter Writer trained on SA law?", o: ["Not interested", "Yes – huge time saver"], requires: "Elite" },
