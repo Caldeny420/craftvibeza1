@@ -160,41 +160,41 @@
       .feature-table-container table th:first-child { min-width: auto; max-width: none; }
     }
 
-    /* === OPTIMIZED HERO FOR MOBILE – smaller, tighter spacing so CTA fits above the fold === */
+    /* === OPTIMIZED HERO FOR MOBILE – tighter but ensures content starts below header === */
     @media (max-width: 767px) {
       main {
-        padding-top: 4rem !important; /* reduced from original pt-16+ */
+        padding-top: 0 !important; /* Let script handle full padding including header */
       }
       .badge {
         margin-bottom: 1.5rem !important;
-        font-size: 0.875rem !important;
-        padding: 0.5rem 1rem !important;
+        font-size: 0.9rem !important;
+        padding: 0.6rem 1.2rem !important;
       }
       .hero-headline-upper {
-        font-size: 3.2rem !important;
+        font-size: 3.4rem !important;
         line-height: 0.95;
         margin-bottom: 0.5rem !important;
       }
       .hero-headline-lower {
-        font-size: 3.8rem !important;
+        font-size: 4rem !important;
         line-height: 0.95;
-        margin-bottom: 1rem !important;
+        margin-bottom: 1.5rem !important;
       }
       .hero-subheadline {
-        font-size: 1.5rem !important;
-        margin-bottom: 2rem !important;
+        font-size: 1.6rem !important;
+        margin-bottom: 2.5rem !important;
         padding: 0 1rem;
       }
       .hero-cta-button {
-        font-size: 2rem !important;
-        padding: 1rem 3rem !important;
+        font-size: 2.1rem !important;
+        padding: 1.1rem 3.2rem !important;
       }
-      .space-y-8 > *:not(:last-child) {
-        margin-bottom: 1.5rem !important;
+      .space-y-8 {
+        gap: 2rem !important;
       }
       .credibility-block {
-        margin-top: 2rem !important;
-        font-size: 1rem !important;
+        margin-top: 3rem !important;
+        font-size: 1.1rem !important;
       }
     }
 
@@ -230,33 +230,58 @@
       .credibility-block { margin-top: 1.5rem !important; }
     }
 
-    /* === QUIZ RESULTS – make slightly smaller on larger screens so more fits without scrolling === */
+    /* === QUIZ RESULTS – further reduced on larger and landscape screens for better fit === */
     @media (min-width: 768px) {
+      #quiz-results h2 {
+        font-size: 3.5rem !important;
+      }
       #tier-name {
-        font-size: 5.5rem !important;
-        padding: 1.8rem 4rem !important;
+        font-size: 4.8rem !important;
+        padding: 1.5rem 3.5rem !important;
+      }
+      #popular-badge {
+        font-size: 0.8rem !important;
+        padding: 0.7rem 1.5rem !important;
       }
       #tier-price {
-        font-size: 5.5rem !important;
+        font-size: 4.8rem !important;
       }
       #final-total {
-        font-size: 2.5rem !important;
+        font-size: 2.2rem !important;
       }
       #recommended-list {
-        font-size: 1.125rem !important;
-        padding: 2rem !important;
-      }
-      #quiz-results h2 {
-        font-size: 4rem !important;
+        font-size: 1.1rem !important;
+        padding: 2rem 3rem !important;
+        line-height: 1.6;
       }
     }
     @media (min-width: 1024px) {
       #tier-name {
-        font-size: 6rem !important;
-        padding: 2rem 4.5rem !important;
+        font-size: 5.2rem !important;
+        padding: 1.8rem 4rem !important;
       }
       #tier-price {
-        font-size: 6rem !important;
+        font-size: 5.2rem !important;
+      }
+    }
+    /* Additional reduction for landscape (wider but shorter height) */
+    @media (orientation: landscape) and (max-height: 600px) {
+      #quiz-results h2 {
+        font-size: 3rem !important;
+      }
+      #tier-name {
+        font-size: 4rem !important;
+        padding: 1.2rem 3rem !important;
+      }
+      #tier-price {
+        font-size: 4rem !important;
+      }
+      #final-total {
+        font-size: 2rem !important;
+      }
+      #recommended-list {
+        font-size: 1rem !important;
+        padding: 1.5rem 2.5rem !important;
       }
     }
   </style>
@@ -312,6 +337,7 @@
       </div>
     </div>
   </main>
+  <!-- Rest of sections unchanged -->
   <section class="py-32 px-6 bg-zinc-950 text-white">
     <div class="max-w-6xl mx-auto">
       <h2 class="text-5xl sm:text-6xl md:text-7xl font-black text-center mb-20">
@@ -591,7 +617,7 @@
   </a>
   <div id="footer-placeholder" class="mt-auto"></div>
   <script src="script.js"></script>
-  <!-- DYNAMIC HEADER PADDING – Reliable -->
+  <!-- DYNAMIC HEADER PADDING – Reliable, handles mobile correctly -->
   <script>
     function adjustMainPadding() {
       const header = document.querySelector('header') || document.getElementById('header-placeholder');
