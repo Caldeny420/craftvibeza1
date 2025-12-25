@@ -160,9 +160,26 @@
       .feature-table-container table th:first-child { min-width: auto; max-width: none; }
     }
 
-    /* === HERO RESPONSIVE FIXES – Balanced for BOTH mobile & laptop === */
-    /* Default (mobile) – keep original dramatic spacing */
-    /* Desktop/laptop only – tighter spacing & capped sizes */
+    /* ==== HERO OPTIMIZATIONS ==== */
+    /* Mobile: reduce vertical space so CTA stays above the fold */
+    @media (max-width: 640px) {
+      .hero-badge { margin-bottom: 2rem !important; }
+      .hero-headline { margin-bottom: 1.5rem !important; }
+      .hero-subheadline { margin-bottom: 2.5rem !important; font-size: 2.5rem !important; }
+      .hero-cta-section { gap: 1.5rem !important; }
+      .hero-cta-button { padding: 1.2rem 3rem !important; font-size: 2.5rem !important; }
+      .hero-whatsapp-text { font-size: 1.1rem !important; }
+      .credibility-block { margin-top: 3rem !important; font-size: 1.5rem !important; }
+    }
+
+    /* Tablet: slight tightening */
+    @media (min-width: 641px) and (max-width: 1023px) {
+      .hero-badge { margin-bottom: 3rem; }
+      .hero-subheadline { margin-bottom: 3rem; }
+      .hero-cta-button { padding: 1.5rem 4rem; font-size: 3.5rem; }
+    }
+
+    /* Desktop/Laptop: keep your original perfect look (tight spacing, clamped sizes) */
     @media (min-width: 1024px) {
       .hero-headline-upper {
         font-size: clamp(4rem, 8vw, 7rem) !important;
@@ -184,6 +201,7 @@
       main > div > div > .space-y-8 { gap: 1.5rem !important; }
       .credibility-block { margin-top: 2rem !important; }
     }
+
     @media (min-width: 1024px) and (max-height: 900px) {
       .hero-headline-upper { font-size: clamp(3.5rem, 7vw, 6rem) !important; }
       .hero-headline-lower { font-size: clamp(4rem, 8vw, 7rem) !important; }
@@ -201,11 +219,11 @@
   <main class="flex-1 px-4 sm:px-6 lg:px-8 text-center pt-16 sm:pt-20 md:pt-24 lg:pt-28 xl:pt-32">
     <div class="max-w-7xl mx-auto">
       <!-- Scarcity Badge -->
-      <div class="badge mb-8 sm:mb-10 lg:mb-12 text-base xs:text-lg sm:text-xl lg:text-2xl font-bold tracking-wider">
+      <div class="badge hero-badge mb-8 sm:mb-10 lg:mb-12 text-base xs:text-lg sm:text-xl lg:text-2xl font-bold tracking-wider">
         FOUNDING MEMBERS • ONLY 500 FOREVER • APPLICATIONS CLOSE END FEB 2026
       </div>
       <!-- Main Headline -->
-      <h1 class="font-black leading-[0.92] mb-8 sm:mb-10 lg:mb-12 xl:mb-14 tracking-tighter">
+      <h1 class="font-black leading-[0.92] hero-headline mb-8 sm:mb-10 lg:mb-12 xl:mb-14 tracking-tighter">
         <span class="block text-5xl xs:text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] 2xl:text-[11rem] hero-headline-upper">
           Never risk a trust account
         </span>
@@ -214,11 +232,11 @@
         </span>
       </h1>
       <!-- Subheadline -->
-      <p class="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-semibold opacity-95 mb-12 sm:mb-14 lg:mb-16 xl:mb-20 max-w-5xl mx-auto leading-relaxed px-4 hero-subheadline">
+      <p class="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-semibold opacity-95 hero-subheadline mb-12 sm:mb-14 lg:mb-16 xl:mb-20 max-w-5xl mx-auto leading-relaxed px-4">
         Real-time compliance alerts for Rules 54 & 86 protect your firm <span class="text-green-400 font-black">before</span> mistakes happen
       </p>
       <!-- CTA Section -->
-      <div class="space-y-8 sm:space-y-10 lg:space-y-12">
+      <div class="space-y-8 sm:space-y-10 lg:space-y-12 hero-cta-section">
         <button onclick="startQuiz()"
                 class="block w-auto mx-auto bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700
                        text-black font-black rounded-full shadow-2xl hover:scale-105 hover:shadow-green-500/30 transition-all duration-300
@@ -226,7 +244,7 @@
                        sm:px-14 sm:py-8 lg:px-20 lg:py-10 xl:px-24 xl:py-12 border-4 border-green-400/50 hero-cta-button">
           <span class="drop-shadow-lg">APPLY IN 90 SECONDS</span>
         </button>
-        <p class="text-base xs:text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl opacity-80 leading-relaxed px-4">
+        <p class="text-base xs:text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl opacity-80 leading-relaxed px-4 hero-whatsapp-text">
           or
           <a href="https://wa.me/27764312871?text=Hi%20LexPilot%20-%20Early%20Access"
              target="_blank"
@@ -247,7 +265,6 @@
       </div>
     </div>
   </main>
-
   <section class="py-32 px-6 bg-zinc-950 text-white">
     <div class="max-w-6xl mx-auto">
       <h2 class="text-5xl sm:text-6xl md:text-7xl font-black text-center mb-20">
@@ -286,7 +303,6 @@
       </div>
     </div>
   </section>
-
   <!-- PRICING -->
   <section id="pricing" class="py-24 px-6 bg-black">
     <div class="max-w-6xl mx-auto text-center">
@@ -332,7 +348,6 @@
       </div>
     </div>
   </section>
-
   <!-- FEATURE TABLE -->
   <section id="features" class="py-20 px-6 bg-black">
     <div class="max-w-6xl mx-auto">
@@ -429,7 +444,6 @@
       </div>
     </div>
   </section>
-
   <!-- HOW IT WORKS -->
   <section class="py-32 px-6 bg-zinc-950">
     <div class="max-w-6xl mx-auto text-center">
@@ -453,7 +467,6 @@
       </div>
     </div>
   </section>
-
   <!-- REFERRAL REWARDS -->
   <section class="py-24 px-6 bg-black">
     <div class="max-w-6xl mx-auto text-center">
@@ -469,7 +482,6 @@
       </div>
     </div>
   </section>
-
   <!-- SECURITY / COMPLIANCE -->
   <section class="py-24 px-6 bg-zinc-950">
     <div class="max-w-6xl mx-auto text-center">
@@ -481,7 +493,6 @@
       </div>
     </div>
   </section>
-
   <!-- FINAL CTA -->
   <section class="py-32 px-6 bg-gradient-to-b from-black to-zinc-950">
     <div class="max-w-6xl mx-auto text-center">
@@ -496,7 +507,6 @@
       </p>
     </div>
   </section>
-
   <!-- QUIZ OVERLAY -->
   <div id="quiz-overlay" class="fixed inset-0 bg-black/98 backdrop-blur-2xl flex items-center justify-center z-[1000] hidden px-4 overflow-y-auto">
     <div class="w-full max-w-lg mx-auto my-8">
@@ -507,7 +517,6 @@
       <div id="quiz-options" class="grid grid-cols-1 gap-5"></div>
     </div>
   </div>
-
   <section id="quiz-results" class="py-20 px-6 bg-black hidden">
     <div class="max-w-5xl mx-auto text-center">
       <h2 class="text-4xl md:text-6xl font-black mb-10 text-green-400">Your Perfect Founding Plan</h2>
@@ -526,7 +535,6 @@
       <form id="quiz-payfast-form" class="payfast-form mt-16 max-w-2xl mx-auto" data-tier="Dominance"></form>
     </div>
   </section>
-
   <!-- Floating WhatsApp Button -->
   <a href="https://wa.me/27764312871?text=Hi%20LexPilot!%20I%E2%80%99m%20interested%20in%20Early%20Access%20Founding%20Partner%20spot.%20I%E2%80%9d%20like%20to%20see%20which%20tier%20fits%20my%20firm%20best%20and%20lock%20in%20my%20spot."
      class="fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-white text-black rounded-full shadow-2xl pl-5 pr-7 py-4 font-bold hover:scale-110 transition">
@@ -534,10 +542,8 @@
     <i class="fab fa-whatsapp text-4xl text-green-500"></i>
     <span class="hidden md:block">Chat with founder<br><small>Reply in under 60 sec</small></span>
   </a>
-
   <div id="footer-placeholder" class="mt-auto"></div>
   <script src="script.js"></script>
-
   <!-- DYNAMIC HEADER PADDING – Reliable -->
   <script>
     function adjustMainPadding() {
