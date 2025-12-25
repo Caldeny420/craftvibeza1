@@ -160,9 +160,45 @@
       .feature-table-container table th:first-child { min-width: auto; max-width: none; }
     }
 
-    /* === HERO RESPONSIVE FIXES – Balanced for BOTH mobile & laptop === */
-    /* Default (mobile) – keep original dramatic spacing */
-    /* Desktop/laptop only – tighter spacing & capped sizes */
+    /* === OPTIMIZED HERO FOR MOBILE – smaller, tighter spacing so CTA fits above the fold === */
+    @media (max-width: 767px) {
+      main {
+        padding-top: 4rem !important; /* reduced from original pt-16+ */
+      }
+      .badge {
+        margin-bottom: 1.5rem !important;
+        font-size: 0.875rem !important;
+        padding: 0.5rem 1rem !important;
+      }
+      .hero-headline-upper {
+        font-size: 3.2rem !important;
+        line-height: 0.95;
+        margin-bottom: 0.5rem !important;
+      }
+      .hero-headline-lower {
+        font-size: 3.8rem !important;
+        line-height: 0.95;
+        margin-bottom: 1rem !important;
+      }
+      .hero-subheadline {
+        font-size: 1.5rem !important;
+        margin-bottom: 2rem !important;
+        padding: 0 1rem;
+      }
+      .hero-cta-button {
+        font-size: 2rem !important;
+        padding: 1rem 3rem !important;
+      }
+      .space-y-8 > *:not(:last-child) {
+        margin-bottom: 1.5rem !important;
+      }
+      .credibility-block {
+        margin-top: 2rem !important;
+        font-size: 1rem !important;
+      }
+    }
+
+    /* === KEEP ORIGINAL PERFECT LOOK ON LAPTOP+ === */
     @media (min-width: 1024px) {
       .hero-headline-upper {
         font-size: clamp(4rem, 8vw, 7rem) !important;
@@ -177,7 +213,6 @@
         font-size: clamp(2.5rem, 5vw, 3.5rem) !important;
         padding: 1.5rem 5rem !important;
       }
-      /* Tight spacing only on desktop */
       .badge { margin-bottom: 1.5rem !important; }
       h1 { margin-bottom: 1.5rem !important; }
       .hero-subheadline { margin-bottom: 2rem !important; }
@@ -193,6 +228,36 @@
       h1 { margin-bottom: 1rem !important; }
       main > div > div > .space-y-8 { gap: 1rem !important; }
       .credibility-block { margin-top: 1.5rem !important; }
+    }
+
+    /* === QUIZ RESULTS – make slightly smaller on larger screens so more fits without scrolling === */
+    @media (min-width: 768px) {
+      #tier-name {
+        font-size: 5.5rem !important;
+        padding: 1.8rem 4rem !important;
+      }
+      #tier-price {
+        font-size: 5.5rem !important;
+      }
+      #final-total {
+        font-size: 2.5rem !important;
+      }
+      #recommended-list {
+        font-size: 1.125rem !important;
+        padding: 2rem !important;
+      }
+      #quiz-results h2 {
+        font-size: 4rem !important;
+      }
+    }
+    @media (min-width: 1024px) {
+      #tier-name {
+        font-size: 6rem !important;
+        padding: 2rem 4.5rem !important;
+      }
+      #tier-price {
+        font-size: 6rem !important;
+      }
     }
   </style>
 </head>
@@ -247,7 +312,6 @@
       </div>
     </div>
   </main>
-
   <section class="py-32 px-6 bg-zinc-950 text-white">
     <div class="max-w-6xl mx-auto">
       <h2 class="text-5xl sm:text-6xl md:text-7xl font-black text-center mb-20">
@@ -286,7 +350,6 @@
       </div>
     </div>
   </section>
-
   <!-- PRICING -->
   <section id="pricing" class="py-24 px-6 bg-black">
     <div class="max-w-6xl mx-auto text-center">
@@ -332,7 +395,6 @@
       </div>
     </div>
   </section>
-
   <!-- FEATURE TABLE -->
   <section id="features" class="py-20 px-6 bg-black">
     <div class="max-w-6xl mx-auto">
@@ -429,7 +491,6 @@
       </div>
     </div>
   </section>
-
   <!-- HOW IT WORKS -->
   <section class="py-32 px-6 bg-zinc-950">
     <div class="max-w-6xl mx-auto text-center">
@@ -453,7 +514,6 @@
       </div>
     </div>
   </section>
-
   <!-- REFERRAL REWARDS -->
   <section class="py-24 px-6 bg-black">
     <div class="max-w-6xl mx-auto text-center">
@@ -469,7 +529,6 @@
       </div>
     </div>
   </section>
-
   <!-- SECURITY / COMPLIANCE -->
   <section class="py-24 px-6 bg-zinc-950">
     <div class="max-w-6xl mx-auto text-center">
@@ -481,7 +540,6 @@
       </div>
     </div>
   </section>
-
   <!-- FINAL CTA -->
   <section class="py-32 px-6 bg-gradient-to-b from-black to-zinc-950">
     <div class="max-w-6xl mx-auto text-center">
@@ -496,7 +554,6 @@
       </p>
     </div>
   </section>
-
   <!-- QUIZ OVERLAY -->
   <div id="quiz-overlay" class="fixed inset-0 bg-black/98 backdrop-blur-2xl flex items-center justify-center z-[1000] hidden px-4 overflow-y-auto">
     <div class="w-full max-w-lg mx-auto my-8">
@@ -507,7 +564,6 @@
       <div id="quiz-options" class="grid grid-cols-1 gap-5"></div>
     </div>
   </div>
-
   <section id="quiz-results" class="py-20 px-6 bg-black hidden">
     <div class="max-w-5xl mx-auto text-center">
       <h2 class="text-4xl md:text-6xl font-black mb-10 text-green-400">Your Perfect Founding Plan</h2>
@@ -526,7 +582,6 @@
       <form id="quiz-payfast-form" class="payfast-form mt-16 max-w-2xl mx-auto" data-tier="Dominance"></form>
     </div>
   </section>
-
   <!-- Floating WhatsApp Button -->
   <a href="https://wa.me/27764312871?text=Hi%20LexPilot!%20I%E2%80%99m%20interested%20in%20Early%20Access%20Founding%20Partner%20spot.%20I%E2%80%9d%20like%20to%20see%20which%20tier%20fits%20my%20firm%20best%20and%20lock%20in%20my%20spot."
      class="fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-white text-black rounded-full shadow-2xl pl-5 pr-7 py-4 font-bold hover:scale-110 transition">
@@ -534,10 +589,8 @@
     <i class="fab fa-whatsapp text-4xl text-green-500"></i>
     <span class="hidden md:block">Chat with founder<br><small>Reply in under 60 sec</small></span>
   </a>
-
   <div id="footer-placeholder" class="mt-auto"></div>
   <script src="script.js"></script>
-
   <!-- DYNAMIC HEADER PADDING – Reliable -->
   <script>
     function adjustMainPadding() {
