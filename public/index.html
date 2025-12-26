@@ -159,11 +159,10 @@
       .feature-table-container table td:first-child,
       .feature-table-container table th:first-child { min-width: auto; max-width: none; }
     }
-
-    /* === OPTIMIZED HERO FOR MOBILE – tighter but ensures content starts below header === */
+    /* === OPTIMIZED HERO FOR MOBILE === */
     @media (max-width: 767px) {
       main {
-        padding-top: 0 !important; /* Let script handle full padding including header */
+        padding-top: 0 !important;
       }
       .badge {
         margin-bottom: 1.5rem !important;
@@ -197,8 +196,6 @@
         font-size: 1.1rem !important;
       }
     }
-
-    /* === KEEP ORIGINAL PERFECT LOOK ON LAPTOP+ === */
     @media (min-width: 1024px) {
       .hero-headline-upper {
         font-size: clamp(4rem, 8vw, 7rem) !important;
@@ -229,8 +226,7 @@
       main > div > div > .space-y-8 { gap: 1rem !important; }
       .credibility-block { margin-top: 1.5rem !important; }
     }
-
-    /* === QUIZ RESULTS – further reduced on larger and landscape screens for better fit === */
+    /* === QUIZ RESULTS === */
     @media (min-width: 768px) {
       #quiz-results h2 {
         font-size: 3.5rem !important;
@@ -264,7 +260,6 @@
         font-size: 5.2rem !important;
       }
     }
-    /* Additional reduction for landscape (wider but shorter height) */
     @media (orientation: landscape) and (max-height: 600px) {
       #quiz-results h2 {
         font-size: 3rem !important;
@@ -284,6 +279,27 @@
         padding: 1.5rem 2.5rem !important;
       }
     }
+    /* Lock icon in security section */
+    .lock-icon {
+      font-size: 6rem;
+      margin-bottom: 2rem;
+    }
+    /* Sticky WhatsApp CTA (mobile) */
+    .sticky-whatsapp {
+      position: fixed;
+      bottom: 100px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 50;
+      background: #25d366;
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 9999px;
+      font-weight: bold;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+      animation: pulse 2s infinite;
+    }
+    @media (min-width: 768px) { .sticky-whatsapp { display: none; } }
   </style>
 </head>
 <body class="min-h-screen flex flex-col">
@@ -297,16 +313,20 @@
       <!-- Main Headline -->
       <h1 class="font-black leading-[0.92] mb-8 sm:mb-10 lg:mb-12 xl:mb-14 tracking-tighter">
         <span class="block text-5xl xs:text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] 2xl:text-[11rem] hero-headline-upper">
-        Stay protected from trust 
+          Stay protected from trust
         </span>
         <span class="block text-6xl xs:text-7xl sm:text-8xl md:text-9xl lg:text-[10rem] xl:text-[11rem] 2xl:text-[12rem] bg-gradient-to-r from-green-400 via-green-300 to-emerald-400 bg-clip-text text-transparent hero-headline-lower">
-          account violations 
+          account violations
         </span>
       </h1>
       <!-- Subheadline -->
       <p class="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-semibold opacity-95 mb-12 sm:mb-14 lg:mb-16 xl:mb-20 max-w-5xl mx-auto leading-relaxed px-4 hero-subheadline">
-       real-time alerts stop errors  <span class="text-green-400 font-black">before</span> they happen
+        real-time alerts prevent errors <span class="text-green-400 font-black">before they occur</span>
       </p>
+      <!-- Credibility Block (moved directly under hero) -->
+      <div class="credibility-block mb-12 text-base xs:text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl opacity-90 px-4 font-black tracking-wider">
+        Proudly South African • 100% POPIA-compliant • Locally hosted • Fully audited
+      </div>
       <!-- CTA Section -->
       <div class="space-y-8 sm:space-y-10 lg:space-y-12">
         <button onclick="startQuiz()"
@@ -329,15 +349,10 @@
           </span>
         </p>
       </div>
-      <!-- Credibility Block -->
-      <div class="mt-20 sm:mt-24 lg:mt-28 xl:mt-32 text-base xs:text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl opacity-90 px-4 credibility-block">
-        <p class="font-black tracking-wider">
-          Proudly South African • 100% POPIA-compliant • Locally hosted • Fully audited
-        </p>
-      </div>
     </div>
   </main>
-  <!-- Rest of sections unchanged -->
+
+  <!-- Why Trust Section -->
   <section class="py-32 px-6 bg-zinc-950 text-white">
     <div class="max-w-6xl mx-auto">
       <h2 class="text-5xl sm:text-6xl md:text-7xl font-black text-center mb-20">
@@ -347,17 +362,17 @@
         <div class="text-center">
           <div class="text-6xl mb-6">🔔</div>
           <h3 class="text-2xl font-bold mb-4">Real-time Rule 54 & 86 Alerts</h3>
-          <p class="text-lg text-zinc-300">Prevent costly violations before they happen with proactive, rule-based notifications</p>
+          <p class="text-lg text-zinc-300">Proactively reduce risk of costly violations</p>
         </div>
         <div class="text-center">
           <div class="text-6xl mb-6">💬</div>
           <h3 class="text-2xl font-bold mb-4">24/7 Direct Founder Access</h3>
-          <p class="text-lg text-zinc-300">Instant support via WhatsApp – typical replies in under 60 seconds, no tickets or sales teams</p>
+          <p class="text-lg text-zinc-300">Instant support via WhatsApp – typical replies in under 60 seconds</p>
         </div>
         <div class="text-center">
           <div class="text-6xl mb-6">⚙️</div>
-          <h3 class="text-2xl font-bold mb-4">Smart Billing & AI-Assisted Tools</h3>
-          <p class="text-lg text-zinc-300">Automated invoicing, accurate CPD tracking, and powerful AI tools built for legal workflows</p>
+          <h3 class="text-2xl font-bold mb-4">Purpose-built Billing & AI Tools for SA Attorneys</h3>
+          <p class="text-lg text-zinc-300">Automated invoicing and powerful AI tools designed for local workflows</p>
         </div>
       </div>
       <div class="max-w-4xl mx-auto">
@@ -365,23 +380,24 @@
           <div class="text-center">
             <div class="text-6xl mb-6">🔒</div>
             <h3 class="text-2xl font-bold mb-4">Fully POPIA-Compliant</h3>
-            <p class="text-lg text-zinc-300">Independently audited, locally hosted in South Africa – your data never leaves the country</p>
+            <p class="text-lg text-zinc-300">Independently audited, locally hosted in South Africa</p>
           </div>
           <div class="text-center">
             <div class="text-6xl mb-6">🇿🇦</div>
             <h3 class="text-2xl font-bold mb-4">Designed with Practising SA Attorneys</h3>
-            <p class="text-lg text-zinc-300">Rule logic developed in collaboration with attorneys and fully aligned with LPC guidelines</p>
+            <p class="text-lg text-zinc-300">Rule logic aligned with LPC guidelines</p>
           </div>
         </div>
       </div>
     </div>
   </section>
+
   <!-- PRICING -->
   <section id="pricing" class="py-24 px-6 bg-black">
     <div class="max-w-6xl mx-auto text-center">
       <h2 class="text-5xl sm:text-6xl md:text-7xl font-black mb-8 leading-tight">
         Early Access Pricing<br>
-        <span class="text-2xl md:text-4xl opacity-80 font-normal">(permanent for your firm)</span>
+        <span class="text-2xl md:text-4xl opacity-80 font-normal">(Founding Price — Locked Forever)</span>
       </h2>
       <div class="pricing-scroll-container">
         <!-- Growth -->
@@ -421,6 +437,7 @@
       </div>
     </div>
   </section>
+
   <!-- FEATURE TABLE -->
   <section id="features" class="py-20 px-6 bg-black">
     <div class="max-w-6xl mx-auto">
@@ -449,10 +466,10 @@
               <td class="px-8 py-10 font-bold text-2xl text-green-300 leading-tight">
                 Purpose-built billing for South African attorneys<br>
                 <span class="block mt-3 text-base font-normal opacity-90">
-                  • Timer or manual entry → auto-pulls client, case, rate, VAT & trust balance<br>
-                  • Pause + add multiple services in one session (no lost time, no extra modals)<br>
+                  • Auto-fill client, case, rate, VAT & trust balance<br>
+                  • Pause + add multiple services in one session<br>
                   • Bulk invoice 50 matters in 60 seconds • PDF generated & sent instantly<br>
-                  • One-click Payfast links in every invoice → auto-marks paid on receipt
+                  • One-click Payfast links → auto-marks paid
                 </span>
               </td>
               <td class="text-center text-green-400 font-bold text-4xl">YES</td>
@@ -461,10 +478,10 @@
             </tr>
             <tr class="bg-red-900/20 border-b-4 border-red-700">
               <td class="px-8 py-10 font-bold text-2xl text-red-300 leading-tight">
-                Designed to prevent trust account violations before they occur<br>
+                Designed to prevent trust account violations<br>
                 <span class="block mt-3 text-base font-normal opacity-90">
-                  • Real-time Rule 54 & 86 alerts — stops overdraws before they happen<br>
-                  • Auto-caps trust deductions to available balance only<br>
+                  • Real-time Rule 54 & 86 alerts<br>
+                  • Auto-caps trust deductions to available balance<br>
                   • Full audit trail & trust ledger per client/case
                 </span>
               </td>
@@ -495,8 +512,8 @@
                   • Refer 1 firm → Your next 12 months FREE<br>
                   • Refer 2 firms → Your account <strong class="text-green-400">FREE FOREVER</strong><br>
                   • Only your two longest-paying referrals count<br>
-                  • Credit applied after their 6th paid invoice and manual verification of legitimate, independent firms<br>
-                  • We reserve the right to deny or revoke credits for suspected abuse or collusion
+                  • Credit applied after their 6th paid invoice and manual verification<br>
+                  • We reserve the right to deny or revoke credits for suspected abuse
                 </span>
               </td>
               <td class="text-center text-green-400 font-bold text-4xl">YES</td>
@@ -517,6 +534,7 @@
       </div>
     </div>
   </section>
+
   <!-- HOW IT WORKS -->
   <section class="py-32 px-6 bg-zinc-950">
     <div class="max-w-6xl mx-auto text-center">
@@ -525,52 +543,57 @@
         <div class="space-y-6">
           <div class="text-8xl font-black text-green-400">1</div>
           <h3 class="text-3xl font-black">Take 90-Second Quiz</h3>
-          <p class="text-xl opacity-90">90-second firm qualification</p>
+          <p class="text-xl opacity-90">Qualify your firm instantly</p>
         </div>
         <div class="space-y-6">
           <div class="text-8xl font-black text-green-400">2</div>
           <h3 class="text-3xl font-black">Select Tier & Pay First Month</h3>
-          <p class="text-xl opacity-90">Secure your founding rate</p>
+          <p class="text-xl opacity-90">Lock your founding rate today</p>
         </div>
         <div class="space-y-6">
           <div class="text-8xl font-black text-green-400">3</div>
           <h3 class="text-3xl font-black">WhatsApp Onboarding</h3>
-          <p class="text-xl opacity-90">Founding team gets you live in days from launch</p>
+          <p class="text-xl opacity-90">Go live in days with founder support</p>
         </div>
       </div>
     </div>
   </section>
+
   <!-- REFERRAL REWARDS -->
   <section class="py-24 px-6 bg-black">
     <div class="max-w-6xl mx-auto text-center">
-      <h2 class="text-5xl font-black mb-10">Founding Member Referral Rewards</h2>
+      <h2 class="text-5xl font-black mb-10">Get Your Subscription Free by Referring Other Law Firms</h2>
       <div class="text-xl space-y-5 max-w-3xl mx-auto">
-        <p>Refer 1 firm → Your next 12 months FREE</p>
-        <p>Refer 2 firms → Your account <strong class="text-green-400">FREE FOREVER</strong></p>
+        <p>• Refer 1 firm → Your next 12 months FREE</p>
+        <p>• Refer 2 firms → Your account <strong class="text-green-400">FREE FOREVER</strong></p>
         <p class="mt-8 text-lg opacity-70">
           • Unlimited referrals • Only your two longest-paying referrals count<br>
-          • Credit applied after their 6th paid invoice and manual verification of legitimate, independent firms<br>
-          • We reserve the right to deny or revoke credits for suspected abuse or collusion
+          • Credit applied after their 6th paid invoice and manual verification<br>
+          • We reserve the right to deny or revoke credits for suspected abuse
         </p>
       </div>
     </div>
   </section>
-  <!-- SECURITY / COMPLIANCE -->
+
+  <!-- SECURITY & COMPLIANCE -->
   <section class="py-24 px-6 bg-zinc-950">
     <div class="max-w-6xl mx-auto text-center">
       <h2 class="text-5xl font-black mb-10">Security & Compliance</h2>
+      <div class="text-6xl lock-icon">🔒</div>
       <div class="text-xl space-y-4 opacity-90">
-        <p>Data hosted in South Africa only</p>
+        <p><strong class="font-black">100% POPIA compliant</strong> • Data hosted in South Africa only</p>
         <p>End-to-end encryption</p>
         <p>Independent security audits every year</p>
       </div>
     </div>
   </section>
-  <!-- FINAL CTA -->
+
+  <!-- FINAL CTA + Scarcity -->
   <section class="py-32 px-6 bg-gradient-to-b from-black to-zinc-950">
     <div class="max-w-6xl mx-auto text-center">
       <h2 class="text-6xl md:text-7xl font-black mb-8">Only 500 Early Access Spots<br>Will Ever Exist</h2>
-      <p class="text-2xl opacity-90 mb-16">Applications close permanently at midnight, 28 February 2026</p>
+      <p class="text-2xl opacity-90 mb-4">Once these 500 founding spots are gone, applications will close forever</p>
+      <p class="text-xl opacity-70 mb-16">Applications close permanently at midnight, 28 February 2026</p>
       <button onclick="startQuiz()" class="bg-gradient-to-r from-green-500 to-emerald-600 text-black font-black text-4xl sm:text-6xl px-20 py-12 rounded-full shadow-2xl hover:scale-105 transition">
         APPLY IN 90 SECONDS
       </button>
@@ -578,9 +601,11 @@
         or <a href="https://wa.me/27764312871?text=Hi%20LexPilot%20-%20Early%20Access" target="_blank" class="text-green-400 underline">message the founder on WhatsApp</a>
         <br><span class="text-sm opacity-70">(replies in under 60 seconds)</span>
       </p>
+      <p class="mt-12 text-lg opacity-80">Real-time alerts • 100% POPIA-compliant • Trusted by SA attorneys</p>
     </div>
   </section>
-  <!-- QUIZ OVERLAY -->
+
+  <!-- QUIZ OVERLAY & RESULTS (unchanged) -->
   <div id="quiz-overlay" class="fixed inset-0 bg-black/98 backdrop-blur-2xl flex items-center justify-center z-[1000] hidden px-4 overflow-y-auto">
     <div class="w-full max-w-lg mx-auto my-8">
       <div class="h-3 bg-zinc-800 rounded-full mb-8 overflow-hidden">
@@ -608,17 +633,22 @@
       <form id="quiz-payfast-form" class="payfast-form mt-16 max-w-2xl mx-auto" data-tier="Dominance"></form>
     </div>
   </section>
-<!-- Floating WhatsApp Button -->
-<a href="https://wa.me/27764312871?text=Hi%20LexPilot%2C%0A%0AI%27m%20interested%20in%20an%20Early%20Access%20founding%20spot%20and%20would%20like%20to%20chat%20about%20which%20tier%20best%20fits%20my%20firm.%0A%0ACould%20you%20recommend%20the%20right%20plan%20and%20help%20me%20get%20started%3F%0A%0AThanks!"
-   class="fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-white text-black rounded-full shadow-2xl pl-5 pr-7 py-4 font-bold hover:scale-110 transition">
-  <span class="absolute inset-0 rounded-full bg-green-500 opacity-75 animate-ping"></span>
-  <i class="fab fa-whatsapp text-4xl text-green-500"></i>
-  <span class="hidden md:block">Chat with founder<br><small>Reply in under 60 sec • 24/7</small></span>
-</a>
 
-<div id="footer-placeholder" class="mt-auto"></div>
-<script src="script.js"></script>
-  <!-- DYNAMIC HEADER PADDING – Reliable, handles mobile correctly -->
+  <!-- Floating WhatsApp Button (existing) -->
+  <a href="https://wa.me/27764312871?text=Hi%20LexPilot%2C%0A%0AI%27m%20interested%20in%20an%20Early%20Access%20founding%20spot%20and%20would%20like%20to%20chat%20about%20which%20tier%20best%20fits%20my%20firm.%0A%0ACould%20you%20recommend%20the%20right%20plan%20and%20help%20me%20get%20started%3F%0A%0AThanks!"
+     class="fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-white text-black rounded-full shadow-2xl pl-5 pr-7 py-4 font-bold hover:scale-110 transition">
+    <span class="absolute inset-0 rounded-full bg-green-500 opacity-75 animate-ping"></span>
+    <i class="fab fa-whatsapp text-4xl text-green-500"></i>
+    <span class="hidden md:block">Chat with founder<br><small>Reply in under 60 sec • 24/7</small></span>
+  </a>
+
+  <!-- Mobile sticky WhatsApp CTA (extra visibility) -->
+  <a href="https://wa.me/27764312871?text=Hi%20LexPilot%20-%20Early%20Access" class="sticky-whatsapp md:hidden">
+    <i class="fab fa-whatsapp text-3xl mr-3"></i> Message Founder Now
+  </a>
+
+  <div id="footer-placeholder" class="mt-auto"></div>
+  <script src="script.js"></script>
   <script>
     function adjustMainPadding() {
       const header = document.querySelector('header') || document.getElementById('header-placeholder');
