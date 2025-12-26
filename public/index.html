@@ -159,124 +159,62 @@
       .feature-table-container table td:first-child,
       .feature-table-container table th:first-child { min-width: auto; max-width: none; }
     }
-    /* === OPTIMIZED HERO FOR MOBILE === */
+    /* === MOBILE HERO OPTIMIZATION – perfect fit, no cutoff, CTA always visible === */
     @media (max-width: 767px) {
-      main {
-        padding-top: 0 !important;
+      .hero-container {
+        padding-top: 5rem !important;
+        padding-bottom: 3rem !important;
       }
       .badge {
-        margin-bottom: 1.5rem !important;
-        font-size: 0.9rem !important;
+        font-size: 0.8rem !important;
         padding: 0.6rem 1.2rem !important;
+        margin-bottom: 1.5rem !important;
       }
       .hero-headline-upper {
-        font-size: 3.4rem !important;
-        line-height: 0.95;
+        font-size: 3rem !important;
+        line-height: 1;
         margin-bottom: 0.5rem !important;
       }
       .hero-headline-lower {
-        font-size: 4rem !important;
-        line-height: 0.95;
+        font-size: 3.5rem !important;
+        line-height: 1;
         margin-bottom: 1.5rem !important;
       }
       .hero-subheadline {
-        font-size: 1.6rem !important;
-        margin-bottom: 2.5rem !important;
+        font-size: 1.5rem !important;
+        line-height: 1.4;
+        margin-bottom: 2rem !important;
         padding: 0 1rem;
       }
-      .hero-cta-button {
-        font-size: 2.1rem !important;
-        padding: 1.1rem 3.2rem !important;
-      }
-      .space-y-8 {
-        gap: 2rem !important;
-      }
       .credibility-block {
-        margin-top: 3rem !important;
+        font-size: 1rem !important;
+        margin-bottom: 2.5rem !important;
+        line-height: 1.5;
+      }
+      .hero-cta-button {
+        font-size: 1.9rem !important;
+        padding: 1.2rem 3rem !important;
+        width: 90% !important;
+        max-width: 360px;
+      }
+      .whatsapp-cta-text {
         font-size: 1.1rem !important;
       }
     }
-    @media (min-width: 1024px) {
+    /* === LAPTOP/PC – original massive look preserved === */
+    @media (min-width: 768px) {
       .hero-headline-upper {
-        font-size: clamp(4rem, 8vw, 7rem) !important;
+        font-size: clamp(4rem, 8vw, 7rem);
       }
       .hero-headline-lower {
-        font-size: clamp(4.5rem, 9vw, 8rem) !important;
+        font-size: clamp(4.5rem, 9vw, 8rem);
       }
       .hero-subheadline {
-        font-size: clamp(2rem, 4vw, 3rem) !important;
+        font-size: clamp(2rem, 4vw, 3rem);
       }
       .hero-cta-button {
-        font-size: clamp(2.5rem, 5vw, 3.5rem) !important;
-        padding: 1.5rem 5rem !important;
-      }
-      .badge { margin-bottom: 1.5rem !important; }
-      h1 { margin-bottom: 1.5rem !important; }
-      .hero-subheadline { margin-bottom: 2rem !important; }
-      main > div > div > .space-y-8 { gap: 1.5rem !important; }
-      .credibility-block { margin-top: 2rem !important; }
-    }
-    @media (min-width: 1024px) and (max-height: 900px) {
-      .hero-headline-upper { font-size: clamp(3.5rem, 7vw, 6rem) !important; }
-      .hero-headline-lower { font-size: clamp(4rem, 8vw, 7rem) !important; }
-      .hero-subheadline { font-size: clamp(1.8rem, 3.5vw, 2.6rem) !important; margin-bottom: 1.5rem !important; }
-      .hero-cta-button { padding: 1.2rem 4rem !important; font-size: clamp(2.2rem, 4.5vw, 3rem) !important; }
-      .badge { margin-bottom: 1rem !important; }
-      h1 { margin-bottom: 1rem !important; }
-      main > div > div > .space-y-8 { gap: 1rem !important; }
-      .credibility-block { margin-top: 1.5rem !important; }
-    }
-    /* === QUIZ RESULTS === */
-    @media (min-width: 768px) {
-      #quiz-results h2 {
-        font-size: 3.5rem !important;
-      }
-      #tier-name {
-        font-size: 4.8rem !important;
-        padding: 1.5rem 3.5rem !important;
-      }
-      #popular-badge {
-        font-size: 0.8rem !important;
-        padding: 0.7rem 1.5rem !important;
-      }
-      #tier-price {
-        font-size: 4.8rem !important;
-      }
-      #final-total {
-        font-size: 2.2rem !important;
-      }
-      #recommended-list {
-        font-size: 1.1rem !important;
-        padding: 2rem 3rem !important;
-        line-height: 1.6;
-      }
-    }
-    @media (min-width: 1024px) {
-      #tier-name {
-        font-size: 5.2rem !important;
-        padding: 1.8rem 4rem !important;
-      }
-      #tier-price {
-        font-size: 5.2rem !important;
-      }
-    }
-    @media (orientation: landscape) and (max-height: 600px) {
-      #quiz-results h2 {
-        font-size: 3rem !important;
-      }
-      #tier-name {
-        font-size: 4rem !important;
-        padding: 1.2rem 3rem !important;
-      }
-      #tier-price {
-        font-size: 4rem !important;
-      }
-      #final-total {
-        font-size: 2rem !important;
-      }
-      #recommended-list {
-        font-size: 1rem !important;
-        padding: 1.5rem 2.5rem !important;
+        font-size: clamp(2.5rem, 5vw, 3.5rem);
+        padding: clamp(1.2rem, 4vw, 1.5rem) clamp(4rem, 10vw, 5rem);
       }
     }
     /* Lock icon in security section */
@@ -284,59 +222,42 @@
       font-size: 6rem;
       margin-bottom: 2rem;
     }
-    /* Sticky WhatsApp CTA (mobile) */
-    .sticky-whatsapp {
-      position: fixed;
-      bottom: 100px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 50;
-      background: #25d366;
-      color: white;
-      padding: 1rem 2rem;
-      border-radius: 9999px;
-      font-weight: bold;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-      animation: pulse 2s infinite;
-    }
-    @media (min-width: 768px) { .sticky-whatsapp { display: none; } }
   </style>
 </head>
 <body class="min-h-screen flex flex-col">
   <div id="header-placeholder"></div>
-  <main class="flex-1 px-4 sm:px-6 lg:px-8 text-center pt-16 sm:pt-20 md:pt-24 lg:pt-28 xl:pt-32">
-    <div class="max-w-7xl mx-auto">
+  <main class="flex-1 px-4 sm:px-6 lg:px-8 text-center">
+    <div class="max-w-7xl mx-auto hero-container">
       <!-- Scarcity Badge -->
-      <div class="badge mb-8 sm:mb-10 lg:mb-12 text-base xs:text-lg sm:text-xl lg:text-2xl font-bold tracking-wider">
+      <div class="badge mb-6 sm:mb-8 lg:mb-10 text-sm sm:text-base lg:text-xl font-bold tracking-wider">
         FOUNDING MEMBERS • ONLY 500 FOREVER • APPLICATIONS CLOSE END FEB 2026
       </div>
       <!-- Main Headline -->
-      <h1 class="font-black leading-[0.92] mb-8 sm:mb-10 lg:mb-12 xl:mb-14 tracking-tighter">
-        <span class="block text-5xl xs:text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] 2xl:text-[11rem] hero-headline-upper">
+      <h1 class="font-black leading-[0.95] tracking-tighter mb-6 sm:mb-8 lg:mb-10">
+        <span class="block hero-headline-upper">
           Stay protected from trust
         </span>
-        <span class="block text-6xl xs:text-7xl sm:text-8xl md:text-9xl lg:text-[10rem] xl:text-[11rem] 2xl:text-[12rem] bg-gradient-to-r from-green-400 via-green-300 to-emerald-400 bg-clip-text text-transparent hero-headline-lower">
+        <span class="block bg-gradient-to-r from-green-400 via-green-300 to-emerald-400 bg-clip-text text-transparent hero-headline-lower">
           account violations
         </span>
       </h1>
       <!-- Subheadline -->
-      <p class="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-semibold opacity-95 mb-12 sm:mb-14 lg:mb-16 xl:mb-20 max-w-5xl mx-auto leading-relaxed px-4 hero-subheadline">
+      <p class="font-semibold opacity-95 max-w-4xl mx-auto leading-relaxed hero-subheadline">
         real-time alerts prevent errors <span class="text-green-400 font-black">before they occur</span>
       </p>
-      <!-- Credibility Block (moved directly under hero) -->
-      <div class="credibility-block mb-12 text-base xs:text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl opacity-90 px-4 font-black tracking-wider">
+      <!-- Credibility Block -->
+      <div class="credibility-block mt-6 sm:mt-8 lg:mt-10 font-black tracking-wider opacity-90">
         Proudly South African • 100% POPIA-compliant • Locally hosted • Fully audited
       </div>
       <!-- CTA Section -->
-      <div class="space-y-8 sm:space-y-10 lg:space-y-12">
+      <div class="mt-8 sm:mt-10 lg:mt-12">
         <button onclick="startQuiz()"
-                class="block w-auto mx-auto bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700
+                class="block mx-auto bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700
                        text-black font-black rounded-full shadow-2xl hover:scale-105 hover:shadow-green-500/30 transition-all duration-300
-                       px-10 py-6 text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl
-                       sm:px-14 sm:py-8 lg:px-20 lg:py-10 xl:px-24 xl:py-12 border-4 border-green-400/50 hero-cta-button">
+                       border-4 border-green-400/50 hero-cta-button">
           <span class="drop-shadow-lg">APPLY IN 90 SECONDS</span>
         </button>
-        <p class="text-base xs:text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl opacity-80 leading-relaxed px-4">
+        <p class="mt-6 sm:mt-8 opacity-80 leading-relaxed whatsapp-cta-text">
           or
           <a href="https://wa.me/27764312871?text=Hi%20LexPilot%20-%20Early%20Access"
              target="_blank"
@@ -344,7 +265,7 @@
             message the founder on WhatsApp
           </a>
           <br class="sm:hidden">
-          <span class="text-sm xs:text-base sm:text-lg md:text-xl opacity-70 block mt-2">
+          <span class="text-sm opacity-70 block mt-2">
             (replies &lt;60s, 24/7)
           </span>
         </p>
@@ -353,40 +274,38 @@
   </main>
 
   <!-- Why Trust Section -->
-  <section class="py-32 px-6 bg-zinc-950 text-white">
+  <section class="py-24 sm:py-32 px-6 bg-zinc-950 text-white">
     <div class="max-w-6xl mx-auto">
-      <h2 class="text-5xl sm:text-6xl md:text-7xl font-black text-center mb-20">
+      <h2 class="text-4xl sm:text-5xl md:text-6xl font-black text-center mb-16 sm:mb-20">
         Why South African Law Firms Can Trust LexPilot
       </h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-20">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 sm:gap-12 mb-16 sm:mb-20">
         <div class="text-center">
-          <div class="text-6xl mb-6">🔔</div>
-          <h3 class="text-2xl font-bold mb-4">Real-time Rule 54 & 86 Alerts</h3>
-          <p class="text-lg text-zinc-300">Proactively reduce risk of costly violations</p>
+          <div class="text-5xl sm:text-6xl mb-4 sm:mb-6">🔔</div>
+          <h3 class="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">Real-time Rule 54 & 86 Alerts</h3>
+          <p class="text-base sm:text-lg text-zinc-300">Proactively reduce risk of costly violations</p>
         </div>
         <div class="text-center">
-          <div class="text-6xl mb-6">💬</div>
-          <h3 class="text-2xl font-bold mb-4">24/7 Direct Founder Access</h3>
-          <p class="text-lg text-zinc-300">Instant support via WhatsApp – typical replies in under 60 seconds</p>
+          <div class="text-5xl sm:text-6xl mb-4 sm:mb-6">💬</div>
+          <h3 class="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">24/7 Direct Founder Access</h3>
+          <p class="text-base sm:text-lg text-zinc-300">Instant support via WhatsApp – typical replies in under 60 seconds</p>
         </div>
         <div class="text-center">
-          <div class="text-6xl mb-6">⚙️</div>
-          <h3 class="text-2xl font-bold mb-4">Purpose-built Billing & AI Tools for SA Attorneys</h3>
-          <p class="text-lg text-zinc-300">Automated invoicing and powerful AI tools designed for local workflows</p>
+          <div class="text-5xl sm:text-6xl mb-4 sm:mb-6">⚙️</div>
+          <h3 class="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">Purpose-built Billing & AI Tools for SA Attorneys</h3>
+          <p class="text-base sm:text-lg text-zinc-300">Automated invoicing and powerful AI tools designed for local workflows</p>
         </div>
       </div>
-      <div class="max-w-4xl mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-          <div class="text-center">
-            <div class="text-6xl mb-6">🔒</div>
-            <h3 class="text-2xl font-bold mb-4">Fully POPIA-Compliant</h3>
-            <p class="text-lg text-zinc-300">Independently audited, locally hosted in South Africa</p>
-          </div>
-          <div class="text-center">
-            <div class="text-6xl mb-6">🇿🇦</div>
-            <h3 class="text-2xl font-bold mb-4">Designed with Practising SA Attorneys</h3>
-            <p class="text-lg text-zinc-300">Rule logic aligned with LPC guidelines</p>
-          </div>
+      <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 sm:gap-12">
+        <div class="text-center">
+          <div class="text-5xl sm:text-6xl mb-4 sm:mb-6">🔒</div>
+          <h3 class="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">Fully POPIA-Compliant</h3>
+          <p class="text-base sm:text-lg text-zinc-300">Independently audited, locally hosted in South Africa</p>
+        </div>
+        <div class="text-center">
+          <div class="text-5xl sm:text-6xl mb-4 sm:mb-6">🇿🇦</div>
+          <h3 class="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">Designed with Practising SA Attorneys</h3>
+          <p class="text-base sm:text-lg text-zinc-300">Rule logic aligned with LPC guidelines</p>
         </div>
       </div>
     </div>
@@ -605,7 +524,7 @@
     </div>
   </section>
 
-  <!-- QUIZ OVERLAY & RESULTS (unchanged) -->
+  <!-- QUIZ OVERLAY & RESULTS -->
   <div id="quiz-overlay" class="fixed inset-0 bg-black/98 backdrop-blur-2xl flex items-center justify-center z-[1000] hidden px-4 overflow-y-auto">
     <div class="w-full max-w-lg mx-auto my-8">
       <div class="h-3 bg-zinc-800 rounded-full mb-8 overflow-hidden">
@@ -634,7 +553,7 @@
     </div>
   </section>
 
-  <!-- Floating WhatsApp Button (existing) -->
+  <!-- Original Floating WhatsApp Button Only (bottom-right corner) -->
   <a href="https://wa.me/27764312871?text=Hi%20LexPilot%2C%0A%0AI%27m%20interested%20in%20an%20Early%20Access%20founding%20spot%20and%20would%20like%20to%20chat%20about%20which%20tier%20best%20fits%20my%20firm.%0A%0ACould%20you%20recommend%20the%20right%20plan%20and%20help%20me%20get%20started%3F%0A%0AThanks!"
      class="fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-white text-black rounded-full shadow-2xl pl-5 pr-7 py-4 font-bold hover:scale-110 transition">
     <span class="absolute inset-0 rounded-full bg-green-500 opacity-75 animate-ping"></span>
@@ -642,21 +561,16 @@
     <span class="hidden md:block">Chat with founder<br><small>Reply in under 60 sec • 24/7</small></span>
   </a>
 
-  <!-- Mobile sticky WhatsApp CTA (extra visibility) -->
-  <a href="https://wa.me/27764312871?text=Hi%20LexPilot%20-%20Early%20Access" class="sticky-whatsapp md:hidden">
-    <i class="fab fa-whatsapp text-3xl mr-3"></i> Message Founder Now
-  </a>
-
   <div id="footer-placeholder" class="mt-auto"></div>
   <script src="script.js"></script>
   <script>
+    // Robust header padding – prevents any hero cutoff
     function adjustMainPadding() {
       const header = document.querySelector('header') || document.getElementById('header-placeholder');
       const main = document.querySelector('main');
       if (header && main) {
         const headerHeight = header.offsetHeight || 0;
-        const extraSpace = 32;
-        main.style.paddingTop = `${headerHeight + extraSpace}px`;
+        main.style.paddingTop = `${headerHeight + 30}px`; // comfortable buffer
       }
     }
     window.addEventListener('load', adjustMainPadding);
