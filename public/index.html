@@ -30,26 +30,7 @@
     main {
       width: 100%;
     }
-    /* === TIER NAME BADGE === */
-    #tier-name {
-      display: inline-block;
-      padding: 1.25rem 3rem;
-      border-radius: 9999px;
-      font-weight: 900;
-      text-align: center;
-      background: linear-gradient(to right, #10b981, #059669);
-      color: #000;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
-      line-height: 1.1;
-      max-width: 95vw;
-    }
-    @media (max-width: 480px) { #tier-name { font-size: 2.8rem !important; padding: 1rem 2rem !important; } }
-    @media (min-width: 481px) and (max-width: 640px) { #tier-name { font-size: 3.75rem !important; padding: 1.25rem 2.5rem !important; } }
-    @media (min-width: 641px) and (max-width: 768px) { #tier-name { font-size: 5rem !important; padding: 1.5rem 3rem !important; } }
-    @media (min-width: 769px) and (max-width: 1024px) { #tier-name { font-size: 6.5rem !important; padding: 2rem 4rem !important; } }
-    @media (min-width: 1025px) { #tier-name { font-size: 7.5rem !important; padding: 2.5rem 5rem !important; } }
-    #tier-name span { display: inline-block; white-space: nowrap; }
-    @media (max-width: 480px) { #tier-name span { white-space: normal; } }
+
     /* === BADGES === */
     .badge {
       display: inline-block;
@@ -62,6 +43,7 @@
       letter-spacing: 0.1em;
     }
     @media (min-width: 640px) { .badge { font-size: 1rem; padding: 0.875rem 1.75rem; } }
+
     .founding-badge {
       position: absolute;
       top: -1.5rem;
@@ -82,84 +64,8 @@
       white-space: nowrap;
     }
     @media (min-width: 640px) { .founding-badge { padding: 0.875rem 2rem; font-size: 0.875rem; } }
-    /* === PRICING CARDS === */
-    .pricing-card {
-      position: relative;
-      flex-shrink: 0;
-      background: linear-gradient(to bottom, #18181b, #000);
-      border-radius: 1.5rem;
-      padding: 1.5rem 1rem;
-      text-align: center;
-      border: 2px solid;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-      min-height: 520px;
-      display: flex;
-      flex-direction: column;
-      width: 80vw;
-      max-width: 320px;
-    }
-    @media (min-width: 640px) { .pricing-card { padding: 2rem 1.5rem; min-height: 560px; width: 90vw; max-width: 360px; } }
-    @media (min-width: 768px) { .pricing-card { width: 30vw; max-width: none; } }
-    .pricing-scroll-container {
-      display: flex;
-      flex-direction: row;
-      gap: 1rem;
-      padding: 2rem 1rem 3rem 1rem;
-      overflow-x: auto;
-      scroll-snap-type: x proximity;
-      scrollbar-width: thin;
-      scrollbar-color: #10b981 #18181b;
-      -webkit-overflow-scrolling: touch;
-      max-width: 100%;
-      justify-content: flex-start;
-    }
-    .pricing-scroll-container::-webkit-scrollbar { height: 8px; }
-    .pricing-scroll-container::-webkit-scrollbar-track { background: #18181b; border-radius: 10px; }
-    .pricing-scroll-container::-webkit-scrollbar-thumb { background: #10b981; border-radius: 10px; }
-    .pricing-scroll-container > * { scroll-snap-align: start; }
-    @media (min-width: 640px) { .pricing-scroll-container { padding: 2rem 1.5rem 3rem 1.5rem; gap: 1.25rem; } }
-    @media (min-width: 768px) { .pricing-scroll-container { overflow-x: visible; justify-content: center; gap: 1.5rem; } }
-    @media (min-width: 1024px) { .pricing-scroll-container { gap: 2rem; max-width: 1200px; margin: 0 auto; padding: 2rem 0; } }
-    /* === FEATURE TABLE === */
-    .feature-table-container {
-      overflow-x: auto;
-      border-radius: 1.5rem;
-      border: 1px solid #27272a;
-      scrollbar-width: thin;
-      scrollbar-color: #10b981 #18181b;
-      -webkit-overflow-scrolling: touch;
-    }
-    .feature-table-container::-webkit-scrollbar { height: 8px; }
-    .feature-table-container::-webkit-scrollbar-track { background: #18181b; border-radius: 10px; }
-    .feature-table-container::-webkit-scrollbar-thumb { background: #10b981; border-radius: 10px; }
-    .feature-table-container table { width: 100%; min-width: 650px; border-collapse: collapse; }
-    .feature-table-container table td,
-    .feature-table-container table th {
-      padding: 0.875rem 1rem;
-      font-size: 0.8125rem;
-      white-space: nowrap;
-    }
-    .feature-table-container table td:first-child,
-    .feature-table-container table th:first-child {
-      white-space: normal;
-      min-width: 200px;
-      max-width: 250px;
-    }
-    @media (min-width: 640px) {
-      .feature-table-container table { min-width: 750px; }
-      .feature-table-container table td,
-      .feature-table-container table th { padding: 1rem 1.25rem; font-size: 0.875rem; }
-      .feature-table-container table td:first-child,
-      .feature-table-container table th:first-child { min-width: 250px; max-width: 300px; }
-    }
-    @media (min-width: 768px) {
-      .feature-table-container table { min-width: 100%; }
-      .feature-table-container table td,
-      .feature-table-container table th { padding: 1.5rem 2rem; font-size: 1rem; white-space: normal; }
-      .feature-table-container table td:first-child,
-      .feature-table-container table th:first-child { min-width: auto; max-width: none; }
-    }
-    /* === HERO OPTIMIZATION – CTA above fold, natural flow === */
+
+    /* === HERO OPTIMIZED – Reduced top space on desktop === */
     @media (max-width: 767px) {
       .hero-container {
         min-height: calc(100vh - var(--header-height, 80px));
@@ -206,37 +112,210 @@
         line-height: 1.5;
       }
     }
+
     @media (min-width: 768px) {
+      .hero-container {
+        padding-top: 1.5rem; /* Significantly reduced to close the gap after header */
+        padding-bottom: 4rem;
+        min-height: calc(100vh - var(--header-height, 100px));
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .badge {
+        margin-bottom: 2rem; /* Reduced from larger values */
+      }
       .hero-headline-upper {
-        font-size: clamp(4rem, 8vw, 7rem);
+        font-size: clamp(3.5rem, 6vw, 5rem);
+        line-height: 1;
       }
       .hero-headline-lower {
-        font-size: clamp(4.5rem, 9vw, 8rem);
+        font-size: clamp(4rem, 7vw, 6rem);
+        line-height: 1;
       }
       .hero-subheadline {
-        font-size: clamp(2rem, 4vw, 3rem);
+        font-size: clamp(1.5rem, 3vw, 2.2rem);
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
       }
       .hero-cta-button {
-        font-size: clamp(2.5rem, 5vw, 3.5rem);
-        padding: clamp(1.2rem, 4vw, 1.5rem) clamp(4rem, 10vw, 5rem);
+        font-size: clamp(2rem, 4vw, 2.8rem);
+        padding: clamp(1rem, 3vw, 1.5rem) clamp(3rem, 8vw, 5rem);
+      }
+      .whatsapp-cta-text {
+        font-size: 1.3rem;
+      }
+      .credibility-block {
+        font-size: 1.2rem;
+        margin-top: 3rem;
       }
     }
-    /* Lock icon */
+
+    @media (min-height: 900px) and (min-width: 768px) {
+      .hero-container {
+        padding-top: 3rem;
+        padding-bottom: 6rem;
+      }
+    }
+
+    /* === PRICING CARDS === */
+    .pricing-card {
+      position: relative;
+      flex-shrink: 0;
+      background: linear-gradient(to bottom, #18181b, #000);
+      border-radius: 1.5rem;
+      padding: 1.5rem 1rem;
+      text-align: center;
+      border: 2px solid;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      min-height: 520px;
+      display: flex;
+      flex-direction: column;
+      width: 80vw;
+      max-width: 320px;
+    }
+    @media (min-width: 640px) { .pricing-card { padding: 2rem 1.5rem; min-height: 560px; width: 90vw; max-width: 360px; } }
+    @media (min-width: 768px) { .pricing-card { width: 30vw; max-width: none; } }
+
+    .pricing-scroll-container {
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+      padding: 2rem 1rem 3rem 1rem;
+      overflow-x: auto;
+      scroll-snap-type: x proximity;
+      scrollbar-width: thin;
+      scrollbar-color: #10b981 #18181b;
+      -webkit-overflow-scrolling: touch;
+      max-width: 100%;
+      justify-content: flex-start;
+    }
+    .pricing-scroll-container::-webkit-scrollbar { height: 8px; }
+    .pricing-scroll-container::-webkit-scrollbar-track { background: #18181b; border-radius: 10px; }
+    .pricing-scroll-container::-webkit-scrollbar-thumb { background: #10b981; border-radius: 10px; }
+    .pricing-scroll-container > * { scroll-snap-align: start; }
+    @media (min-width: 640px) { .pricing-scroll-container { padding: 2rem 1.5rem 3rem 1.5rem; gap: 1.25rem; } }
+    @media (min-width: 768px) { .pricing-scroll-container { overflow-x: visible; justify-content: center; gap: 1.5rem; } }
+    @media (min-width: 1024px) { .pricing-scroll-container { gap: 2rem; max-width: 1200px; margin: 0 auto; padding: 2rem 0; } }
+
+    /* === FEATURE TABLE === */
+    .feature-table-container {
+      overflow-x: auto;
+      border-radius: 1.5rem;
+      border: 1px solid #27272a;
+      scrollbar-width: thin;
+      scrollbar-color: #10b981 #18181b;
+      -webkit-overflow-scrolling: touch;
+    }
+    .feature-table-container::-webkit-scrollbar { height: 8px; }
+    .feature-table-container::-webkit-scrollbar-track { background: #18181b; border-radius: 10px; }
+    .feature-table-container::-webkit-scrollbar-thumb { background: #10b981; border-radius: 10px; }
+    .feature-table-container table { width: 100%; min-width: 650px; border-collapse: collapse; }
+    .feature-table-container table td,
+    .feature-table-container table th {
+      padding: 0.875rem 1rem;
+      font-size: 0.8125rem;
+      white-space: nowrap;
+    }
+    .feature-table-container table td:first-child,
+    .feature-table-container table th:first-child {
+      white-space: normal;
+      min-width: 200px;
+      max-width: 250px;
+    }
+    @media (min-width: 640px) {
+      .feature-table-container table { min-width: 750px; }
+      .feature-table-container table td,
+      .feature-table-container table th { padding: 1rem 1.25rem; font-size: 0.875rem; }
+      .feature-table-container table td:first-child,
+      .feature-table-container table th:first-child { min-width: 250px; max-width: 300px; }
+    }
+    @media (min-width: 768px) {
+      .feature-table-container table { min-width: 100%; }
+      .feature-table-container table td,
+      .feature-table-container table th { padding: 1.5rem 2rem; font-size: 1rem; white-space: normal; }
+      .feature-table-container table td:first-child,
+      .feature-table-container table th:first-child { min-width: auto; max-width: none; }
+    }
+
     .lock-icon {
       font-size: 6rem;
       margin-bottom: 2rem;
     }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.8; }
+    }
   </style>
 </head>
 <body class="min-h-screen flex flex-col">
-  <div id="header-placeholder"></div>
+
+  <!-- HEADER -->
+  <header class="fixed top-0 left-0 right-0 z-[999] bg-black/95 backdrop-blur-2xl border-b border-green-500/20">
+    <div class="max-w-7xl mx-auto px-5 py-4">
+      <!-- Desktop Layout -->
+      <div class="hidden lg:flex items-center justify-between">
+        <a href="/" class="flex items-center gap-4 group">
+          <img src="/images/lexpilot-logo.jpg" alt="LexPilot Logo"
+               class="h-10 md:h-12 rounded-full shadow-2xl ring-4 ring-green-500/30
+                      transition-all duration-300 group-hover:scale-110 group-hover:ring-green-400">
+          <span class="hidden md:flex items-baseline font-black tracking-tighter leading-none">
+            <span class="text-3xl md:text-4xl text-white">Lex</span>
+            <span class="text-4xl md:text-5xl text-green-400">Pilot</span>
+          </span>
+        </a>
+        <div class="flex items-center gap-8 xl:gap-12">
+          <nav class="flex items-center gap-10 text-base font-bold">
+            <a href="#pricing" class="text-white/80 hover:text-green-400 transition duration-300">Pricing</a>
+            <a href="#features" class="text-white/80 hover:text-green-400 transition duration-300">Features</a>
+          </nav>
+          <button onclick="startQuiz()"
+                  class="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700
+                          text-black font-black px-7 py-4 rounded-full shadow-2xl hover:scale-110 transition-all duration-300
+                          text-sm md:text-lg flex items-center gap-3 whitespace-nowrap border-2 border-green-400/50">
+            <i class="fab fa-whatsapp text-2xl"></i>
+            <span class="hidden xs:inline">SECURE MY SPOT NOW</span>
+            <span class="xs:hidden">APPLY</span>
+          </button>
+        </div>
+      </div>
+      <!-- Mobile Layout -->
+      <div class="lg:hidden flex flex-col">
+        <div class="flex items-center justify-between py-2">
+          <a href="/" class="flex items-center gap-3 group">
+            <img src="/images/lexpilot-logo.jpg" alt="LexPilot Logo"
+                 class="h-10 rounded-full shadow-2xl ring-4 ring-green-500/30
+                        transition-all duration-300 group-hover:scale-110 group-hover:ring-green-400">
+            <span class="hidden xs:flex items-baseline font-black tracking-tighter leading-none">
+              <span class="text-2xl text-white">Lex</span>
+              <span class="text-3xl text-green-400">Pilot</span>
+            </span>
+          </a>
+          <button onclick="startQuiz()"
+                  class="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700
+                          text-black font-black px-5 py-3 rounded-full shadow-2xl hover:scale-110 transition-all duration-300
+                          text-sm flex items-center gap-2 whitespace-nowrap border-2 border-green-400/50">
+            <i class="fab fa-whatsapp text-2xl"></i>
+            <span class="hidden xs:inline">SECURE MY SPOT</span>
+            <span class="xs:hidden">APPLY</span>
+          </button>
+        </div>
+        <nav class="flex justify-center gap-8 py-3 border-t border-green-500/10">
+          <a href="#pricing" class="text-white/70 hover:text-green-400 text-sm font-bold transition">Pricing</a>
+          <a href="#features" class="text-white/70 hover:text-green-400 text-sm font-bold transition">Features</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
   <main class="flex-1 px-4 sm:px-6 lg:px-8 text-center">
     <div class="max-w-7xl mx-auto hero-container">
-      <!-- Scarcity Badge -->
       <div class="badge mb-6 sm:mb-8 lg:mb-10 text-sm sm:text-base lg:text-xl font-bold tracking-wider">
         FOUNDING MEMBERS • ONLY 500 FOREVER • APPLICATIONS CLOSE END FEB 2026
       </div>
-      <!-- Main Headline -->
       <h1 class="font-black leading-[0.95] tracking-tighter mb-4 sm:mb-6 lg:mb-8">
         <span class="block hero-headline-upper">
           Stay protected from trust
@@ -245,11 +324,9 @@
           account violations
         </span>
       </h1>
-      <!-- Subheadline -->
       <p class="font-semibold opacity-95 max-w-4xl mx-auto leading-relaxed hero-subheadline">
         real-time alerts prevent errors <span class="text-green-400 font-black">before they occur</span>
       </p>
-      <!-- CTA Section -->
       <div class="mt-8 sm:mt-10 lg:mt-12">
         <button onclick="startQuiz()"
                 class="block mx-auto bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700
@@ -270,7 +347,6 @@
           </span>
         </p>
       </div>
-      <!-- Credibility Block – below CTA & WhatsApp -->
       <div class="credibility-block mt-10 sm:mt-12 lg:mt-16 font-black tracking-wider opacity-90">
         Proudly South African • 100% POPIA-compliant • Locally hosted • Fully audited
       </div>
@@ -511,7 +587,7 @@
     </div>
   </section>
 
-  <!-- FINAL CTA + Scarcity -->
+  <!-- FINAL CTA -->
   <section class="py-32 px-6 bg-gradient-to-b from-black to-zinc-950">
     <div class="max-w-6xl mx-auto text-center">
       <h2 class="text-6xl md:text-7xl font-black mb-8">Only 500 Early Access Spots<br>Will Ever Exist</h2>
@@ -528,36 +604,7 @@
     </div>
   </section>
 
-  <!-- QUIZ OVERLAY & RESULTS -->
-  <div id="quiz-overlay" class="fixed inset-0 bg-black/98 backdrop-blur-2xl flex items-center justify-center z-[1000] hidden px-4 overflow-y-auto">
-    <div class="w-full max-w-lg mx-auto my-8">
-      <div class="h-3 bg-zinc-800 rounded-full mb-8 overflow-hidden">
-        <div id="quiz-progress" class="h-full bg-gradient-to-r from-green-500 to-emerald-600 transition-all duration-700" style="width:0%"></div>
-      </div>
-      <h2 id="quiz-question-text" class="text-4xl sm:text-5xl font-black text-center mb-10 leading-tight"></h2>
-      <div id="quiz-options" class="grid grid-cols-1 gap-5"></div>
-    </div>
-  </div>
-  <section id="quiz-results" class="py-20 px-6 bg-black hidden">
-    <div class="max-w-5xl mx-auto text-center">
-      <h2 class="text-4xl md:text-6xl font-black mb-10 text-green-400">Your Perfect Founding Plan</h2>
-      <div class="relative inline-block mb-12">
-        <div id="tier-name"
-             class="inline-block px-6 sm:px-10 md:px-16 py-5 sm:py-7 md:py-8
-                    rounded-full text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl
-                    font-black text-black shadow-2xl text-center leading-none">
-          <span class="inline-block max-w-full">CALCULATING...</span>
-        </div>
-        <div id="popular-badge" class="founding-badge" style="display:none">FOUNDING PRICE – LOCKED FOREVER</div>
-      </div>
-      <div id="tier-price" class="text-6xl md:text-8xl font-black text-green-400 mb-8"></div>
-      <div id="final-total" class="text-4xl opacity-80 mb-12"></div>
-      <div id="recommended-list" class="max-w-4xl mx-auto text-left text-xl leading-relaxed bg-zinc-900/50 rounded-3xl p-10"></div>
-      <form id="quiz-payfast-form" class="payfast-form mt-16 max-w-2xl mx-auto" data-tier="Dominance"></form>
-    </div>
-  </section>
-
-  <!-- Original Floating WhatsApp Button Only (bottom-right) -->
+  <!-- Floating WhatsApp Button -->
   <a href="https://wa.me/27764312871?text=Hi%20LexPilot%2C%0A%0AI%27m%20interested%20in%20an%20Early%20Access%20founding%20spot%20and%20would%20like%20to%20chat%20about%20which%20tier%20best%20fits%20my%20firm.%0A%0ACould%20you%20recommend%20the%20right%20plan%20and%20help%20me%20get%20started%3F%0A%0AThanks!"
      class="fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-white text-black rounded-full shadow-2xl pl-5 pr-7 py-4 font-bold hover:scale-110 transition">
     <span class="absolute inset-0 rounded-full bg-green-500 opacity-75 animate-ping"></span>
@@ -565,12 +612,12 @@
     <span class="hidden md:block">Chat with founder<br><small>Reply in under 60 sec • 24/7</small></span>
   </a>
 
-  <div id="footer-placeholder" class="mt-auto"></div>
+<div id="footer-placeholder" class="mt-auto"></div>
+  <!-- Scripts -->
   <script src="script.js"></script>
   <script>
-    // No extra buffer – exact header height only
     function adjustMainPadding() {
-      const header = document.querySelector('header') || document.getElementById('header-placeholder');
+      const header = document.querySelector('header');
       const main = document.querySelector('main');
       if (header && main) {
         const headerHeight = header.offsetHeight || 0;
