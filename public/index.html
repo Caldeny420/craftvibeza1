@@ -159,15 +159,15 @@
       .feature-table-container table td:first-child,
       .feature-table-container table th:first-child { min-width: auto; max-width: none; }
     }
-    /* === HERO OPTIMIZATION – CTA always above the fold on all devices === */
+    /* === HERO OPTIMIZATION – CTA above fold, natural flow === */
     @media (max-width: 767px) {
       .hero-container {
         min-height: calc(100vh - var(--header-height, 80px));
         display: flex;
         flex-direction: column;
         justify-content: center;
-        padding-top: 2rem !important;
-        padding-bottom: 4rem !important;
+        padding-top: 1rem !important;
+        padding-bottom: 3rem !important;
       }
       .badge {
         font-size: 0.8rem !important;
@@ -270,7 +270,7 @@
           </span>
         </p>
       </div>
-      <!-- Credibility Block – moved BELOW CTA & WhatsApp -->
+      <!-- Credibility Block – below CTA & WhatsApp -->
       <div class="credibility-block mt-10 sm:mt-12 lg:mt-16 font-black tracking-wider opacity-90">
         Proudly South African • 100% POPIA-compliant • Locally hosted • Fully audited
       </div>
@@ -417,7 +417,7 @@
             <tr class="border-b border-zinc-800"><td class="px-8 py-6">Automated sequences (chaser, nurturing, referrals)</td><td class="text-center text-red-500 font-bold">No</td><td class="text-center text-green-400 font-bold">Yes</td><td class="text-center text-green-400 font-bold">Yes</td></tr>
             <tr class="bg-amber-900/20 border-b-4 border-amber-700">
               <td class="px-8 py-10 font-bold text-2xl text-amber-300 leading-tight">
-                Never Miss CPD Points Again<br>
+                Automatic CPD tracking<br>
                 <span class="block mt-3 text-base font-normal opacity-90">
                   Auto-tracks everything · LPC report in 1 click
                 </span>
@@ -568,15 +568,14 @@
   <div id="footer-placeholder" class="mt-auto"></div>
   <script src="script.js"></script>
   <script>
-    // Robust header padding – respects fixed header height
+    // No extra buffer – exact header height only
     function adjustMainPadding() {
       const header = document.querySelector('header') || document.getElementById('header-placeholder');
       const main = document.querySelector('main');
       if (header && main) {
         const headerHeight = header.offsetHeight || 0;
-        main.style.paddingTop = `${headerHeight + 20}px`;
-        // Store for mobile hero calc
-        document.documentElement.style.setProperty('--header-height', `${headerHeight + 20}px`);
+        main.style.paddingTop = `${headerHeight}px`;
+        document.documentElement.style.setProperty('--header-height', `${headerHeight}px`);
       }
     }
     window.addEventListener('load', adjustMainPadding);
@@ -585,7 +584,6 @@
     setTimeout(adjustMainPadding, 100);
     setTimeout(adjustMainPadding, 500);
     setTimeout(adjustMainPadding, 1000);
-    setTimeout(adjustMainPadding, 2000);
   </script>
 </body>
 </html>
