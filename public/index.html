@@ -391,52 +391,127 @@
     </div>
   </section>
 
-  <!-- PRICING -->
-  <section id="pricing" class="py-24 px-6 bg-black">
-    <div class="max-w-6xl mx-auto text-center">
-      <h2 class="text-5xl sm:text-6xl md:text-7xl font-black mb-8 leading-tight">
-        Early Access Pricing<br>
-        <span class="text-2xl md:text-4xl opacity-80 font-normal">(Founding Price — Locked Forever)</span>
-      </h2>
-      <div class="pricing-scroll-container">
-        <!-- Growth -->
-        <div class="pricing-card border-zinc-700">
-          <h3 class="text-4xl sm:text-5xl font-black text-green-400 mb-4 sm:mb-6">Growth</h3>
-          <div class="text-6xl sm:text-7xl font-black text-green-400 leading-none">R999<span class="text-3xl sm:text-4xl">/mo</span></div>
-          <p class="text-lg sm:text-xl opacity-70 my-3 sm:my-5"><s>R2,999</s></p>
-          <p class="text-xl sm:text-2xl mb-3 sm:mb-4">Setup R0</p>
-          <button data-tier="Growth" class="claim-btn mt-8 sm:mt-12 w-full bg-gradient-to-r from-green-500 to-emerald-600 text-black font-black text-xl sm:text-2xl py-4 sm:py-6 rounded-2xl hover:scale-105 transition">
-            CLAIM GROWTH SPOT
-          </button>
-          <div class="payfast-form hidden mt-4 sm:mt-6" data-tier="Growth"></div>
+<!-- PRICING -->
+<section id="pricing" class="py-24 px-6 bg-black">
+  <div class="max-w-6xl mx-auto text-center">
+    <h2 class="text-5xl sm:text-6xl md:text-7xl font-black mb-8 leading-tight">
+      Early Access Pricing<br>
+      <span class="text-2xl md:text-4xl opacity-80 font-normal">(Founding Price — Locked Forever)</span>
+    </h2>
+
+    <div class="pricing-scroll-container">
+      <!-- Growth -->
+      <div class="pricing-card border-zinc-700 flex flex-col">
+        <div class="text-center">
+          <h3 class="text-4xl sm:text-5xl font-black text-green-400 mb-3">Growth</h3>
+          <p class="text-2xl sm:text-3xl font-bold text-white mb-6">1–5 attorneys + staff</p>
         </div>
-        <!-- Dominance (Popular) -->
-        <div class="pricing-card border-green-500 relative transform scale-105">
-          <div class="founding-badge">FOUNDING PRICE – LOCKED FOREVER</div>
-          <h3 class="text-4xl sm:text-5xl font-black text-yellow-400 mt-6 sm:mt-8 mb-4 sm:mb-6">Dominance</h3>
-          <div class="text-6xl sm:text-7xl font-black text-green-400 leading-none">R2,999<span class="text-3xl sm:text-4xl">/mo</span></div>
-          <p class="text-lg sm:text-xl opacity-70 my-3 sm:my-5"><s>R7,999</s></p>
-          <p class="text-xl sm:text-2xl mb-3 sm:mb-4">Setup R4,999 <span class="text-green-400 text-xs sm:text-sm block">(waived first 100)</span></p>
-          <button data-tier="Dominance" class="claim-btn mt-8 sm:mt-10 w-full bg-yellow-400 text-black font-black text-xl sm:text-2xl py-4 sm:py-6 rounded-2xl hover:scale-105 transition">
-            <span id="dominance-btn-text">CLAIM DOMINANCE SPOT</span>
-          </button>
-          <div class="payfast-form hidden mt-4 sm:mt-6" data-tier="Dominance"></div>
+
+        <div class="text-6xl sm:text-7xl font-black text-green-400 leading-none mb-4">
+          R999<span class="text-3xl sm:text-4xl opacity-80">/mo</span>
         </div>
-        <!-- Elite -->
-        <div class="pricing-card border-amber-600">
-          <h3 class="text-4xl sm:text-5xl font-black text-amber-400 mb-4 sm:mb-6">Elite</h3>
-          <div class="text-6xl sm:text-7xl font-black text-green-400 leading-none">R9,999<span class="text-3xl sm:text-4xl">/mo</span></div>
-          <p class="text-lg sm:text-xl opacity-70 my-3 sm:my-5"><s>R19,999</s></p>
-          <p class="text-xl sm:text-2xl mb-3 sm:mb-4">Setup R9,999 <span class="text-green-400 text-xs sm:text-sm block">(waived first 50)</span></p>
-          <button data-tier="Elite" class="claim-btn mt-8 sm:mt-10 w-full bg-gradient-to-r from-amber-500 to-orange-600 text-black font-black text-xl sm:text-2xl py-4 sm:py-6 rounded-2xl hover:scale-105 transition">
-            CLAIM ELITE SPOT
-          </button>
-          <div class="payfast-form hidden mt-4 sm:mt-6" data-tier="Elite"></div>
+        <p class="text-lg sm:text-xl opacity-70 mb-2"><s>R2,999</s></p>
+        <p class="text-xl sm:text-2xl font-semibold mb-8">No Setup Fee</p>
+
+        <ul class="text-left text-base sm:text-lg space-y-4 mb-10 px-6 flex-1">
+          <li class="flex items-start gap-3">
+            <i class="fas fa-check text-green-400 mt-1"></i>
+            <span>Professional website + AI generator</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="fas fa-check text-green-400 mt-1"></i>
+            <span>Real-time trust account protection</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="fas fa-check text-green-400 mt-1"></i>
+            <span>Smart SA billing & invoicing</span>
+          </li>
+        </ul>
+
+        <button data-tier="Growth" class="claim-btn mt-auto w-full bg-gradient-to-r from-green-500 to-emerald-600 text-black font-black text-xl sm:text-2xl py-5 sm:py-6 rounded-2xl hover:scale-105 transition shadow-xl">
+          CLAIM GROWTH SPOT
+        </button>
+        <div class="payfast-form hidden mt-4" data-tier="Growth"></div>
+      </div>
+
+      <!-- Dominance (Most Popular) -->
+      <div class="pricing-card border-green-500 relative transform scale-105 flex flex-col">
+        <div class="founding-badge">FOUNDING PRICE – LOCKED FOREVER</div>
+        
+        <div class="text-center mt-6">
+          <h3 class="text-4xl sm:text-5xl font-black text-yellow-400 mb-3">Dominance</h3>
+          <p class="text-2xl sm:text-3xl font-bold text-white mb-6">5–15 attorneys + staff</p>
         </div>
+
+        <div class="text-6xl sm:text-7xl font-black text-green-400 leading-none mb-4">
+          R2,999<span class="text-3xl sm:text-4xl opacity-80">/mo</span>
+        </div>
+        <p class="text-lg sm:text-xl opacity-70 mb-2"><s>R7,999</s></p>
+        <p class="text-xl sm:text-2xl font-semibold mb-8">
+          Setup R4,999 
+          <span class="text-green-400 text-sm sm:text-base block font-bold">(waived for first 100)</span>
+        </p>
+
+        <ul class="text-left text-base sm:text-lg space-y-4 mb-10 px-6 flex-1">
+          <li class="flex items-start gap-3">
+            <i class="fas fa-check text-green-400 mt-1"></i>
+            <span>Client deposits (card/EFT/Ozow)</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="fas fa-check text-green-400 mt-1"></i>
+            <span>Lead dashboard + automated sequences</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="fas fa-check text-green-400 mt-1"></i>
+            <span>Priority founder support</span>
+          </li>
+        </ul>
+
+        <button data-tier="Dominance" class="claim-btn mt-auto w-full bg-yellow-400 text-black font-black text-xl sm:text-2xl py-5 sm:py-6 rounded-2xl hover:scale-105 transition shadow-xl">
+          <span id="dominance-btn-text">CLAIM DOMINANCE SPOT</span>
+        </button>
+        <div class="payfast-form hidden mt-4" data-tier="Dominance"></div>
+      </div>
+
+      <!-- Elite -->
+      <div class="pricing-card border-amber-600 flex flex-col">
+        <div class="text-center">
+          <h3 class="text-4xl sm:text-5xl font-black text-amber-400 mb-3">Elite</h3>
+          <p class="text-2xl sm:text-3xl font-bold text-white mb-6">Unlimited attorneys + staff</p>
+        </div>
+
+        <div class="text-6xl sm:text-7xl font-black text-green-400 leading-none mb-4">
+          R9,999<span class="text-3xl sm:text-4xl opacity-80">/mo</span>
+        </div>
+        <p class="text-lg sm:text-xl opacity-70 mb-2"><s>R19,999</s></p>
+        <p class="text-xl sm:text-2xl font-semibold mb-8">
+          Setup R9,999 
+          <span class="text-green-400 text-sm sm:text-base block font-bold">(waived for first 50)</span>
+        </p>
+
+        <ul class="text-left text-base sm:text-lg space-y-4 mb-10 px-6 flex-1">
+          <li class="flex items-start gap-3">
+            <i class="fas fa-check text-green-400 mt-1"></i>
+            <span>Auto CPD tracking + LPC reports</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="fas fa-check text-green-400 mt-1"></i>
+            <span>AI Brief & Letter Writer (SA trained)</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="fas fa-check text-green-400 mt-1"></i>
+            <span>Full white-label + custom domain</span>
+          </li>
+        </ul>
+
+        <button data-tier="Elite" class="claim-btn mt-auto w-full bg-gradient-to-r from-amber-500 to-orange-600 text-black font-black text-xl sm:text-2xl py-5 sm:py-6 rounded-2xl hover:scale-105 transition shadow-xl">
+          CLAIM ELITE SPOT
+        </button>
+        <div class="payfast-form hidden mt-4" data-tier="Elite"></div>
       </div>
     </div>
-  </section>
-
+  </div>
+</section>
   <!-- FEATURE TABLE -->
   <section id="features" class="py-20 px-6 bg-black">
     <div class="max-w-6xl mx-auto">
