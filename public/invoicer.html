@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LexPilot - Legal Practice Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1e40af;
+            --primary-light: #3b82f6;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --dark: #1f2937;
+            --light: #f8fafc;
+            --gray: #6b7280;
+        }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); 
+            min-height: 100vh;
+            color: var(--dark);
+        }
+        .navbar { 
+            background: var(--primary) !important; 
+            box-shadow: 0 4px 12px rgba(30,64,175,0.15);
+        }
+        .navbar-brand { font-weight: 700; font-size: 1.5rem; color: white !important; }
+        .nav-link { font-weight: 500; color: white !important; }
+        .card { 
+            border: none; 
+            border-radius: 16px; 
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08); 
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .card:hover { transform: translateY(-4px); box-shadow: 0 16px 32px rgba(0,0,0,0.12); }
+        .kpi-card { 
+            background: white; 
+            padding: 28px; 
+            text-align: center;
+            border-radius: 16px;
+        }
+        .kpi-value { font-size: 2.2rem; font-weight: 700; color: var(--dark); }
+        .kpi-label { font-size: 0.95rem; color: var(--gray); margin-bottom: 12px; }
+        .progress { height: 8px; border-radius: 4px; background: #e2e8f0; }
+        .alert-item { 
+            padding: 16px; 
+            border-left: 4px solid transparent; 
+            cursor: pointer; 
+            transition: background 0.2s;
+        }
+        .alert-item:hover { background: #f1f5f9; }
+        .alert-item.trust-warning { border-left-color: var(--danger); }
+        .timer-display { 
+            font-size: 3rem; 
+            font-weight: 700; 
+            color: var(--primary); 
+            letter-spacing: 3px;
+        }
+        .section-title { 
+            font-weight: 600; 
+            color: var(--dark); 
+            margin-bottom: 24px; 
+            padding-bottom: 10px; 
+            border-bottom: 2px solid #e0e7ff;
+        }
+        .btn-primary { background: var(--primary); border: none; }
+        .btn-success { background: var(--success); border: none; }
+        .quick-link { 
+            color: var(--primary); 
+            font-weight: 500; 
+            text-decoration: underline; 
+            cursor: pointer;
+        }
+        .quick-link:hover { color: var(--primary-light); }
+        .table thead { background: #f8fafc; }
+        .form-control, .form-select { border-radius: 10px; }
+        .modal-content { border-radius: 16px; overflow: hidden; }
+        .modal-header { background: var(--primary); color: white; }
+        .trust-warning { color: var(--danger); font-weight: 600; }
+        .filtered-view { background: white; border-radius: 16px; padding: 32px; margin-top: 32px; box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+        .client-header { font-size: 2.2rem; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
+        .case-header { font-size: 1.4rem; font-weight: 600; color: var(--primary); }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">LexPilot</a>
+        <div class="navbar-nav ms-auto d-flex align-items-center gap-4">
+            <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">User ▼</a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">Logout</a></li>
+                </ul>
+            </div>
+            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#timeModal"><i class="fas fa-clock me-2"></i>+ Time</a>
+            <a class="nav-link" href="#" id="openInvoiceBtn"><i class="fas fa-file-invoice me-2"></i>+ Invoice</a>
+            <a class="nav-link" href="#"><i class="fas fa-chart-bar me-2"></i>Reports</a>
+            <a class="nav-link" href="#"><i class="fas fa-cog me-2"></i>Settings</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <!-- Client & Matter Selector -->
+    <div class="row mb-4">
+        <div class="col-lg-6">
+            <div class="d-flex align-items-center gap-3">
+                <strong class="text-muted">Client:</strong>
+                <div class="dropdown flex-grow-1">
+                    <button class="btn btn-outline-primary dropdown-toggle w-100 text-start" id="clientDropdownBtn" data-bs-toggle="dropdown">
+                        Select Client ▼
+                    </button>
+                    <ul class="dropdown-menu w-100" id="clientDropdown"></ul>
+                </div>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addClientModal"><i class="fas fa-plus"></i></button>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="d-flex align-items-center gap-3">
+                <strong class="text-muted">Matter:</strong>
+                <div class="dropdown flex-grow-1">
+                    <button class="btn btn-outline-primary dropdown-toggle w-100 text-start" id="caseDropdownBtn" data-bs-toggle="dropdown">
+                        Select Matter ▼
+                    </button>
+                    <ul class="dropdown-menu w-100" id="caseDropdown"></ul>
+                </div>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCaseModal"><i class="fas fa-plus"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Selected Client/Matter View -->
+    <div id="filteredView" class="filtered-view" style="display:none;">
+        <div class="client-header" id="selectedClientName"></div>
+        <div class="case-header mb-4" id="selectedCaseName"></div>
+
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <div class="kpi-card">
+                    <div class="kpi-label">Unbilled (This Matter)</div>
+                    <div class="kpi-value text-success" id="matterUnbilled">R 0</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="kpi-card">
+                    <div class="kpi-label">Trust Balance</div>
+                    <div class="kpi-value" id="matterTrust">R 0</div>
+                    <div class="trust-warning" id="matterTrustWarning" style="display:none;">Low Trust!</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="kpi-card">
+                    <div class="kpi-label">Total Billed (This Matter)</div>
+                    <div class="kpi-value text-primary" id="matterBilled">R 0</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Global KPIs -->
+    <h5 class="section-title">Practice Overview</h5>
+    <div class="row mb-5">
+        <div class="col-md-4">
+            <div class="kpi-card">
+                <div class="kpi-label">Total Unbilled</div>
+                <div class="kpi-value text-success" id="globalUnbilled">R 0</div>
+                <div class="progress mt-3"><div class="progress-bar bg-success" id="globalUnbilledProgress" style="width:0%"></div></div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="kpi-card">
+                <div class="kpi-label">Outstanding Invoices</div>
+                <div class="kpi-value text-warning" id="globalOutstanding">R 96,200</div>
+                <div class="progress mt-3"><div class="progress-bar bg-warning" id="globalOutstandingProgress" style="width:60%"></div></div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="kpi-card">
+                <div class="kpi-label">Total Trust Funds</div>
+                <div class="kpi-value" id="globalTrust">R 0</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Alerts -->
+    <h5 class="section-title">Alerts & Notifications</h5>
+    <div class="card mb-5">
+        <div class="list-group list-group-flush" id="alertList"></div>
+        <div class="card-footer text-end bg-light">
+            <small><a href="#" id="markAllRead">Mark All Read</a> · <a href="#" id="snoozeAlerts">Snooze</a></small>
+        </div>
+    </div>
+
+    <!-- Active Timer -->
+    <h5 class="section-title">Active Timer</h5>
+    <div class="card shadow-lg mb-5" id="activeTimerCard" style="display:none;">
+        <div class="card-body text-center py-5">
+            <div class="timer-display mb-4" id="activeTimerDisplay">00:00:00</div>
+            <div class="mb-4">
+                <button class="btn btn-outline-primary btn-lg mx-3" id="pauseTimerBtn">Pause</button>
+                <button class="btn btn-danger btn-lg mx-3" id="stopTimerBtn"><i class="fas fa-stop me-2"></i>Stop & Save</button>
+            </div>
+            <div>
+                <div class="dropdown d-inline-block">
+                    <button class="btn btn-success dropdown-toggle" id="startNewTimerBtn" data-bs-toggle="dropdown">Start New Timer ▼</button>
+                    <ul class="dropdown-menu" id="startTimerDropdown"></ul>
+                </div>
+                <span class="ms-4 text-muted">Quick start:</span>
+                <span class="quick-link mx-2" data-service="Consultation">Consultation</span>
+                <span class="quick-link mx-2" data-service="Drafting">Drafting</span>
+                <span class="quick-link mx-2" data-service="Research">Research</span>
+                <span class="quick-link mx-2" data-service="Court Appearance">Court Appearance</span>
+            </div>
+        </div>
+    </div>
+    <div class="text-center py-5" id="noTimerMessage">
+        <p class="text-muted fs-4">No active timer — select a matter and start one above</p>
+    </div>
+</div>
+
+<!-- Invoice Modal -->
+<div class="modal fade" id="invoiceModal" tabindex="-1">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Create Invoice</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row mb-4 align-items-center">
+                    <div class="col-md-6">
+                        <strong>Date:</strong> December 16, 2025
+                    </div>
+                    <div class="col-md-6 text-end">
+                        <strong>Due:</strong> December 30, 2025
+                    </div>
+                </div>
+                <div class="row g-3 mb-4">
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Client</label>
+                        <select class="form-select" id="invoiceClientSelect"></select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Matter</label>
+                        <select class="form-select" id="invoiceCaseSelect"></select>
+                    </div>
+                </div>
+
+                <h6 class="border-bottom pb-3 mb-3 fw-semibold">Services & Time Entries</h6>
+                <div class="table-responsive mb-4">
+                    <table class="table table-hover align-middle" id="servicesTable">
+                        <thead class="table-light">
+                            <tr>
+                                <th width="40%">Service</th>
+                                <th width="15%">Hours</th>
+                                <th width="15%">Rate (R)</th>
+                                <th width="20%">Amount (R)</th>
+                                <th width="10%"></th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <button class="btn btn-outline-primary mb-4" id="addServiceBtn"><i class="fas fa-plus me-2"></i>Add Line</button>
+
+                <h6 class="border-bottom pb-3 mb-3 mt-5 fw-semibold">Disbursements</h6>
+                <div class="table-responsive mb-4">
+                    <table class="table table-hover align-middle" id="disbursementsTable">
+                        <thead class="table-light">
+                            <tr>
+                                <th width="70%">Description</th>
+                                <th width="20%">Amount (R)</th>
+                                <th width="10%"></th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <button class="btn btn-outline-primary" id="addDisbursementBtn"><i class="fas fa-plus me-2"></i>Add Disbursement</button>
+
+                <hr class="my-5">
+                <div class="text-end fs-4">
+                    <div>Subtotal: <strong>R <span id="subtotal">0.00</span></strong></div>
+                    <div>VAT (15%): <strong>R <span id="vat">0.00</span></strong></div>
+                    <div class="mt-3 text-primary fw-bold">TOTAL: R <span id="total">0.00</span></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="saveDraftBtn">Save Draft</button>
+                <button class="btn btn-outline-info" id="previewPdfBtn">Preview PDF</button>
+                <button class="btn btn-primary btn-lg px-5" id="sendInvoiceBtn">Send Invoice</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Time Entry Modal -->
+<div class="modal fade" id="timeModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Record Time Entry</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row g-3">
+                    <div class="col-12">
+                        <label class="form-label fw-semibold">Client</label>
+                        <select class="form-select" id="timeClientSelect"></select>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label fw-semibold">Matter</label>
+                        <select class="form-select" id="timeCaseSelect"></select>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label fw-semibold">Service</label>
+                        <input type="text" class="form-control" id="timeService" placeholder="e.g. Telephone consultation with client">
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label fw-semibold">Description (optional)</label>
+                        <textarea class="form-control" id="timeDescription" rows="3"></textarea>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label fw-semibold">Hours</label>
+                        <input type="number" step="0.1" min="0" class="form-control" id="timeHours" placeholder="e.g. 1.5">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button class="btn btn-primary" id="saveTimeEntryBtn">Save Time Entry</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Client Modal -->
+<div class="modal fade" id="addClientModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add New Client</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Full Name</label>
+                    <input type="text" class="form-control" id="newClientName" placeholder="John Smith">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Email</label>
+                    <input type="email" class="form-control" id="newClientEmail">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Phone</label>
+                    <input type="tel" class="form-control" id="newClientPhone">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="saveClientBtn">Save Client</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Case Modal -->
+<div class="modal fade" id="addCaseModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add New Matter</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Matter Name</label>
+                    <input type="text" class="form-control" id="newCaseName" placeholder="e.g. Smith v RAF">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Client</label>
+                    <select class="form-select" id="newCaseClientSelect"></select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Initial Trust Deposit (R)</label>
+                    <input type="number" class="form-control" id="newCaseTrust" placeholder="0.00" value="0">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="saveCaseBtn">Save Matter</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Trust Deposit Modal -->
+<div class="modal fade" id="depositModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="depositTitle">Deposit Trust Funds</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Matter:</strong> <span id="depositCaseName"></span></p>
+                <label class="form-label fw-semibold">Amount (R)</label>
+                <input type="number" step="0.01" class="form-control form-control-lg" id="depositAmount" placeholder="0.00">
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary btn-lg px-5" id="depositBtn">Deposit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    const HOURLY_RATE = 2000;
+    const VAT_RATE = 0.15;
+    const TRUST_LOW_THRESHOLD = 50000;
+
+    let clients = JSON.parse(localStorage.getItem('lexpilot_clients')) || [];
+    let cases = JSON.parse(localStorage.getItem('lexpilot_cases')) || [];
+    let timeEntries = JSON.parse(localStorage.getItem('lexpilot_timeEntries')) || [];
+    let activeTimer = JSON.parse(localStorage.getItem('lexpilot_activeTimer')) || null;
+
+    let selectedClientId = null;
+    let selectedCaseId = null;
+    let currentDepositCaseId = null;
+
+    // Initial demo data
+    if (clients.length === 0) {
+        clients = [
+            {id: 1, name: 'John Smith', email: 'john@example.com', phone: '082 123 4567'},
+            {id: 2, name: 'Jane Dlamini', email: 'jane@example.com', phone: ''},
+            {id: 3, name: 'Mike Jones', email: 'mike@example.com', phone: ''}
+        ];
+        cases = [
+            {id: 1, name: 'Smith v RAF', clientId: 1, trust: 310450},
+            {id: 2, name: 'Dlamini v Insurer', clientId: 2, trust: 12000},
+            {id: 3, name: 'Jones v RoadCorp', clientId: 3, trust: 100000}
+        ];
+        timeEntries = [
+            {id: 1, caseId: 1, service: 'Initial Consultation', hours: 2.5, amount: 5000, date: '2025-12-10', billed: false},
+            {id: 2, caseId: 1, service: 'Research & Drafting', hours: 12.0, amount: 24000, date: '2025-12-12', billed: false},
+            {id: 3, caseId: 2, service: 'Telephone calls', hours: 1.0, amount: 2000, date: '2025-12-15', billed: false}
+        ];
+        saveData();
+    }
+
+    function saveData() {
+        localStorage.setItem('lexpilot_clients', JSON.stringify(clients));
+        localStorage.setItem('lexpilot_cases', JSON.stringify(cases));
+        localStorage.setItem('lexpilot_timeEntries', JSON.stringify(timeEntries));
+        localStorage.setItem('lexpilot_activeTimer', JSON.stringify(activeTimer));
+    }
+
+    function updateDropdowns() {
+        const clientOptions = clients.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
+        const caseOptions = cases.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
+
+        // Dropdown menus
+        document.getElementById('clientDropdown').innerHTML = clients.map(c => `<li><a class="dropdown-item" href="#" data-id="${c.id}">${c.name}</a></li>`).join('');
+        document.getElementById('caseDropdown').innerHTML = cases.map(c => `<li><a class="dropdown-item" href="#" data-id="${c.id}">${c.name}</a></li>`).join('');
+
+        // Selects in modals
+        document.getElementById('invoiceClientSelect').innerHTML = clientOptions;
+        document.getElementById('timeClientSelect').innerHTML = clientOptions;
+        document.getElementById('newCaseClientSelect').innerHTML = clientOptions;
+        document.getElementById('invoiceCaseSelect').innerHTML = caseOptions;
+        document.getElementById('timeCaseSelect').innerHTML = caseOptions;
+
+        // Start timer dropdown
+        document.getElementById('startTimerDropdown').innerHTML = cases.map(c => {
+            const client = clients.find(cl => cl.id === c.clientId);
+            return `<li><a class="dropdown-item" href="#" data-case-id="${c.id}">${client?.name || 'Unknown'} – ${c.name}</a></li>`;
+        }).join('');
+    }
+
+    function updateSelectedView() {
+        const view = document.getElementById('filteredView');
+        if (!selectedClientId || !selectedCaseId) {
+            view.style.display = 'none';
+            return;
+        }
+        view.style.display = 'block';
+
+        const client = clients.find(c => c.id === selectedClientId);
+        const cas = cases.find(c => c.id === selectedCaseId);
+
+        document.getElementById('selectedClientName').textContent = client?.name || '';
+        document.getElementById('selectedCaseName').textContent = cas?.name || '';
+
+        const matterEntriesUnbilled = timeEntries.filter(te => te.caseId === selectedCaseId && !te.billed);
+        const matterUnbilled = matterEntriesUnbilled.reduce((sum, te) => sum + te.amount, 0);
+        const matterBilled = timeEntries.filter(te => te.caseId === selectedCaseId && te.billed).reduce((sum, te) => sum + te.amount, 0);
+
+        document.getElementById('matterUnbilled').textContent = 'R ' + matterUnbilled.toLocaleString('en-ZA', {minimumFractionDigits: 2});
+        document.getElementById('matterTrust').textContent = 'R ' + (cas?.trust || 0).toLocaleString('en-ZA', {minimumFractionDigits: 2});
+        document.getElementById('matterBilled').textContent = 'R ' + matterBilled.toLocaleString('en-ZA', {minimumFractionDigits: 2});
+
+        const trustWarning = document.getElementById('matterTrustWarning');
+        if (cas?.trust < TRUST_LOW_THRESHOLD) {
+            trustWarning.style.display = 'block';
+        } else {
+            trustWarning.style.display = 'none';
+        }
+    }
+
+    function updateGlobalKPIs() {
+        const unbilled = timeEntries.filter(te => !te.billed).reduce((sum, te) => sum + te.amount, 0);
+        const totalTrust = cases.reduce((sum, c) => sum + c.trust, 0);
+
+        document.getElementById('globalUnbilled').textContent = 'R ' + unbilled.toLocaleString('en-ZA', {minimumFractionDigits: 2});
+        const unbilledPercent = Math.min(100, (unbilled / 60000) * 100);
+        document.getElementById('globalUnbilledProgress').style.width = unbilledPercent + '%';
+
+        document.getElementById('globalTrust').textContent = 'R ' + totalTrust.toLocaleString('en-ZA', {minimumFractionDigits: 2});
+    }
+
+    function updateAlerts() {
+        const list = document.getElementById('alertList');
+        list.innerHTML = '';
+
+        // Low trust alerts
+        cases.filter(c => c.trust < TRUST_LOW_THRESHOLD).forEach(c => {
+            const client = clients.find(cl => cl.id === c.clientId);
+            const item = document.createElement('div');
+            item.className = 'alert-item trust-warning';
+            item.innerHTML = `<strong>Trust Low</strong> – ${c.name} (${client?.name || 'Unknown'}) – R${c.trust.toLocaleString()}`;
+            item.onclick = () => {
+                currentDepositCaseId = c.id;
+                document.getElementById('depositTitle').textContent = `Deposit Trust – ${c.name}`;
+                document.getElementById('depositCaseName').textContent = `${client?.name || ''} – ${c.name}`;
+                new bootstrap.Modal(document.getElementById('depositModal')).show();
+            };
+            list.appendChild(item);
+        });
+
+        // Running timer alert
+        if (activeTimer) {
+            const c = cases.find(ca => ca.id === activeTimer.caseId);
+            const client = clients.find(cl => cl.id === c?.clientId);
+            const item = document.createElement('div');
+            item.className = 'alert-item';
+            item.innerHTML = `<strong>Timer Running</strong> – ${c?.name || ''} (${client?.name || ''})`;
+            item.onclick = () => window.location.href = '#activeTimerCard';
+            list.appendChild(item);
+        }
+    }
+
+    function updateTimerDisplay() {
+        const card = document.getElementById('activeTimerCard');
+        const noMsg = document.getElementById('noTimerMessage');
+
+        if (!activeTimer) {
+            card.style.display = 'none';
+            noMsg.style.display = 'block';
+            return;
+        }
+
+        card.style.display = 'block';
+        noMsg.style.display = 'none';
+
+        let elapsed = activeTimer.elapsed || 0;
+        if (activeTimer.running) {
+            elapsed += (Date.now() - activeTimer.startTime) / 1000;
+        }
+
+        const h = String(Math.floor(elapsed / 3600)).padStart(2, '0');
+        const m = String(Math.floor((elapsed % 3600) / 60)).padStart(2, '0');
+        const s = String(Math.floor(elapsed % 60)).padStart(2, '0');
+
+        const cas = cases.find(c => c.id === activeTimer.caseId);
+        document.getElementById('activeTimerDisplay').textContent = `${cas?.name || 'Matter'} – ${h}:${m}:${s}`;
+    }
+
+    function startTimer(caseId, service = 'General Work') {
+        if (activeTimer && !confirm('Stop the current timer and start a new one?')) return;
+
+        stopTimer(true); // clear previous
+
+        activeTimer = {
+            caseId,
+            service,
+            startTime: Date.now(),
+            elapsed: 0,
+            running: true
+        };
+        saveData();
+        timerInterval = setInterval(updateTimerDisplay, 1000);
+        updateTimerDisplay();
+        updateAlerts();
+    }
+
+    function pauseTimer() {
+        if (!activeTimer) return;
+        if (activeTimer.running) {
+            activeTimer.elapsed += (Date.now() - activeTimer.startTime) / 1000;
+            activeTimer.running = false;
+            document.getElementById('pauseTimerBtn').textContent = 'Resume';
+        } else {
+            activeTimer.startTime = Date.now();
+            activeTimer.running = true;
+            document.getElementById('pauseTimerBtn').textContent = 'Pause';
+        }
+        saveData();
+        updateTimerDisplay();
+    }
+
+    function stopTimer(autoSave = false) {
+        if (!activeTimer) return;
+
+        let totalSeconds = activeTimer.elapsed || 0;
+        if (activeTimer.running) {
+            totalSeconds += (Date.now() - activeTimer.startTime) / 1000;
+        }
+
+        if (autoSave && totalSeconds >= 30) {
+            const hours = parseFloat((totalSeconds / 3600).toFixed(2));
+            const newId = timeEntries.length ? Math.max(...timeEntries.map(te => te.id)) + 1 : 1;
+            timeEntries.push({
+                id: newId,
+                caseId: activeTimer.caseId,
+                service: activeTimer.service,
+                hours: hours,
+                amount: hours * HOURLY_RATE,
+                date: new Date().toISOString().split('T')[0],
+                billed: false
+            });
+        }
+
+        activeTimer = null;
+        clearInterval(timerInterval);
+        saveData();
+        updateAll();
+    }
+
+    function updateAll() {
+        updateDropdowns();
+        updateGlobalKPIs();
+        updateSelectedView();
+        updateAlerts();
+        updateTimerDisplay();
+    }
+
+    // Invoice handling
+    let currentInvoice = { services: [], disbursements: [] };
+
+    function openInvoiceModal() {
+        currentInvoice = { services: [], disbursements: [] };
+        updateInvoiceTables();
+        calculateInvoiceTotal();
+        new bootstrap.Modal(document.getElementById('invoiceModal')).show();
+    }
+
+    function updateInvoiceTables() {
+        const sTbody = document.querySelector('#servicesTable tbody');
+        sTbody.innerHTML = currentInvoice.services.map((s, i) => `
+            <tr>
+                <td><input type="text" class="form-control" value="${s.service}" data-index="${i}" data-field="service"></td>
+                <td><input type="number" step="0.1" class="form-control" value="${s.hours}" data-index="${i}" data-field="hours"></td>
+                <td><input type="number" class="form-control" value="${s.rate}" data-index="${i}" data-field="rate"></td>
+                <td class="amount fw-semibold">${(s.hours * s.rate).toFixed(2)}</td>
+                <td><button class="btn btn-danger btn-sm remove-service" data-index="${i}">×</button></td>
+            </tr>
+        `).join('');
+
+        const dTbody = document.querySelector('#disbursementsTable tbody');
+        dTbody.innerHTML = currentInvoice.disbursements.map((d, i) => `
+            <tr>
+                <td><input type="text" class="form-control" value="${d.desc}" data-index="${i}" data-field="desc"></td>
+                <td><input type="number" step="0.01" class="form-control" value="${d.amount}" data-index="${i}" data-field="amount"></td>
+                <td><button class="btn btn-danger btn-sm remove-disb" data-index="${i}">×</button></td>
+            </tr>
+        `).join('');
+    }
+
+    function calculateInvoiceTotal() {
+        let subtotal = currentInvoice.services.reduce((sum, s) => sum + s.hours * s.rate, 0) +
+                      currentInvoice.disbursements.reduce((sum, d) => sum + d.amount, 0);
+        const vat = subtotal * VAT_RATE;
+        const total = subtotal + vat;
+
+        document.getElementById('subtotal').textContent = subtotal.toFixed(2);
+        document.getElementById('vat').textContent = vat.toFixed(2);
+        document.getElementById('total').textContent = total.toFixed(2);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        updateAll();
+
+        // Resume timer if exists
+        if (activeTimer) {
+            if (activeTimer.running) activeTimer.startTime = Date.now();
+            timerInterval = setInterval(updateTimerDisplay, 1000);
+            updateTimerDisplay();
+        }
+
+        // Start a demo timer so you can see it immediately
+        if (cases.length > 0 && !activeTimer) {
+            startTimer(cases[0].id, 'Research & drafting');
+        }
+
+        // Client & Case selection
+        document.getElementById('clientDropdown').addEventListener('click', e => {
+            if (e.target.dataset.id) {
+                selectedClientId = parseInt(e.target.dataset.id);
+                document.getElementById('clientDropdownBtn').textContent = clients.find(c => c.id === selectedClientId).name + ' ▼';
+                selectedCaseId = null;
+                document.getElementById('caseDropdownBtn').textContent = 'Select Matter ▼';
+                updateSelectedView();
+            }
+        });
+
+        document.getElementById('caseDropdown').addEventListener('click', e => {
+            if (e.target.dataset.id) {
+                const caseId = parseInt(e.target.dataset.id);
+                const cas = cases.find(c => c.id === caseId);
+                if (cas && cas.clientId === selectedClientId || !selectedClientId) {
+                    selectedCaseId = caseId;
+                    document.getElementById('caseDropdownBtn').textContent = cas.name + ' ▼';
+                    updateSelectedView();
+                }
+            }
+        });
+
+        // Quick timer starts
+        document.querySelectorAll('.quick-link').forEach(link => {
+            link.addEventListener('click', () => {
+                if (!selectedCaseId) {
+                    alert('Please select a matter first');
+                    return;
+                }
+                startTimer(selectedCaseId, link.dataset.service);
+            });
+        });
+
+        document.getElementById('startTimerDropdown').addEventListener('click', e => {
+            if (e.target.dataset.caseId) {
+                startTimer(parseInt(e.target.dataset.caseId));
+            }
+        });
+
+        document.getElementById('pauseTimerBtn').addEventListener('click', pauseTimer);
+        document.getElementById('stopTimerBtn').addEventListener('click', () => stopTimer(true));
+
+        // Add Client
+        document.getElementById('saveClientBtn').addEventListener('click', () => {
+            const name = document.getElementById('newClientName').value.trim();
+            if (name) {
+                const id = clients.length ? Math.max(...clients.map(c => c.id)) + 1 : 1;
+                clients.push({id, name, email: document.getElementById('newClientEmail').value.trim(), phone: document.getElementById('newClientPhone').value.trim()});
+                saveData();
+                updateAll();
+                bootstrap.Modal.getInstance(document.getElementById('addClientModal')).hide();
+            }
+        });
+
+        // Add Case
+        document.getElementById('saveCaseBtn').addEventListener('click', () => {
+            const name = document.getElementById('newCaseName').value.trim();
+            const clientId = parseInt(document.getElementById('newCaseClientSelect').value);
+            const trust = parseFloat(document.getElementById('newCaseTrust').value) || 0;
+            if (name && clientId) {
+                const id = cases.length ? Math.max(...cases.map(c => c.id)) + 1 : 1;
+                cases.push({id, name, clientId, trust});
+                saveData();
+                updateAll();
+                bootstrap.Modal.getInstance(document.getElementById('addCaseModal')).hide();
+            }
+        });
+
+        // Trust Deposit
+        document.getElementById('depositBtn').addEventListener('click', () => {
+            const amount = parseFloat(document.getElementById('depositAmount').value) || 0;
+            if (amount > 0 && currentDepositCaseId) {
+                const cas = cases.find(c => c.id === currentDepositCaseId);
+                if (cas) cas.trust += amount;
+                saveData();
+                updateAll();
+                bootstrap.Modal.getInstance(document.getElementById('depositModal')).hide();
+            }
+        });
+
+        // Invoice actions
+        document.getElementById('openInvoiceBtn').addEventListener('click', openInvoiceModal);
+
+        document.getElementById('addServiceBtn').addEventListener('click', () => {
+            currentInvoice.services.push({service: 'New Service', hours: 1.0, rate: HOURLY_RATE});
+            updateInvoiceTables();
+            calculateInvoiceTotal();
+        });
+
+        document.getElementById('addDisbursementBtn').addEventListener('click', () => {
+            currentInvoice.disbursements.push({desc: 'New Disbursement', amount: 0});
+            updateInvoiceTables();
+            calculateInvoiceTotal();
+        });
+
+        // Live invoice editing (no focus loss)
+        document.getElementById('invoiceModal').addEventListener('input', e => {
+            if (e.target.matches('#servicesTable input')) {
+                const i = parseInt(e.target.dataset.index);
+                const field = e.target.dataset.field;
+                let val = e.target.value;
+                if (field === 'hours' || field === 'rate') val = parseFloat(val) || 0;
+                currentInvoice.services[i][field] = val;
+                e.target.closest('tr').querySelector('.amount').textContent = (currentInvoice.services[i].hours * currentInvoice.services[i].rate).toFixed(2);
+                calculateInvoiceTotal();
+            }
+            if (e.target.matches('#disbursementsTable input[data-field="amount"]')) {
+                const i = parseInt(e.target.dataset.index);
+                currentInvoice.disbursements[i].amount = parseFloat(e.target.value) || 0;
+                calculateInvoiceTotal();
+            }
+            if (e.target.matches('#disbursementsTable input[data-field="desc"]')) {
+                const i = parseInt(e.target.dataset.index);
+                currentInvoice.disbursements[i].desc = e.target.value;
+            }
+        });
+
+        document.getElementById('invoiceModal').addEventListener('click', e => {
+            if (e.target.classList.contains('remove-service')) {
+                const i = parseInt(e.target.dataset.index);
+                currentInvoice.services.splice(i, 1);
+                updateInvoiceTables();
+                calculateInvoiceTotal();
+            }
+            if (e.target.classList.contains('remove-disb')) {
+                const i = parseInt(e.target.dataset.index);
+                currentInvoice.disbursements.splice(i, 1);
+                updateInvoiceTables();
+                calculateInvoiceTotal();
+            }
+        });
+
+        // Time Entry save
+        document.getElementById('saveTimeEntryBtn').addEventListener('click', () => {
+            const hours = parseFloat(document.getElementById('timeHours').value) || 0;
+            const service = document.getElementById('timeService').value.trim() || 'General Work';
+            const caseId = parseInt(document.getElementById('timeCaseSelect').value);
+            if (hours > 0 && caseId) {
+                const id = timeEntries.length ? Math.max(...timeEntries.map(te => te.id)) + 1 : 1;
+                timeEntries.push({
+                    id,
+                    caseId,
+                    service,
+                    hours,
+                    amount: hours * HOURLY_RATE,
+                    date: '2025-12-16',
+                    billed: false
+                });
+                saveData();
+                updateAll();
+                bootstrap.Modal.getInstance(document.getElementById('timeModal')).hide();
+            }
+        });
+
+        // Demo buttons
+        document.getElementById('sendInvoiceBtn').addEventListener('click', () => alert('Invoice sent! (demo)'));
+        document.getElementById('previewPdfBtn').addEventListener('click', () => alert('PDF preview generated (demo)'));
+        document.getElementById('saveDraftBtn').addEventListener('click', () => alert('Draft saved (demo)'));
+    });
+</script>
+</body>
+</html>

@@ -10,14 +10,12 @@
   <style>
     body { font-family: 'Inter', sans-serif; background: #000; color: #fff; margin: 0; padding: 0; }
     .break-words { word-break: break-word; hyphens: auto; overflow-wrap: break-word; }
-    /* Fluid typography */
     .fluid-body { font-size: clamp(1rem, 4vw, 1.25rem); line-height: 1.6; }
     .fluid-title { font-size: clamp(1.75rem, 6vw, 3rem); line-height: 1.2; }
     .fluid-heading { font-size: clamp(3rem, 12vw, 6rem); line-height: 1.1; }
     .fluid-subheading { font-size: clamp(2.5rem, 8vw, 4rem); line-height: 1.2; }
     .fluid-question { font-size: clamp(2rem, 7vw, 3.5rem); line-height: 1.2; }
 
-    /* Hero-style container — same as index.html */
     @media (max-width: 767px) {
       .hero-container {
         min-height: calc(100vh - var(--header-height, 80px));
@@ -68,15 +66,17 @@
           <li class="ml-8">
             If Dominance is delivered on time but any Elite-exclusive features are missing on 28 Feb 2026 → Elite clients receive an <strong>immediate prorated refund for the Elite premium only</strong>:<br>
             <span class="text-xl opacity-90 block mt-4">
-              - Extra setup: R5,000 (R9,999 - R4,999)<br>
-              - First month's upfront: R7,000 (R9,999 - R2,999)<br>
-              → Total possible refund: up to R12,000
+              • Extra setup premium: R5,000 (R9,999 total setup – R4,999 Dominance setup)<br>
+              • First month premium: R7,000 (R9,999 total – R2,999 Dominance monthly)<br>
+              <strong>Maximum possible refund:</strong><br>
+              - If setup fee was paid: up to R12,000 (R5,000 setup + R7,000 monthly)<br>
+              - If setup fee was waived (first 50 Elite): R7,000 (first month premium only)
             </span>
-            <span class="text-sm opacity-80 block mt-4">Base Dominance value kept. Refunds within 7 business days.</span>
+            <span class="text-sm opacity-80 block mt-4">Base Dominance value is kept. Refunds processed within 7 business days.</span>
           </li>
 
           <li class="mt-10 fluid-body">
-            • <strong>Setup and monthly fees are non-refundable in all other cases</strong> — no refunds except as stated above.<br>
+            • <strong>Setup and monthly fees are non-refundable in all other cases</strong> — no refunds except as stated above for missed deadlines.<br>
             • You are reserving one of only 500 founding spots.<br>
             • First month paid upfront — monthly billing starts only when live.<br>
             • Cancel anytime — 30 days notice via WhatsApp.<br>
@@ -94,7 +94,6 @@
   <div id="footer-placeholder" class="mt-auto"></div>
 
   <script>
-    // Load header & footer (same as index)
     fetch('header.html?v='+Date.now())
       .then(r => r.ok ? r.text() : '')
       .then(h => document.getElementById('header-placeholder').innerHTML = h);
@@ -103,7 +102,6 @@
       .then(r => r.ok ? r.text() : '')
       .then(f => document.getElementById('footer-placeholder').innerHTML = f);
 
-    // Same header padding fix as index.html
     function adjustMainPadding() {
       const header = document.querySelector('header');
       const main = document.querySelector('main');
