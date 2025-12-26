@@ -159,36 +159,32 @@
       .feature-table-container table td:first-child,
       .feature-table-container table th:first-child { min-width: auto; max-width: none; }
     }
-    /* === HERO OPTIMIZATION – CTA above fold, natural flow === */
+    /* === HERO – Perfect on all devices, CTA always above fold === */
     @media (max-width: 767px) {
       .hero-container {
         min-height: calc(100vh - var(--header-height, 80px));
         display: flex;
         flex-direction: column;
         justify-content: center;
-        padding-top: 1rem !important;
-        padding-bottom: 3rem !important;
+        padding: 1rem 1rem 3rem !important;
       }
       .badge {
         font-size: 0.8rem !important;
         padding: 0.6rem 1.2rem !important;
-        margin-bottom: 1rem !important;
       }
       .hero-headline-upper {
-        font-size: 3rem !important;
+        font-size: 2.9rem !important;
         line-height: 1;
-        margin-bottom: 0.5rem !important;
       }
       .hero-headline-lower {
-        font-size: 3.5rem !important;
+        font-size: 3.4rem !important;
         line-height: 1;
-        margin-bottom: 1rem !important;
       }
       .hero-subheadline {
         font-size: 1.5rem !important;
         line-height: 1.4;
+        margin-top: 1rem !important;
         margin-bottom: 1.5rem !important;
-        padding: 0 1rem;
       }
       .hero-cta-button {
         font-size: 1.9rem !important;
@@ -203,7 +199,6 @@
       .credibility-block {
         font-size: 1rem !important;
         margin-top: 2rem !important;
-        line-height: 1.5;
       }
     }
     @media (min-width: 768px) {
@@ -419,7 +414,7 @@
               <td class="px-8 py-10 font-bold text-2xl text-amber-300 leading-tight">
                 Automatic CPD tracking<br>
                 <span class="block mt-3 text-base font-normal opacity-90">
-                  Auto-tracks everything · LPC report in 1 click
+                  Auto-tracks seminars, courses, reading, mentoring & ethics hours · LPC-compliant report in 1 click
                 </span>
               </td>
               <td class="text-center text-red-500 font-bold">No</td>
@@ -568,7 +563,7 @@
   <div id="footer-placeholder" class="mt-auto"></div>
   <script src="script.js"></script>
   <script>
-    // No extra buffer – exact header height only
+    // Exact header height only – no buffer
     function adjustMainPadding() {
       const header = document.querySelector('header') || document.getElementById('header-placeholder');
       const main = document.querySelector('main');
