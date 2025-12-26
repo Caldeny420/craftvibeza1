@@ -159,16 +159,20 @@
       .feature-table-container table td:first-child,
       .feature-table-container table th:first-child { min-width: auto; max-width: none; }
     }
-    /* === MOBILE HERO OPTIMIZATION – perfect fit, no cutoff, CTA always visible === */
+    /* === HERO OPTIMIZATION – CTA always above the fold on all devices === */
     @media (max-width: 767px) {
       .hero-container {
-        padding-top: 5rem !important;
-        padding-bottom: 3rem !important;
+        min-height: calc(100vh - var(--header-height, 80px));
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-top: 2rem !important;
+        padding-bottom: 4rem !important;
       }
       .badge {
         font-size: 0.8rem !important;
         padding: 0.6rem 1.2rem !important;
-        margin-bottom: 1.5rem !important;
+        margin-bottom: 1rem !important;
       }
       .hero-headline-upper {
         font-size: 3rem !important;
@@ -178,18 +182,13 @@
       .hero-headline-lower {
         font-size: 3.5rem !important;
         line-height: 1;
-        margin-bottom: 1.5rem !important;
+        margin-bottom: 1rem !important;
       }
       .hero-subheadline {
         font-size: 1.5rem !important;
         line-height: 1.4;
-        margin-bottom: 2rem !important;
+        margin-bottom: 1.5rem !important;
         padding: 0 1rem;
-      }
-      .credibility-block {
-        font-size: 1rem !important;
-        margin-bottom: 2.5rem !important;
-        line-height: 1.5;
       }
       .hero-cta-button {
         font-size: 1.9rem !important;
@@ -199,9 +198,14 @@
       }
       .whatsapp-cta-text {
         font-size: 1.1rem !important;
+        margin-top: 1.5rem !important;
+      }
+      .credibility-block {
+        font-size: 1rem !important;
+        margin-top: 2rem !important;
+        line-height: 1.5;
       }
     }
-    /* === LAPTOP/PC – original massive look preserved === */
     @media (min-width: 768px) {
       .hero-headline-upper {
         font-size: clamp(4rem, 8vw, 7rem);
@@ -217,7 +221,7 @@
         padding: clamp(1.2rem, 4vw, 1.5rem) clamp(4rem, 10vw, 5rem);
       }
     }
-    /* Lock icon in security section */
+    /* Lock icon */
     .lock-icon {
       font-size: 6rem;
       margin-bottom: 2rem;
@@ -233,7 +237,7 @@
         FOUNDING MEMBERS • ONLY 500 FOREVER • APPLICATIONS CLOSE END FEB 2026
       </div>
       <!-- Main Headline -->
-      <h1 class="font-black leading-[0.95] tracking-tighter mb-6 sm:mb-8 lg:mb-10">
+      <h1 class="font-black leading-[0.95] tracking-tighter mb-4 sm:mb-6 lg:mb-8">
         <span class="block hero-headline-upper">
           Stay protected from trust
         </span>
@@ -245,10 +249,6 @@
       <p class="font-semibold opacity-95 max-w-4xl mx-auto leading-relaxed hero-subheadline">
         real-time alerts prevent errors <span class="text-green-400 font-black">before they occur</span>
       </p>
-      <!-- Credibility Block -->
-      <div class="credibility-block mt-6 sm:mt-8 lg:mt-10 font-black tracking-wider opacity-90">
-        Proudly South African • 100% POPIA-compliant • Locally hosted • Fully audited
-      </div>
       <!-- CTA Section -->
       <div class="mt-8 sm:mt-10 lg:mt-12">
         <button onclick="startQuiz()"
@@ -269,6 +269,10 @@
             (replies &lt;60s, 24/7)
           </span>
         </p>
+      </div>
+      <!-- Credibility Block – moved BELOW CTA & WhatsApp -->
+      <div class="credibility-block mt-10 sm:mt-12 lg:mt-16 font-black tracking-wider opacity-90">
+        Proudly South African • 100% POPIA-compliant • Locally hosted • Fully audited
       </div>
     </div>
   </main>
@@ -553,7 +557,7 @@
     </div>
   </section>
 
-  <!-- Original Floating WhatsApp Button Only (bottom-right corner) -->
+  <!-- Original Floating WhatsApp Button Only (bottom-right) -->
   <a href="https://wa.me/27764312871?text=Hi%20LexPilot%2C%0A%0AI%27m%20interested%20in%20an%20Early%20Access%20founding%20spot%20and%20would%20like%20to%20chat%20about%20which%20tier%20best%20fits%20my%20firm.%0A%0ACould%20you%20recommend%20the%20right%20plan%20and%20help%20me%20get%20started%3F%0A%0AThanks!"
      class="fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-white text-black rounded-full shadow-2xl pl-5 pr-7 py-4 font-bold hover:scale-110 transition">
     <span class="absolute inset-0 rounded-full bg-green-500 opacity-75 animate-ping"></span>
@@ -564,13 +568,15 @@
   <div id="footer-placeholder" class="mt-auto"></div>
   <script src="script.js"></script>
   <script>
-    // Robust header padding – prevents any hero cutoff
+    // Robust header padding – respects fixed header height
     function adjustMainPadding() {
       const header = document.querySelector('header') || document.getElementById('header-placeholder');
       const main = document.querySelector('main');
       if (header && main) {
         const headerHeight = header.offsetHeight || 0;
-        main.style.paddingTop = `${headerHeight + 30}px`; // comfortable buffer
+        main.style.paddingTop = `${headerHeight + 20}px`;
+        // Store for mobile hero calc
+        document.documentElement.style.setProperty('--header-height', `${headerHeight + 20}px`);
       }
     }
     window.addEventListener('load', adjustMainPadding);
