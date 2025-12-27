@@ -162,7 +162,7 @@
 
       const highlights = {
         Growth: ["Professional website", "AI site generator", "Smart invoicing", "Rule 54 & 86 protection", "Founding referral rewards"],
-        Dominance: ["Everything in Growth", "Client deposits (card/Ozow/EFT)", "Lead dashboard", "Automated sequences", "Priority support"],
+        Dominance: ["Everything in Growth", "Capture Client Details & Deposits (Card / EFT / PayFast)", "Lead dashboard", "Automated sequences", "Priority support"],
         Elite: ["Everything in Dominance", "Automated CPD + LPC reports", "AI Brief & Letter Writer (SA law)", "Full white-label + domain", "Strategy day"]
       };
 
