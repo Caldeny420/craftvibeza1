@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LexPilot Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f5f7fa;
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: #2c3e50;
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .header-right {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .notification-badge {
+            position: relative;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .badge-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #e74c3c;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .search-box {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            width: 250px;
+            background: rgba(255,255,255,0.9);
+        }
+
+        select {
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: white;
+            cursor: pointer;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .top-bar {
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .top-bar-section {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 0.6rem 1.2rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: #3498db;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #2980b9;
+        }
+
+        .date-display {
+            font-weight: 600;
+            color: #7f8c8d;
+            font-size: 0.95rem;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .metric-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .metric-label {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: #ecf0f1;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #3498db;
+            transition: width 0.3s;
+        }
+
+        .progress-fill.green {
+            background: #27ae60;
+        }
+
+        .progress-text {
+            font-size: 0.8rem;
+            color: #7f8c8d;
+            margin-top: 0.3rem;
+        }
+
+        .alert-section {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .alert-item {
+            padding: 0.8rem;
+            margin-bottom: 0.5rem;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .alert-item.warning {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+        }
+
+        .alert-item.danger {
+            background: #f8d7da;
+            border-left: 4px solid #e74c3c;
+        }
+
+        .alert-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-small {
+            padding: 0.3rem 0.8rem;
+            font-size: 0.8rem;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-info {
+            background: #3498db;
+            color: white;
+        }
+
+        .btn-warning {
+            background: #f39c12;
+            color: white;
+        }
+
+        .timer-section {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .timer-display {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #27ae60;
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        .timer-controls {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .service-list {
+            margin-top: 1rem;
+        }
+
+        .service-item {
+            padding: 0.8rem;
+            background: #f8f9fa;
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .quick-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            flex: 1;
+            min-width: 150px;
+            padding: 1rem;
+            background: white;
+            border: 2px solid #3498db;
+            color: #3498db;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .action-btn:hover {
+            background: #3498db;
+            color: white;
+        }
+
+        .status-running {
+            color: #27ae60;
+        }
+
+        .status-paused {
+            color: #f39c12;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>LexPilot Dashboard</h1>
+        <div class="header-right">
+            <select id="calendarSelect">
+                <option>Cal ▼</option>
+                <option>Today</option>
+                <option>This Week</option>
+                <option>This Month</option>
+            </select>
+            <div class="notification-badge">
+                🔔
+                <span class="badge-count">3</span>
+            </div>
+            <input type="text" class="search-box" placeholder="Search Client/Case/Invoice">
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="top-bar">
+            <div class="top-bar-section">
+                <label>Clients:</label>
+                <select id="clientSelect">
+                    <option>John Smith ▼</option>
+                    <option>Jane Dlamini</option>
+                    <option>Mike Jones</option>
+                </select>
+                <button class="btn btn-primary">+ Add Client</button>
+            </div>
+            <div class="date-display">TODAY – December 22, 2025</div>
+            <div class="top-bar-section">
+                <label>Cases:</label>
+                <select id="caseSelect">
+                    <option>Smith v RAF ▼</option>
+                    <option>Dlamini Case</option>
+                    <option>Jones v RoadCorp</option>
+                </select>
+                <button class="btn btn-primary">+ Add Case</button>
+            </div>
+        </div>
+
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-label">Unbilled Time</div>
+                <div class="metric-value">R 42,300</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 70%"></div>
+                </div>
+                <div class="progress-text">70% of monthly target</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Outstanding Invoices</div>
+                <div class="metric-value">R 96,200</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 60%"></div>
+                </div>
+                <div class="progress-text">60% collection rate</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Trust Available</div>
+                <div class="metric-value">R 310,450</div>
+                <div class="progress-bar">
+                    <div class="progress-fill green" style="width: 100%"></div>
+                </div>
+                <div class="progress-text">Healthy balance</div>
+            </div>
+        </div>
+
+        <div class="alert-section">
+            <div class="section-title">
+                <span>⚠️ ATTENTION (Firm-wide alerts)</span>
+                <div>
+                    <button class="btn-small btn-info">Mark All Read</button>
+                    <button class="btn-small btn-warning">Snooze 1 Day</button>
+                </div>
+            </div>
+            <div class="alert-item danger">
+                <span>Trust Low: Smith v RAF (R5,000 shortfall)</span>
+                <div class="alert-actions">
+                    <button class="btn-small btn-primary">Deposit</button>
+                </div>
+            </div>
+            <div class="alert-item warning">
+                <span>Invoice Overdue: Dlamini (7 days late)</span>
+                <div class="alert-actions">
+                    <button class="btn-small btn-info">View Invoice</button>
+                    <button class="btn-small btn-warning">Remind</button>
+                </div>
+            </div>
+            <div class="alert-item warning">
+                <span>Timer Running: Jones v RoadCorp (<span id="runningTimer">0:12:23</span>)</span>
+                <div class="alert-actions">
+                    <button class="btn-small btn-primary" onclick="stopTimer()">Stop</button>
+                    <button class="btn-small btn-warning" onclick="pauseTimer()">Pause</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="timer-section">
+            <div class="section-title">⏱️ ACTIVE TIMER (Current Session)</div>
+            <div style="text-align: center; margin: 1rem 0;">
+                <strong>Current Session: Smith v RAF (2 services)</strong>
+            </div>
+            <div class="service-list">
+                <div class="service-item">
+                    <span>Consultation</span>
+                    <span class="status-paused">0:12:23 [Paused]</span>
+                </div>
+                <div class="service-item">
+                    <span>Draft Letter</span>
+                    <span class="status-running">0:00:00 [Running]</span>
+                </div>
+            </div>
+            <div class="timer-controls">
+                <button class="btn btn-primary" onclick="resumeTimer()">Resume</button>
+                <button class="btn btn-warning" onclick="pauseTimer()">Pause</button>
+                <button class="btn" style="background: #e74c3c; color: white;" onclick="stopTimer()">Stop</button>
+                <button class="btn" style="background: #27ae60; color: white;">Add Another Service</button>
+            </div>
+        </div>
+
+        <div style="background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+            <div class="section-title">⚡ Quick Actions</div>
+            <div class="quick-actions">
+                <button class="action-btn" onclick="addTimeEntry()">+ Time Entry</button>
+                <button class="action-btn" onclick="addInvoice()">+ Invoice</button>
+                <button class="action-btn" onclick="addDeposit()">+ Deposit</button>
+                <button class="action-btn">Reports ▼</button>
+                <button class="action-btn">Settings</button>
+                <button class="action-btn">Admin Dashboard</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Connect to invoicer.js API
+        const API_BASE = '/api';
+
+        // Timer state
+        let timerInterval;
+        let seconds = 0;
+
+        function updateTimerDisplay() {
+            const hrs = Math.floor(seconds / 3600);
+            const mins = Math.floor((seconds % 3600) / 60);
+            const secs = seconds % 60;
+            const display = `${hrs}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+            document.getElementById('runningTimer').textContent = display;
+        }
+
+        function startTimer() {
+            if (!timerInterval) {
+                timerInterval = setInterval(() => {
+                    seconds++;
+                    updateTimerDisplay();
+                }, 1000);
+            }
+        }
+
+        function pauseTimer() {
+            clearInterval(timerInterval);
+            timerInterval = null;
+            console.log('Timer paused at:', seconds, 'seconds');
+        }
+
+        function stopTimer() {
+            clearInterval(timerInterval);
+            timerInterval = null;
+            console.log('Timer stopped. Total time:', seconds, 'seconds');
+            // Here you would call the API to save the time entry
+            saveTimeEntry(seconds);
+            seconds = 0;
+            updateTimerDisplay();
+        }
+
+        function resumeTimer() {
+            startTimer();
+        }
+
+        // API Functions
+        async function saveTimeEntry(totalSeconds) {
+            try {
+                const response = await fetch(`${API_BASE}/invoicer.js`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        action: 'save_time_entry',
+                        client: document.getElementById('clientSelect').value,
+                        case: document.getElementById('caseSelect').value,
+                        duration: totalSeconds,
+                        date: new Date().toISOString()
+                    })
+                });
+                const data = await response.json();
+                console.log('Time entry saved:', data);
+            } catch (error) {
+                console.error('Error saving time entry:', error);
+            }
+        }
+
+        async function addTimeEntry() {
+            console.log('Adding time entry');
+            // Call API to create new time entry
+        }
+
+        async function addInvoice() {
+            console.log('Creating invoice');
+            try {
+                const response = await fetch(`${API_BASE}/invoicer.js`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        action: 'create_invoice',
+                        client: document.getElementById('clientSelect').value,
+                        case: document.getElementById('caseSelect').value
+                    })
+                });
+                const data = await response.json();
+                console.log('Invoice created:', data);
+            } catch (error) {
+                console.error('Error creating invoice:', error);
+            }
+        }
+
+        async function addDeposit() {
+            console.log('Adding deposit');
+            // Call API to add deposit
+        }
+
+        // Initialize
+        startTimer();
+    </script>
+</body>
+</html>
