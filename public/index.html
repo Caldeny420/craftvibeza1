@@ -30,7 +30,6 @@
     main {
       width: 100%;
     }
-
     /* === BADGES === */
     .badge {
       display: inline-block;
@@ -43,7 +42,6 @@
       letter-spacing: 0.1em;
     }
     @media (min-width: 640px) { .badge { font-size: 1rem; padding: 0.875rem 1.75rem; } }
-
     .founding-badge {
       position: absolute;
       top: -1.5rem;
@@ -64,7 +62,6 @@
       white-space: nowrap;
     }
     @media (min-width: 640px) { .founding-badge { padding: 0.875rem 2rem; font-size: 0.875rem; } }
-
     /* === HERO OPTIMIZED – Reduced top space on desktop === */
     @media (max-width: 767px) {
       .hero-container {
@@ -112,7 +109,6 @@
         line-height: 1.5;
       }
     }
-
     @media (min-width: 768px) {
       .hero-container {
         padding-top: 1.5rem; /* Significantly reduced to close the gap after header */
@@ -151,14 +147,12 @@
         margin-top: 3rem;
       }
     }
-
     @media (min-height: 900px) and (min-width: 768px) {
       .hero-container {
         padding-top: 3rem;
         padding-bottom: 6rem;
       }
     }
-
     /* === PRICING CARDS === */
     .pricing-card {
       position: relative;
@@ -177,7 +171,6 @@
     }
     @media (min-width: 640px) { .pricing-card { padding: 2rem 1.5rem; min-height: 560px; width: 90vw; max-width: 360px; } }
     @media (min-width: 768px) { .pricing-card { width: 30vw; max-width: none; } }
-
     .pricing-scroll-container {
       display: flex;
       flex-direction: row;
@@ -198,7 +191,6 @@
     @media (min-width: 640px) { .pricing-scroll-container { padding: 2rem 1.5rem 3rem 1.5rem; gap: 1.25rem; } }
     @media (min-width: 768px) { .pricing-scroll-container { overflow-x: visible; justify-content: center; gap: 1.5rem; } }
     @media (min-width: 1024px) { .pricing-scroll-container { gap: 2rem; max-width: 1200px; margin: 0 auto; padding: 2rem 0; } }
-
     /* === FEATURE TABLE === */
     .feature-table-container {
       overflow-x: auto;
@@ -238,12 +230,10 @@
       .feature-table-container table td:first-child,
       .feature-table-container table th:first-child { min-width: auto; max-width: none; }
     }
-
     .lock-icon {
       font-size: 6rem;
       margin-bottom: 2rem;
     }
-
     @keyframes pulse {
       0%, 100% { opacity: 1; }
       50% { opacity: 0.8; }
@@ -251,70 +241,12 @@
   </style>
 </head>
 <body class="min-h-screen flex flex-col">
-
-  <!-- HEADER -->
-  <header class="fixed top-0 left-0 right-0 z-[999] bg-black/95 backdrop-blur-2xl border-b border-green-500/20">
-    <div class="max-w-7xl mx-auto px-5 py-4">
-      <!-- Desktop Layout -->
-      <div class="hidden lg:flex items-center justify-between">
-        <a href="/" class="flex items-center gap-4 group">
-          <img src="/images/lexpilot-logo.jpg" alt="LexPilot Logo"
-               class="h-10 md:h-12 rounded-full shadow-2xl ring-4 ring-green-500/30
-                      transition-all duration-300 group-hover:scale-110 group-hover:ring-green-400">
-          <span class="hidden md:flex items-baseline font-black tracking-tighter leading-none">
-            <span class="text-3xl md:text-4xl text-white">Lex</span>
-            <span class="text-4xl md:text-5xl text-green-400">Pilot</span>
-          </span>
-        </a>
-        <div class="flex items-center gap-8 xl:gap-12">
-          <nav class="flex items-center gap-10 text-base font-bold">
-            <a href="#pricing" class="text-white/80 hover:text-green-400 transition duration-300">Pricing</a>
-            <a href="#features" class="text-white/80 hover:text-green-400 transition duration-300">Features</a>
-          </nav>
-          <button onclick="startQuiz()"
-                  class="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700
-                          text-black font-black px-7 py-4 rounded-full shadow-2xl hover:scale-110 transition-all duration-300
-                          text-sm md:text-lg flex items-center gap-3 whitespace-nowrap border-2 border-green-400/50">
-            <i class="fab fa-whatsapp text-2xl"></i>
-            <span class="hidden xs:inline">SECURE MY SPOT NOW</span>
-            <span class="xs:hidden">APPLY</span>
-          </button>
-        </div>
-      </div>
-      <!-- Mobile Layout -->
-      <div class="lg:hidden flex flex-col">
-        <div class="flex items-center justify-between py-2">
-          <a href="/" class="flex items-center gap-3 group">
-            <img src="/images/lexpilot-logo.jpg" alt="LexPilot Logo"
-                 class="h-10 rounded-full shadow-2xl ring-4 ring-green-500/30
-                        transition-all duration-300 group-hover:scale-110 group-hover:ring-green-400">
-            <span class="hidden xs:flex items-baseline font-black tracking-tighter leading-none">
-              <span class="text-2xl text-white">Lex</span>
-              <span class="text-3xl text-green-400">Pilot</span>
-            </span>
-          </a>
-          <button onclick="startQuiz()"
-                  class="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700
-                          text-black font-black px-5 py-3 rounded-full shadow-2xl hover:scale-110 transition-all duration-300
-                          text-sm flex items-center gap-2 whitespace-nowrap border-2 border-green-400/50">
-            <i class="fab fa-whatsapp text-2xl"></i>
-            <span class="hidden xs:inline">SECURE MY SPOT</span>
-            <span class="xs:hidden">APPLY</span>
-          </button>
-        </div>
-        <nav class="flex justify-center gap-8 py-3 border-t border-green-500/10">
-          <a href="#pricing" class="text-white/70 hover:text-green-400 text-sm font-bold transition">Pricing</a>
-          <a href="#features" class="text-white/70 hover:text-green-400 text-sm font-bold transition">Features</a>
-        </nav>
-      </div>
-    </div>
-  </header>
-
+  <div id="header-placeholder"></div>
   <!-- HERO -->
   <main class="flex-1 px-4 sm:px-6 lg:px-8 text-center">
     <div class="max-w-7xl mx-auto hero-container">
       <div class="badge mb-6 sm:mb-8 lg:mb-10 text-sm sm:text-base lg:text-xl font-bold tracking-wider">
-        FOUNDING MEMBERS • ONLY 500 FOREVER • APPLICATIONS CLOSE END FEB 2026
+        FOUNDING MEMBERS • ONLY 500 FOREVER • APPLICATIONS CLOSE MARCH 28TH 2026
       </div>
       <h1 class="font-black leading-[0.95] tracking-tighter mb-4 sm:mb-6 lg:mb-8">
         <span class="block hero-headline-upper">
@@ -352,7 +284,6 @@
       </div>
     </div>
   </main>
-
   <!-- Why Trust Section -->
   <section class="py-24 sm:py-32 px-6 bg-zinc-950 text-white">
     <div class="max-w-6xl mx-auto">
@@ -390,7 +321,6 @@
       </div>
     </div>
   </section>
-
 <!-- PRICING -->
 <section id="pricing" class="py-24 px-6 bg-black">
   <div class="max-w-6xl mx-auto text-center">
@@ -398,7 +328,6 @@
       Early Access Pricing<br>
       <span class="text-2xl md:text-4xl opacity-80 font-normal">(Founding Price — Locked Forever)</span>
     </h2>
-
     <div class="pricing-scroll-container">
       <!-- Growth -->
       <div class="pricing-card border-zinc-700 flex flex-col">
@@ -409,13 +338,11 @@
             <span class="text-xl sm:text-2xl opacity-90 block">(attorneys + staff)</span>
           </p>
         </div>
-
         <div class="text-6xl sm:text-7xl font-black text-green-400 leading-none mb-4">
           R999<span class="text-3xl sm:text-4xl opacity-80">/mo</span>
         </div>
         <p class="text-lg sm:text-xl opacity-70 mb-2"><s>R2,999</s></p>
         <p class="text-xl sm:text-2xl font-semibold mb-8">No Setup Fee</p>
-
         <ul class="text-left text-base sm:text-lg space-y-4 mb-10 px-6 flex-1">
           <li class="flex items-start gap-3">
             <i class="fas fa-check text-green-400 mt-1"></i>
@@ -430,17 +357,15 @@
             <span>Smart SA billing & invoicing</span>
           </li>
         </ul>
-
         <button data-tier="Growth" class="claim-btn mt-auto w-full bg-gradient-to-r from-green-500 to-emerald-600 text-black font-black text-xl sm:text-2xl py-5 sm:py-6 rounded-2xl hover:scale-105 transition shadow-xl">
           CLAIM GROWTH SPOT
         </button>
         <div class="payfast-form hidden mt-4" data-tier="Growth"></div>
       </div>
-
       <!-- Dominance (Most Popular) -->
       <div class="pricing-card border-green-500 relative transform scale-105 flex flex-col">
         <div class="founding-badge">FOUNDING PRICE – LOCKED FOREVER</div>
-        
+       
         <div class="text-center mt-6">
           <h3 class="text-4xl sm:text-5xl font-black text-yellow-400 mb-3">Dominance</h3>
           <p class="text-2xl sm:text-3xl font-bold text-white mb-6">
@@ -448,16 +373,14 @@
             <span class="text-xl sm:text-2xl opacity-90 block">(attorneys + staff)</span>
           </p>
         </div>
-
         <div class="text-6xl sm:text-7xl font-black text-green-400 leading-none mb-4">
           R2,999<span class="text-3xl sm:text-4xl opacity-80">/mo</span>
         </div>
         <p class="text-lg sm:text-xl opacity-70 mb-2"><s>R7,999</s></p>
         <p class="text-xl sm:text-2xl font-semibold mb-8">
-          Setup R4,999 
+          Setup R4,999
           <span class="text-green-400 text-sm sm:text-base block font-bold">(waived for first 100)</span>
         </p>
-
         <ul class="text-left text-base sm:text-lg space-y-4 mb-10 px-6 flex-1">
           <li class="flex items-start gap-3">
             <i class="fas fa-check text-green-400 mt-1"></i>
@@ -472,13 +395,11 @@
             <span>Priority founder support</span>
           </li>
         </ul>
-
         <button data-tier="Dominance" class="claim-btn mt-auto w-full bg-yellow-400 text-black font-black text-xl sm:text-2xl py-5 sm:py-6 rounded-2xl hover:scale-105 transition shadow-xl">
           <span id="dominance-btn-text">CLAIM DOMINANCE SPOT</span>
         </button>
         <div class="payfast-form hidden mt-4" data-tier="Dominance"></div>
       </div>
-
       <!-- Elite -->
       <div class="pricing-card border-amber-600 flex flex-col">
         <div class="text-center">
@@ -488,16 +409,14 @@
             <span class="text-xl sm:text-2xl opacity-90 block">(attorneys + staff)</span>
           </p>
         </div>
-
         <div class="text-6xl sm:text-7xl font-black text-green-400 leading-none mb-4">
           R9,999<span class="text-3xl sm:text-4xl opacity-80">/mo</span>
         </div>
         <p class="text-lg sm:text-xl opacity-70 mb-2"><s>R19,999</s></p>
         <p class="text-xl sm:text-2xl font-semibold mb-8">
-          Setup R9,999 
+          Setup R9,999
           <span class="text-green-400 text-sm sm:text-base block font-bold">(waived for first 50)</span>
         </p>
-
         <ul class="text-left text-base sm:text-lg space-y-4 mb-10 px-6 flex-1">
           <li class="flex items-start gap-3">
             <i class="fas fa-check text-green-400 mt-1"></i>
@@ -512,7 +431,6 @@
             <span>Full white-label + custom domain</span>
           </li>
         </ul>
-
         <button data-tier="Elite" class="claim-btn mt-auto w-full bg-gradient-to-r from-amber-500 to-orange-600 text-black font-black text-xl sm:text-2xl py-5 sm:py-6 rounded-2xl hover:scale-105 transition shadow-xl">
           CLAIM ELITE SPOT
         </button>
@@ -617,7 +535,6 @@
       </div>
     </div>
   </section>
-
   <!-- HOW IT WORKS -->
   <section class="py-32 px-6 bg-zinc-950">
     <div class="max-w-6xl mx-auto text-center">
@@ -636,12 +553,11 @@
         <div class="space-y-6">
           <div class="text-8xl font-black text-green-400">3</div>
           <h3 class="text-3xl font-black">WhatsApp Onboarding</h3>
-          <p class="text-xl opacity-90">Go live in days from launch with founder support</p>
+          <p class="text-xl opacity-90">Go live on March 28th with founder support</p>
         </div>
       </div>
     </div>
   </section>
-
   <!-- REFERRAL REWARDS -->
   <section class="py-24 px-6 bg-black">
     <div class="max-w-6xl mx-auto text-center">
@@ -657,7 +573,6 @@
       </div>
     </div>
   </section>
-
   <!-- SECURITY & COMPLIANCE -->
   <section class="py-24 px-6 bg-zinc-950">
     <div class="max-w-6xl mx-auto text-center">
@@ -670,7 +585,6 @@
       </div>
     </div>
   </section>
-
 <section class="py-32 px-6 bg-gradient-to-b from-black to-zinc-950">
   <div class="max-w-6xl mx-auto text-center">
     <h2 class="text-6xl md:text-7xl font-black mb-8">
@@ -729,7 +643,6 @@
     <i class="fab fa-whatsapp text-4xl text-green-500"></i>
     <span class="hidden md:block">Chat with founder<br><small>Reply in under 60 sec • 24/7</small></span>
   </a>
-
 <div id="footer-placeholder" class="mt-auto"></div>
   <!-- Scripts -->
   <script src="script.js"></script>

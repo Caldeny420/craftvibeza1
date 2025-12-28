@@ -15,7 +15,6 @@
     .fluid-heading { font-size: clamp(3rem, 12vw, 6rem); line-height: 1.1; }
     .fluid-subheading { font-size: clamp(2.5rem, 8vw, 4rem); line-height: 1.2; }
     .fluid-question { font-size: clamp(2rem, 7vw, 3.5rem); line-height: 1.2; }
-
     @media (max-width: 767px) {
       .hero-container {
         min-height: calc(100vh - var(--header-height, 80px));
@@ -40,20 +39,17 @@
 </head>
 <body class="min-h-screen flex flex-col">
   <div id="header-placeholder"></div>
-
   <main class="flex-1 px-4 sm:px-6 lg:px-8 text-center">
     <div class="max-w-5xl mx-auto hero-container break-words">
       <h1 class="fluid-heading font-black text-green-400 leading-none mt-4">
         REFUND<br class="sm:hidden"> POLICY
       </h1>
-
       <div class="mt-12 sm:mt-16 bg-zinc-900/90 backdrop-blur border-4 border-green-500 rounded-3xl p-8 sm:p-12 md:p-16 lg:p-20">
         <p class="fluid-subheading font-black text-green-400 mb-12">100% Risk Free — No Fine Print</p>
-
         <ul class="space-y-10 sm:space-y-14 fluid-body font-medium text-left max-w-4xl mx-auto leading-relaxed">
           <li class="text-green-300 font-black fluid-title">1. Core Platform (Dominance level)</li>
           <li class="ml-8">
-            If the full Dominance-level platform is not 100% live by <strong>28 February 2026</strong> → <strong>full setup fee (if paid) and first month's upfront fee refunded instantly</strong>:<br>
+            If the full Dominance-level platform is not 100% live by <strong>28 March 2026</strong> → <strong>full setup fee (if paid) and first month's upfront fee refunded instantly</strong>:<br>
             <span class="text-xl opacity-90 block mt-4">
               • Growth: First month R999 refunded (no setup fee)<br>
               • Dominance: Setup R4,999 (if not waived for first 100) + First month R2,999 refunded<br>
@@ -61,10 +57,9 @@
             </span>
             <span class="text-sm opacity-80 block mt-4">Refunds processed within 7 business days.</span>
           </li>
-
           <li class="text-amber-300 font-black fluid-title mt-10">2. Elite-Only Features</li>
           <li class="ml-8">
-            If Dominance is delivered on time but any Elite-exclusive features are missing on 28 Feb 2026 → Elite clients receive an <strong>immediate prorated refund for the Elite premium only</strong>:<br>
+            If Dominance is delivered on time but any Elite-exclusive features are missing on 28 March 2026 → Elite clients receive an <strong>immediate prorated refund for the Elite premium only</strong>:<br>
             <span class="text-xl opacity-90 block mt-4">
               • Extra setup premium: R5,000 (R9,999 total setup – R4,999 Dominance setup)<br>
               • First month premium: R7,000 (R9,999 total – R2,999 Dominance monthly)<br>
@@ -74,7 +69,6 @@
             </span>
             <span class="text-sm opacity-80 block mt-4">Base Dominance value is kept. Refunds processed within 7 business days.</span>
           </li>
-
           <li class="mt-10 fluid-body">
             • <strong>Setup and monthly fees are non-refundable in all other cases</strong> — no refunds except as stated above for missed deadlines.<br>
             • You are reserving one of only 500 founding spots.<br>
@@ -83,25 +77,20 @@
             • Zero cancellation fees. Ever.
           </li>
         </ul>
-
         <p class="mt-16 fluid-question text-yellow-400 font-black text-center">
           Questions?<br class="sm:hidden"> WhatsApp 076 431 2871
         </p>
       </div>
     </div>
   </main>
-
   <div id="footer-placeholder" class="mt-auto"></div>
-
   <script>
     fetch('header.html?v='+Date.now())
       .then(r => r.ok ? r.text() : '')
       .then(h => document.getElementById('header-placeholder').innerHTML = h);
-
     fetch('footer.html?v='+Date.now())
       .then(r => r.ok ? r.text() : '')
       .then(f => document.getElementById('footer-placeholder').innerHTML = f);
-
     function adjustMainPadding() {
       const header = document.querySelector('header');
       const main = document.querySelector('main');
