@@ -62,56 +62,57 @@
       white-space: nowrap;
     }
     @media (min-width: 640px) { .founding-badge { padding: 0.875rem 2rem; font-size: 0.875rem; } }
-    /* === HERO OPTIMIZED – Reduced top space on desktop === */
+
+    /* === HERO OPTIMIZED FOR ALL DEVICES – Ensures CTA stays in the fold on mobile === */
     @media (max-width: 767px) {
       .hero-container {
         min-height: calc(100vh - var(--header-height, 80px));
         display: flex;
         flex-direction: column;
         justify-content: center;
-        padding-top: 1rem !important;
-        padding-bottom: 3rem !important;
+        padding-top: 0.5rem !important;     /* Reduced */
+        padding-bottom: 2rem !important;   /* Reduced */
       }
       .badge {
-        font-size: 0.8rem !important;
-        padding: 0.6rem 1.2rem !important;
-        margin-bottom: 1rem !important;
+        font-size: 0.75rem !important;
+        padding: 0.5rem 1rem !important;
+        margin-bottom: 0.75rem !important;
       }
       .hero-headline-upper {
-        font-size: 3rem !important;
+        font-size: 2.5rem !important;      /* Slightly smaller */
         line-height: 1;
-        margin-bottom: 0.5rem !important;
+        margin-bottom: 0.25rem !important;
       }
       .hero-headline-lower {
-        font-size: 3.5rem !important;
+        font-size: 3rem !important;        /* Slightly smaller */
         line-height: 1;
-        margin-bottom: 1rem !important;
+        margin-bottom: 0.75rem !important;
       }
       .hero-subheadline {
-        font-size: 1.5rem !important;
-        line-height: 1.4;
-        margin-bottom: 1.5rem !important;
+        font-size: 1.375rem !important;    /* Slightly smaller */
+        line-height: 1.3;
+        margin-bottom: 1rem !important;
         padding: 0 1rem;
       }
       .hero-cta-button {
-        font-size: 1.9rem !important;
-        padding: 1.2rem 3rem !important;
-        width: 90% !important;
-        max-width: 360px;
+        font-size: 1.75rem !important;     /* Slightly smaller */
+        padding: 1rem 2.5rem !important;
+        width: 85% !important;
+        max-width: 340px;
       }
       .whatsapp-cta-text {
-        font-size: 1.1rem !important;
-        margin-top: 1.5rem !important;
+        font-size: 1rem !important;
+        margin-top: 1rem !important;
       }
       .credibility-block {
-        font-size: 1rem !important;
-        margin-top: 2rem !important;
-        line-height: 1.5;
+        font-size: 0.9375rem !important;
+        margin-top: 1.5rem !important;
+        line-height: 1.4;
       }
     }
     @media (min-width: 768px) {
       .hero-container {
-        padding-top: 1.5rem; /* Significantly reduced to close the gap after header */
+        padding-top: 1.5rem;
         padding-bottom: 4rem;
         min-height: calc(100vh - var(--header-height, 100px));
         display: flex;
@@ -119,7 +120,7 @@
         justify-content: center;
       }
       .badge {
-        margin-bottom: 2rem; /* Reduced from larger values */
+        margin-bottom: 2rem;
       }
       .hero-headline-upper {
         font-size: clamp(3.5rem, 6vw, 5rem);
@@ -153,6 +154,7 @@
         padding-bottom: 6rem;
       }
     }
+
     /* === PRICING CARDS === */
     .pricing-card {
       position: relative;
@@ -191,6 +193,7 @@
     @media (min-width: 640px) { .pricing-scroll-container { padding: 2rem 1.5rem 3rem 1.5rem; gap: 1.25rem; } }
     @media (min-width: 768px) { .pricing-scroll-container { overflow-x: visible; justify-content: center; gap: 1.5rem; } }
     @media (min-width: 1024px) { .pricing-scroll-container { gap: 2rem; max-width: 1200px; margin: 0 auto; padding: 2rem 0; } }
+
     /* === FEATURE TABLE === */
     .feature-table-container {
       overflow-x: auto;
