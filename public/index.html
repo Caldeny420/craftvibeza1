@@ -252,7 +252,6 @@
       </div>
     </div>
   </main>
-
   <!-- Why Trust Section -->
   <section class="py-24 sm:py-32 px-6 bg-zinc-950 text-white">
     <div class="max-w-6xl mx-auto">
@@ -290,7 +289,6 @@
       </div>
     </div>
   </section>
-
   <!-- PRICING -->
   <section id="pricing" class="py-24 px-6 bg-black">
     <div class="max-w-6xl mx-auto text-center">
@@ -300,7 +298,7 @@
       </h2>
       <div class="pricing-scroll-container">
         <!-- Growth -->
-        <div class="pricing-card border-zinc-600 flex flex-col">
+        <div class="pricing-card border-zinc-600 flex flex-col" data-tier="Growth">
           <div class="text-center">
             <h3 class="text-4xl sm:text-5xl font-black text-green-400 mb-3">Growth</h3>
             <p class="text-2xl sm:text-3xl font-bold text-white mb-6">
@@ -318,14 +316,12 @@
             <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Real-time trust account protection</span></li>
             <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Smart SA billing & invoicing</span></li>
           </ul>
-          <button data-tier="Growth" class="claim-btn mt-auto w-full bg-gradient-to-r from-green-500 to-emerald-600 text-black font-black text-xl sm:text-2xl py-5 sm:py-6 rounded-2xl hover:scale-105 transition shadow-xl">
+          <button class="claim-btn mt-auto w-full bg-gradient-to-r from-green-500 to-emerald-600 text-black font-black text-xl sm:text-2xl py-5 sm:py-6 rounded-2xl hover:scale-105 transition shadow-xl">
             CLAIM GROWTH SPOT
           </button>
-          <div class="payfast-form hidden mt-4" data-tier="Growth"></div>
         </div>
-
         <!-- Dominance (Most Popular) -->
-        <div class="pricing-card border-green-500 relative transform scale-105 flex flex-col">
+        <div class="pricing-card border-green-500 relative transform scale-105 flex flex-col" data-tier="Dominance">
           <div class="founding-badge">FOUNDING PRICE – LOCKED FOREVER</div>
           <div class="text-center mt-6">
             <h3 class="text-4xl sm:text-5xl font-black text-yellow-400 mb-3">Dominance</h3>
@@ -343,21 +339,20 @@
             <span class="text-green-400 text-sm sm:text-base block font-bold">(waived for first 100)</span>
           </p>
           <ul class="text-left text-base sm:text-lg space-y-4 mb-10 px-6 flex-1">
+            <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Everything in Growth</span></li>
             <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Client intake & trust deposits (card/EFT/PayFast)</span></li>
             <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Lead dashboard + proven automated workflows</span></li>
             <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Priority founder support</span></li>
           </ul>
-          <button data-tier="Dominance" class="claim-btn mt-auto w-full bg-yellow-400 text-black font-black text-xl sm:text-2xl py-5 sm:py-6 rounded-2xl hover:scale-105 transition shadow-xl">
-            <span id="dominance-btn-text">CLAIM DOMINANCE SPOT</span>
+          <button class="claim-btn mt-auto w-full bg-yellow-400 text-black font-black text-xl sm:text-2xl py-5 sm:py-6 rounded-2xl hover:scale-105 transition shadow-xl">
+            CLAIM DOMINANCE SPOT
           </button>
-          <div class="payfast-form hidden mt-4" data-tier="Dominance"></div>
         </div>
-
         <!-- Apex -->
-        <div class="pricing-card border-gold relative flex flex-col" style="border-image: linear-gradient(to bottom, var(--gold), var(--gold-dark)) 1;">
+        <div class="pricing-card border-gold relative flex flex-col" data-tier="Apex" style="border-image: linear-gradient(to bottom, var(--gold), var(--gold-dark)) 1;">
           <div class="apex-badge">LAUNCHING SOON</div>
           <div class="text-center mt-6">
-            <h3 class="text-4xl sm:text-5xl font-black" style="background: linear-gradient(to right, var(--gold), var(--gold-dark)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Apex</h3>
+            <h3 class="text-4xl sm:text-5xl font-black" style="background: linear-gradient(to right, var(--gold), var(--gold-dark)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Apex</h3>
             <p class="text-2xl sm:text-3xl font-bold text-white mb-4">
               Unlimited users<br>
               <span class="text-xl sm:text-2xl opacity-90 block">(attorneys + staff)</span>
@@ -378,15 +373,13 @@
             <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Automatic CPD tracking + instant LPC reports</span></li>
             <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Full white-label + custom domain</span></li>
           </ul>
-          <button data-tier="Apex" class="claim-btn mt-auto w-full bg-gradient-to-r from-yellow-500 to-gold text-black font-black text-xl sm:text-2xl py-5 sm:py-6 rounded-2xl hover:scale-105 transition shadow-xl">
+          <button class="claim-btn mt-auto w-full bg-gradient-to-r from-yellow-500 to-gold text-black font-black text-xl sm:text-2xl py-5 sm:py-6 rounded-2xl hover:scale-105 transition shadow-xl">
             JOIN APEX WAITLIST
           </button>
-          <div class="payfast-form hidden mt-4" data-tier="Apex"></div>
         </div>
       </div>
     </div>
   </section>
-
   <!-- FEATURE TABLE -->
   <section id="features" class="py-20 px-6 bg-black">
     <div class="max-w-6xl mx-auto">
@@ -398,7 +391,7 @@
               <th class="px-8 py-6 text-lg font-black">Feature</th>
               <th class="text-center px-8 py-6 text-2xl font-black text-green-400">Growth</th>
               <th class="text-center px-8 py-6 text-2xl font-black text-yellow-400 drop-shadow-md">Dominance</th>
-              <th class="text-center px-8 py-6 text-2xl font-black" style="background: linear-gradient(to right, var(--gold), var(--gold-dark)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Apex</th>
+              <th class="text-center px-8 py-6 text-2xl font-black" style="background: linear-gradient(to right, var(--gold), var(--gold-dark)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Apex</th>
             </tr>
           </thead>
           <tbody class="text-lg">
@@ -406,7 +399,7 @@
               <td class="px-8 py-7 font-bold text-xl">Team Size (Attorneys + Staff)</td>
               <td class="text-center text-green-400 font-black text-2xl">1–5</td>
               <td class="text-center text-yellow-400 font-black text-3xl">5–15</td>
-              <td class="text-center" style="color: var(--gold); font-weight: 900; text-3xl">Unlimited</td>
+              <td class="text-center" style="color: var(--gold); font-weight: 900; font-size: 1.875rem;">Unlimited</td>
             </tr>
             <tr class="border-b border-zinc-800">
               <td class="px-8 py-6">Professional website on yourfirm.yourapp.co.za</td>
@@ -522,7 +515,6 @@
       </div>
     </div>
   </section>
-
   <!-- HOW IT WORKS -->
   <section class="py-32 px-6 bg-zinc-950">
     <div class="max-w-6xl mx-auto text-center">
@@ -546,7 +538,6 @@
       </div>
     </div>
   </section>
-
   <!-- REFERRAL REWARDS -->
   <section class="py-24 px-6 bg-black">
     <div class="max-w-6xl mx-auto text-center">
@@ -561,7 +552,6 @@
       </div>
     </div>
   </section>
-
   <!-- SECURITY & COMPLIANCE -->
   <section class="py-24 px-6 bg-zinc-950">
     <div class="max-w-6xl mx-auto text-center">
@@ -574,7 +564,6 @@
       </div>
     </div>
   </section>
-
   <!-- FINAL CTA -->
   <section class="py-32 px-6 bg-gradient-to-b from-black to-zinc-950">
     <div class="max-w-6xl mx-auto text-center">
@@ -593,7 +582,6 @@
       </p>
     </div>
   </section>
-
   <!-- QUIZ OVERLAY -->
   <div id="quiz-overlay" class="fixed inset-0 bg-black/98 backdrop-blur-2xl flex items-center justify-center z-[1000] hidden px-4 overflow-y-auto">
     <div class="w-full max-w-lg mx-auto my-8">
@@ -604,7 +592,6 @@
       <div id="quiz-options" class="grid grid-cols-1 gap-5"></div>
     </div>
   </div>
-
   <!-- QUIZ RESULTS -->
   <section id="quiz-results" class="py-20 px-6 bg-black hidden">
     <div class="max-w-5xl mx-auto text-center">
@@ -621,19 +608,15 @@
       <div id="tier-price" class="text-6xl md:text-8xl font-black text-green-400 mb-8"></div>
       <div id="final-total" class="text-4xl opacity-80 mb-12"></div>
       <div id="recommended-list" class="max-w-4xl mx-auto text-left text-xl leading-relaxed bg-zinc-900/50 rounded-3xl p-10"></div>
-      <form id="quiz-payfast-form" class="payfast-form mt-16 max-w-2xl mx-auto" data-tier="Dominance"></form>
     </div>
   </section>
-
   <!-- Floating WhatsApp Button -->
   <a href="https://wa.me/27764312871?text=Hi%20LexPilot%2C%0A%0AI%27m%20interested%20in%20Early%20Access..." class="fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-white text-black rounded-full shadow-2xl pl-5 pr-7 py-4 font-bold hover:scale-110 transition">
     <span class="absolute inset-0 rounded-full bg-green-500 opacity-75 animate-ping"></span>
     <i class="fab fa-whatsapp text-4xl text-green-500"></i>
     <span class="hidden md:block">Chat with founder<br><small>Reply in under 60 sec • 24/7</small></span>
   </a>
-
   <div id="footer-placeholder" class="mt-auto"></div>
-
   <!-- Scripts -->
   <script src="script.js"></script>
   <script>
