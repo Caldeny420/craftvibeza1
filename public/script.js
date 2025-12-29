@@ -11,21 +11,24 @@
       monthly: 999,
       setup: 0,
       normal: 2999,
-      color: "from-green-500 to-emerald-600"
+      color: "from-green-500 to-emerald-600",
+      waiveLimit: 999  // No setup fee ever
     },
     Dominance: {
       name: "Dominance",
       monthly: 2999,
       setup: 7999,
       normal: 7999,
-      color: "from-yellow-400 to-amber-500"
+      color: "from-yellow-400 to-amber-500",
+      waiveLimit: 100  // Setup waived for first 100
     },
     Apex: {
       name: "Apex",
       monthly: 9999,
       setup: 9999,
       normal: 19999,
-      color: "from-yellow-500 to-gold"
+      color: "from-yellow-500 to-gold",
+      waiveLimit: 50   // Setup waived for first 50
     }
   };
   // ====================== QUIZ QUESTIONS ======================
@@ -43,6 +46,24 @@
   let finalTier = "Growth";
   const $ = id => document.getElementById(id);
   const format = n => `R${n.toLocaleString('en-ZA')}`;
+
+  // ====================== FIREBASE COUNTERS (for waiver tracking) ======================
+  const initCounters = () => {
+    if (typeof firebase === 'undefined') return;
+    const db = firebase.firestore();
+    const updateCounter = (tierKey) => {
+      const docRef = db.collection("spots").doc(tierKey.toLowerCase());
+      docRef.onSnapshot(doc => {
+        if (!doc.exists) return;
+        const taken = doc.data()?.taken || 0;
+        const displayId = `${tierKey.toLowerCase()}-taken`;
+        if ($(displayId)) $(displayId).textContent = taken;
+      });
+    };
+    updateCounter("Growth");
+    updateCounter("Dominance");
+    updateCounter("Apex");
+  };
 
   // ====================== QUIZ ENGINE ======================
   const Quiz = {
@@ -82,17 +103,29 @@
 
       const t = TIERS[finalTier];
 
+      // Get taken spots from DOM (Firebase updates these)
+      const takenDominance = parseInt($('dominance-taken')?.textContent || '0');
+      const takenApex = parseInt($('apex-taken')?.textContent || '0');
+
+      const isWaived = (finalTier === "Dominance" && takenDominance < t.waiveLimit) ||
+                       (finalTier === "Apex" && takenApex < t.waiveLimit) ||
+                       finalTier === "Growth";
+
       // Update static UI
       $('tier-name').textContent = t.name.toUpperCase();
       $('tier-name').className = `inline-block px-6 sm:px-10 md:px-16 py-5 sm:py-7 md:py-8 rounded-full text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-black bg-gradient-to-r ${t.color} shadow-2xl text-center leading-none`;
       $('popular-badge').style.display = finalTier === "Dominance" ? "block" : "none";
+
       $('tier-price').innerHTML = `
         <div class="text-6xl md:text-8xl font-black text-green-400">${format(t.monthly)}<span class="text-4xl">/mo</span></div>
         <div class="text-3xl opacity-70 mt-4"><s>${format(t.normal)}</s></div>
       `;
+
       $('final-total').innerHTML = `
         <div class="text-3xl mt-8">
-          ${t.setup > 0 ? `Setup: ${format(t.setup)}` : 'No Setup Fee'}
+          ${t.setup > 0 
+            ? `Setup: ${format(t.setup)}${isWaived ? '<span class="text-green-400 text-2xl block font-bold">(WAIVED!)</span>' : `<span class="text-green-400 text-lg block">(waived for first ${t.waiveLimit})</span>`}`
+            : 'No Setup Fee'}
         </div>
         <div class="text-2xl mt-6 text-green-300 font-bold">Your founding price locked FOREVER</div>
       `;
@@ -106,12 +139,12 @@
         .map(f => `<li class="text-xl py-3 flex items-center gap-4"><i class="fas fa-check-circle text-green-400 text-2xl"></i>${f}</li>`)
         .join('');
 
-      // === CRITICAL FIX: Insert CTA with data-tier directly on the button ===
+      // === DYNAMIC CTA WITH CORRECT WAIVED INFO ===
       const oldCta = document.querySelector('#quiz-results .dynamic-cta');
       if (oldCta) oldCta.remove();
 
       const buttonText = finalTier === "Apex" ? "JOIN APEX WAITLIST" : `CLAIM MY ${t.name.toUpperCase()} SPOT NOW`;
-      const setupText = t.setup > 0 ? ` + ${format(t.setup)} setup` : "";
+      const setupText = t.setup > 0 ? ` + ${format(t.setup)} setup${isWaived ? " (WAIVED!)" : ""}` : "";
       const action = finalTier === "Apex" ? "Join Apex waitlist" : "Secure my spot";
       const waMsg = encodeURIComponent(`LexPilot FOUNDING LEAD! Tier: ${t.name} Price: ${format(t.monthly)}/mo${setupText} Normal: ${format(t.normal)}/mo ${action}!`);
 
@@ -126,7 +159,6 @@
         </div>
       `);
 
-      // Show results
       $('quiz-overlay').classList.add('hidden');
       document.body.style.overflow = '';
       $('quiz-results').classList.remove('hidden');
@@ -134,13 +166,12 @@
     }
   };
 
-  // ====================== GLOBAL WHATSAPP HANDLER (WORKS FOR EVERY BUTTON) ======================
+  // ====================== GLOBAL WHATSAPP HANDLER ======================
   document.addEventListener('click', e => {
     const btn = e.target.closest('.claim-btn');
     if (!btn) return;
     e.preventDefault();
 
-    // Get tier: 1. from button's own data-tier (quiz CTA), 2. from parent card (pricing cards)
     let tier = btn.dataset.tier || btn.closest('[data-tier]')?.dataset.tier;
     if (!tier) {
       const tierEl = $('tier-name');
@@ -149,7 +180,15 @@
     if (!tier || !TIERS[tier]) return;
 
     const t = TIERS[tier];
-    const setupText = t.setup > 0 ? ` + ${format(t.setup)} setup` : "";
+
+    // Get current taken spots for waiver logic
+    const takenDominance = parseInt($('dominance-taken')?.textContent || '0');
+    const takenApex = parseInt($('apex-taken')?.textContent || '0');
+    const isWaived = (tier === "Dominance" && takenDominance < t.waiveLimit) ||
+                     (tier === "Apex" && takenApex < t.waiveLimit) ||
+                     tier === "Growth";
+
+    const setupText = t.setup > 0 ? ` + ${format(t.setup)} setup${isWaived ? " (WAIVED!)" : ""}` : "";
     const action = tier === "Apex" ? "Join Apex waitlist" : "Secure my spot";
 
     const waMsg = encodeURIComponent(`LexPilot FOUNDING LEAD! Tier: ${t.name} Price: ${format(t.monthly)}/mo${setupText} Normal: ${format(t.normal)}/mo ${action}!`);
@@ -173,8 +212,8 @@
   document.addEventListener('DOMContentLoaded', () => {
     loadPart('header', 'header-placeholder');
     loadPart('footer', 'footer-placeholder');
+    initCounters();
 
-    // Close quiz on background click
     $('quiz-overlay')?.addEventListener('click', e => {
       if (e.target === $('quiz-overlay')) {
         $('quiz-overlay').classList.add('hidden');
@@ -182,7 +221,6 @@
       }
     });
 
-    // Add X close button
     const closeBtn = document.createElement('button');
     closeBtn.innerHTML = '×';
     closeBtn.className = 'absolute top-6 right-6 text-7xl opacity-40 hover:opacity-100 z-50 text-white';
