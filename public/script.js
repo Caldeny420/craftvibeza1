@@ -159,6 +159,7 @@
         </div>
       `);
 
+      // Show results
       $('quiz-overlay').classList.add('hidden');
       document.body.style.overflow = '';
       $('quiz-results').classList.remove('hidden');
