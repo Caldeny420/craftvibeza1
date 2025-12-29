@@ -5,6 +5,7 @@
     WHATSAPP_NUMBER: '27764312871'
   };
   // ====================== TIERS ======================
+  // PRICING NOW MATCHES LANDING PAGE EXACTLY
   const TIERS = {
     Growth: {
       name: "Growth",
@@ -17,10 +18,10 @@
     Dominance: {
       name: "Dominance",
       monthly: 2999,
-      setup: 7999,
+      setup: 4999,       // ← Fixed to R4,999 (matches landing page)
       normal: 7999,
       color: "from-yellow-400 to-amber-500",
-      waiveLimit: 100  // Setup waived for first 100
+      waiveLimit: 100    // Waived for first 100
     },
     Apex: {
       name: "Apex",
@@ -28,7 +29,7 @@
       setup: 9999,
       normal: 19999,
       color: "from-yellow-500 to-gold",
-      waiveLimit: 50   // Setup waived for first 50
+      waiveLimit: 50     // Waived for first 50
     }
   };
   // ====================== QUIZ QUESTIONS ======================
