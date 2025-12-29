@@ -62,7 +62,6 @@
       white-space: nowrap;
     }
     @media (min-width: 640px) { .founding-badge { padding: 0.875rem 2rem; font-size: 0.875rem; } }
-
     /* === HERO OPTIMIZED FOR ALL DEVICES – Ensures CTA stays in the fold on mobile === */
     @media (max-width: 767px) {
       .hero-container {
@@ -154,7 +153,6 @@
         padding-bottom: 6rem;
       }
     }
-
     /* === PRICING CARDS === */
     .pricing-card {
       position: relative;
@@ -193,7 +191,6 @@
     @media (min-width: 640px) { .pricing-scroll-container { padding: 2rem 1.5rem 3rem 1.5rem; gap: 1.25rem; } }
     @media (min-width: 768px) { .pricing-scroll-container { overflow-x: visible; justify-content: center; gap: 1.5rem; } }
     @media (min-width: 1024px) { .pricing-scroll-container { gap: 2rem; max-width: 1200px; margin: 0 auto; padding: 2rem 0; } }
-
     /* === FEATURE TABLE === */
     .feature-table-container {
       overflow-x: auto;
@@ -240,6 +237,11 @@
     @keyframes pulse {
       0%, 100% { opacity: 1; }
       50% { opacity: 0.8; }
+    }
+    .coming-soon {
+      font-size: 0.9rem;
+      opacity: 0.8;
+      font-style: italic;
     }
   </style>
 </head>
@@ -411,6 +413,7 @@
             Unlimited users<br>
             <span class="text-xl sm:text-2xl opacity-90 block">(attorneys + staff)</span>
           </p>
+          <p class="text-lg opacity-80 mt-4">Coming soon — join waitlist</p>
         </div>
         <div class="text-6xl sm:text-7xl font-black text-green-400 leading-none mb-4">
           R9,999<span class="text-3xl sm:text-4xl opacity-80">/mo</span>
@@ -423,19 +426,19 @@
         <ul class="text-left text-base sm:text-lg space-y-4 mb-10 px-6 flex-1">
           <li class="flex items-start gap-3">
             <i class="fas fa-check text-green-400 mt-1"></i>
-            <span>Auto CPD tracking + LPC reports</span>
+            <span>Everything in Dominance</span>
           </li>
           <li class="flex items-start gap-3">
             <i class="fas fa-check text-green-400 mt-1"></i>
-            <span>AI Brief & Letter Writer (SA trained)</span>
+            <span>Advanced AI tools (brief writer, CPD tracking, custom domain)</span>
           </li>
           <li class="flex items-start gap-3">
             <i class="fas fa-check text-green-400 mt-1"></i>
-            <span>Full white-label + custom domain</span>
+            <span>White-label + strategy day</span>
           </li>
         </ul>
         <button data-tier="Elite" class="claim-btn mt-auto w-full bg-gradient-to-r from-amber-500 to-orange-600 text-black font-black text-xl sm:text-2xl py-5 sm:py-6 rounded-2xl hover:scale-105 transition shadow-xl">
-          CLAIM ELITE SPOT
+          JOIN ELITE WAITLIST
         </button>
         <div class="payfast-form hidden mt-4" data-tier="Elite"></div>
       </div>
@@ -463,17 +466,16 @@
               <td class="text-center text-yellow-400 font-black text-3xl">5–15</td>
               <td class="text-center text-amber-400 font-black text-3xl">Unlimited</td>
             </tr>
-            <tr class="border-b border-zinc-800"><td class="px-8 py-6">Professional website on yourfirm.LexPilot.co.za</td><td class="text-center text-green-400 font-bold">Yes</td><td class="text-center text-green-400 font-bold">Yes</td><td class="text-center text-green-400 font-bold">Yes</td></tr>
-            <tr class="border-b border-zinc-800"><td class="px-8 py-6">AI full-site generator + no-code editor</td><td class="text-center text-green-400 font-bold">Yes</td><td class="text-center text-green-400 font-bold">Yes</td><td class="text-center text-green-400 font-bold">Yes</td></tr>
+            <tr class="border-b border-zinc-800"><td class="px-8 py-6">Professional website on yourfirm.yourapp.co.za</td><td class="text-center text-green-400 font-bold">Yes</td><td class="text-center text-green-400 font-bold">Yes</td><td class="text-center text-green-400 font-bold">Yes</td></tr>
+            <tr class="border-b border-zinc-800"><td class="px-8 py-6">AI full-site generator + no-code editor</td><td class="text-center text-green-400 font-bold">Yes (template-based)</td><td class="text-center text-green-400 font-bold">Yes (template-based)</td><td class="text-center text-green-400 font-bold">Yes (advanced)</td></tr>
             <tr class="border-b border-zinc-800"><td class="px-8 py-6">Calendar booking</td><td class="text-center text-green-400 font-bold">Yes</td><td class="text-center text-green-400 font-bold">Yes</td><td class="text-center text-green-400 font-bold">Yes</td></tr>
             <tr class="bg-green-900/20 border-b-4 border-green-600">
               <td class="px-8 py-10 font-bold text-2xl text-green-300 leading-tight">
                 Purpose-built billing for South African attorneys<br>
                 <span class="block mt-3 text-base font-normal opacity-90">
-                  • Auto-fill client, case, rate, VAT & trust balance<br>
-                  • Pause + add multiple services in one session<br>
-                  • Bulk invoice 50 matters in 60 seconds • PDF generated & sent instantly<br>
-                  • One-click Payfast links → auto-marks paid
+                  • Auto-fill client, matter, rate, VAT & trust balance<br>
+                  • PDF generated & sent instantly<br>
+                  • One-click PayFast links → auto-marks paid
                 </span>
               </td>
               <td class="text-center text-green-400 font-bold text-4xl">YES</td>
@@ -486,7 +488,7 @@
                 <span class="block mt-3 text-base font-normal opacity-90">
                   • Real-time Rule 54 & 86 alerts<br>
                   • Auto-caps trust deductions to available balance<br>
-                  • Full audit trail & trust ledger per client/case
+                  • Full audit trail & trust ledger per client/matter
                 </span>
               </td>
               <td class="text-center text-green-400 font-bold text-4xl">YES</td>
@@ -495,20 +497,17 @@
             </tr>
             <tr class="border-b border-zinc-800"><td class="px-8 py-6">Capture Client Details & Deposits (Card / EFT / PayFast)</td><td class="text-center text-red-500 font-bold">No</td><td class="text-center text-green-400 font-bold">Yes</td><td class="text-center text-green-400 font-bold">Yes</td></tr>
             <tr class="border-b border-zinc-800"><td class="px-8 py-6">Lead dashboard</td><td class="text-center text-red-500 font-bold">No</td><td class="text-center text-green-400 font-bold">Yes</td><td class="text-center text-green-400 font-bold">Yes</td></tr>
-            <tr class="border-b border-zinc-800"><td class="px-8 py-6">Automated sequences (chaser, nurturing, referrals)</td><td class="text-center text-red-500 font-bold">No</td><td class="text-center text-green-400 font-bold">Yes</td><td class="text-center text-green-400 font-bold">Yes</td></tr>
+            <tr class="border-b border-zinc-800"><td class="px-8 py-6">Automated sequences (deposit chasers, nurturing, referrals)</td><td class="text-center text-red-500 font-bold">No</td><td class="text-center text-green-400 font-bold">Yes (generic templates)</td><td class="text-center text-green-400 font-bold">Yes (customisable)</td></tr>
             <tr class="bg-amber-900/20 border-b-4 border-amber-700">
               <td class="px-8 py-10 font-bold text-2xl text-amber-300 leading-tight">
-                Automatic CPD tracking<br>
-                <span class="block mt-3 text-base font-normal opacity-90">
-                  Auto-tracks everything · LPC report in 1 click
-                </span>
+                Automatic CPD tracking + LPC reports
               </td>
               <td class="text-center text-red-500 font-bold">No</td>
               <td class="text-center text-red-500 font-bold">No</td>
-              <td class="text-center text-green-400 font-bold text-5xl">YES</td>
+              <td class="text-center text-amber-400 font-bold coming-soon">Coming Soon</td>
             </tr>
-            <tr class="border-b border-zinc-800"><td class="px-8 py-6 text-amber-200">AI Brief & Letter Writer (SA-law trained)</td><td class="text-center text-red-500 font-bold">No</td><td class="text-center text-red-500 font-bold">No</td><td class="text-center text-green-400 font-bold">Yes</td></tr>
-            <tr class="border-b border-zinc-800"><td class="px-8 py-6">White-label, custom domain, strategy day</td><td class="text-center text-red-500 font-bold">No</td><td class="text-center text-red-500 font-bold">No</td><td class="text-center text-green-400 font-bold">Yes</td></tr>
+            <tr class="border-b border-zinc-800"><td class="px-8 py-6 text-amber-200">AI Brief & Letter Writer (SA-law trained)</td><td class="text-center text-red-500 font-bold">No</td><td class="text-center text-red-500 font-bold">No</td><td class="text-center text-amber-400 font-bold coming-soon">Coming Soon</td></tr>
+            <tr class="border-b border-zinc-800"><td class="px-8 py-6">White-label + custom domain</td><td class="text-center text-red-500 font-bold">No</td><td class="text-center text-red-500 font-bold">No</td><td class="text-center text-amber-400 font-bold coming-soon">Coming Soon</td></tr>
             <tr class="bg-green-900/30 border-t-4 border-b-4 border-green-600">
               <td class="px-8 py-10 font-bold text-2xl text-green-300">
                 Founding Member Referral Rewards<br>
@@ -532,6 +531,12 @@
               <td class="text-center text-green-400 font-bold text-4xl">YES</td>
               <td class="text-center text-green-400 font-bold text-4xl">YES</td>
               <td class="text-center text-green-400 font-bold text-4xl">YES</td>
+            </tr>
+            <tr class="border-t-4 border-zinc-600 bg-zinc-900/50">
+              <td colspan="4" class="px-8 py-6 text-center text-sm opacity-80 italic">
+                Template-based AI site generation with no-code editing available at launch. Advanced AI tools (brief writer, CPD tracking, custom domain) coming in future updates for Elite tier.<br><br>
+                Bulk invoicing, pause timer, and fully customisable sequences coming soon after launch.
+              </td>
             </tr>
           </tbody>
         </table>
