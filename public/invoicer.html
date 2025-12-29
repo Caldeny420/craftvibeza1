@@ -10,14 +10,12 @@
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background: #f5f7fa;
             color: #2c3e50;
             line-height: 1.6;
         }
-
         .header {
             background: #2c3e50;
             color: white;
@@ -27,24 +25,20 @@
             align-items: center;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
-
         .header h1 {
             font-size: 1.5rem;
             font-weight: 600;
         }
-
         .header-right {
             display: flex;
             gap: 1.5rem;
             align-items: center;
         }
-
         .notification-badge {
             position: relative;
             cursor: pointer;
             font-size: 1.2rem;
         }
-
         .badge-count {
             position: absolute;
             top: -8px;
@@ -59,7 +53,6 @@
             align-items: center;
             justify-content: center;
         }
-
         .search-box {
             padding: 0.5rem 1rem;
             border: none;
@@ -67,7 +60,6 @@
             width: 250px;
             background: rgba(255,255,255,0.9);
         }
-
         select {
             padding: 0.5rem;
             border: 1px solid #ddd;
@@ -75,13 +67,11 @@
             background: white;
             cursor: pointer;
         }
-
         .container {
             max-width: 1400px;
             margin: 0 auto;
             padding: 2rem;
         }
-
         .top-bar {
             background: white;
             padding: 1rem 1.5rem;
@@ -92,13 +82,11 @@
             align-items: center;
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
-
         .top-bar-section {
             display: flex;
             gap: 1rem;
             align-items: center;
         }
-
         .btn {
             padding: 0.6rem 1.2rem;
             border: none;
@@ -107,49 +95,41 @@
             font-size: 0.9rem;
             transition: all 0.2s;
         }
-
         .btn-primary {
             background: #3498db;
             color: white;
         }
-
         .btn-primary:hover {
             background: #2980b9;
         }
-
         .date-display {
             font-weight: 600;
             color: #7f8c8d;
             font-size: 0.95rem;
         }
-
         .metrics-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1.5rem;
             margin-bottom: 1.5rem;
         }
-
         .metric-card {
             background: white;
             padding: 1.5rem;
             border-radius: 8px;
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
-
         .metric-label {
             color: #7f8c8d;
             font-size: 0.9rem;
             margin-bottom: 0.5rem;
         }
-
         .metric-value {
             font-size: 1.8rem;
             font-weight: 700;
             color: #2c3e50;
             margin-bottom: 0.5rem;
         }
-
         .progress-bar {
             height: 8px;
             background: #ecf0f1;
@@ -157,40 +137,31 @@
             overflow: hidden;
             margin-top: 0.5rem;
         }
-
         .progress-fill {
             height: 100%;
             background: #3498db;
             transition: width 0.3s;
         }
-
         .progress-fill.green {
             background: #27ae60;
         }
-
         .progress-text {
             font-size: 0.8rem;
             color: #7f8c8d;
             margin-top: 0.3rem;
         }
-
-        .alert-section {
+        .alert-section, .quick-actions-section {
             background: white;
             padding: 1.5rem;
             border-radius: 8px;
             margin-bottom: 1.5rem;
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
-
         .section-title {
             font-size: 1.1rem;
             font-weight: 600;
             margin-bottom: 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
-
         .alert-item {
             padding: 0.8rem;
             margin-bottom: 0.5rem;
@@ -199,84 +170,28 @@
             justify-content: space-between;
             align-items: center;
         }
-
         .alert-item.warning {
             background: #fff3cd;
             border-left: 4px solid #ffc107;
         }
-
         .alert-item.danger {
             background: #f8d7da;
             border-left: 4px solid #e74c3c;
         }
-
-        .alert-actions {
-            display: flex;
-            gap: 0.5rem;
-        }
-
         .btn-small {
             padding: 0.3rem 0.8rem;
             font-size: 0.8rem;
             border: none;
             border-radius: 3px;
             cursor: pointer;
-            transition: all 0.2s;
         }
-
-        .btn-info {
-            background: #3498db;
-            color: white;
-        }
-
-        .btn-warning {
-            background: #f39c12;
-            color: white;
-        }
-
-        .timer-section {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
-
-        .timer-display {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #27ae60;
-            text-align: center;
-            margin: 1rem 0;
-        }
-
-        .timer-controls {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 1rem;
-        }
-
-        .service-list {
-            margin-top: 1rem;
-        }
-
-        .service-item {
-            padding: 0.8rem;
-            background: #f8f9fa;
-            border-radius: 4px;
-            margin-bottom: 0.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
+        .btn-info { background: #3498db; color: white; }
+        .btn-warning { background: #f39c12; color: white; }
         .quick-actions {
             display: flex;
             gap: 1rem;
             flex-wrap: wrap;
         }
-
         .action-btn {
             flex: 1;
             min-width: 150px;
@@ -289,18 +204,149 @@
             font-weight: 600;
             transition: all 0.2s;
         }
-
         .action-btn:hover {
             background: #3498db;
             color: white;
         }
 
-        .status-running {
-            color: #27ae60;
+        /* Modal Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            overflow-y: auto;
         }
-
-        .status-paused {
-            color: #f39c12;
+        .modal {
+            background: white;
+            width: 90%;
+            max-width: 1000px;
+            max-height: 95vh;
+            overflow-y: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+        .modal-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #eee;
+            font-size: 1.4rem;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f8f9fa;
+        }
+        .modal-close {
+            cursor: pointer;
+            font-size: 1.8rem;
+            color: #7f8c8d;
+        }
+        .modal-body {
+            padding: 1.5rem;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-row {
+            display: flex;
+            gap: 1rem;
+            align-items: end;
+            margin-bottom: 1rem;
+        }
+        .form-row > div {
+            flex: 1;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        input[type="text"], input[type="number"], input[type="date"], select, textarea {
+            width: 100%;
+            padding: 0.6rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        th, td {
+            padding: 0.9rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        th {
+            background: #f8f9fa;
+            font-weight: 600;
+        }
+        .amount-right {
+            text-align: right;
+        }
+        .summary-line {
+            font-size: 1.05rem;
+            padding: 0.6rem 0;
+            display: flex;
+            justify-content: space-between;
+        }
+        .summary-line strong {
+            font-weight: 700;
+        }
+        .total-due {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #27ae60;
+            padding: 1rem 0;
+            border-top: 3px double #333;
+            display: flex;
+            justify-content: space-between;
+        }
+        .trust-warning {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        .modal-actions {
+            padding: 1.5rem;
+            border-top: 1px solid #eee;
+            text-align: right;
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            background: #f8f9fa;
+        }
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 1rem 0;
+            font-size: 0.95rem;
+        }
+        .checkbox-group input {
+            width: auto;
+        }
+        .service-item {
+            border: 1px solid #eee;
+            border-radius: 6px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: #f9f9f9;
+        }
+        .timer-controls-small button {
+            padding: 0.4rem 0.8rem;
+            margin-right: 0.3rem;
+        }
+        .subtotal {
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-align: right;
+            margin: 1rem 0;
         }
     </style>
 </head>
@@ -333,7 +379,7 @@
                 </select>
                 <button class="btn btn-primary">+ Add Client</button>
             </div>
-            <div class="date-display">TODAY – December 22, 2025</div>
+            <div class="date-display">TODAY – December 29, 2025</div>
             <div class="top-bar-section">
                 <label>Cases:</label>
                 <select id="caseSelect">
@@ -393,44 +439,14 @@
                     <button class="btn-small btn-warning">Remind</button>
                 </div>
             </div>
-            <div class="alert-item warning">
-                <span>Timer Running: Jones v RoadCorp (<span id="runningTimer">0:12:23</span>)</span>
-                <div class="alert-actions">
-                    <button class="btn-small btn-primary" onclick="stopTimer()">Stop</button>
-                    <button class="btn-small btn-warning" onclick="pauseTimer()">Pause</button>
-                </div>
-            </div>
         </div>
 
-        <div class="timer-section">
-            <div class="section-title">⏱️ ACTIVE TIMER (Current Session)</div>
-            <div style="text-align: center; margin: 1rem 0;">
-                <strong>Current Session: Smith v RAF (2 services)</strong>
-            </div>
-            <div class="service-list">
-                <div class="service-item">
-                    <span>Consultation</span>
-                    <span class="status-paused">0:12:23 [Paused]</span>
-                </div>
-                <div class="service-item">
-                    <span>Draft Letter</span>
-                    <span class="status-running">0:00:00 [Running]</span>
-                </div>
-            </div>
-            <div class="timer-controls">
-                <button class="btn btn-primary" onclick="resumeTimer()">Resume</button>
-                <button class="btn btn-warning" onclick="pauseTimer()">Pause</button>
-                <button class="btn" style="background: #e74c3c; color: white;" onclick="stopTimer()">Stop</button>
-                <button class="btn" style="background: #27ae60; color: white;">Add Another Service</button>
-            </div>
-        </div>
-
-        <div style="background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+        <div class="quick-actions-section">
             <div class="section-title">⚡ Quick Actions</div>
             <div class="quick-actions">
-                <button class="action-btn" onclick="addTimeEntry()">+ Time Entry</button>
-                <button class="action-btn" onclick="addInvoice()">+ Invoice</button>
-                <button class="action-btn" onclick="addDeposit()">+ Deposit</button>
+                <button class="action-btn" id="openTimeEntryModal">+ Time Entry</button>
+                <button class="action-btn" id="openInvoiceModal">+ Invoice</button>
+                <button class="action-btn" id="openDepositModal">+ Deposit</button>
                 <button class="action-btn">Reports ▼</button>
                 <button class="action-btn">Settings</button>
                 <button class="action-btn">Admin Dashboard</button>
@@ -438,107 +454,362 @@
         </div>
     </div>
 
+    <!-- Time Entry Modal -->
+    <div class="modal-overlay" id="timeEntryModal">
+        <div class="modal">
+            <div class="modal-header">
+                <span>+ TIME ENTRY – Smith v RAF</span>
+                <span class="modal-close" id="closeTimeEntryModal">×</span>
+            </div>
+            <div class="modal-body">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Client</label>
+                        <select id="modalClient">
+                            <option selected>John Smith</option>
+                            <option>Jane Dlamini</option>
+                            <option>Mike Jones</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary">+ Add New Client</button>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Case</label>
+                        <select id="modalCase">
+                            <option selected>Smith v RAF</option>
+                            <option>Dlamini Case</option>
+                            <option>Jones v RoadCorp</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary">+ Add New Case</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Lawyer</label>
+                    <select multiple>
+                        <option selected>You</option>
+                        <option>Lawyer 2</option>
+                        <option>Lawyer 3</option>
+                    </select>
+                    <small>Hold Ctrl/Cmd to select multiple – % split will be prompted on save</small>
+                </div>
+                <h3 style="margin: 1.5rem 0 1rem;">Services (One timer per service – only one running at a time)</h3>
+                <div id="servicesContainer">
+                    <div class="service-item">
+                        <div class="form-row">
+                            <div><label>Service</label><select class="service-select"><option selected>Consultation</option><option>Draft Letter</option><option>Telephone Call</option></select></div>
+                            <div><label>Description</label><input type="text" value="Consultation with client" class="service-desc"></div>
+                            <div><label>Manual Hours</label><input type="number" step="0.1" value="0.5" class="service-hours"></div>
+                            <div><label>Rate</label><input type="text" value="R2000" class="service-rate"></div>
+                            <div><label>Amount</label><input type="text" value="R1,000" readonly class="service-amount"></div>
+                            <div><label>Use Trust?</label><select class="service-trust"><option>Yes</option><option selected>No</option></select></div>
+                        </div>
+                        <div class="timer-controls-small" style="margin-top: 0.5rem;">
+                            Timer: <span class="service-timer">0:12:23</span>
+                            <button class="btn-small btn-primary">Start</button>
+                            <button class="btn-small btn-warning">Pause</button>
+                            <button class="btn-small" style="background:#e74c3c;color:white;">Stop</button>
+                            <button class="btn-small btn-info">Reset</button>
+                        </div>
+                    </div>
+                    <div class="service-item">
+                        <div class="form-row">
+                            <div><label>Service</label><select class="service-select"><option>Draft Letter</option><option>Consultation</option></select></div>
+                            <div><label>Description</label><input type="text" value="Draft demand letter" class="service-desc"></div>
+                            <div><label>Manual Hours</label><input type="number" step="0.1" value="1.0" class="service-hours"></div>
+                            <div><label>Rate</label><input type="text" value="R2000" class="service-rate"></div>
+                            <div><label>Amount</label><input type="text" value="R2,000" readonly class="service-amount"></div>
+                            <div><label>Use Trust?</label><select class="service-trust"><option selected>No</option><option>Yes</option></select></div>
+                        </div>
+                        <div class="timer-controls-small" style="margin-top: 0.5rem;">
+                            Timer: <span class="service-timer">0:00:00</span>
+                            <button class="btn-small btn-primary">Start</button>
+                            <button class="btn-small btn-warning">Pause</button>
+                            <button class="btn-small" style="background:#e74c3c;color:white;">Stop</button>
+                            <button class="btn-small btn-info">Reset</button>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-primary" id="addService">+ Add Service to This Session</button>
+                <h3 style="margin: 2rem 0 1rem;">Current Session Total</h3>
+                <table>
+                    <thead><tr><th>Service</th><th>Hours</th><th>Rate</th><th>Amount</th><th>Lawyer</th><th>Timer Status</th></tr></thead>
+                    <tbody>
+                        <tr><td>Consultation</td><td>0.5</td><td>R2000</td><td>R1,000</td><td>You</td><td>Paused</td></tr>
+                        <tr><td>Draft Letter</td><td>1.0</td><td>R2000</td><td>R2,000</td><td>You</td><td>Running</td></tr>
+                    </tbody>
+                </table>
+                <div class="subtotal">Subtotal: R3,000</div>
+                <h3 style="margin: 2rem 0 1rem;">Disbursements (Whole Session)</h3>
+                <table>
+                    <thead><tr><th>Description</th><th>Amount</th><th>Use Trust?</th></tr></thead>
+                    <tbody><tr><td>Sheriff Service</td><td>R850</td><td>Yes</td></tr></tbody>
+                </table>
+                <button class="btn btn-primary">+ Add Disbursement</button>
+                <div class="form-group" style="margin-top: 2rem;">
+                    <label>Notes</label>
+                    <textarea rows="3" placeholder="Optional"></textarea>
+                </div>
+                <div style="margin-top: 1rem;">
+                    Trust Available: <span style="font-weight: bold; color: #27ae60;">R18,500</span>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn">Cancel</button>
+                <button class="btn btn-primary">Save All Entries</button>
+                <button class="btn btn-primary">Save All & Create Invoice</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Invoice Modal -->
+    <div class="modal-overlay" id="invoiceModal">
+        <div class="modal">
+            <div class="modal-header">
+                <span>INVOICE – John Smith – Smith v RAF</span>
+                <span class="modal-close" id="closeInvoiceModal">×</span>
+            </div>
+            <div class="modal-body">
+                <div class="form-row">
+                    <div>
+                        <label>Client</label>
+                        <select>
+                            <option selected>John Smith</option>
+                            <option>Jane Dlamini</option>
+                            <option>Mike Jones</option>
+                        </select>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary">+ Add</button>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div>
+                        <label>Case</label>
+                        <select>
+                            <option selected>Smith v RAF</option>
+                            <option>Dlamini Case</option>
+                            <option>Jones v RoadCorp</option>
+                        </select>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary">+ Add</button>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div>
+                        <label>Date</label>
+                        <input type="text" value="December 29, 2025" readonly>
+                    </div>
+                    <div>
+                        <label>Due</label>
+                        <input type="text" value="January 12, 2026 (+14 days)" readonly>
+                    </div>
+                    <div style="align-self: center;">
+                        <button class="btn btn-primary">Calendar picker</button>
+                    </div>
+                </div>
+
+                <h3 style="margin: 2rem 0 1rem;">Unbilled Items (Auto-Pulled – All Unbilled for Client/Case)</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Hours</th>
+                            <th>Rate</th>
+                            <th class="amount-right">Amount</th>
+                            <th>Use Trust?</th>
+                            <th>Lawyer</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Consultation</td>
+                            <td>0.5</td>
+                            <td>R2000</td>
+                            <td class="amount-right">R1,000</td>
+                            <td>Yes</td>
+                            <td>You</td>
+                        </tr>
+                        <tr>
+                            <td>Draft Letter</td>
+                            <td>1.0</td>
+                            <td>R2000</td>
+                            <td class="amount-right">R2,000</td>
+                            <td>No</td>
+                            <td>You</td>
+                        </tr>
+                        <tr>
+                            <td>Sheriff Service</td>
+                            <td></td>
+                            <td></td>
+                            <td class="amount-right">R850</td>
+                            <td>Yes</td>
+                            <td>-</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div style="margin: 1rem 0;">
+                    <button class="btn btn-primary">+ Add Manual Item</button>
+                    <button class="btn btn-primary" style="margin-left: 0.5rem;">+ Add Disbursement</button>
+                </div>
+
+                <div style="text-align: right; margin-top: 2rem;">
+                    <div class="summary-line"><span>Subtotal (excl. VAT):</span> <strong>R3,850</strong></div>
+                    <div class="summary-line"><span>VAT @ 15%:</span> <strong>R577.50</strong></div>
+                    <div class="summary-line"><span>Total Before Trust:</span> <strong>R4,427.50</strong></div>
+                    <div class="summary-line"><span>Trust Available:</span> <strong class="trust-warning">R1,200</strong></div>
+                    <div class="summary-line"><span>Trust Deducted:</span> <strong>-R1,200 (capped to available)</strong></div>
+                    <div class="total-due"><span>Total Due:</span> <strong>R3,227.50</strong></div>
+                </div>
+
+                <h3 style="margin: 2rem 0 1rem;">Payment Options</h3>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="payfast">
+                    <label for="payfast">Generate Payfast Link for R3,227.50</label>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="bankdetails">
+                    <label for="bankdetails">Include Bank Details in Email</label>
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn">Cancel</button>
+                <button class="btn btn-primary">Save Draft</button>
+                <button class="btn btn-primary">Preview PDF</button>
+                <button class="btn btn-primary">Send Invoice</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Trust Deposit Modal -->
+    <div class="modal-overlay" id="depositModal">
+        <div class="modal" style="max-width: 700px;">
+            <div class="modal-header">
+                <span>+ TRUST DEPOSIT</span>
+                <span class="modal-close" id="closeDepositModal">×</span>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Client <span style="color: red;">*</span></label>
+                    <select id="depositClient">
+                        <option selected>John Smith</option>
+                        <option>Jane Dlamini</option>
+                        <option>Mike Jones</option>
+                    </select>
+                    <button class="btn btn-primary" style="margin-top: 0.5rem; width: 100%;">+ Add New Client</button>
+                </div>
+
+                <div class="form-group">
+                    <label>Case (Optional)</label>
+                    <select id="depositCase">
+                        <option selected>Smith v RAF</option>
+                        <option>General / No Specific Case</option>
+                        <option>Dlamini Case</option>
+                        <option>Jones v RoadCorp</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Amount to Deposit</label>
+                    <input type="text" id="depositAmount" value="R5,000" placeholder="R0.00">
+                </div>
+
+                <div style="margin: 2rem 0;">
+                    <strong>Payment Method</strong>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="payfastLink">
+                    <label for="payfastLink">Generate Payfast Link</label>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="manualDeposit">
+                    <label for="manualDeposit">Manual (Bank Details emailed)</label>
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn">Cancel</button>
+                <button class="btn btn-primary">Generate Link / Record Deposit</button>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // Connect to invoicer.js API
-        const API_BASE = '/api';
+        // Modal controls
+        const timeEntryModal = document.getElementById('timeEntryModal');
+        const invoiceModal = document.getElementById('invoiceModal');
+        const depositModal = document.getElementById('depositModal');
 
-        // Timer state
-        let timerInterval;
-        let seconds = 0;
+        const openTimeEntryBtn = document.getElementById('openTimeEntryModal');
+        const openInvoiceBtn = document.getElementById('openInvoiceModal');
+        const openDepositBtn = document.getElementById('openDepositModal');
 
-        function updateTimerDisplay() {
-            const hrs = Math.floor(seconds / 3600);
-            const mins = Math.floor((seconds % 3600) / 60);
-            const secs = seconds % 60;
-            const display = `${hrs}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-            document.getElementById('runningTimer').textContent = display;
-        }
+        const closeTimeEntryBtn = document.getElementById('closeTimeEntryModal');
+        const closeInvoiceBtn = document.getElementById('closeInvoiceModal');
+        const closeDepositBtn = document.getElementById('closeDepositModal');
 
-        function startTimer() {
-            if (!timerInterval) {
-                timerInterval = setInterval(() => {
-                    seconds++;
-                    updateTimerDisplay();
-                }, 1000);
-            }
-        }
+        openTimeEntryBtn.onclick = () => { timeEntryModal.style.display = 'flex'; };
+        openInvoiceBtn.onclick = () => { invoiceModal.style.display = 'flex'; };
+        openDepositBtn.onclick = () => { depositModal.style.display = 'flex'; };
 
-        function pauseTimer() {
-            clearInterval(timerInterval);
-            timerInterval = null;
-            console.log('Timer paused at:', seconds, 'seconds');
-        }
+        closeTimeEntryBtn.onclick = () => { timeEntryModal.style.display = 'none'; };
+        closeInvoiceBtn.onclick = () => { invoiceModal.style.display = 'none'; };
+        closeDepositBtn.onclick = () => { depositModal.style.display = 'none'; };
 
-        function stopTimer() {
-            clearInterval(timerInterval);
-            timerInterval = null;
-            console.log('Timer stopped. Total time:', seconds, 'seconds');
-            // Here you would call the API to save the time entry
-            saveTimeEntry(seconds);
-            seconds = 0;
-            updateTimerDisplay();
-        }
+        // Close modals when clicking outside
+        window.onclick = (event) => {
+            if (event.target === timeEntryModal) timeEntryModal.style.display = 'none';
+            if (event.target === invoiceModal) invoiceModal.style.display = 'none';
+            if (event.target === depositModal) depositModal.style.display = 'none';
+        };
 
-        function resumeTimer() {
-            startTimer();
-        }
+        // Time Entry: Amount auto-calculation
+        document.querySelectorAll('.service-hours, .service-rate').forEach(input => {
+            input.addEventListener('input', function() {
+                const row = this.closest('.service-item');
+                const hours = parseFloat(row.querySelector('.service-hours').value) || 0;
+                const rateStr = row.querySelector('.service-rate').value.replace('R', '').trim();
+                const rate = parseFloat(rateStr) || 0;
+                const amount = hours * rate;
+                row.querySelector('.service-amount').value = amount > 0 ? 'R' + amount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",") : '';
+            });
+        });
 
-        // API Functions
-        async function saveTimeEntry(totalSeconds) {
-            try {
-                const response = await fetch(`${API_BASE}/invoicer.js`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        action: 'save_time_entry',
-                        client: document.getElementById('clientSelect').value,
-                        case: document.getElementById('caseSelect').value,
-                        duration: totalSeconds,
-                        date: new Date().toISOString()
-                    })
-                });
-                const data = await response.json();
-                console.log('Time entry saved:', data);
-            } catch (error) {
-                console.error('Error saving time entry:', error);
-            }
-        }
-
-        async function addTimeEntry() {
-            console.log('Adding time entry');
-            // Call API to create new time entry
-        }
-
-        async function addInvoice() {
-            console.log('Creating invoice');
-            try {
-                const response = await fetch(`${API_BASE}/invoicer.js`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        action: 'create_invoice',
-                        client: document.getElementById('clientSelect').value,
-                        case: document.getElementById('caseSelect').value
-                    })
-                });
-                const data = await response.json();
-                console.log('Invoice created:', data);
-            } catch (error) {
-                console.error('Error creating invoice:', error);
-            }
-        }
-
-        async function addDeposit() {
-            console.log('Adding deposit');
-            // Call API to add deposit
-        }
-
-        // Initialize
-        startTimer();
+        // Add new service row in Time Entry
+        document.getElementById('addService').onclick = () => {
+            const container = document.getElementById('servicesContainer');
+            const newService = document.createElement('div');
+            newService.className = 'service-item';
+            newService.innerHTML = `
+                <div class="form-row">
+                    <div><label>Service</label><select class="service-select"><option>Consultation</option><option>Draft Letter</option><option>Telephone Call</option></select></div>
+                    <div><label>Description</label><input type="text" class="service-desc"></div>
+                    <div><label>Manual Hours</label><input type="number" step="0.1" value="0" class="service-hours"></div>
+                    <div><label>Rate</label><input type="text" value="R2000" class="service-rate"></div>
+                    <div><label>Amount</label><input type="text" readonly class="service-amount"></div>
+                    <div><label>Use Trust?</label><select class="service-trust"><option>No</option><option>Yes</option></select></div>
+                </div>
+                <div class="timer-controls-small" style="margin-top: 0.5rem;">
+                    Timer: <span class="service-timer">0:00:00</span>
+                    <button class="btn-small btn-primary">Start</button>
+                    <button class="btn-small btn-warning">Pause</button>
+                    <button class="btn-small" style="background:#e74c3c;color:white;">Stop</button>
+                    <button class="btn-small btn-info">Reset</button>
+                </div>
+            `;
+            container.appendChild(newService);
+        };
     </script>
 </body>
 </html>
