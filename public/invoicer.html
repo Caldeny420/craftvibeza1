@@ -102,6 +102,10 @@
         .btn-primary:hover {
             background: #2980b9;
         }
+        .btn-danger {
+            background: #e74c3c;
+            color: white;
+        }
         .date-display {
             font-weight: 600;
             color: #7f8c8d;
@@ -267,7 +271,7 @@
             margin-bottom: 0.5rem;
             font-weight: 600;
         }
-        input[type="text"], input[type="number"], input[type="date"], select, textarea {
+        input[type="text"], input[type="number"], input[type="email"], input[type="tel"], select, textarea {
             width: 100%;
             padding: 0.6rem;
             border: 1px solid #ddd;
@@ -332,11 +336,20 @@
             width: auto;
         }
         .service-item {
+            position: relative;
             border: 1px solid #eee;
             border-radius: 6px;
             padding: 1rem;
             margin-bottom: 1rem;
             background: #f9f9f9;
+        }
+        .service-delete {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            cursor: pointer;
+            color: #e74c3c;
+            font-size: 1.2rem;
         }
         .timer-controls-small button {
             padding: 0.4rem 0.8rem;
@@ -347,6 +360,15 @@
             font-weight: 700;
             text-align: right;
             margin: 1rem 0;
+        }
+        .service-edit {
+            padding: 0.4rem 0.8rem;
+            background: #f39c12;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-left: 0.5rem;
         }
     </style>
 </head>
@@ -372,29 +394,29 @@
         <div class="top-bar">
             <div class="top-bar-section">
                 <label>Clients:</label>
-                <select id="clientSelect">
-                    <option>John Smith ▼</option>
-                    <option>Jane Dlamini</option>
-                    <option>Mike Jones</option>
+                <select id="clientSelect" onchange="updateDashboard()">
+                    <option value="john_smith">John Smith ▼</option>
+                    <option value="jane_dlamini">Jane Dlamini</option>
+                    <option value="mike_jones">Mike Jones</option>
                 </select>
-                <button class="btn btn-primary">+ Add Client</button>
+                <button class="btn btn-primary" id="openAddClientModal">+ Add Client</button>
             </div>
             <div class="date-display">TODAY – December 29, 2025</div>
             <div class="top-bar-section">
                 <label>Cases:</label>
-                <select id="caseSelect">
-                    <option>Smith v RAF ▼</option>
-                    <option>Dlamini Case</option>
-                    <option>Jones v RoadCorp</option>
+                <select id="caseSelect" onchange="updateDashboard()">
+                    <option value="smith_v_raf">Smith v RAF ▼</option>
+                    <option value="dlamini_case">Dlamini Case</option>
+                    <option value="jones_v_roadcorp">Jones v RoadCorp</option>
                 </select>
-                <button class="btn btn-primary">+ Add Case</button>
+                <button class="btn btn-primary" id="openAddCaseModal">+ Add Case</button>
             </div>
         </div>
 
         <div class="metrics-grid">
             <div class="metric-card">
                 <div class="metric-label">Unbilled Time</div>
-                <div class="metric-value">R 42,300</div>
+                <div class="metric-value" id="unbilledTime">R 42,300</div>
                 <div class="progress-bar">
                     <div class="progress-fill" style="width: 70%"></div>
                 </div>
@@ -402,7 +424,7 @@
             </div>
             <div class="metric-card">
                 <div class="metric-label">Outstanding Invoices</div>
-                <div class="metric-value">R 96,200</div>
+                <div class="metric-value" id="outstandingInvoices">R 96,200</div>
                 <div class="progress-bar">
                     <div class="progress-fill" style="width: 60%"></div>
                 </div>
@@ -410,11 +432,19 @@
             </div>
             <div class="metric-card">
                 <div class="metric-label">Trust Available</div>
-                <div class="metric-value">R 310,450</div>
+                <div class="metric-value" id="trustAvailable">R 310,450</div>
                 <div class="progress-bar">
                     <div class="progress-fill green" style="width: 100%"></div>
                 </div>
                 <div class="progress-text">Healthy balance</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Billable Hours This Month</div>
+                <div class="metric-value" id="billableHours">150 / 200</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 75%"></div>
+                </div>
+                <div class="progress-text">75% of target</div>
             </div>
         </div>
 
@@ -426,16 +456,16 @@
                     <button class="btn-small btn-warning">Snooze 1 Day</button>
                 </div>
             </div>
-            <div class="alert-item danger">
+            <div class="alert-item danger" id="trustLowAlert">
                 <span>Trust Low: Smith v RAF (R5,000 shortfall)</span>
                 <div class="alert-actions">
-                    <button class="btn-small btn-primary">Deposit</button>
+                    <button class="btn-small btn-primary" onclick="openDepositModal('john_smith', 'smith_v_raf')">Deposit</button>
                 </div>
             </div>
-            <div class="alert-item warning">
+            <div class="alert-item warning" id="invoiceOverdueAlert">
                 <span>Invoice Overdue: Dlamini (7 days late)</span>
                 <div class="alert-actions">
-                    <button class="btn-small btn-info">View Invoice</button>
+                    <button class="btn-small btn-info" onclick="openInvoiceModal('jane_dlamini', 'dlamini_case', true)">View Invoice</button>
                     <button class="btn-small btn-warning">Remind</button>
                 </div>
             </div>
@@ -447,9 +477,9 @@
                 <button class="action-btn" id="openTimeEntryModal">+ Time Entry</button>
                 <button class="action-btn" id="openInvoiceModal">+ Invoice</button>
                 <button class="action-btn" id="openDepositModal">+ Deposit</button>
-                <button class="action-btn">Reports ▼</button>
-                <button class="action-btn">Settings</button>
-                <button class="action-btn">Admin Dashboard</button>
+                <button class="action-btn" id="openReportsModal">Reports ▼</button>
+                <button class="action-btn" id="openSettingsModal">Settings</button>
+                <button class="action-btn" id="openAdminDashboard">Admin Dashboard</button>
             </div>
         </div>
     </div>
@@ -458,39 +488,39 @@
     <div class="modal-overlay" id="timeEntryModal">
         <div class="modal">
             <div class="modal-header">
-                <span>+ TIME ENTRY – Smith v RAF</span>
-                <span class="modal-close" id="closeTimeEntryModal">×</span>
+                <span id="timeEntryTitle">+ TIME ENTRY – Smith v RAF</span>
+                <span class="modal-close" onclick="closeModal('timeEntryModal')">×</span>
             </div>
             <div class="modal-body">
                 <div class="form-row">
                     <div class="form-group">
                         <label>Client</label>
-                        <select id="modalClient">
-                            <option selected>John Smith</option>
-                            <option>Jane Dlamini</option>
-                            <option>Mike Jones</option>
+                        <select id="timeEntryClient" onchange="updateTimeEntryCaseOptions()">
+                            <option value="john_smith" selected>John Smith</option>
+                            <option value="jane_dlamini">Jane Dlamini</option>
+                            <option value="mike_jones">Mike Jones</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <button class="btn btn-primary">+ Add New Client</button>
+                        <button class="btn btn-primary" onclick="openAddClientModalFromTimeEntry()">+ Add New Client</button>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
                         <label>Case</label>
-                        <select id="modalCase">
-                            <option selected>Smith v RAF</option>
-                            <option>Dlamini Case</option>
-                            <option>Jones v RoadCorp</option>
+                        <select id="timeEntryCase">
+                            <option value="smith_v_raf" selected>Smith v RAF</option>
+                            <option value="dlamini_case">Dlamini Case</option>
+                            <option value="jones_v_roadcorp">Jones v RoadCorp</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <button class="btn btn-primary">+ Add New Case</button>
+                        <button class="btn btn-primary" onclick="openAddCaseModalFromTimeEntry()">+ Add New Case</button>
                     </div>
                 </div>
                 <div class="form-group">
                     <label>Lawyer</label>
-                    <select multiple>
+                    <select id="timeEntryLawyer" multiple>
                         <option selected>You</option>
                         <option>Lawyer 2</option>
                         <option>Lawyer 3</option>
@@ -499,69 +529,53 @@
                 </div>
                 <h3 style="margin: 1.5rem 0 1rem;">Services (One timer per service – only one running at a time)</h3>
                 <div id="servicesContainer">
-                    <div class="service-item">
-                        <div class="form-row">
-                            <div><label>Service</label><select class="service-select"><option selected>Consultation</option><option>Draft Letter</option><option>Telephone Call</option></select></div>
-                            <div><label>Description</label><input type="text" value="Consultation with client" class="service-desc"></div>
-                            <div><label>Manual Hours</label><input type="number" step="0.1" value="0.5" class="service-hours"></div>
-                            <div><label>Rate</label><input type="text" value="R2000" class="service-rate"></div>
-                            <div><label>Amount</label><input type="text" value="R1,000" readonly class="service-amount"></div>
-                            <div><label>Use Trust?</label><select class="service-trust"><option>Yes</option><option selected>No</option></select></div>
-                        </div>
-                        <div class="timer-controls-small" style="margin-top: 0.5rem;">
-                            Timer: <span class="service-timer">0:12:23</span>
-                            <button class="btn-small btn-primary">Start</button>
-                            <button class="btn-small btn-warning">Pause</button>
-                            <button class="btn-small" style="background:#e74c3c;color:white;">Stop</button>
-                            <button class="btn-small btn-info">Reset</button>
-                        </div>
-                    </div>
-                    <div class="service-item">
-                        <div class="form-row">
-                            <div><label>Service</label><select class="service-select"><option>Draft Letter</option><option>Consultation</option></select></div>
-                            <div><label>Description</label><input type="text" value="Draft demand letter" class="service-desc"></div>
-                            <div><label>Manual Hours</label><input type="number" step="0.1" value="1.0" class="service-hours"></div>
-                            <div><label>Rate</label><input type="text" value="R2000" class="service-rate"></div>
-                            <div><label>Amount</label><input type="text" value="R2,000" readonly class="service-amount"></div>
-                            <div><label>Use Trust?</label><select class="service-trust"><option selected>No</option><option>Yes</option></select></div>
-                        </div>
-                        <div class="timer-controls-small" style="margin-top: 0.5rem;">
-                            Timer: <span class="service-timer">0:00:00</span>
-                            <button class="btn-small btn-primary">Start</button>
-                            <button class="btn-small btn-warning">Pause</button>
-                            <button class="btn-small" style="background:#e74c3c;color:white;">Stop</button>
-                            <button class="btn-small btn-info">Reset</button>
-                        </div>
-                    </div>
+                    <!-- Dynamic services will be added here -->
                 </div>
-                <button class="btn btn-primary" id="addService">+ Add Service to This Session</button>
+                <button class="btn btn-primary" onclick="openServiceModal('add')">+ Add Service to This Session</button>
                 <h3 style="margin: 2rem 0 1rem;">Current Session Total</h3>
-                <table>
-                    <thead><tr><th>Service</th><th>Hours</th><th>Rate</th><th>Amount</th><th>Lawyer</th><th>Timer Status</th></tr></thead>
+                <table id="sessionTotalTable">
+                    <thead>
+                        <tr>
+                            <th>Service</th>
+                            <th>Hours</th>
+                            <th>Rate</th>
+                            <th>Amount</th>
+                            <th>Lawyer</th>
+                            <th>Timer Status</th>
+                        </tr>
+                    </thead>
                     <tbody>
-                        <tr><td>Consultation</td><td>0.5</td><td>R2000</td><td>R1,000</td><td>You</td><td>Paused</td></tr>
-                        <tr><td>Draft Letter</td><td>1.0</td><td>R2000</td><td>R2,000</td><td>You</td><td>Running</td></tr>
+                        <!-- Dynamic rows -->
                     </tbody>
                 </table>
-                <div class="subtotal">Subtotal: R3,000</div>
+                <div class="subtotal" id="sessionSubtotal">Subtotal: R0</div>
                 <h3 style="margin: 2rem 0 1rem;">Disbursements (Whole Session)</h3>
-                <table>
-                    <thead><tr><th>Description</th><th>Amount</th><th>Use Trust?</th></tr></thead>
-                    <tbody><tr><td>Sheriff Service</td><td>R850</td><td>Yes</td></tr></tbody>
+                <table id="disbursementsTable">
+                    <thead>
+                        <tr>
+                            <th>Description</th>
+                            <th>Amount</th>
+                            <th>Use Trust?</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Dynamic disbursements -->
+                    </tbody>
                 </table>
-                <button class="btn btn-primary">+ Add Disbursement</button>
+                <button class="btn btn-primary" onclick="openAddDisbursementModal()">+ Add Disbursement</button>
                 <div class="form-group" style="margin-top: 2rem;">
                     <label>Notes</label>
-                    <textarea rows="3" placeholder="Optional"></textarea>
+                    <textarea id="timeEntryNotes" rows="3" placeholder="Optional"></textarea>
                 </div>
                 <div style="margin-top: 1rem;">
-                    Trust Available: <span style="font-weight: bold; color: #27ae60;">R18,500</span>
+                    Trust Available: <span id="timeEntryTrust" style="font-weight: bold; color: #27ae60;">R18,500</span>
                 </div>
             </div>
             <div class="modal-actions">
-                <button class="btn">Cancel</button>
-                <button class="btn btn-primary">Save All Entries</button>
-                <button class="btn btn-primary">Save All & Create Invoice</button>
+                <button class="btn" onclick="closeModal('timeEntryModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="saveTimeEntry()">Save All Entries</button>
+                <button class="btn btn-primary" onclick="saveAndCreateInvoice()">Save All & Create Invoice</button>
             </div>
         </div>
     </div>
@@ -570,54 +584,51 @@
     <div class="modal-overlay" id="invoiceModal">
         <div class="modal">
             <div class="modal-header">
-                <span>INVOICE – John Smith – Smith v RAF</span>
-                <span class="modal-close" id="closeInvoiceModal">×</span>
+                <span id="invoiceTitle">INVOICE – John Smith – Smith v RAF</span>
+                <span class="modal-close" onclick="closeModal('invoiceModal')">×</span>
             </div>
             <div class="modal-body">
                 <div class="form-row">
                     <div>
                         <label>Client</label>
-                        <select>
-                            <option selected>John Smith</option>
-                            <option>Jane Dlamini</option>
-                            <option>Mike Jones</option>
+                        <select id="invoiceClient">
+                            <option value="john_smith" selected>John Smith</option>
+                            <option value="jane_dlamini">Jane Dlamini</option>
+                            <option value="mike_jones">Mike Jones</option>
                         </select>
                     </div>
                     <div>
-                        <button class="btn btn-primary">+ Add</button>
+                        <button class="btn btn-primary" onclick="openAddClientModalFromInvoice()">+ Add</button>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div>
                         <label>Case</label>
-                        <select>
-                            <option selected>Smith v RAF</option>
-                            <option>Dlamini Case</option>
-                            <option>Jones v RoadCorp</option>
+                        <select id="invoiceCase">
+                            <option value="smith_v_raf" selected>Smith v RAF</option>
+                            <option value="dlamini_case">Dlamini Case</option>
+                            <option value="jones_v_roadcorp">Jones v RoadCorp</option>
                         </select>
                     </div>
                     <div>
-                        <button class="btn btn-primary">+ Add</button>
+                        <button class="btn btn-primary" onclick="openAddCaseModalFromInvoice()">+ Add</button>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div>
                         <label>Date</label>
-                        <input type="text" value="December 29, 2025" readonly>
+                        <input type="date" id="invoiceDate" value="2025-12-29">
                     </div>
                     <div>
                         <label>Due</label>
-                        <input type="text" value="January 12, 2026 (+14 days)" readonly>
-                    </div>
-                    <div style="align-self: center;">
-                        <button class="btn btn-primary">Calendar picker</button>
+                        <input type="date" id="invoiceDue" value="2026-01-12">
                     </div>
                 </div>
 
                 <h3 style="margin: 2rem 0 1rem;">Unbilled Items (Auto-Pulled – All Unbilled for Client/Case)</h3>
-                <table>
+                <table id="unbilledItemsTable">
                     <thead>
                         <tr>
                             <th>Item</th>
@@ -626,95 +637,83 @@
                             <th class="amount-right">Amount</th>
                             <th>Use Trust?</th>
                             <th>Lawyer</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Consultation</td>
-                            <td>0.5</td>
-                            <td>R2000</td>
-                            <td class="amount-right">R1,000</td>
-                            <td>Yes</td>
-                            <td>You</td>
-                        </tr>
-                        <tr>
-                            <td>Draft Letter</td>
-                            <td>1.0</td>
-                            <td>R2000</td>
-                            <td class="amount-right">R2,000</td>
-                            <td>No</td>
-                            <td>You</td>
-                        </tr>
-                        <tr>
-                            <td>Sheriff Service</td>
-                            <td></td>
-                            <td></td>
-                            <td class="amount-right">R850</td>
-                            <td>Yes</td>
-                            <td>-</td>
-                        </tr>
+                        <!-- Dynamic unbilled items -->
                     </tbody>
                 </table>
 
                 <div style="margin: 1rem 0;">
-                    <button class="btn btn-primary">+ Add Manual Item</button>
-                    <button class="btn btn-primary" style="margin-left: 0.5rem;">+ Add Disbursement</button>
+                    <button class="btn btn-primary" onclick="openAddManualItemModal()">+ Add Manual Item</button>
+                    <button class="btn btn-primary" style="margin-left: 0.5rem;" onclick="openAddDisbursementModal('invoice')">+ Add Disbursement</button>
                 </div>
 
                 <div style="text-align: right; margin-top: 2rem;">
-                    <div class="summary-line"><span>Subtotal (excl. VAT):</span> <strong>R3,850</strong></div>
-                    <div class="summary-line"><span>VAT @ 15%:</span> <strong>R577.50</strong></div>
-                    <div class="summary-line"><span>Total Before Trust:</span> <strong>R4,427.50</strong></div>
-                    <div class="summary-line"><span>Trust Available:</span> <strong class="trust-warning">R1,200</strong></div>
-                    <div class="summary-line"><span>Trust Deducted:</span> <strong>-R1,200 (capped to available)</strong></div>
-                    <div class="total-due"><span>Total Due:</span> <strong>R3,227.50</strong></div>
+                    <div class="summary-line" id="invoiceSubtotal"><span>Subtotal (excl. VAT):</span> <strong>R3,850</strong></div>
+                    <div class="summary-line" id="invoiceVat"><span>VAT @ 15%:</span> <strong>R577.50</strong></div>
+                    <div class="summary-line" id="invoiceTotalBeforeTrust"><span>Total Before Trust:</span> <strong>R4,427.50</strong></div>
+                    <div class="summary-line" id="invoiceTrustAvailable"><span>Trust Available:</span> <strong class="trust-warning">R1,200</strong></div>
+                    <div class="summary-line" id="invoiceTrustDeducted"><span>Trust Deducted:</span> <strong>-R1,200 (capped to available)</strong></div>
+                    <div class="total-due" id="invoiceTotalDue"><span>Total Due:</span> <strong>R3,227.50</strong></div>
                 </div>
 
                 <h3 style="margin: 2rem 0 1rem;">Payment Options</h3>
                 <div class="checkbox-group">
-                    <input type="checkbox" id="payfast">
-                    <label for="payfast">Generate Payfast Link for R3,227.50</label>
+                    <input type="checkbox" id="invoicePayfast">
+                    <label for="invoicePayfast">Generate Payfast Link for R3,227.50</label>
                 </div>
                 <div class="checkbox-group">
-                    <input type="checkbox" id="bankdetails">
-                    <label for="bankdetails">Include Bank Details in Email</label>
+                    <input type="checkbox" id="invoiceBankDetails">
+                    <label for="invoiceBankDetails">Include Bank Details in Email</label>
+                </div>
+                <div class="form-group">
+                    <label>Firm VAT Number</label>
+                    <input type="text" value="4123456789" readonly>
+                </div>
+                <div class="form-group">
+                    <label>Firm Details</label>
+                    <textarea readonly>LexPilot Law Firm
+Address: 123 Legal St, Johannesburg
+Phone: +27 11 123 4567</textarea>
                 </div>
             </div>
 
             <div class="modal-actions">
-                <button class="btn">Cancel</button>
-                <button class="btn btn-primary">Save Draft</button>
-                <button class="btn btn-primary">Preview PDF</button>
-                <button class="btn btn-primary">Send Invoice</button>
+                <button class="btn" onclick="closeModal('invoiceModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="saveInvoiceDraft()">Save Draft</button>
+                <button class="btn btn-primary" onclick="previewInvoicePDF()">Preview PDF</button>
+                <button class="btn btn-primary" onclick="sendInvoice()">Send Invoice</button>
             </div>
         </div>
     </div>
 
-    <!-- Trust Deposit Modal -->
+    <!-- Deposit Modal -->
     <div class="modal-overlay" id="depositModal">
         <div class="modal" style="max-width: 700px;">
             <div class="modal-header">
                 <span>+ TRUST DEPOSIT</span>
-                <span class="modal-close" id="closeDepositModal">×</span>
+                <span class="modal-close" onclick="closeModal('depositModal')">×</span>
             </div>
             <div class="modal-body">
                 <div class="form-group">
                     <label>Client <span style="color: red;">*</span></label>
                     <select id="depositClient">
-                        <option selected>John Smith</option>
-                        <option>Jane Dlamini</option>
-                        <option>Mike Jones</option>
+                        <option value="john_smith" selected>John Smith</option>
+                        <option value="jane_dlamini">Jane Dlamini</option>
+                        <option value="mike_jones">Mike Jones</option>
                     </select>
-                    <button class="btn btn-primary" style="margin-top: 0.5rem; width: 100%;">+ Add New Client</button>
+                    <button class="btn btn-primary" style="margin-top: 0.5rem; width: 100%;" onclick="openAddClientModalFromDeposit()">+ Add New Client</button>
                 </div>
 
                 <div class="form-group">
                     <label>Case (Optional)</label>
                     <select id="depositCase">
-                        <option selected>Smith v RAF</option>
-                        <option>General / No Specific Case</option>
-                        <option>Dlamini Case</option>
-                        <option>Jones v RoadCorp</option>
+                        <option value="smith_v_raf" selected>Smith v RAF</option>
+                        <option value="general">General / No Specific Case</option>
+                        <option value="dlamini_case">Dlamini Case</option>
+                        <option value="jones_v_roadcorp">Jones v RoadCorp</option>
                     </select>
                 </div>
 
@@ -728,88 +727,983 @@
                 </div>
 
                 <div class="checkbox-group">
-                    <input type="checkbox" id="payfastLink">
-                    <label for="payfastLink">Generate Payfast Link</label>
+                    <input type="checkbox" id="depositPayfastLink">
+                    <label for="depositPayfastLink">Generate Payfast Link</label>
                 </div>
 
                 <div class="checkbox-group">
-                    <input type="checkbox" id="manualDeposit">
-                    <label for="manualDeposit">Manual (Bank Details emailed)</label>
+                    <input type="checkbox" id="depositManual">
+                    <label for="depositManual">Manual (Bank Details emailed)</label>
                 </div>
             </div>
 
             <div class="modal-actions">
-                <button class="btn">Cancel</button>
-                <button class="btn btn-primary">Generate Link / Record Deposit</button>
+                <button class="btn" onclick="closeModal('depositModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="recordDeposit()">Generate Link / Record Deposit</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Client Modal -->
+    <div class="modal-overlay" id="addClientModal">
+        <div class="modal" style="max-width: 700px;">
+            <div class="modal-header">
+                <span>+ Add New Client</span>
+                <span class="modal-close" onclick="closeModal('addClientModal')">×</span>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Full Name <span style="color: red;">*</span></label>
+                    <input type="text" id="newClientName" placeholder="John Smith">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="newClientEmail" placeholder="john@example.com">
+                </div>
+                <div class="form-group">
+                    <label>Phone</label>
+                    <input type="tel" id="newClientPhone" placeholder="+27 123 456 789">
+                </div>
+                <div class="form-group">
+                    <label>Address</label>
+                    <textarea id="newClientAddress" rows="3" placeholder="123 Street, City, Country"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>ID Number</label>
+                    <input type="text" id="newClientID" placeholder="ID/Passport Number">
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn" onclick="closeModal('addClientModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="saveNewClient()">Save Client</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Case Modal -->
+    <div class="modal-overlay" id="addCaseModal">
+        <div class="modal" style="max-width: 700px;">
+            <div class="modal-header">
+                <span>+ Add New Case</span>
+                <span class="modal-close" onclick="closeModal('addCaseModal')">×</span>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Client <span style="color: red;">*</span></label>
+                    <select id="newCaseClient">
+                        <option value="john_smith" selected>John Smith</option>
+                        <option value="jane_dlamini">Jane Dlamini</option>
+                        <option value="mike_jones">Mike Jones</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Case Name <span style="color: red;">*</span></label>
+                    <input type="text" id="newCaseName" placeholder="Smith v RAF">
+                </div>
+                <div class="form-group">
+                    <label>Case Number</label>
+                    <input type="text" id="newCaseNumber" placeholder="Case Number">
+                </div>
+                <div class="form-group">
+                    <label>Court</label>
+                    <input type="text" id="newCaseCourt" placeholder="High Court Johannesburg">
+                </div>
+                <div class="form-group">
+                    <label>Type</label>
+                    <select id="newCaseType">
+                        <option>Civil</option>
+                        <option>Criminal</option>
+                        <option>Family</option>
+                        <option>Commercial</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Status</label>
+                    <select id="newCaseStatus">
+                        <option>Active</option>
+                        <option>Pending</option>
+                        <option>Closed</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Opposing Party</label>
+                    <input type="text" id="newCaseOpposing" placeholder="Opposing Party Name">
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="newCaseDescription" rows="3" placeholder="Case description"></textarea>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn" onclick="closeModal('addCaseModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="saveNewCase()">Save Case</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Service Modal (Add/Edit) -->
+    <div class="modal-overlay" id="serviceModal">
+        <div class="modal" style="max-width: 700px;">
+            <div class="modal-header">
+                <span id="serviceModalTitle">+ EDIT SERVICE FOR THIS SESSION</span>
+                <span class="modal-close" onclick="closeModal('serviceModal')">×</span>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Service Name</label>
+                    <select id="serviceName">
+                        <option>Draft Letter</option>
+                        <option>Consultation</option>
+                        <option>Telephone Call</option>
+                        <option>Court Appearance</option>
+                        <option>Research</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Billing Type</label>
+                    <select id="billingType">
+                        <option>Hourly</option>
+                        <option>Fixed</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Hourly Rate / Fixed Amount</label>
+                    <input type="text" id="rateAmount" value="R2000">
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <input type="text" id="serviceDescription" value="Auto-filled – fully editable">
+                </div>
+                <div class="form-group">
+                    <label>Use Trust?</label>
+                    <select id="useTrust">
+                        <option>No</option>
+                        <option>Yes</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Estimated Hours (optional)</label>
+                    <input type="number" step="0.1" id="estimatedHours" value="2.0">
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="savePreset">
+                    <label for="savePreset">Save as New Preset (updates global presets)</label>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn" onclick="closeModal('serviceModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="saveService()">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Disbursement Modal -->
+    <div class="modal-overlay" id="addDisbursementModal">
+        <div class="modal" style="max-width: 700px;">
+            <div class="modal-header">
+                <span>+ Add Disbursement</span>
+                <span class="modal-close" onclick="closeModal('addDisbursementModal')">×</span>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Description</label>
+                    <input type="text" id="disbursementDesc" placeholder="Sheriff Service">
+                </div>
+                <div class="form-group">
+                    <label>Amount</label>
+                    <input type="text" id="disbursementAmount" placeholder="R850">
+                </div>
+                <div class="form-group">
+                    <label>Use Trust?</label>
+                    <select id="disbursementTrust">
+                        <option>Yes</option>
+                        <option>No</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn" onclick="closeModal('addDisbursementModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="saveDisbursement()">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Manual Item Modal -->
+    <div class="modal-overlay" id="addManualItemModal">
+        <div class="modal" style="max-width: 700px;">
+            <div class="modal-header">
+                <span>+ Add Manual Item</span>
+                <span class="modal-close" onclick="closeModal('addManualItemModal')">×</span>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Item</label>
+                    <input type="text" id="manualItemName" placeholder="Item Name">
+                </div>
+                <div class="form-group">
+                    <label>Hours</label>
+                    <input type="number" step="0.1" id="manualItemHours">
+                </div>
+                <div class="form-group">
+                    <label>Rate</label>
+                    <input type="text" id="manualItemRate" placeholder="R2000">
+                </div>
+                <div class="form-group">
+                    <label>Amount</label>
+                    <input type="text" id="manualItemAmount" readonly>
+                </div>
+                <div class="form-group">
+                    <label>Use Trust?</label>
+                    <select id="manualItemTrust">
+                        <option>Yes</option>
+                        <option>No</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Lawyer</label>
+                    <select id="manualItemLawyer">
+                        <option>You</option>
+                        <option>Lawyer 2</option>
+                        <option>Lawyer 3</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn" onclick="closeModal('addManualItemModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="saveManualItem()">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reports Modal -->
+    <div class="modal-overlay" id="reportsModal">
+        <div class="modal">
+            <div class="modal-header">
+                <span>Reports</span>
+                <span class="modal-close" onclick="closeModal('reportsModal')">×</span>
+            </div>
+            <div class="modal-body">
+                <h3>Invoices for Selected Client/Case</h3>
+                <table id="reportsTable">
+                    <thead>
+                        <tr>
+                            <th>Invoice ID</th>
+                            <th>Date</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Dynamic reports -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-actions">
+                <button class="btn" onclick="closeModal('reportsModal')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div class="modal-overlay" id="settingsModal">
+        <div class="modal" style="max-width: 700px;">
+            <div class="modal-header">
+                <span>Settings</span>
+                <span class="modal-close" onclick="closeModal('settingsModal')">×</span>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Default Hourly Rate</label>
+                    <input type="text" value="R2000">
+                </div>
+                <div class="form-group">
+                    <label>VAT Rate</label>
+                    <input type="number" step="0.1" value="15">
+                </div>
+                <div class="form-group">
+                    <label>Firm Name</label>
+                    <input type="text" value="LexPilot Law Firm">
+                </div>
+                <div class="form-group">
+                    <label>Bank Details</label>
+                    <textarea rows="3">Bank: Standard Bank
+Account: 123456789
+Branch: 012345</textarea>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn" onclick="closeModal('settingsModal')">Cancel</button>
+                <button class="btn btn-primary">Save Settings</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard Modal -->
+    <div class="modal-overlay" id="adminDashboardModal">
+        <div class="modal">
+            <div class="modal-header">
+                <span>Admin Dashboard</span>
+                <span class="modal-close" onclick="closeModal('adminDashboardModal')">×</span>
+            </div>
+            <div class="modal-body">
+                <h3>Firm-wide Metrics</h3>
+                <div class="metric-card">
+                    <div class="metric-label">Total Clients</div>
+                    <div class="metric-value">3</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Total Cases</div>
+                    <div class="metric-value">3</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Total Trust Balance</div>
+                    <div class="metric-value">R310,450</div>
+                </div>
+                <h3>Lawyer Performance</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Lawyer</th>
+                            <th>Billable Hours</th>
+                            <th>Revenue Generated</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>You</td>
+                            <td>150</td>
+                            <td>R300,000</td>
+                        </tr>
+                        <tr>
+                            <td>Lawyer 2</td>
+                            <td>120</td>
+                            <td>R240,000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-actions">
+                <button class="btn" onclick="closeModal('adminDashboardModal')">Close</button>
             </div>
         </div>
     </div>
 
     <script>
-        // Modal controls
-        const timeEntryModal = document.getElementById('timeEntryModal');
-        const invoiceModal = document.getElementById('invoiceModal');
-        const depositModal = document.getElementById('depositModal');
-
-        const openTimeEntryBtn = document.getElementById('openTimeEntryModal');
-        const openInvoiceBtn = document.getElementById('openInvoiceModal');
-        const openDepositBtn = document.getElementById('openDepositModal');
-
-        const closeTimeEntryBtn = document.getElementById('closeTimeEntryModal');
-        const closeInvoiceBtn = document.getElementById('closeInvoiceModal');
-        const closeDepositBtn = document.getElementById('closeDepositModal');
-
-        openTimeEntryBtn.onclick = () => { timeEntryModal.style.display = 'flex'; };
-        openInvoiceBtn.onclick = () => { invoiceModal.style.display = 'flex'; };
-        openDepositBtn.onclick = () => { depositModal.style.display = 'flex'; };
-
-        closeTimeEntryBtn.onclick = () => { timeEntryModal.style.display = 'none'; };
-        closeInvoiceBtn.onclick = () => { invoiceModal.style.display = 'none'; };
-        closeDepositBtn.onclick = () => { depositModal.style.display = 'none'; };
-
-        // Close modals when clicking outside
-        window.onclick = (event) => {
-            if (event.target === timeEntryModal) timeEntryModal.style.display = 'none';
-            if (event.target === invoiceModal) invoiceModal.style.display = 'none';
-            if (event.target === depositModal) depositModal.style.display = 'none';
+        // Local state
+        let state = {
+            clients: {
+                john_smith: {name: 'John Smith', email: 'john@example.com', phone: '+27 123 456 789', address: '123 St, Johannesburg', id: 'ID123456'},
+                jane_dlamini: {name: 'Jane Dlamini', email: 'jane@example.com', phone: '+27 987 654 321', address: '456 St, Cape Town', id: 'ID654321'},
+                mike_jones: {name: 'Mike Jones', email: 'mike@example.com', phone: '+27 111 222 333', address: '789 St, Durban', id: 'ID789012'}
+            },
+            cases: {
+                smith_v_raf: {client: 'john_smith', name: 'Smith v RAF', number: 'CASE001', court: 'High Court Johannesburg', type: 'Civil', status: 'Active', opposing: 'RAF', description: 'Road accident fund claim'},
+                dlamini_case: {client: 'jane_dlamini', name: 'Dlamini Case', number: 'CASE002', court: 'Magistrates Court', type: 'Family', status: 'Pending', opposing: 'Ex-Spouse', description: 'Divorce proceedings'},
+                jones_v_roadcorp: {client: 'mike_jones', name: 'Jones v RoadCorp', number: 'CASE003', court: 'High Court', type: 'Commercial', status: 'Active', opposing: 'RoadCorp', description: 'Contract dispute'}
+            },
+            unbilled: {
+                smith_v_raf: [
+                    {item: 'Consultation', hours: 0.5, rate: 2000, amount: 1000, trust: true, lawyer: 'You'},
+                    {item: 'Draft Letter', hours: 1.0, rate: 2000, amount: 2000, trust: false, lawyer: 'You'},
+                    {item: 'Sheriff Service', hours: 0, rate: 0, amount: 850, trust: true, lawyer: '-'}
+                ],
+                dlamini_case: [],
+                jones_v_roadcorp: []
+            },
+            trustBalances: {
+                john_smith: 1200,
+                jane_dlamini: 18500,
+                mike_jones: 310450
+            },
+            invoices: {
+                dlamini_case: [
+                    {id: 'INV001', date: '2025-12-22', amount: 5000, status: 'Overdue'}
+                ]
+            },
+            services: [],
+            disbursements: [],
+            currentServiceIndex: -1,
+            timers: [],
+            globalPresets: [
+                {name: 'Consultation', type: 'Hourly', rate: 'R2000', desc: 'Client consultation', trust: 'No', estHours: 1.0},
+                {name: 'Draft Letter', type: 'Hourly', rate: 'R2000', desc: 'Drafting legal letter', trust: 'No', estHours: 2.0},
+                {name: 'Telephone Call', type: 'Hourly', rate: 'R1500', desc: 'Phone call with client', trust: 'No', estHours: 0.5}
+            ],
+            unbilledTime: 42300,
+            outstandingInvoices: 96200,
+            totalTrust: 310450,
+            billableHours: 150
         };
 
-        // Time Entry: Amount auto-calculation
-        document.querySelectorAll('.service-hours, .service-rate').forEach(input => {
-            input.addEventListener('input', function() {
-                const row = this.closest('.service-item');
-                const hours = parseFloat(row.querySelector('.service-hours').value) || 0;
-                const rateStr = row.querySelector('.service-rate').value.replace('R', '').trim();
-                const rate = parseFloat(rateStr) || 0;
-                const amount = hours * rate;
-                row.querySelector('.service-amount').value = amount > 0 ? 'R' + amount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",") : '';
-            });
-        });
+        function updateDashboard() {
+            const client = document.getElementById('clientSelect').value;
+            const caseId = document.getElementById('caseSelect').value;
+            document.getElementById('unbilledTime').innerText = `R ${state.unbilledTime.toLocaleString()}`;
+            document.getElementById('outstandingInvoices').innerText = `R ${state.outstandingInvoices.toLocaleString()}`;
+            document.getElementById('trustAvailable').innerText = `R ${state.totalTrust.toLocaleString()}`;
+            document.getElementById('billableHours').innerText = `${state.billableHours} / 200`;
+            // Update alerts if needed
+        }
 
-        // Add new service row in Time Entry
-        document.getElementById('addService').onclick = () => {
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'flex';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        function openTimeEntryModal() {
+            const client = document.getElementById('clientSelect').value;
+            const caseId = document.getElementById('caseSelect').value;
+            document.getElementById('timeEntryTitle').innerText = `+ TIME ENTRY – ${state.cases[caseId].name}`;
+            document.getElementById('timeEntryClient').value = client;
+            updateTimeEntryCaseOptions();
+            document.getElementById('timeEntryCase').value = caseId;
+            document.getElementById('timeEntryTrust').innerText = `R${state.trustBalances[client].toLocaleString()}`;
+            loadServices();
+            openModal('timeEntryModal');
+        }
+
+        function updateTimeEntryCaseOptions() {
+            const client = document.getElementById('timeEntryClient').value;
+            const caseSelect = document.getElementById('timeEntryCase');
+            caseSelect.innerHTML = '';
+            for (let caseId in state.cases) {
+                if (state.cases[caseId].client === client) {
+                    const option = document.createElement('option');
+                    option.value = caseId;
+                    option.text = state.cases[caseId].name;
+                    caseSelect.add(option);
+                }
+            }
+        }
+
+        function loadServices() {
             const container = document.getElementById('servicesContainer');
-            const newService = document.createElement('div');
-            newService.className = 'service-item';
-            newService.innerHTML = `
+            container.innerHTML = '';
+            state.services = []; // Reset for new session
+            state.timers = [];
+            // Add sample or load from local
+            addServiceToDOM({name: 'Consultation', type: 'Hourly', rate: 'R2000', desc: 'Consultation with client', trust: 'No', estHours: 0.5, hours: 0.5, amount: 'R1,000', status: 'Paused', timer: 740});
+            addServiceToDOM({name: 'Draft Letter', type: 'Hourly', rate: 'R2000', desc: 'Draft demand letter', trust: 'No', estHours: 1.0, hours: 1.0, amount: 'R2,000', status: 'Running', timer: 0});
+            updateSessionTotal();
+        }
+
+        function addServiceToDOM(service, index = state.services.length) {
+            const container = document.getElementById('servicesContainer');
+            const div = document.createElement('div');
+            div.className = 'service-item';
+            div.innerHTML = `
+                <span class="service-delete" onclick="deleteService(${index})">×</span>
                 <div class="form-row">
-                    <div><label>Service</label><select class="service-select"><option>Consultation</option><option>Draft Letter</option><option>Telephone Call</option></select></div>
-                    <div><label>Description</label><input type="text" class="service-desc"></div>
-                    <div><label>Manual Hours</label><input type="number" step="0.1" value="0" class="service-hours"></div>
-                    <div><label>Rate</label><input type="text" value="R2000" class="service-rate"></div>
-                    <div><label>Amount</label><input type="text" readonly class="service-amount"></div>
-                    <div><label>Use Trust?</label><select class="service-trust"><option>No</option><option>Yes</option></select></div>
+                    <div>
+                        <label>Service</label>
+                        <input type="text" value="${service.name}" readonly>
+                    </div>
+                    <div>
+                        <label>Description</label>
+                        <input type="text" value="${service.desc}" readonly>
+                    </div>
+                    <div>
+                        <label>Manual Hours</label>
+                        <input type="number" step="0.1" value="${service.hours}" class="service-hours" onchange="updateServiceAmount(${index})">
+                    </div>
+                    <div>
+                        <label>Rate</label>
+                        <input type="text" value="${service.rate}" class="service-rate" onchange="updateServiceAmount(${index})">
+                    </div>
+                    <div>
+                        <label>Amount</label>
+                        <input type="text" value="${service.amount}" readonly class="service-amount">
+                    </div>
+                    <div>
+                        <label>Use Trust?</label>
+                        <input type="text" value="${service.trust}" readonly>
+                    </div>
                 </div>
                 <div class="timer-controls-small" style="margin-top: 0.5rem;">
                     Timer: <span class="service-timer">0:00:00</span>
-                    <button class="btn-small btn-primary">Start</button>
-                    <button class="btn-small btn-warning">Pause</button>
-                    <button class="btn-small" style="background:#e74c3c;color:white;">Stop</button>
-                    <button class="btn-small btn-info">Reset</button>
+                    <button class="btn-small btn-primary" onclick="startTimer(${index})">Start</button>
+                    <button class="btn-small btn-warning" onclick="pauseTimer(${index})">Pause</button>
+                    <button class="btn-small btn-danger" onclick="stopTimer(${index})">Stop</button>
+                    <button class="btn-small btn-info" onclick="resetTimer(${index})">Reset</button>
+                    <button class="service-edit" onclick="openServiceModal('edit', ${index})">Edit</button>
                 </div>
             `;
-            container.appendChild(newService);
-        };
+            container.appendChild(div);
+            state.services.push(service);
+            state.timers.push({interval: null, seconds: service.timer || 0, status: service.status || 'Stopped'});
+            updateTimerDisplay(index);
+        }
+
+        function deleteService(index) {
+            state.services.splice(index, 1);
+            state.timers.splice(index, 1);
+            loadServices(); // Reload to update indices
+        }
+
+        function updateServiceAmount(index) {
+            const item = document.getElementsByClassName('service-item')[index];
+            const hours = parseFloat(item.querySelector('.service-hours').value) || 0;
+            const rateStr = item.querySelector('.service-rate').value.replace('R', '').trim();
+            const rate = parseFloat(rateStr) || 0;
+            const amount = hours * rate;
+            item.querySelector('.service-amount').value = amount > 0 ? 'R' + amount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",") : '';
+            state.services[index].hours = hours;
+            state.services[index].rate = `R${rate}`;
+            state.services[index].amount = `R${amount.toFixed(2)}`;
+            updateSessionTotal();
+        }
+
+        function updateSessionTotal() {
+            const tbody = document.getElementById('sessionTotalTable').querySelector('tbody');
+            tbody.innerHTML = '';
+            let total = 0;
+            state.services.forEach((s, i) => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${s.name}</td>
+                    <td>${s.hours}</td>
+                    <td>${s.rate}</td>
+                    <td>${s.amount}</td>
+                    <td>You</td>
+                    <td>${state.timers[i].status}</td>
+                `;
+                tbody.appendChild(tr);
+                total += parseFloat(s.amount.replace('R', '')) || 0;
+            });
+            document.getElementById('sessionSubtotal').innerText = `Subtotal: R${total.toLocaleString()}`;
+        }
+
+        // Timer functions
+        function updateTimerDisplay(index) {
+            const item = document.getElementsByClassName('service-item')[index];
+            const seconds = state.timers[index].seconds;
+            const hrs = Math.floor(seconds / 3600);
+            const mins = Math.floor((seconds % 3600) / 60);
+            const secs = seconds % 60;
+            const display = `${hrs.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+            item.querySelector('.service-timer').innerText = display;
+        }
+
+        function startTimer(index) {
+            // Pause all others
+            state.timers.forEach((t, i) => {
+                if (i !== index && t.interval) {
+                    pauseTimer(i);
+                }
+            });
+            if (!state.timers[index].interval) {
+                state.timers[index].interval = setInterval(() => {
+                    state.timers[index].seconds++;
+                    updateTimerDisplay(index);
+                    // Update hours from timer
+                    state.services[index].hours = (state.timers[index].seconds / 3600).toFixed(1);
+                    updateServiceAmount(index);
+                }, 1000);
+                state.timers[index].status = 'Running';
+            }
+            updateSessionTotal();
+        }
+
+        function pauseTimer(index) {
+            clearInterval(state.timers[index].interval);
+            state.timers[index].interval = null;
+            state.timers[index].status = 'Paused';
+            updateSessionTotal();
+        }
+
+        function stopTimer(index) {
+            clearInterval(state.timers[index].interval);
+            state.timers[index].interval = null;
+            state.timers[index].status = 'Stopped';
+            // Add to unbilled
+            const caseId = document.getElementById('timeEntryCase').value;
+            const service = state.services[index];
+            state.unbilled[caseId].push({
+                item: service.name,
+                hours: service.hours,
+                rate: parseFloat(service.rate.replace('R', '')),
+                amount: parseFloat(service.amount.replace('R', '')),
+                trust: service.trust === 'Yes',
+                lawyer: 'You'
+            });
+            state.unbilledTime += parseFloat(service.amount.replace('R', ''));
+            updateDashboard();
+            updateSessionTotal();
+        }
+
+        function resetTimer(index) {
+            clearInterval(state.timers[index].interval);
+            state.timers[index].interval = null;
+            state.timers[index].seconds = 0;
+            state.timers[index].status = 'Stopped';
+            updateTimerDisplay(index);
+            state.services[index].hours = 0;
+            updateServiceAmount(index);
+        }
+
+        function openServiceModal(mode, index = -1) {
+            state.currentServiceIndex = index;
+            document.getElementById('serviceModalTitle').innerText = mode === 'add' ? '+ ADD SERVICE FOR THIS SESSION' : '+ EDIT SERVICE FOR THIS SESSION';
+            if (mode === 'edit' && index !== -1) {
+                const s = state.services[index];
+                document.getElementById('serviceName').value = s.name;
+                document.getElementById('billingType').value = s.type;
+                document.getElementById('rateAmount').value = s.rate;
+                document.getElementById('serviceDescription').value = s.desc;
+                document.getElementById('useTrust').value = s.trust;
+                document.getElementById('estimatedHours').value = s.estHours;
+            } else {
+                // Reset fields for add
+                document.getElementById('serviceName').value = 'Draft Letter';
+                document.getElementById('billingType').value = 'Hourly';
+                document.getElementById('rateAmount').value = 'R2000';
+                document.getElementById('serviceDescription').value = 'Auto-filled – fully editable';
+                document.getElementById('useTrust').value = 'No';
+                document.getElementById('estimatedHours').value = '2.0';
+            }
+            openModal('serviceModal');
+        }
+
+        function saveService() {
+            const index = state.currentServiceIndex;
+            const service = {
+                name: document.getElementById('serviceName').value,
+                type: document.getElementById('billingType').value,
+                rate: document.getElementById('rateAmount').value,
+                desc: document.getElementById('serviceDescription').value,
+                trust: document.getElementById('useTrust').value,
+                estHours: parseFloat(document.getElementById('estimatedHours').value) || 0,
+                hours: index !== -1 ? state.services[index].hours : 0,
+                amount: index !== -1 ? state.services[index].amount : 'R0',
+                timer: index !== -1 ? state.timers[index].seconds : 0,
+                status: index !== -1 ? state.timers[index].status : 'Stopped'
+            };
+            if (document.getElementById('savePreset').checked) {
+                state.globalPresets.push(service);
+            }
+            if (index === -1) {
+                addServiceToDOM(service);
+            } else {
+                state.services[index] = service;
+                loadServices(); // Reload to update UI
+            }
+            closeModal('serviceModal');
+        }
+
+        function saveTimeEntry() {
+            const client = document.getElementById('timeEntryClient').value;
+            const caseId = document.getElementById('timeEntryCase').value;
+            state.unbilled[caseId] = state.unbilled[caseId] || [];
+            state.services.forEach(s => {
+                state.unbilled[caseId].push({
+                    item: s.name,
+                    hours: s.hours,
+                    rate: parseFloat(s.rate.replace('R', '')),
+                    amount: parseFloat(s.amount.replace('R', '')),
+                    trust: s.trust === 'Yes',
+                    lawyer: 'You'
+                });
+                state.unbilledTime += parseFloat(s.amount.replace('R', ''));
+            });
+            // Add disbursements
+            state.disbursements.forEach(d => {
+                state.unbilled[caseId].push({
+                    item: d.desc,
+                    hours: 0,
+                    rate: 0,
+                    amount: parseFloat(d.amount.replace('R', '')),
+                    trust: d.trust === 'Yes',
+                    lawyer: '-'
+                });
+                state.unbilledTime += parseFloat(d.amount.replace('R', ''));
+            });
+            updateDashboard();
+            closeModal('timeEntryModal');
+            alert('Time entries saved for ' + state.cases[caseId].name);
+        }
+
+        function saveAndCreateInvoice() {
+            saveTimeEntry();
+            openInvoiceModal(document.getElementById('timeEntryClient').value, document.getElementById('timeEntryCase').value);
+        }
+
+        function openInvoiceModal(client, caseId, viewMode = false) {
+            document.getElementById('invoiceTitle').innerText = (viewMode ? 'VIEW ' : '') + 'INVOICE – ' + state.clients[client].name + ' – ' + state.cases[caseId].name;
+            document.getElementById('invoiceClient').value = client;
+            document.getElementById('invoiceCase').value = caseId;
+            loadUnbilledItems(caseId);
+            openModal('invoiceModal');
+        }
+
+        function loadUnbilledItems(caseId) {
+            const tbody = document.getElementById('unbilledItemsTable').querySelector('tbody');
+            tbody.innerHTML = '';
+            let subtotal = 0;
+            (state.unbilled[caseId] || []).forEach((item, i) => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${item.item}</td>
+                    <td>${item.hours || ''}</td>
+                    <td>${item.rate ? 'R' + item.rate : ''}</td>
+                    <td class="amount-right">R${item.amount.toLocaleString()}</td>
+                    <td>${item.trust ? 'Yes' : 'No'}</td>
+                    <td>${item.lawyer}</td>
+                    <td><button class="btn-small btn-danger" onclick="deleteUnbilledItem('${caseId}', ${i})">Delete</button></td>
+                `;
+                tbody.appendChild(tr);
+                subtotal += item.amount;
+            });
+            updateInvoiceTotals(subtotal, state.trustBalances[state.cases[caseId].client]);
+        }
+
+        function deleteUnbilledItem(caseId, index) {
+            const amount = state.unbilled[caseId][index].amount;
+            state.unbilled[caseId].splice(index, 1);
+            state.unbilledTime -= amount;
+            updateDashboard();
+            loadUnbilledItems(caseId);
+        }
+
+        function updateInvoiceTotals(subtotal, trustAvailable) {
+            const vat = subtotal * 0.15;
+            const totalBeforeTrust = subtotal + vat;
+            const trustDeducted = Math.min(trustAvailable, totalBeforeTrust); // Simplified
+            const totalDue = totalBeforeTrust - trustDeducted;
+            document.getElementById('invoiceSubtotal').innerHTML = `<span>Subtotal (excl. VAT):</span> <strong>R${subtotal.toLocaleString()}</strong>`;
+            document.getElementById('invoiceVat').innerHTML = `<span>VAT @ 15%:</span> <strong>R${vat.toLocaleString()}</strong>`;
+            document.getElementById('invoiceTotalBeforeTrust').innerHTML = `<span>Total Before Trust:</span> <strong>R${totalBeforeTrust.toLocaleString()}</strong>`;
+            document.getElementById('invoiceTrustAvailable').innerHTML = `<span>Trust Available:</span> <strong class="trust-warning">R${trustAvailable.toLocaleString()}</strong>`;
+            document.getElementById('invoiceTrustDeducted').innerHTML = `<span>Trust Deducted:</span> <strong>-R${trustDeducted.toLocaleString()} (capped to available)</strong>`;
+            document.getElementById('invoiceTotalDue').innerHTML = `<span>Total Due:</span> <strong>R${totalDue.toLocaleString()}</strong>`;
+        }
+
+        function saveInvoiceDraft() {
+            alert('Invoice draft saved for ' + document.getElementById('invoiceCase').value);
+            closeModal('invoiceModal');
+        }
+
+        function previewInvoicePDF() {
+            alert('Previewing PDF for invoice');
+        }
+
+        function sendInvoice() {
+            const caseId = document.getElementById('invoiceCase').value;
+            state.outstandingInvoices += parseFloat(document.getElementById('invoiceTotalDue').querySelector('strong').innerText.replace('R', ''));
+            updateDashboard();
+            alert('Invoice sent for ' + caseId);
+            closeModal('invoiceModal');
+        }
+
+        function openDepositModal(client, caseId) {
+            document.getElementById('depositClient').value = client;
+            document.getElementById('depositCase').value = caseId || 'general';
+            document.getElementById('depositAmount').value = 'R5,000';
+            openModal('depositModal');
+        }
+
+        function recordDeposit() {
+            const client = document.getElementById('depositClient').value;
+            const amount = parseFloat(document.getElementById('depositAmount').value.replace('R', ''));
+            state.trustBalances[client] += amount;
+            state.totalTrust += amount;
+            updateDashboard();
+            closeModal('depositModal');
+            alert('Deposit recorded for ' + client + ': R' + amount);
+            if (state.trustBalances[client] >= 5000) {
+                document.getElementById('trustLowAlert').style.display = 'none';
+            }
+        }
+
+        function openAddClientModal() {
+            openModal('addClientModal');
+        }
+
+        function openAddClientModalFromTimeEntry() {
+            openModal('addClientModal');
+            // After save, refresh selects
+        }
+
+        function openAddClientModalFromInvoice() {
+            openModal('addClientModal');
+        }
+
+        function openAddClientModalFromDeposit() {
+            openModal('addClientModal');
+        }
+
+        function saveNewClient() {
+            const name = document.getElementById('newClientName').value;
+            if (!name) return alert('Name required');
+            const id = name.toLowerCase().replace(' ', '_');
+            state.clients[id] = {
+                name,
+                email: document.getElementById('newClientEmail').value,
+                phone: document.getElementById('newClientPhone').value,
+                address: document.getElementById('newClientAddress').value,
+                id: document.getElementById('newClientID').value
+            };
+            // Add to selects
+            const option = document.createElement('option');
+            option.value = id;
+            option.text = name;
+            document.getElementById('clientSelect').add(option);
+            document.getElementById('timeEntryClient').add(option.cloneNode(true));
+            document.getElementById('invoiceClient').add(option.cloneNode(true));
+            document.getElementById('depositClient').add(option.cloneNode(true));
+            document.getElementById('newCaseClient').add(option.cloneNode(true));
+            closeModal('addClientModal');
+            alert('Client added: ' + name);
+        }
+
+        function openAddCaseModal() {
+            openModal('addCaseModal');
+        }
+
+        function openAddCaseModalFromTimeEntry() {
+            openModal('addCaseModal');
+        }
+
+        function openAddCaseModalFromInvoice() {
+            openModal('addCaseModal');
+        }
+
+        function saveNewCase() {
+            const name = document.getElementById('newCaseName').value;
+            if (!name) return alert('Name required');
+            const id = name.toLowerCase().replace(' ', '_');
+            state.cases[id] = {
+                client: document.getElementById('newCaseClient').value,
+                name,
+                number: document.getElementById('newCaseNumber').value,
+                court: document.getElementById('newCaseCourt').value,
+                type: document.getElementById('newCaseType').value,
+                status: document.getElementById('newCaseStatus').value,
+                opposing: document.getElementById('newCaseOpposing').value,
+                description: document.getElementById('newCaseDescription').value
+            };
+            // Add to selects
+            const option = document.createElement('option');
+            option.value = id;
+            option.text = name;
+            document.getElementById('caseSelect').add(option);
+            document.getElementById('timeEntryCase').add(option.cloneNode(true));
+            document.getElementById('invoiceCase').add(option.cloneNode(true));
+            document.getElementById('depositCase').add(option.cloneNode(true));
+            closeModal('addCaseModal');
+            alert('Case added: ' + name);
+        }
+
+        function openAddDisbursementModal(context = 'timeEntry') {
+            state.currentDisbursementContext = context;
+            openModal('addDisbursementModal');
+        }
+
+        function saveDisbursement() {
+            const desc = document.getElementById('disbursementDesc').value;
+            const amount = document.getElementById('disbursementAmount').value;
+            const trust = document.getElementById('disbursementTrust').value;
+            state.disbursements.push({desc, amount, trust});
+            // Add to table
+            const tbody = document.getElementById(state.currentDisbursementContext === 'timeEntry' ? 'disbursementsTable' : 'unbilledItemsTable').querySelector('tbody');
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${desc}</td>
+                <td>${amount}</td>
+                <td>${trust}</td>
+                <td><button class="btn-small btn-danger" onclick="deleteDisbursement(${state.disbursements.length - 1})">Delete</button></td>
+            `;
+            tbody.appendChild(tr);
+            closeModal('addDisbursementModal');
+        }
+
+        function deleteDisbursement(index) {
+            state.disbursements.splice(index, 1);
+            // Reload table
+            const tbody = document.getElementById(state.currentDisbursementContext === 'timeEntry' ? 'disbursementsTable' : 'unbilledItemsTable').querySelector('tbody');
+            tbody.innerHTML = '';
+            state.disbursements.forEach((d, i) => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${d.desc}</td>
+                    <td>${d.amount}</td>
+                    <td>${d.trust}</td>
+                    <td><button class="btn-small btn-danger" onclick="deleteDisbursement(${i})">Delete</button></td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function openAddManualItemModal() {
+            openModal('addManualItemModal');
+        }
+
+        function saveManualItem() {
+            const item = {
+                item: document.getElementById('manualItemName').value,
+                hours: parseFloat(document.getElementById('manualItemHours').value) || 0,
+                rate: parseFloat(document.getElementById('manualItemRate').value.replace('R', '')) || 0,
+                amount: parseFloat(document.getElementById('manualItemAmount').value.replace('R', '')) || 0,
+                trust: document.getElementById('manualItemTrust').value === 'Yes',
+                lawyer: document.getElementById('manualItemLawyer').value
+            };
+            const caseId = document.getElementById('invoiceCase').value;
+            state.unbilled[caseId].push(item);
+            loadUnbilledItems(caseId);
+            closeModal('addManualItemModal');
+        }
+
+        // Manual item amount calc
+        document.getElementById('addManualItemModal').addEventListener('input', (e) => {
+            if (e.target.id === 'manualItemHours' || e.target.id === 'manualItemRate') {
+                const hours = parseFloat(document.getElementById('manualItemHours').value) || 0;
+                const rate = parseFloat(document.getElementById('manualItemRate').value.replace('R', '')) || 0;
+                const amount = hours * rate;
+                document.getElementById('manualItemAmount').value = 'R' + amount.toLocaleString();
+            }
+        });
+
+        function openReportsModal() {
+            const client = document.getElementById('clientSelect').value;
+            const caseId = document.getElementById('caseSelect').value;
+            const tbody = document.getElementById('reportsTable').querySelector('tbody');
+            tbody.innerHTML = '';
+            (state.invoices[caseId] || []).forEach(inv => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${inv.id}</td>
+                    <td>${inv.date}</td>
+                    <td>R${inv.amount}</td>
+                    <td>${inv.status}</td>
+                    <td><button class="btn-small btn-info" onclick="openInvoiceModal('${state.cases[caseId].client}', '${caseId}', true)">View</button></td>
+                `;
+                tbody.appendChild(tr);
+            });
+            openModal('reportsModal');
+        }
+
+        function openSettingsModal() {
+            openModal('settingsModal');
+        }
+
+        function openAdminDashboard() {
+            openModal('adminDashboardModal');
+        }
+
+        // Initialize
+        document.getElementById('openTimeEntryModal').onclick = openTimeEntryModal;
+        document.getElementById('openInvoiceModal').onclick = () => openInvoiceModal(document.getElementById('clientSelect').value, document.getElementById('caseSelect').value);
+        document.getElementById('openDepositModal').onclick = () => openDepositModal(document.getElementById('clientSelect').value, document.getElementById('caseSelect').value);
+        document.getElementById('openAddClientModal').onclick = openAddClientModal;
+        document.getElementById('openAddCaseModal').onclick = openAddCaseModal;
+        document.getElementById('openReportsModal').onclick = openReportsModal;
+        document.getElementById('openSettingsModal').onclick = openSettingsModal;
+        document.getElementById('openAdminDashboard').onclick = openAdminDashboard;
+
+        updateDashboard();
     </script>
 </body>
 </html>
