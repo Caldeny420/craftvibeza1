@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta name="theme-color" content="#000000" />
   <meta name="description" content="Pre-Launch Marketing Packages for South African Law Firms – Get more client enquiries fast with Google, Instagram & LinkedIn." />
-  <title>LexPilot | Pre-Launch Marketing Packages</title>
+  <title>LexPilot Marketing | Pre-Launch Packages</title>
   <link rel="icon" href="/images/craftvibe-logo.jpg" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
@@ -16,6 +16,7 @@
       --yellow: #fbbf24;
       --gold: #ffd700;
       --gold-dark: #b8860b;
+      --header-height: 80px; /* Fallback */
     }
     * { box-sizing: border-box; }
     body {
@@ -24,6 +25,7 @@
       color: #fff;
       margin: 0;
       overflow-x: hidden;
+      padding-top: var(--header-height);
     }
     .badge {
       display: inline-block;
@@ -36,42 +38,22 @@
       letter-spacing: 0.1em;
     }
     @media (min-width: 640px) { .badge { font-size: 1rem; padding: 0.875rem 1.75rem; } }
-    .popular-badge {
-      position: absolute;
-      top: -1.5rem;
-      left: 50%;
-      transform: translateX(-50%);
-      background: linear-gradient(to right, #fbbf24, #fb923c, #f59e0b);
-      color: #000;
-      font-weight: 900;
-      padding: 0.75rem 1.5rem;
-      border-radius: 9999px;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-      border: 3px solid #000;
-      z-index: 10;
-    }
-    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.8; } }
 
-    /* HERO - Guaranteed above-the-fold CTA on all devices */
+    /* HERO - Tighter, starts perfectly just below header */
     .hero-container {
-      min-height: 100vh;
-      min-height: 100dvh;
+      min-height: calc(100vh - var(--header-height));
+      min-height: calc(100dvh - var(--header-height));
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 6rem 1rem 4rem;
+      padding: 2rem 1rem 4rem;
       text-align: center;
-      gap: 1.5rem;
+      gap: 1.2rem;
     }
     @media (max-width: 640px) {
-      .hero-container { padding-top: 5rem; gap: 1.2rem; }
+      .hero-container { padding: 1.5rem 1rem 3rem; gap: 1rem; }
     }
-
     .hero-headline-upper {
       font-size: clamp(2.8rem, 10vw, 4.5rem);
       font-weight: 900;
@@ -90,13 +72,11 @@
     .hero-cta-button {
       font-size: clamp(1.8rem, 6vw, 2.8rem);
       padding: clamp(1rem, 4vw, 1.5rem) clamp(3rem, 10vw, 5rem) !important;
-      width: auto;
       white-space: nowrap;
     }
     .whatsapp-cta-text {
       font-size: clamp(1rem, 4vw, 1.3rem);
     }
-
     .pricing-card {
       position: relative;
       background: linear-gradient(to bottom, #18181b, #000);
@@ -121,18 +101,70 @@
     @media (max-width: 767px) { .pricing-scroll-container { justify-content: flex-start; } }
   </style>
 </head>
-<body class="min-h-screen flex flex-col">
-  <div id="header-placeholder"></div>
+<body class="min-h-screen flex flex-col bg-black">
+  <header class="fixed top-0 left-0 right-0 z-[999] bg-black/95 backdrop-blur-2xl border-b border-green-500/20">
+    <div class="max-w-7xl mx-auto px-5 py-4">
+      <!-- Desktop Layout -->
+      <div class="hidden lg:flex items-center justify-between">
+        <a href="marketing.html" class="flex items-center gap-4 group">
+          <img src="/images/lexpilot-logo.jpg" alt="LexPilot Marketing Logo"
+               class="h-10 md:h-12 rounded-full shadow-2xl ring-4 ring-green-500/30
+                      transition-all duration-300 group-hover:scale-110 group-hover:ring-green-400">
+          <span class="hidden md:flex items-baseline font-black tracking-tighter leading-none">
+            <span class="text-3xl md:text-4xl text-white">Lex</span>
+            <span class="text-4xl md:text-5xl text-green-400">Pilot Marketing</span>
+          </span>
+        </a>
+        <div class="flex items-center gap-8 xl:gap-12">
+          <nav class="flex items-center gap-10 text-base font-bold">
+            <a href="#pricing" class="text-white/80 hover:text-green-400 transition duration-300">Pricing</a>
+          </nav>
+          <a href="https://wa.me/27764312871?text=Hi%20-%20Interested%20in%20Pre-Launch%20Marketing%20Packages"
+             target="_blank"
+             class="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700
+                    text-black font-black px-7 py-4 rounded-full shadow-2xl hover:scale-110 transition-all duration-300
+                    text-sm md:text-lg flex items-center gap-3 whitespace-nowrap border-2 border-green-400/50">
+            <i class="fab fa-whatsapp text-2xl"></i>
+            <span class="hidden xs:inline">MESSAGE FOUNDER NOW</span>
+            <span class="xs:hidden">CHAT</span>
+          </a>
+        </div>
+      </div>
+      <!-- Mobile & Tablet Layout -->
+      <div class="lg:hidden flex flex-col gap-4">
+        <div class="flex items-center justify-between">
+          <a href="marketing.html" class="flex items-center gap-3 group">
+            <img src="/images/lexpilot-logo.jpg" alt="LexPilot Marketing Logo"
+                 class="h-10 rounded-full shadow-2xl ring-4 ring-green-500/30
+                        transition-all duration-300 group-hover:scale-110 group-hover:ring-green-400">
+            <span class="hidden xs:flex items-baseline font-black tracking-tighter leading-none">
+              <span class="text-2xl text-white">Lex</span>
+              <span class="text-3xl text-green-400">Pilot Marketing</span>
+            </span>
+          </a>
+          <a href="https://wa.me/27764312871?text=Hi%20-%20Interested%20in%20Pre-Launch%20Marketing%20Packages"
+             target="_blank"
+             class="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700
+                    text-black font-black px-5 py-3 rounded-full shadow-2xl hover:scale-110 transition-all duration-300
+                    text-sm flex items-center gap-2 whitespace-nowrap border-2 border-green-400/50">
+            <i class="fab fa-whatsapp text-2xl"></i>
+            <span class="hidden xs:inline">MESSAGE FOUNDER</span>
+            <span class="xs:hidden">CHAT</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
 
-  <!-- HERO - CTA ALWAYS ABOVE FOLD -->
+  <!-- HERO - Optimized for marketing focus, tighter spacing -->
   <main class="flex-1">
     <div class="hero-container">
       <div class="badge text-sm sm:text-base lg:text-xl font-bold tracking-wider">
-        PRE-LAUNCH SPECIAL • ONLY FIRST 30 FIRMS • DELIVERED JAN/FEB 2026
+        PRE-LAUNCH SPECIAL • ONLY FIRST 25 FIRMS • DELIVERED JAN/FEB 2026
       </div>
       <h1 class="font-black leading-[0.95] tracking-tighter">
-        <span class="block hero-headline-upper">Get More Client</span>
-        <span class="block bg-gradient-to-r from-green-400 via-green-300 to-emerald-400 bg-clip-text text-transparent hero-headline-lower">Enquiries Fast</span>
+        <span class="block hero-headline-upper">LexPilot Marketing:</span>
+        <span class="block bg-gradient-to-r from-green-400 via-green-300 to-emerald-400 bg-clip-text text-transparent hero-headline-lower">Client Enquiries Fast</span>
       </h1>
       <p class="hero-subheadline font-semibold opacity-95 leading-relaxed">
         Google Business optimisation • Professional Instagram & LinkedIn • Done-for-you content<br class="hidden sm:block">
@@ -185,10 +217,8 @@
             GET VISIBILITY STARTER
           </a>
         </div>
-
-        <!-- Growth Boost (Most Popular) -->
+        <!-- Growth Boost -->
         <div class="pricing-card border-green-500 relative transform scale-105">
-          <div class="popular-badge">MOST POPULAR</div>
           <div class="text-center mt-6 mb-6">
             <h3 class="text-4xl lg:text-5xl font-black text-yellow-400 mb-4">Growth Boost</h3>
             <p class="text-xl lg:text-2xl opacity-90">Google + Instagram + LinkedIn</p>
@@ -207,10 +237,8 @@
             GET GROWTH BOOST
           </a>
         </div>
-
         <!-- Lead Accelerator -->
         <div class="pricing-card border-gold relative" style="border-image: linear-gradient(to bottom, var(--gold), var(--gold-dark)) 1;">
-          <div class="popular-badge">MAXIMUM RESULTS</div>
           <div class="text-center mt-6 mb-6">
             <h3 class="text-4xl lg:text-5xl font-black" style="background: linear-gradient(to right, var(--gold), var(--gold-dark)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Lead Accelerator</h3>
             <p class="text-xl lg:text-2xl opacity-90">All channels + influencer/referral boost</p>
@@ -301,7 +329,7 @@
     <div class="max-w-6xl mx-auto text-center">
       <h2 class="text-6xl lg:text-7xl font-black mb-8 leading-tight">
         Start Attracting More Clients Today<br>
-        Limited to First 30 Firms
+        Limited to First 25 Firms
       </h2>
       <p class="text-2xl lg:text-3xl opacity-90 mb-16 max-w-4xl mx-auto">
         Get the highest-ROI marketing channels optimised for your firm — delivered personally by the LexPilot founder.
@@ -322,26 +350,81 @@
     <span class="hidden md:block">Chat now<br><small>Reply in &lt;60 sec</small></span>
   </a>
 
-  <div id="footer-placeholder" class="mt-auto"></div>
+  <!-- FOOTER - Updated for Marketing Department -->
+  <footer class="bg-black border-t-4 border-green-500 pt-12 pb-16 mt-auto">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+        <!-- Brand Column -->
+        <div class="text-center md:text-left">
+          <div class="flex items-center justify-center md:justify-start gap-4 mb-6">
+            <img src="/images/lexpilot-logo.jpg" alt="LexPilot Marketing Logo" class="h-16 rounded-full shadow-2xl border-4 border-green-500/50">
+            <div>
+              <h3 class="text-3xl md:text-4xl font-black leading-none">
+                <span class="text-white">Lex</span><span class="text-green-400">Pilot Marketing</span>
+              </h3>
+              <p class="text-yellow-400 font-bold text-sm tracking-wider">Marketing Department • Pre-Launch Packages</p>
+            </div>
+          </div>
+          <p class="text-gray-400 text-sm md:text-base leading-relaxed">
+            Pre-launch marketing services for South African law firms.<br>
+            <strong class="text-green-300">Powered by LexPilot • Founding Partners Live 28 March 2026.</strong>
+          </p>
+        </div>
+        <!-- Quick Links -->
+        <div class="text-center md:text-left">
+          <h4 class="text-xl md:text-2xl font-black text-green-400 mb-6">Quick Links</h4>
+          <ul class="space-y-4 text-gray-300 text-sm md:text-base">
+            <li><a href="#pricing" class="hover:text-green-400 transition">Pricing</a></li>
+          </ul>
+        </div>
+        <!-- Legal -->
+        <div class="text-center md:text-left">
+          <h4 class="text-xl md:text-2xl font-black text-green-400 mb-6">Legal</h4>
+          <ul class="space-y-3 text-gray-300 text-sm md:text-base leading-tight">
+            <li><a href="/privacy-policy.html" class="hover:text-green-400 transition">Privacy Policy</a></li>
+            <li><a href="/terms-of-service.html" class="hover:text-green-400 transition">Terms of Service</a></li>
+            <li><a href="/cookie-policy.html" class="hover:text-green-400 transition">Cookie Policy</a></li>
+            <li><a href="/acceptable-use-policy.html" class="hover:text-green-400 transition">Acceptable Use</a></li>
+            <li><a href="/data-processing-agreement.html" class="hover:text-green-400 transition">Data Processing</a></li>
+            <li><a href="/popia-compliance.html" class="hover:text-green-400 transition">POPIA Compliance</a></li>
+            <li><a href="/refund-policy.html" class="hover:text-green-400 transition">Refund Policy</a></li>
+            <li><a href="/security.html" class="hover:text-green-400 transition">Security</a></li>
+          </ul>
+        </div>
+        <!-- WhatsApp CTA -->
+        <div class="text-center md:text-left">
+          <h4 class="text-xl md:text-2xl font-black text-green-400 mb-6">Contact Marketing</h4>
+          <p class="text-gray-400 text-sm md:text-base mb-8">Reply in under 60 seconds — 24/7</p>
+          <a href="https://wa.me/27764312871?text=Hi%20LexPilot%20Marketing!%20Interested%20in%20Pre-Launch%20Packages"
+             target="_blank"
+             class="inline-flex items-center gap-4 bg-white text-black font-black px-8 py-5 rounded-full hover:scale-110 transition-all shadow-2xl text-lg border-4 border-green-500">
+            <i class="fab fa-whatsapp text-3xl text-green-500"></i>
+            MESSAGE MARKETING DEPT
+          </a>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 pt-10 text-center">
+        <p class="text-gray-500 text-xs md:text-sm">
+          © 2025–2026 LexPilot Marketing • All rights reserved • Proudly South African
+        </p>
+        <p class="mt-6 font-black text-yellow-300 text-lg md:text-xl tracking-wider">
+          PRE-LAUNCH SPOTS LIMITED • CONTACT MARKETING DEPT TODAY
+        </p>
+      </div>
+    </div>
+  </footer>
 
   <script>
-    fetch('header.html?v='+Date.now())
-      .then(r => r.ok ? r.text() : '')
-      .then(h => document.getElementById('header-placeholder').innerHTML = h);
-    fetch('footer.html?v='+Date.now())
-      .then(r => r.ok ? r.text() : '')
-      .then(f => document.getElementById('footer-placeholder').innerHTML = f);
-
-    function adjustMainPadding() {
+    function adjustHeaderHeight() {
       const header = document.querySelector('header');
       if (header) {
-        const height = header.offsetHeight || 0;
-        document.querySelector('main').style.paddingTop = `${height}px`;
+        const height = header.offsetHeight;
+        document.documentElement.style.setProperty('--header-height', `${height}px`);
       }
     }
-    window.addEventListener('load', adjustMainPadding);
-    window.addEventListener('resize', adjustMainPadding);
-    document.fonts?.ready.then(adjustMainPadding);
+    window.addEventListener('load', adjustHeaderHeight);
+    window.addEventListener('resize', adjustHeaderHeight);
+    document.fonts?.ready.then(adjustHeaderHeight);
   </script>
 </body>
 </html>
