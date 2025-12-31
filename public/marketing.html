@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Pre-Launch Marketing Packages for South African Law Firms – Get more client enquiries fast with Google, Instagram & LinkedIn." />
+  <title>LexPilot | Pre-Launch Marketing Packages</title>
+  <link rel="icon" href="/images/craftvibe-logo.jpg" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --green: #10b981;
+      --yellow: #fbbf24;
+      --gold: #ffd700;
+      --gold-dark: #b8860b;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #000;
+      color: #fff;
+      margin: 0;
+      overflow-x: hidden;
+    }
+    .badge {
+      display: inline-block;
+      background: #f59e0b;
+      color: #000;
+      font-weight: 900;
+      padding: 0.75rem 1.5rem;
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      letter-spacing: 0.1em;
+    }
+    @media (min-width: 640px) { .badge { font-size: 1rem; padding: 0.875rem 1.75rem; } }
+    .popular-badge {
+      position: absolute;
+      top: -1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(to right, #fbbf24, #fb923c, #f59e0b);
+      color: #000;
+      font-weight: 900;
+      padding: 0.75rem 1.5rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      border: 3px solid #000;
+      z-index: 10;
+    }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.8; } }
+
+    /* HERO - Guaranteed above-the-fold CTA on all devices */
+    .hero-container {
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 6rem 1rem 4rem;
+      text-align: center;
+      gap: 1.5rem;
+    }
+    @media (max-width: 640px) {
+      .hero-container { padding-top: 5rem; gap: 1.2rem; }
+    }
+
+    .hero-headline-upper {
+      font-size: clamp(2.8rem, 10vw, 4.5rem);
+      font-weight: 900;
+      line-height: 1;
+    }
+    .hero-headline-lower {
+      font-size: clamp(3.2rem, 11vw, 5.5rem);
+      font-weight: 900;
+      line-height: 1;
+    }
+    .hero-subheadline {
+      font-size: clamp(1.25rem, 5vw, 1.8rem);
+      max-width: 90%;
+      opacity: 0.95;
+    }
+    .hero-cta-button {
+      font-size: clamp(1.8rem, 6vw, 2.8rem);
+      padding: clamp(1rem, 4vw, 1.5rem) clamp(3rem, 10vw, 5rem) !important;
+      width: auto;
+      white-space: nowrap;
+    }
+    .whatsapp-cta-text {
+      font-size: clamp(1rem, 4vw, 1.3rem);
+    }
+
+    .pricing-card {
+      position: relative;
+      background: linear-gradient(to bottom, #18181b, #000);
+      border-radius: 1.5rem;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      border: 2px solid;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      display: flex;
+      flex-direction: column;
+      min-height: 620px;
+    }
+    .pricing-scroll-container {
+      display: flex;
+      flex-direction: row;
+      gap: 1.5rem;
+      padding: 3rem 1rem;
+      overflow-x: auto;
+      scroll-snap-type: x proximity;
+      justify-content: center;
+    }
+    @media (max-width: 767px) { .pricing-scroll-container { justify-content: flex-start; } }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <div id="header-placeholder"></div>
+
+  <!-- HERO - CTA ALWAYS ABOVE FOLD -->
+  <main class="flex-1">
+    <div class="hero-container">
+      <div class="badge text-sm sm:text-base lg:text-xl font-bold tracking-wider">
+        PRE-LAUNCH SPECIAL • ONLY FIRST 30 FIRMS • DELIVERED JAN/FEB 2026
+      </div>
+      <h1 class="font-black leading-[0.95] tracking-tighter">
+        <span class="block hero-headline-upper">Get More Client</span>
+        <span class="block bg-gradient-to-r from-green-400 via-green-300 to-emerald-400 bg-clip-text text-transparent hero-headline-lower">Enquiries Fast</span>
+      </h1>
+      <p class="hero-subheadline font-semibold opacity-95 leading-relaxed">
+        Google Business optimisation • Professional Instagram & LinkedIn • Done-for-you content<br class="hidden sm:block">
+        <span class="text-green-400 font-black">Highest-ROI channels to attract clients now — before LexPilot launches.</span>
+      </p>
+      <div class="space-y-6">
+        <a href="#pricing" class="inline-block bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700
+                      text-black font-black rounded-full shadow-2xl hover:scale-105 hover:shadow-green-500/30 transition-all duration-300
+                      border-4 border-green-400/50 hero-cta-button">
+          <span class="drop-shadow-lg">VIEW PACKAGES & PRICING</span>
+        </a>
+        <p class="whatsapp-cta-text opacity-80">
+          or
+          <a href="https://wa.me/27764312871?text=Hi%20-%20Interested%20in%20Pre-Launch%20Marketing%20Packages"
+             target="_blank"
+             class="text-green-400 underline hover:text-green-300 font-bold hover:no-underline transition">
+            message the founder on WhatsApp
+          </a>
+          <br><span class="text-sm opacity-70">(Replies in &lt;60 seconds • 24/7)</span>
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <!-- PRICING -->
+  <section id="pricing" class="py-20 lg:py-32 px-6 bg-black">
+    <div class="max-w-7xl mx-auto text-center">
+      <h2 class="text-5xl sm:text-6xl lg:text-7xl font-black mb-6 lg:mb-12 leading-tight">
+        Choose Your Marketing Package<br>
+        <span class="text-2xl lg:text-4xl opacity-80 font-normal">(One-Time Payment • Delivered Personally)</span>
+      </h2>
+      <div class="pricing-scroll-container">
+        <!-- Visibility Starter -->
+        <div class="pricing-card border-zinc-600">
+          <div class="text-center mb-6">
+            <h3 class="text-4xl lg:text-5xl font-black text-green-400 mb-4">Visibility Starter</h3>
+            <p class="text-xl lg:text-2xl opacity-90">Google + Instagram basics</p>
+          </div>
+          <div class="text-6xl lg:text-7xl font-black text-green-400 mb-6">
+            R9,900<span class="text-3xl lg:text-4xl opacity-80"> once</span>
+          </div>
+          <ul class="text-left space-y-4 mb-10 flex-1 px-4 text-base lg:text-lg">
+            <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Google Business Profile optimisation & verification</span></li>
+            <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Review strategy + response templates</span></li>
+            <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Instagram professional setup & bio optimisation</span></li>
+            <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>10 ready-to-post Instagram graphics + captions</span></li>
+            <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Booking link integration</span></li>
+          </ul>
+          <a href="https://wa.me/27764312871?text=Hi%20-%20Interested%20in%20Visibility%20Starter%20(R9,900)" class="mt-auto w-full bg-gradient-to-r from-green-500 to-emerald-600 text-black font-black text-xl lg:text-2xl py-5 rounded-2xl hover:scale-105 transition shadow-xl">
+            GET VISIBILITY STARTER
+          </a>
+        </div>
+
+        <!-- Growth Boost (Most Popular) -->
+        <div class="pricing-card border-green-500 relative transform scale-105">
+          <div class="popular-badge">MOST POPULAR</div>
+          <div class="text-center mt-6 mb-6">
+            <h3 class="text-4xl lg:text-5xl font-black text-yellow-400 mb-4">Growth Boost</h3>
+            <p class="text-xl lg:text-2xl opacity-90">Google + Instagram + LinkedIn</p>
+          </div>
+          <div class="text-6xl lg:text-7xl font-black text-green-400 mb-6">
+            R17,900<span class="text-3xl lg:text-4xl opacity-80"> once</span>
+          </div>
+          <ul class="text-left space-y-4 mb-10 flex-1 px-4 text-base lg:text-lg">
+            <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Everything in Visibility Starter</span></li>
+            <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>30 total Instagram posts (graphics + captions)</span></li>
+            <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>LinkedIn profile optimisation + 10 posts</span></li>
+            <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Advanced hashtag & content strategy</span></li>
+            <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>3-month content calendar</span></li>
+          </ul>
+          <a href="https://wa.me/27764312871?text=Hi%20-%20Interested%20in%20Growth%20Boost%20(R17,900)" class="mt-auto w-full bg-yellow-400 text-black font-black text-xl lg:text-2xl py-5 rounded-2xl hover:scale-105 transition shadow-xl">
+            GET GROWTH BOOST
+          </a>
+        </div>
+
+        <!-- Lead Accelerator -->
+        <div class="pricing-card border-gold relative" style="border-image: linear-gradient(to bottom, var(--gold), var(--gold-dark)) 1;">
+          <div class="popular-badge">MAXIMUM RESULTS</div>
+          <div class="text-center mt-6 mb-6">
+            <h3 class="text-4xl lg:text-5xl font-black" style="background: linear-gradient(to right, var(--gold), var(--gold-dark)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Lead Accelerator</h3>
+            <p class="text-xl lg:text-2xl opacity-90">All channels + influencer/referral boost</p>
+          </div>
+          <div class="text-6xl lg:text-7xl font-black text-green-400 mb-6">
+            R27,900<span class="text-3xl lg:text-4xl opacity-80"> once</span>
+          </div>
+          <ul class="text-left space-y-4 mb-10 flex-1 px-4 text-base lg:text-lg">
+            <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Everything in Growth Boost</span></li>
+            <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>3–5 influencer or referral partner shoutouts</span></li>
+            <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Google Business posts schedule (monthly)</span></li>
+            <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Referral program templates & scripts</span></li>
+            <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Bonus: R7,000 credit toward LexPilot Dominance</span></li>
+          </ul>
+          <a href="https://wa.me/27764312871?text=Hi%20-%20Interested%20in%20Lead%20Accelerator%20(R27,900)" class="mt-auto w-full bg-gradient-to-r from-yellow-500 to-gold text-black font-black text-xl lg:text-2xl py-5 rounded-2xl hover:scale-105 transition shadow-xl">
+            GET LEAD ACCELERATOR
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPARISON TABLE -->
+  <section class="py-20 px-6 bg-black">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-5xl sm:text-6xl lg:text-7xl font-black text-center mb-16">Package Comparison</h2>
+      <div class="overflow-x-auto border border-zinc-800 rounded-2xl">
+        <table class="w-full min-w-[700px] text-left">
+          <thead class="bg-gradient-to-r from-zinc-900 to-black">
+            <tr>
+              <th class="px-6 py-5 text-lg font-black">What's Included</th>
+              <th class="text-center px-6 py-5 text-2xl font-black text-green-400">Visibility<br>R9,900</th>
+              <th class="text-center px-6 py-5 text-2xl font-black text-yellow-400">Growth<br>R17,900</th>
+              <th class="text-center px-6 py-5 text-2xl font-black" style="background: linear-gradient(to right, var(--gold), var(--gold-dark)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Lead<br>R27,900</th>
+            </tr>
+          </thead>
+          <tbody class="text-lg">
+            <tr class="border-b border-zinc-800 bg-zinc-900/30">
+              <td class="px-6 py-5 font-semibold">Google Business optimisation</td>
+              <td class="text-center text-green-400 font-bold text-3xl">✓</td>
+              <td class="text-center text-green-400 font-bold text-3xl">✓</td>
+              <td class="text-center text-green-400 font-bold text-3xl">✓</td>
+            </tr>
+            <tr class="border-b border-zinc-800">
+              <td class="px-6 py-5">Instagram setup & posts</td>
+              <td class="text-center text-green-400 font-bold">10 posts</td>
+              <td class="text-center text-yellow-400 font-bold">30 posts</td>
+              <td class="text-center" style="color: var(--gold); font-weight: 900;">30 posts</td>
+            </tr>
+            <tr class="border-b border-zinc-800">
+              <td class="px-6 py-5">LinkedIn optimisation & posts</td>
+              <td class="text-center text-red-500 font-bold">—</td>
+              <td class="text-center text-green-400 font-bold">10 posts</td>
+              <td class="text-center text-green-400 font-bold">10 posts</td>
+            </tr>
+            <tr class="border-b border-zinc-800">
+              <td class="px-6 py-5">Content calendar & strategy</td>
+              <td class="text-center text-green-400 font-bold">Basic</td>
+              <td class="text-center text-green-400 font-bold">3 months</td>
+              <td class="text-center text-green-400 font-bold">3 months</td>
+            </tr>
+            <tr class="border-b border-zinc-800">
+              <td class="px-6 py-5">Influencer/referral partner boosts</td>
+              <td class="text-center text-red-500 font-bold">—</td>
+              <td class="text-center text-red-500 font-bold">—</td>
+              <td class="text-center" style="color: var(--gold); font-weight: 900;">3–5 coordinated</td>
+            </tr>
+            <tr class="border-b border-zinc-800">
+              <td class="px-6 py-5 font-semibold">LexPilot Dominance credit</td>
+              <td class="text-center text-red-500 font-bold">—</td>
+              <td class="text-center text-red-500 font-bold">—</td>
+              <td class="text-center" style="color: var(--gold); font-weight: 900;">R7,000 credit</td>
+            </tr>
+            <tr class="bg-green-900/30 border-t-4 border-green-600">
+              <td class="px-6 py-8 font-bold text-2xl text-green-300">Expected Results</td>
+              <td class="text-center text-green-400 font-bold text-xl">Local visibility + first enquiries</td>
+              <td class="text-center text-green-400 font-bold text-xl">Consistent leads across channels</td>
+              <td class="text-center text-green-400 font-bold text-xl">Fastest growth + premium clients</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="py-32 px-6 bg-gradient-to-b from-black to-zinc-950">
+    <div class="max-w-6xl mx-auto text-center">
+      <h2 class="text-6xl lg:text-7xl font-black mb-8 leading-tight">
+        Start Attracting More Clients Today<br>
+        Limited to First 30 Firms
+      </h2>
+      <p class="text-2xl lg:text-3xl opacity-90 mb-16 max-w-4xl mx-auto">
+        Get the highest-ROI marketing channels optimised for your firm — delivered personally by the LexPilot founder.
+      </p>
+      <a href="#pricing" class="inline-block bg-gradient-to-r from-green-500 to-emerald-600 text-black font-black text-4xl lg:text-6xl px-20 py-12 rounded-full shadow-2xl hover:scale-105 transition">
+        CHOOSE MY PACKAGE
+      </a>
+      <p class="mt-10 text-xl opacity-80">
+        Questions? <a href="https://wa.me/27764312871?text=Hi%20LexPilot%20-%20Marketing%20Packages" target="_blank" class="text-green-400 underline">Message on WhatsApp</a> • Replies in under 60 seconds
+      </p>
+    </div>
+  </section>
+
+  <!-- Floating WhatsApp -->
+  <a href="https://wa.me/27764312871?text=Hi%20LexPilot%20-%20Pre-Launch%20Marketing%20Packages" class="fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-white text-black rounded-full shadow-2xl pl-5 pr-7 py-4 font-bold hover:scale-110 transition">
+    <span class="absolute inset-0 rounded-full bg-green-500 opacity-75 animate-ping"></span>
+    <i class="fab fa-whatsapp text-4xl text-green-500"></i>
+    <span class="hidden md:block">Chat now<br><small>Reply in &lt;60 sec</small></span>
+  </a>
+
+  <div id="footer-placeholder" class="mt-auto"></div>
+
+  <script>
+    fetch('header.html?v='+Date.now())
+      .then(r => r.ok ? r.text() : '')
+      .then(h => document.getElementById('header-placeholder').innerHTML = h);
+    fetch('footer.html?v='+Date.now())
+      .then(r => r.ok ? r.text() : '')
+      .then(f => document.getElementById('footer-placeholder').innerHTML = f);
+
+    function adjustMainPadding() {
+      const header = document.querySelector('header');
+      if (header) {
+        const height = header.offsetHeight || 0;
+        document.querySelector('main').style.paddingTop = `${height}px`;
+      }
+    }
+    window.addEventListener('load', adjustMainPadding);
+    window.addEventListener('resize', adjustMainPadding);
+    document.fonts?.ready.then(adjustMainPadding);
+  </script>
+</body>
+</html>
