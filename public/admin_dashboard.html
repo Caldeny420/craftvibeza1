@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LexPilot Admin Dashboard – Complete Working Prototype</title>
+    <title>LexPilot Admin Dashboard – Ultimate Full Prototype (January 01, 2026)</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -24,6 +26,9 @@
             justify-content: space-between;
             align-items: center;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
         .header-left h1 {
             font-size: 1.5rem;
@@ -97,6 +102,10 @@
             height: 100%;
             background: #4299e1;
             transition: width 0.3s;
+        }
+        .chart-container {
+            height: 300px;
+            margin-bottom: 2rem;
         }
         table {
             width: 100%;
@@ -227,7 +236,7 @@
             background: white;
             border-radius: 8px;
             padding: 2rem;
-            max-width: 800px;
+            max-width: 900px;
             width: 100%;
             max-height: 90vh;
             overflow-y: auto;
@@ -341,6 +350,13 @@
             align-items: center;
             margin-bottom: 1rem;
         }
+        .calendar-container {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
         @media (max-width: 768px) {
             .container {
                 padding: 1rem;
@@ -364,6 +380,9 @@
             td, th {
                 padding: 0.5rem;
             }
+            .chart-container {
+                height: 200px;
+            }
         }
     </style>
 </head>
@@ -379,9 +398,9 @@
         </div>
     </div>
     <div class="container">
-        <!-- Firm Overview -->
+        <!-- Firm Overview with Charts -->
         <div class="overview-section">
-            <h2>Firm Overview (Today – December 30, 2025)</h2>
+            <h2>Firm Overview (Today – January 01, 2026)</h2>
             <div class="metrics-grid">
                 <div class="metric-card">
                     <div class="metric-label">Total Unbilled Time</div>
@@ -410,8 +429,34 @@
                     <div class="metric-value">R 280,000</div>
                     <div class="metric-sub">87% collection rate</div>
                 </div>
+                <div class="metric-card">
+                    <div class="metric-label">Active Matters</div>
+                    <div class="metric-value">47</div>
+                    <div class="metric-sub">12 new this month</div>
+                </div>
+            </div>
+            <!-- Visual Charts -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="chart-container">
+                    <canvas id="collectionsChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <canvas id="overdueChart"></canvas>
+                </div>
             </div>
         </div>
+
+        <!-- Calendar Section -->
+        <div class="overview-section calendar-container">
+            <div class="section-header">
+                <h2>Firm Calendar & Deadlines</h2>
+                <div>
+                    <button class="btn btn-primary" onclick="openModal('addEventModal')">+ Add Event / Deadline</button>
+                </div>
+            </div>
+            <div id="calendar"></div>
+        </div>
+
         <!-- Unbilled Work -->
         <div class="overview-section">
             <div class="section-header">
@@ -459,12 +504,14 @@
                 </tbody>
             </table>
         </div>
+
         <!-- Unpaid/Overdue Invoices -->
         <div class="overview-section">
             <div class="section-header">
                 <h2>Unpaid / Overdue Invoices</h2>
                 <div>
                     <button class="btn btn-primary">Send Bulk Reminders</button>
+                    <button class="btn btn-primary" onclick="openModal('agedDebtorsModal')">Generate Aged Debtors Report</button>
                     <button class="btn btn-danger">Bulk Void</button>
                 </div>
             </div>
@@ -513,11 +560,13 @@
                 </tbody>
             </table>
         </div>
+
         <!-- Trust Account Overview -->
         <div class="overview-section">
             <div class="section-header">
                 <h2>Trust Account Overview</h2>
                 <div>
+                    <button class="btn btn-primary" onclick="openModal('importBankStatementModal')">Import Bank Statement</button>
                     <button class="btn btn-primary">Reconcile Trust</button>
                     <button class="btn btn-secondary">Generate Full Trust Report</button>
                 </div>
@@ -559,6 +608,7 @@
                 </tbody>
             </table>
         </div>
+
         <!-- Compliance & Alerts -->
         <div class="overview-section">
             <h2>Compliance & Alerts (Firm-Wide)</h2>
@@ -579,13 +629,14 @@
                 <button class="btn btn-secondary">View Audit Log</button>
             </div>
         </div>
+
         <!-- Quick Actions -->
         <div class="overview-section">
             <h2>Quick Actions (Admin Only)</h2>
             <div class="quick-actions">
                 <button class="btn btn-primary" onclick="openModal('bulkAssignModal')">+ Create Bulk Invoice</button>
                 <button class="btn btn-primary" onclick="openModal('recordPaymentModal')">+ Record Manual Payment</button>
-                <button class="btn btn-secondary">View Lawyer Performance</button>
+                <button class="btn btn-secondary" onclick="openModal('lawyerPerformanceModal')">View Lawyer Performance</button>
                 <button class="btn btn-secondary">Export All Data</button>
                 <button class="btn btn-secondary" onclick="openModal('servicePresetsModal')">Manage Service Presets</button>
                 <button class="btn btn-secondary">Manage Users & Permissions</button>
@@ -595,8 +646,257 @@
         </div>
     </div>
 
-    <!-- ALL MODALS -->
+    <!-- Calendar Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                events: [
+                    { title: 'Court Hearing - Smith v RAF', date: '2026-01-15', color: '#f56565' },
+                    { title: 'Prescription Deadline - Dlamini v ABC', date: '2026-01-20', color: '#f6ad55' },
+                    { title: 'Client Consultation', date: '2026-01-10' },
+                    { title: 'Monthly Trust Recon Due', date: '2026-01-31', color: '#4299e1' }
+                ],
+                eventClick: function(info) {
+                    alert('Event: ' + info.event.title + '\nDate: ' + info.event.start.toLocaleDateString());
+                }
+            });
+            calendar.render();
+        });
+    </script>
 
+    <!-- Charts Script -->
+    <script>
+        const collectionsCtx = document.getElementById('collectionsChart').getContext('2d');
+        new Chart(collectionsCtx, {
+            type: 'line',
+            data: {
+                labels: ['Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan 2026'],
+                datasets: [{
+                    label: 'Issued',
+                    data: [250000, 280000, 300000, 310000, 320000, 340000],
+                    borderColor: '#4299e1',
+                    backgroundColor: 'rgba(66,153,225,0.1)',
+                    tension: 0.3
+                }, {
+                    label: 'Collected',
+                    data: [220000, 240000, 260000, 270000, 280000, 300000],
+                    borderColor: '#48bb78',
+                    backgroundColor: 'rgba(72,187,120,0.1)',
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { position: 'top' } },
+                scales: { y: { beginAtZero: true } }
+            }
+        });
+
+        const overdueCtx = document.getElementById('overdueChart').getContext('2d');
+        new Chart(overdueCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Current', '1-30 Days', '31-60 Days', '61-90 Days', '>90 Days'],
+                datasets: [{
+                    data: [50000, 35000, 30000, 20000, 10700],
+                    backgroundColor: ['#48bb78', '#4299e1', '#fbbf24', '#f59e0b', '#f56565']
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { position: 'right' } }
+            }
+        });
+    </script>
+
+    <!-- All Modals (Full List – Nothing Left Out) -->
+    <!-- Import Bank Statement Modal -->
+    <div id="importBankStatementModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Import Bank Statement for Trust Reconciliation</h3>
+                <button class="close-btn" onclick="closeModal('importBankStatementModal')">&times;</button>
+            </div>
+            <form>
+                <div class="form-group">
+                    <label>Upload Statement File (CSV / OFX / PDF):</label>
+                    <input type="file" accept=".csv,.ofx,.pdf" required>
+                    <small>Supported: FNB, Absa, Standard Bank, Nedbank formats</small>
+                </div>
+                <div class="info-box">
+                    <strong>Auto-matching will flag discrepancies</strong><br>
+                    Manual overrides available after import
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('importBankStatementModal')">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Import & Begin Reconciliation</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Calendar Event Modal -->
+    <div id="addEventModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add Event / Deadline</h3>
+                <button class="close-btn" onclick="closeModal('addEventModal')">&times;</button>
+            </div>
+            <form>
+                <div class="form-group">
+                    <label>Title:</label>
+                    <input type="text" placeholder="e.g., Court Hearing - Smith v RAF">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Date:</label>
+                        <input type="date">
+                    </div>
+                    <div class="form-group">
+                        <label>Time (optional):</label>
+                        <input type="time">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Client / Matter (optional):</label>
+                    <select>
+                        <option>John Smith – Smith v RAF</option>
+                        <option>Dlamini – Dlamini v ABC</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Type:</label>
+                    <select>
+                        <option>Court Hearing</option>
+                        <option>Consultation</option>
+                        <option>Deadline</option>
+                        <option>Prescription</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Reminder:</label>
+                    <select>
+                        <option>1 day before</option>
+                        <option>3 days before</option>
+                        <option>1 week before</option>
+                        <option>None</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('addEventModal')">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add Event</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Aged Debtors Modal -->
+    <div id="agedDebtorsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Aged Debtors Report – January 01, 2026</h3>
+                <button class="close-btn" onclick="closeModal('agedDebtorsModal')">&times;</button>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Client / Matter</th>
+                        <th>Current</th>
+                        <th>1-30 Days</th>
+                        <th>31-60 Days</th>
+                        <th>61-90 Days</th>
+                        <th>>90 Days</th>
+                        <th>Total Owed</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>John Smith – Smith v RAF</td>
+                        <td>R0</td>
+                        <td>R3,227.50</td>
+                        <td>R0</td>
+                        <td>R0</td>
+                        <td>R0</td>
+                        <td>R3,227.50</td>
+                    </tr>
+                    <tr>
+                        <td>Dlamini – Dlamini v ABC</td>
+                        <td>R0</td>
+                        <td>R0</td>
+                        <td>R10,000</td>
+                        <td>R20,000</td>
+                        <td>R15,000</td>
+                        <td>R45,000</td>
+                    </tr>
+                    <tr style="font-weight: bold; background: #edf2f7;">
+                        <td>TOTALS</td>
+                        <td>R0</td>
+                        <td>R3,227.50</td>
+                        <td>R10,000</td>
+                        <td>R20,000</td>
+                        <td>R15,000</td>
+                        <td>R48,227.50</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="modal-footer">
+                <button class="btn btn-secondary">Export CSV</button>
+                <button class="btn btn-secondary">Export PDF</button>
+                <button class="btn btn-secondary" onclick="closeModal('agedDebtorsModal')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lawyer Performance Modal -->
+    <div id="lawyerPerformanceModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Lawyer Performance Overview</h3>
+                <button class="close-btn" onclick="closeModal('lawyerPerformanceModal')">&times;</button>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Lawyer</th>
+                        <th>Billable Hours (Month)</th>
+                        <th>Unbilled Amount</th>
+                        <th>Realization Rate</th>
+                        <th>Collected</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>You</td>
+                        <td>142 hrs</td>
+                        <td>R 42,300</td>
+                        <td>88%</td>
+                        <td>R 180,000</td>
+                    </tr>
+                    <tr>
+                        <td>Jane Doe</td>
+                        <td>118 hrs</td>
+                        <td>R 26,150</td>
+                        <td>82%</td>
+                        <td>R 100,000</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('lawyerPerformanceModal')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Record Payment Modal, Edit Unbilled, Void Invoice, Trust Ledger, Bulk Assign, Service Presets, Request Deposit -->
+    <!-- (All previous modals from last version are included here – full code, no shortcuts) -->
     <!-- Record Payment Modal -->
     <div id="recordPaymentModal" class="modal">
         <div class="modal-content">
@@ -635,7 +935,7 @@
                     </div>
                     <div class="form-group">
                         <label>Payment Date:</label>
-                        <input type="date" value="2025-12-30">
+                        <input type="date" value="2026-01-01">
                     </div>
                 </div>
                 <div class="form-group">
@@ -817,21 +1117,21 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>2025-12-10</td>
+                        <td>2026-01-10</td>
                         <td>Invoice Payment (INV-001)</td>
                         <td class="text-green-600">R5,000</td>
                         <td></td>
                         <td>R23,500</td>
                     </tr>
                     <tr>
-                        <td>2025-12-15</td>
+                        <td>2026-01-15</td>
                         <td>Sheriff Service</td>
                         <td></td>
                         <td class="text-red-600">-R850</td>
                         <td>R22,650</td>
                     </tr>
                     <tr>
-                        <td>2025-12-18</td>
+                        <td>2026-01-18</td>
                         <td>Trust Deduction (INV-001)</td>
                         <td></td>
                         <td class="text-red-600">-R1,200</td>
@@ -924,7 +1224,7 @@
         </div>
     </div>
 
-    <!-- Request Deposit Modal (New – Opens on [Request Deposit] click) -->
+    <!-- Request Deposit Modal -->
     <div id="requestDepositModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -942,7 +1242,7 @@
                 </div>
                 <div class="form-group">
                     <label>Message to Client:</label>
-                    <textarea rows="4" placeholder="Dear Client, Please top up your trust account for ongoing work...">Dear Client, Please top up your trust account for ongoing work...</textarea>
+                    <textarea rows="4">Dear Client, Please top up your trust account for ongoing work...</textarea>
                 </div>
                 <div class="form-group">
                     <label>Send Method:</label>
@@ -967,17 +1267,14 @@
         </div>
     </div>
 
-    <!-- JavaScript for Modal Toggling & Client-Case Isolation -->
+    <!-- JavaScript for Modals -->
     <script>
         function openModal(modalId) {
             document.getElementById(modalId).classList.add('active');
         }
-
         function closeModal(modalId) {
             document.getElementById(modalId).classList.remove('active');
         }
-
-        // Close modal when clicking outside content
         document.querySelectorAll('.modal').forEach(modal => {
             modal.addEventListener('click', (e) => {
                 if (e.target === modal) {
@@ -985,8 +1282,6 @@
                 }
             });
         });
-
-        // Simulate Client-Case Isolation (JavaScript only, no backend)
         function updateCaseDropdown(clientValue) {
             const caseDropdown = document.getElementById('caseDropdown');
             caseDropdown.innerHTML = '<option value="">General / No Specific Case</option>';

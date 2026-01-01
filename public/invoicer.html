@@ -233,6 +233,8 @@
             overflow-y: auto;
             border-radius: 8px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 1001;
         }
         .modal-header {
             padding: 1.5rem;
@@ -404,7 +406,7 @@
                     <option value="jane_dlamini">Jane Dlamini</option>
                     <option value="mike_jones">Mike Jones</option>
                 </select>
-                <button class="btn btn-primary" id="openAddClientModal">+ Add Client</button>
+                <button class="btn btn-primary" onclick="openModal('addClientModal')">+ Add Client</button>
             </div>
             <div class="date-display">TODAY – January 01, 2026</div>
             <div class="top-bar-section">
@@ -414,7 +416,7 @@
                     <option value="dlamini_case">Dlamini Case</option>
                     <option value="jones_v_roadcorp">Jones v RoadCorp</option>
                 </select>
-                <button class="btn btn-primary" id="openAddCaseModal">+ Add Case</button>
+                <button class="btn btn-primary" onclick="openModal('addCaseModal')">+ Add Case</button>
             </div>
         </div>
         <div class="metrics-grid">
@@ -476,15 +478,16 @@
         <div class="quick-actions-section">
             <div class="section-title">⚡ Quick Actions</div>
             <div class="quick-actions">
-                <button class="action-btn" id="openTimeEntryModal">+ Time Entry</button>
-                <button class="action-btn" id="openInvoiceModalBtn">+ Invoice</button>
-                <button class="action-btn" id="openDepositModalBtn">+ Deposit</button>
-                <button class="action-btn" id="openReportsModal">Reports ▼</button>
-                <button class="action-btn" id="openSettingsModal">Settings</button>
+                <button class="action-btn" id="openTimeEntryModal" onclick="openTimeEntryModal()">+ Time Entry</button>
+                <button class="action-btn" id="openInvoiceModalBtn" onclick="openInvoiceModal(document.getElementById('clientSelect').value, document.getElementById('caseSelect').value)">+ Invoice</button>
+                <button class="action-btn" id="openDepositModalBtn" onclick="openDepositModal()">+ Deposit</button>
+                <button class="action-btn" id="openReportsModal" onclick="openReportsModal()">Reports ▼</button>
+                <button class="action-btn" id="openSettingsModal" onclick="openModal('settingsModal')">Settings</button>
                 <button class="action-btn" id="openAdminDashboard">Admin Dashboard</button>
             </div>
         </div>
     </div>
+
     <!-- Add Client Modal -->
     <div class="modal-overlay" id="addClientModal">
         <div class="modal" style="max-width: 700px;">
@@ -548,6 +551,7 @@
             </div>
         </div>
     </div>
+
     <!-- Add Case / Matter Modal -->
     <div class="modal-overlay" id="addCaseModal">
         <div class="modal" style="max-width: 700px;">
@@ -567,7 +571,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <button class="btn btn-primary" onclick="openAddClientModal()">+ Add Client</button>
+                        <button class="btn btn-primary" onclick="openModal('addClientModal')">+ Add Client</button>
                     </div>
                 </div>
                 <div class="form-group">
@@ -671,6 +675,7 @@
             </div>
         </div>
     </div>
+
     <!-- Time Entry Modal -->
     <div class="modal-overlay" id="timeEntryModal">
         <div class="modal">
@@ -689,7 +694,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <button class="btn btn-primary" onclick="openAddClientModalFromTimeEntry()">+ Add Client</button>
+                        <button class="btn btn-primary" onclick="openModal('addClientModal')">+ Add Client</button>
                     </div>
                 </div>
                 <div class="form-row">
@@ -697,12 +702,10 @@
                         <label>Case</label>
                         <select id="timeEntryCase">
                             <option value="smith_v_raf" selected>Smith v RAF</option>
-                            <option value="dlamini_case">Dlamini Case</option>
-                            <option value="jones_v_roadcorp">Jones v RoadCorp</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <button class="btn btn-primary" onclick="openAddCaseModalFromTimeEntry()">+ Add Case</button>
+                        <button class="btn btn-primary" onclick="openModal('addCaseModal')">+ Add Case</button>
                     </div>
                 </div>
                 <div class="form-group">
@@ -715,9 +718,7 @@
                     <small>Hold Ctrl/Cmd to select multiple – % split will be prompted on save</small>
                 </div>
                 <h3 style="margin: 1.5rem 0 1rem;">Services (One timer per service – only one running at a time)</h3>
-                <div id="servicesContainer">
-                    <!-- Dynamic services will be added here -->
-                </div>
+                <div id="servicesContainer"></div>
                 <button class="btn btn-primary" onclick="openServiceModal('add')">+ Add Service to This Session</button>
                 <h3 style="margin: 2rem 0 1rem;">Current Session Total</h3>
                 <table id="sessionTotalTable">
@@ -731,9 +732,7 @@
                             <th>Timer Status</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <!-- Dynamic rows -->
-                    </tbody>
+                    <tbody></tbody>
                 </table>
                 <div class="subtotal" id="sessionSubtotal">Subtotal: R0</div>
                 <div class="summary-line" id="trustAmount"><span>Trust Amount:</span> <strong>R0</strong></div>
@@ -750,11 +749,9 @@
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <!-- Dynamic disbursements -->
-                    </tbody>
+                    <tbody></tbody>
                 </table>
-                <button class="btn btn-primary" onclick="openAddDisbursementModal('timeEntry')">+ Add Disbursement</button>
+                <button class="btn btn-primary" onclick="openModal('addDisbursementModal')">+ Add Disbursement</button>
                 <div class="form-group" style="margin-top: 2rem;">
                     <label>Notes</label>
                     <textarea id="timeEntryNotes" rows="3" placeholder="Optional"></textarea>
@@ -767,6 +764,7 @@
             </div>
         </div>
     </div>
+
     <!-- Invoice Modal -->
     <div class="modal-overlay" id="invoiceModal">
         <div class="modal">
@@ -785,7 +783,7 @@
                         </select>
                     </div>
                     <div>
-                        <button class="btn btn-primary" onclick="openAddClientModalFromInvoice()">+ Add Client</button>
+                        <button class="btn btn-primary" onclick="openModal('addClientModal')">+ Add Client</button>
                     </div>
                 </div>
                 <div class="form-row">
@@ -793,12 +791,10 @@
                         <label>Case</label>
                         <select id="invoiceCase">
                             <option value="smith_v_raf" selected>Smith v RAF</option>
-                            <option value="dlamini_case">Dlamini Case</option>
-                            <option value="jones_v_roadcorp">Jones v RoadCorp</option>
                         </select>
                     </div>
                     <div>
-                        <button class="btn btn-primary" onclick="openAddCaseModalFromInvoice()">+ Add Case</button>
+                        <button class="btn btn-primary" onclick="openModal('addCaseModal')">+ Add Case</button>
                     </div>
                 </div>
                 <div class="form-row">
@@ -811,7 +807,7 @@
                         <input type="date" id="invoiceDue" value="2026-01-15">
                     </div>
                 </div>
-                <h3 style="margin: 2rem 0 1rem;">Unbilled Items (Auto-Pulled – All Unbilled for Client/Case)</h3>
+                <h3 style="margin: 2rem 0 1rem;">Unbilled Items (Auto-Pulled)</h3>
                 <table id="unbilledItemsTable">
                     <thead>
                         <tr>
@@ -824,13 +820,12 @@
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <!-- Dynamic unbilled items -->
-                    </tbody>
+                    <tbody></tbody>
                 </table>
                 <div style="margin: 1rem 0;">
                     <button class="btn btn-primary" onclick="openAddManualItemModal()">+ Add Manual Item</button>
-                    <button class="btn btn-primary" style="margin-left: 0.5rem;" onclick="openAddDisbursementModal('invoice')">+ Add Disbursement</button>
+                    <button class="btn btn-primary" style="margin-left: 0.5rem;" onclick="openModal('addDisbursementModal')">+ Add Disbursement</button>
+                    <button class="btn btn-primary" style="margin-left: 0.5rem;" onclick="openServiceModal('add')">+ Add Service</button>
                 </div>
                 <div style="text-align: right; margin-top: 2rem;">
                     <div class="summary-line" id="invoiceSubtotal"><span>Subtotal (excl. VAT):</span> <strong>R3,850</strong></div>
@@ -868,6 +863,7 @@ Phone: +27 11 123 4567</textarea>
             </div>
         </div>
     </div>
+
     <!-- Deposit Modal -->
     <div class="modal-overlay" id="depositModal">
         <div class="modal" style="max-width: 700px;">
@@ -886,26 +882,23 @@ Phone: +27 11 123 4567</textarea>
                         </select>
                     </div>
                     <div class="form-group">
-                        <button class="btn btn-primary" onclick="openAddClientModalFromDeposit()">+ Add Client</button>
+                        <button class="btn btn-primary" onclick="openModal('addClientModal')">+ Add Client</button>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
                         <label>Case (Optional)</label>
                         <select id="depositCase">
-                            <option value="smith_v_raf" selected>Smith v RAF</option>
                             <option value="general">General / No Specific Case</option>
-                            <option value="dlamini_case">Dlamini Case</option>
-                            <option value="jones_v_roadcorp">Jones v RoadCorp</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <button class="btn btn-primary" onclick="openAddCaseModalFromDeposit()">+ Add Case</button>
+                        <button class="btn btn-primary" onclick="openModal('addCaseModal')">+ Add Case</button>
                     </div>
                 </div>
                 <div class="form-group">
                     <label>Amount to Deposit</label>
-                    <input type="text" id="depositAmount" value="R5,000" placeholder="R0.00">
+                    <input type="text" id="depositAmount" placeholder="R0.00">
                 </div>
                 <div style="margin: 2rem 0;">
                     <strong>Payment Method</strong>
@@ -925,61 +918,68 @@ Phone: +27 11 123 4567</textarea>
             </div>
         </div>
     </div>
-    <!-- Service Modal (Add/Edit) -->
+
+    <!-- Service Modal (Add/Edit) - Enhanced with more practical fields -->
     <div class="modal-overlay" id="serviceModal">
         <div class="modal" style="max-width: 700px;">
             <div class="modal-header">
-                <span id="serviceModalTitle">+ ADD SERVICE FOR THIS SESSION</span>
+                <span id="serviceModalTitle">+ ADD SERVICE</span>
                 <span class="modal-close" onclick="closeModal('serviceModal')">×</span>
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <label>Service Name</label>
-                    <select id="serviceName">
-                        <option>Draft Letter</option>
-                        <option>Consultation</option>
-                        <option>Telephone Call</option>
-                        <option>Court Appearance</option>
-                        <option>Research</option>
-                    </select>
+                    <label>Service Name <span style="color:red">*</span></label>
+                    <input type="text" id="serviceName" placeholder="e.g., Consultation, Draft Pleading">
                 </div>
                 <div class="form-group">
-                    <label>Billing Type</label>
+                    <label>Description <span style="color:red">*</span></label>
+                    <textarea id="serviceDescription" rows="3" placeholder="Detailed description that will appear on invoice"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Billing Type <span style="color:red">*</span></label>
                     <select id="billingType">
                         <option>Hourly</option>
                         <option>Fixed</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>Hourly Rate / Fixed Amount</label>
-                    <input type="text" id="rateAmount" value="R2000">
+                    <label>Rate / Fixed Amount <span style="color:red">*</span></label>
+                    <input type="text" id="rateAmount" placeholder="R2000 or R5000">
                 </div>
                 <div class="form-group">
-                    <label>Description</label>
-                    <input type="text" id="serviceDescription" value="Auto-filled – fully editable">
+                    <label>Lawyer</label>
+                    <select id="serviceLawyer">
+                        <option>You</option>
+                        <option>Lawyer 2</option>
+                        <option>Lawyer 3</option>
+                    </select>
                 </div>
                 <div class="form-group">
-                    <label>Use Trust?</label>
+                    <label>Use Trust? <span style="color:red">*</span></label>
                     <select id="useTrust">
                         <option>No</option>
                         <option>Yes</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>Estimated Hours (optional)</label>
-                    <input type="number" step="0.1" id="estimatedHours" value="2.0">
+                    <label>Estimated / Manual Hours (for fixed or non-timed)</label>
+                    <input type="number" step="0.1" id="estimatedHours" value="1.0">
                 </div>
                 <div class="checkbox-group">
                     <input type="checkbox" id="savePreset">
-                    <label for="savePreset">Save as New Preset (updates global presets)</label>
+                    <label for="savePreset">Save as preset for future use</label>
                 </div>
             </div>
             <div class="modal-actions">
                 <button class="btn" onclick="closeModal('serviceModal')">Cancel</button>
-                <button class="btn btn-primary" onclick="saveService()">Save</button>
+                <button class="btn btn-primary" onclick="saveService()">Save Service</button>
             </div>
         </div>
     </div>
+
+    <!-- All other modals (Add Disbursement, Manual Item, Reports, Settings) -->
+    <!-- (Same as previous full version – included completely below) -->
+
     <!-- Add Disbursement Modal -->
     <div class="modal-overlay" id="addDisbursementModal">
         <div class="modal" style="max-width: 700px;">
@@ -1010,6 +1010,7 @@ Phone: +27 11 123 4567</textarea>
             </div>
         </div>
     </div>
+
     <!-- Add Manual Item Modal -->
     <div class="modal-overlay" id="addManualItemModal">
         <div class="modal" style="max-width: 700px;">
@@ -1056,6 +1057,7 @@ Phone: +27 11 123 4567</textarea>
             </div>
         </div>
     </div>
+
     <!-- Reports Modal -->
     <div class="modal-overlay" id="reportsModal">
         <div class="modal">
@@ -1075,9 +1077,7 @@ Phone: +27 11 123 4567</textarea>
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <!-- Dynamic reports -->
-                    </tbody>
+                    <tbody></tbody>
                 </table>
             </div>
             <div class="modal-actions">
@@ -1085,6 +1085,7 @@ Phone: +27 11 123 4567</textarea>
             </div>
         </div>
     </div>
+
     <!-- Settings Modal -->
     <div class="modal-overlay" id="settingsModal">
         <div class="modal" style="max-width: 700px;">
@@ -1118,9 +1119,9 @@ Branch: 012345</textarea>
             </div>
         </div>
     </div>
+
     <script src="invoice.js"></script>
     <script>
-        // Admin button opens external page
         document.getElementById('openAdminDashboard').onclick = function() {
             window.location.href = 'admin_dashboard.html';
         };
