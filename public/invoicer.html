@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LexPilot Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         * {
             margin: 0;
@@ -212,7 +214,6 @@
             background: #3498db;
             color: white;
         }
-
         /* Modal Styles */
         .modal-overlay {
             display: none;
@@ -389,7 +390,6 @@
             <input type="text" class="search-box" placeholder="Search Client/Case/Invoice">
         </div>
     </div>
-
     <div class="container">
         <div class="top-bar">
             <div class="top-bar-section">
@@ -401,7 +401,7 @@
                 </select>
                 <button class="btn btn-primary" id="openAddClientModal">+ Add Client</button>
             </div>
-            <div class="date-display">TODAY – December 29, 2025</div>
+            <div class="date-display">TODAY – January 01, 2026</div>
             <div class="top-bar-section">
                 <label>Cases:</label>
                 <select id="caseSelect" onchange="updateDashboard()">
@@ -412,7 +412,6 @@
                 <button class="btn btn-primary" id="openAddCaseModal">+ Add Case</button>
             </div>
         </div>
-
         <div class="metrics-grid">
             <div class="metric-card">
                 <div class="metric-label">Unbilled Time</div>
@@ -447,7 +446,6 @@
                 <div class="progress-text">75% of target</div>
             </div>
         </div>
-
         <div class="alert-section">
             <div class="section-title">
                 <span>⚠️ ATTENTION (Firm-wide alerts)</span>
@@ -470,16 +468,15 @@
                 </div>
             </div>
         </div>
-
         <div class="quick-actions-section">
             <div class="section-title">⚡ Quick Actions</div>
             <div class="quick-actions">
                 <button class="action-btn" id="openTimeEntryModal">+ Time Entry</button>
-                <button class="action-btn" id="openInvoiceModal">+ Invoice</button>
-                <button class="action-btn" id="openDepositModal">+ Deposit</button>
+                <button class="action-btn" id="openInvoiceModalBtn">+ Invoice</button>
+                <button class="action-btn" id="openDepositModalBtn">+ Deposit</button>
                 <button class="action-btn" id="openReportsModal">Reports ▼</button>
                 <button class="action-btn" id="openSettingsModal">Settings</button>
-                <button class="action-btn" id="openAdminDashboard">Admin Dashboard</button>
+                <button class="action-btn" onclick="window.location.href='admin_dashboard.html'">Admin Dashboard</button>
             </div>
         </div>
     </div>
@@ -537,10 +534,11 @@
                     <thead>
                         <tr>
                             <th>Service</th>
-                            <th>Hours</th>
+                            <th>Description</th>
+                            <th>Manual Hours</th>
                             <th>Rate</th>
                             <th>Amount</th>
-                            <th>Lawyer</th>
+                            <th>Use Trust?</th>
                             <th>Timer Status</th>
                         </tr>
                     </thead>
@@ -549,12 +547,12 @@
                     </tbody>
                 </table>
                 <div class="subtotal" id="sessionSubtotal">Subtotal: R0</div>
-                <h3 style="margin: 2rem 0 1rem;">Disbursements (Whole Session)</h3>
+                <h3 style="margin: 2rem 0 1rem;">Disbursements (Whole Session – Rands, no hours)</h3>
                 <table id="disbursementsTable">
                     <thead>
                         <tr>
                             <th>Description</th>
-                            <th>Amount</th>
+                            <th>Rand Amount</th>
                             <th>Use Trust?</th>
                             <th>Actions</th>
                         </tr>
@@ -601,7 +599,6 @@
                         <button class="btn btn-primary" onclick="openAddClientModalFromInvoice()">+ Add</button>
                     </div>
                 </div>
-
                 <div class="form-row">
                     <div>
                         <label>Case</label>
@@ -615,18 +612,16 @@
                         <button class="btn btn-primary" onclick="openAddCaseModalFromInvoice()">+ Add</button>
                     </div>
                 </div>
-
                 <div class="form-row">
                     <div>
                         <label>Date</label>
-                        <input type="date" id="invoiceDate" value="2025-12-29">
+                        <input type="date" id="invoiceDate" value="2026-01-01">
                     </div>
                     <div>
                         <label>Due</label>
-                        <input type="date" id="invoiceDue" value="2026-01-12">
+                        <input type="date" id="invoiceDue" value="2026-01-15">
                     </div>
                 </div>
-
                 <h3 style="margin: 2rem 0 1rem;">Unbilled Items (Auto-Pulled – All Unbilled for Client/Case)</h3>
                 <table id="unbilledItemsTable">
                     <thead>
@@ -644,25 +639,22 @@
                         <!-- Dynamic unbilled items -->
                     </tbody>
                 </table>
-
                 <div style="margin: 1rem 0;">
                     <button class="btn btn-primary" onclick="openAddManualItemModal()">+ Add Manual Item</button>
                     <button class="btn btn-primary" style="margin-left: 0.5rem;" onclick="openAddDisbursementModal('invoice')">+ Add Disbursement</button>
                 </div>
-
                 <div style="text-align: right; margin-top: 2rem;">
-                    <div class="summary-line" id="invoiceSubtotal"><span>Subtotal (excl. VAT):</span> <strong>R3,850</strong></div>
-                    <div class="summary-line" id="invoiceVat"><span>VAT @ 15%:</span> <strong>R577.50</strong></div>
-                    <div class="summary-line" id="invoiceTotalBeforeTrust"><span>Total Before Trust:</span> <strong>R4,427.50</strong></div>
-                    <div class="summary-line" id="invoiceTrustAvailable"><span>Trust Available:</span> <strong class="trust-warning">R1,200</strong></div>
-                    <div class="summary-line" id="invoiceTrustDeducted"><span>Trust Deducted:</span> <strong>-R1,200 (capped to available)</strong></div>
-                    <div class="total-due" id="invoiceTotalDue"><span>Total Due:</span> <strong>R3,227.50</strong></div>
+                    <div class="summary-line" id="invoiceSubtotal"><span>Subtotal (excl. VAT):</span> <strong>R0</strong></div>
+                    <div class="summary-line" id="invoiceVat"><span>VAT @ 15%:</span> <strong>R0</strong></div>
+                    <div class="summary-line" id="invoiceTotalBeforeTrust"><span>Total Before Trust:</span> <strong>R0</strong></div>
+                    <div class="summary-line" id="invoiceTrustAvailable"><span>Trust Available:</span> <strong>R18,500</strong></div>
+                    <div class="summary-line" id="invoiceTrustDeducted"><span>Trust Deducted:</span> <strong>R0 (capped to available)</strong></div>
+                    <div class="total-due" id="invoiceTotalDue"><span>Total Due:</span> <strong>R0</strong></div>
                 </div>
-
                 <h3 style="margin: 2rem 0 1rem;">Payment Options</h3>
                 <div class="checkbox-group">
                     <input type="checkbox" id="invoicePayfast">
-                    <label for="invoicePayfast">Generate Payfast Link for R3,227.50</label>
+                    <label for="invoicePayfast">Generate Payfast Link for total due amount</label>
                 </div>
                 <div class="checkbox-group">
                     <input type="checkbox" id="invoiceBankDetails">
@@ -679,7 +671,6 @@ Address: 123 Legal St, Johannesburg
 Phone: +27 11 123 4567</textarea>
                 </div>
             </div>
-
             <div class="modal-actions">
                 <button class="btn" onclick="closeModal('invoiceModal')">Cancel</button>
                 <button class="btn btn-primary" onclick="saveInvoiceDraft()">Save Draft</button>
@@ -706,7 +697,6 @@ Phone: +27 11 123 4567</textarea>
                     </select>
                     <button class="btn btn-primary" style="margin-top: 0.5rem; width: 100%;" onclick="openAddClientModalFromDeposit()">+ Add New Client</button>
                 </div>
-
                 <div class="form-group">
                     <label>Case (Optional)</label>
                     <select id="depositCase">
@@ -716,27 +706,22 @@ Phone: +27 11 123 4567</textarea>
                         <option value="jones_v_roadcorp">Jones v RoadCorp</option>
                     </select>
                 </div>
-
                 <div class="form-group">
                     <label>Amount to Deposit</label>
                     <input type="text" id="depositAmount" value="R5,000" placeholder="R0.00">
                 </div>
-
                 <div style="margin: 2rem 0;">
                     <strong>Payment Method</strong>
                 </div>
-
                 <div class="checkbox-group">
                     <input type="checkbox" id="depositPayfastLink">
                     <label for="depositPayfastLink">Generate Payfast Link</label>
                 </div>
-
                 <div class="checkbox-group">
                     <input type="checkbox" id="depositManual">
                     <label for="depositManual">Manual (Bank Details emailed)</label>
                 </div>
             </div>
-
             <div class="modal-actions">
                 <button class="btn" onclick="closeModal('depositModal')">Cancel</button>
                 <button class="btn btn-primary" onclick="recordDeposit()">Generate Link / Record Deposit</button>
@@ -845,19 +830,21 @@ Phone: +27 11 123 4567</textarea>
     <div class="modal-overlay" id="serviceModal">
         <div class="modal" style="max-width: 700px;">
             <div class="modal-header">
-                <span id="serviceModalTitle">+ EDIT SERVICE FOR THIS SESSION</span>
+                <span id="serviceModalTitle">+ ADD SERVICE TO THIS SESSION</span>
                 <span class="modal-close" onclick="closeModal('serviceModal')">×</span>
             </div>
             <div class="modal-body">
                 <div class="form-group">
                     <label>Service Name</label>
                     <select id="serviceName">
-                        <option>Draft Letter</option>
                         <option>Consultation</option>
+                        <option>Draft Letter</option>
                         <option>Telephone Call</option>
                         <option>Court Appearance</option>
                         <option>Research</option>
+                        <option value="custom">+ Add Custom Service Name</option>
                     </select>
+                    <input type="text" id="customServiceName" placeholder="Enter custom service name" style="display:none; margin-top:0.5rem;">
                 </div>
                 <div class="form-group">
                     <label>Billing Type</label>
@@ -892,7 +879,7 @@ Phone: +27 11 123 4567</textarea>
             </div>
             <div class="modal-actions">
                 <button class="btn" onclick="closeModal('serviceModal')">Cancel</button>
-                <button class="btn btn-primary" onclick="saveService()">Save</button>
+                <button class="btn btn-primary" onclick="saveService()">Save Service</button>
             </div>
         </div>
     </div>
@@ -910,8 +897,8 @@ Phone: +27 11 123 4567</textarea>
                     <input type="text" id="disbursementDesc" placeholder="Sheriff Service">
                 </div>
                 <div class="form-group">
-                    <label>Amount</label>
-                    <input type="text" id="disbursementAmount" placeholder="R850">
+                    <label>Rand Amount</label>
+                    <input type="number" id="disbursementAmount" placeholder="850" step="0.01">
                 </div>
                 <div class="form-group">
                     <label>Use Trust?</label>
@@ -1039,56 +1026,6 @@ Branch: 012345</textarea>
         </div>
     </div>
 
-    <!-- Admin Dashboard Modal -->
-    <div class="modal-overlay" id="adminDashboardModal">
-        <div class="modal">
-            <div class="modal-header">
-                <span>Admin Dashboard</span>
-                <span class="modal-close" onclick="closeModal('adminDashboardModal')">×</span>
-            </div>
-            <div class="modal-body">
-                <h3>Firm-wide Metrics</h3>
-                <div class="metric-card">
-                    <div class="metric-label">Total Clients</div>
-                    <div class="metric-value">3</div>
-                </div>
-                <div class="metric-card">
-                    <div class="metric-label">Total Cases</div>
-                    <div class="metric-value">3</div>
-                </div>
-                <div class="metric-card">
-                    <div class="metric-label">Total Trust Balance</div>
-                    <div class="metric-value">R310,450</div>
-                </div>
-                <h3>Lawyer Performance</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Lawyer</th>
-                            <th>Billable Hours</th>
-                            <th>Revenue Generated</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>You</td>
-                            <td>150</td>
-                            <td>R300,000</td>
-                        </tr>
-                        <tr>
-                            <td>Lawyer 2</td>
-                            <td>120</td>
-                            <td>R240,000</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="modal-actions">
-                <button class="btn" onclick="closeModal('adminDashboardModal')">Close</button>
-            </div>
-        </div>
-    </div>
-
     <script>
         // Local state
         let state = {
@@ -1103,16 +1040,12 @@ Branch: 012345</textarea>
                 jones_v_roadcorp: {client: 'mike_jones', name: 'Jones v RoadCorp', number: 'CASE003', court: 'High Court', type: 'Commercial', status: 'Active', opposing: 'RoadCorp', description: 'Contract dispute'}
             },
             unbilled: {
-                smith_v_raf: [
-                    {item: 'Consultation', hours: 0.5, rate: 2000, amount: 1000, trust: true, lawyer: 'You'},
-                    {item: 'Draft Letter', hours: 1.0, rate: 2000, amount: 2000, trust: false, lawyer: 'You'},
-                    {item: 'Sheriff Service', hours: 0, rate: 0, amount: 850, trust: true, lawyer: '-'}
-                ],
+                smith_v_raf: [],
                 dlamini_case: [],
                 jones_v_roadcorp: []
             },
             trustBalances: {
-                john_smith: 1200,
+                john_smith: 18500,
                 jane_dlamini: 18500,
                 mike_jones: 310450
             },
@@ -1137,13 +1070,10 @@ Branch: 012345</textarea>
         };
 
         function updateDashboard() {
-            const client = document.getElementById('clientSelect').value;
-            const caseId = document.getElementById('caseSelect').value;
             document.getElementById('unbilledTime').innerText = `R ${state.unbilledTime.toLocaleString()}`;
             document.getElementById('outstandingInvoices').innerText = `R ${state.outstandingInvoices.toLocaleString()}`;
             document.getElementById('trustAvailable').innerText = `R ${state.totalTrust.toLocaleString()}`;
             document.getElementById('billableHours').innerText = `${state.billableHours} / 200`;
-            // Update alerts if needed
         }
 
         function openModal(modalId) {
@@ -1153,6 +1083,20 @@ Branch: 012345</textarea>
         function closeModal(modalId) {
             document.getElementById(modalId).style.display = 'none';
         }
+
+        // Fixed invoice open
+        document.getElementById('openInvoiceModalBtn').onclick = function() {
+            const client = document.getElementById('clientSelect').value;
+            const caseId = document.getElementById('caseSelect').value;
+            openInvoiceModal(client, caseId);
+        };
+
+        // Fixed deposit open
+        document.getElementById('openDepositModalBtn').onclick = function() {
+            const client = document.getElementById('clientSelect').value;
+            const caseId = document.getElementById('caseSelect').value;
+            openDepositModal(client, caseId);
+        };
 
         function openTimeEntryModal() {
             const client = document.getElementById('clientSelect').value;
@@ -1183,9 +1127,8 @@ Branch: 012345</textarea>
         function loadServices() {
             const container = document.getElementById('servicesContainer');
             container.innerHTML = '';
-            state.services = []; // Reset for new session
+            state.services = [];
             state.timers = [];
-            // Add sample or load from local
             addServiceToDOM({name: 'Consultation', type: 'Hourly', rate: 'R2000', desc: 'Consultation with client', trust: 'No', estHours: 0.5, hours: 0.5, amount: 'R1,000', status: 'Paused', timer: 740});
             addServiceToDOM({name: 'Draft Letter', type: 'Hourly', rate: 'R2000', desc: 'Draft demand letter', trust: 'No', estHours: 1.0, hours: 1.0, amount: 'R2,000', status: 'Running', timer: 0});
             updateSessionTotal();
@@ -1195,8 +1138,10 @@ Branch: 012345</textarea>
             const container = document.getElementById('servicesContainer');
             const div = document.createElement('div');
             div.className = 'service-item';
+            div.dataset.index = index;
+
             div.innerHTML = `
-                <span class="service-delete" onclick="deleteService(${index})">×</span>
+                <span class="service-delete" onclick="deleteService(${index})" title="Delete this entire service">×</span>
                 <div class="form-row">
                     <div>
                         <label>Service</label>
@@ -1208,7 +1153,7 @@ Branch: 012345</textarea>
                     </div>
                     <div>
                         <label>Manual Hours</label>
-                        <input type="number" step="0.1" value="${service.hours}" class="service-hours" onchange="updateServiceAmount(${index})">
+                        <input type="number" step="0.1" value="${service.hours || 0}" class="service-hours" onchange="updateServiceAmount(${index})">
                     </div>
                     <div>
                         <label>Rate</label>
@@ -1216,7 +1161,7 @@ Branch: 012345</textarea>
                     </div>
                     <div>
                         <label>Amount</label>
-                        <input type="text" value="${service.amount}" readonly class="service-amount">
+                        <input type="text" value="${service.amount || 'R0'}" readonly class="service-amount">
                     </div>
                     <div>
                         <label>Use Trust?</label>
@@ -1233,27 +1178,29 @@ Branch: 012345</textarea>
                 </div>
             `;
             container.appendChild(div);
-            state.services.push(service);
-            state.timers.push({interval: null, seconds: service.timer || 0, status: service.status || 'Stopped'});
+            if (index === state.services.length) {
+                state.services.push(service);
+                state.timers.push({interval: null, seconds: service.timer || 0, status: 'Stopped'});
+            }
             updateTimerDisplay(index);
+            updateSessionTotal();
         }
 
         function deleteService(index) {
+            if (!confirm("Delete this entire service from the session? This cannot be undone.")) return;
             state.services.splice(index, 1);
             state.timers.splice(index, 1);
-            loadServices(); // Reload to update indices
+            loadServices(); // Rebuild with correct indices
         }
 
         function updateServiceAmount(index) {
-            const item = document.getElementsByClassName('service-item')[index];
-            const hours = parseFloat(item.querySelector('.service-hours').value) || 0;
-            const rateStr = item.querySelector('.service-rate').value.replace('R', '').trim();
-            const rate = parseFloat(rateStr) || 0;
+            const service = state.services[index];
+            const hours = parseFloat(service.hours || 0);
+            const rate = parseFloat(service.rate.replace('R', '').trim()) || 0;
             const amount = hours * rate;
-            item.querySelector('.service-amount').value = amount > 0 ? 'R' + amount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",") : '';
-            state.services[index].hours = hours;
-            state.services[index].rate = `R${rate}`;
-            state.services[index].amount = `R${amount.toFixed(2)}`;
+            service.amount = 'R' + amount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            const row = document.querySelectorAll('#sessionTotalTable tbody tr')[index];
+            if (row) row.cells[4].textContent = service.amount;
             updateSessionTotal();
         }
 
@@ -1265,21 +1212,22 @@ Branch: 012345</textarea>
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
                     <td>${s.name}</td>
+                    <td>${s.desc}</td>
                     <td>${s.hours}</td>
                     <td>${s.rate}</td>
                     <td>${s.amount}</td>
-                    <td>You</td>
+                    <td>${s.trust}</td>
                     <td>${state.timers[i].status}</td>
                 `;
                 tbody.appendChild(tr);
                 total += parseFloat(s.amount.replace('R', '')) || 0;
             });
-            document.getElementById('sessionSubtotal').innerText = `Subtotal: R${total.toLocaleString()}`;
+            document.getElementById('sessionSubtotal').innerText = `Subtotal: R${total.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
         }
 
-        // Timer functions
         function updateTimerDisplay(index) {
             const item = document.getElementsByClassName('service-item')[index];
+            if (!item) return;
             const seconds = state.timers[index].seconds;
             const hrs = Math.floor(seconds / 3600);
             const mins = Math.floor((seconds % 3600) / 60);
@@ -1289,37 +1237,30 @@ Branch: 012345</textarea>
         }
 
         function startTimer(index) {
-            // Pause all others
             state.timers.forEach((t, i) => {
-                if (i !== index && t.interval) {
-                    pauseTimer(i);
-                }
+                if (i !== index && t.interval) pauseTimer(i);
             });
             if (!state.timers[index].interval) {
                 state.timers[index].interval = setInterval(() => {
                     state.timers[index].seconds++;
+                    state.services[index].hours = (state.timers[index].seconds / 3600).toFixed(2);
                     updateTimerDisplay(index);
-                    // Update hours from timer
-                    state.services[index].hours = (state.timers[index].seconds / 3600).toFixed(1);
                     updateServiceAmount(index);
                 }, 1000);
                 state.timers[index].status = 'Running';
             }
-            updateSessionTotal();
         }
 
         function pauseTimer(index) {
             clearInterval(state.timers[index].interval);
             state.timers[index].interval = null;
             state.timers[index].status = 'Paused';
-            updateSessionTotal();
         }
 
         function stopTimer(index) {
             clearInterval(state.timers[index].interval);
             state.timers[index].interval = null;
             state.timers[index].status = 'Stopped';
-            // Add to unbilled
             const caseId = document.getElementById('timeEntryCase').value;
             const service = state.services[index];
             state.unbilled[caseId].push({
@@ -1332,7 +1273,6 @@ Branch: 012345</textarea>
             });
             state.unbilledTime += parseFloat(service.amount.replace('R', ''));
             updateDashboard();
-            updateSessionTotal();
         }
 
         function resetTimer(index) {
@@ -1340,14 +1280,14 @@ Branch: 012345</textarea>
             state.timers[index].interval = null;
             state.timers[index].seconds = 0;
             state.timers[index].status = 'Stopped';
-            updateTimerDisplay(index);
             state.services[index].hours = 0;
+            updateTimerDisplay(index);
             updateServiceAmount(index);
         }
 
         function openServiceModal(mode, index = -1) {
             state.currentServiceIndex = index;
-            document.getElementById('serviceModalTitle').innerText = mode === 'add' ? '+ ADD SERVICE FOR THIS SESSION' : '+ EDIT SERVICE FOR THIS SESSION';
+            document.getElementById('serviceModalTitle').innerText = mode === 'add' ? '+ ADD SERVICE TO THIS SESSION' : '+ EDIT SERVICE FOR THIS SESSION';
             if (mode === 'edit' && index !== -1) {
                 const s = state.services[index];
                 document.getElementById('serviceName').value = s.name;
@@ -1357,7 +1297,6 @@ Branch: 012345</textarea>
                 document.getElementById('useTrust').value = s.trust;
                 document.getElementById('estimatedHours').value = s.estHours;
             } else {
-                // Reset fields for add
                 document.getElementById('serviceName').value = 'Draft Letter';
                 document.getElementById('billingType').value = 'Hourly';
                 document.getElementById('rateAmount').value = 'R2000';
@@ -1365,13 +1304,19 @@ Branch: 012345</textarea>
                 document.getElementById('useTrust').value = 'No';
                 document.getElementById('estimatedHours').value = '2.0';
             }
+            document.getElementById('customServiceName').style.display = document.getElementById('serviceName').value === 'custom' ? 'block' : 'none';
             openModal('serviceModal');
         }
 
+        document.getElementById('serviceName').addEventListener('change', function() {
+            document.getElementById('customServiceName').style.display = this.value === 'custom' ? 'block' : 'none';
+        });
+
         function saveService() {
             const index = state.currentServiceIndex;
+            const name = document.getElementById('serviceName').value === 'custom' ? document.getElementById('customServiceName').value : document.getElementById('serviceName').value;
             const service = {
-                name: document.getElementById('serviceName').value,
+                name: name,
                 type: document.getElementById('billingType').value,
                 rate: document.getElementById('rateAmount').value,
                 desc: document.getElementById('serviceDescription').value,
@@ -1389,15 +1334,13 @@ Branch: 012345</textarea>
                 addServiceToDOM(service);
             } else {
                 state.services[index] = service;
-                loadServices(); // Reload to update UI
+                loadServices();
             }
             closeModal('serviceModal');
         }
 
         function saveTimeEntry() {
-            const client = document.getElementById('timeEntryClient').value;
             const caseId = document.getElementById('timeEntryCase').value;
-            state.unbilled[caseId] = state.unbilled[caseId] || [];
             state.services.forEach(s => {
                 state.unbilled[caseId].push({
                     item: s.name,
@@ -1407,23 +1350,20 @@ Branch: 012345</textarea>
                     trust: s.trust === 'Yes',
                     lawyer: 'You'
                 });
-                state.unbilledTime += parseFloat(s.amount.replace('R', ''));
             });
-            // Add disbursements
             state.disbursements.forEach(d => {
                 state.unbilled[caseId].push({
                     item: d.desc,
                     hours: 0,
                     rate: 0,
-                    amount: parseFloat(d.amount.replace('R', '')),
+                    amount: parseFloat(d.amount),
                     trust: d.trust === 'Yes',
                     lawyer: '-'
                 });
-                state.unbilledTime += parseFloat(d.amount.replace('R', ''));
             });
             updateDashboard();
             closeModal('timeEntryModal');
-            alert('Time entries saved for ' + state.cases[caseId].name);
+            alert('Saved');
         }
 
         function saveAndCreateInvoice() {
@@ -1431,8 +1371,8 @@ Branch: 012345</textarea>
             openInvoiceModal(document.getElementById('timeEntryClient').value, document.getElementById('timeEntryCase').value);
         }
 
-        function openInvoiceModal(client, caseId, viewMode = false) {
-            document.getElementById('invoiceTitle').innerText = (viewMode ? 'VIEW ' : '') + 'INVOICE – ' + state.clients[client].name + ' – ' + state.cases[caseId].name;
+        function openInvoiceModal(client, caseId) {
+            document.getElementById('invoiceTitle').innerText = 'INVOICE – ' + state.clients[client].name + ' – ' + state.cases[caseId].name;
             document.getElementById('invoiceClient').value = client;
             document.getElementById('invoiceCase').value = caseId;
             loadUnbilledItems(caseId);
@@ -1443,6 +1383,7 @@ Branch: 012345</textarea>
             const tbody = document.getElementById('unbilledItemsTable').querySelector('tbody');
             tbody.innerHTML = '';
             let subtotal = 0;
+            let trustEligible = 0;
             (state.unbilled[caseId] || []).forEach((item, i) => {
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
@@ -1456,45 +1397,40 @@ Branch: 012345</textarea>
                 `;
                 tbody.appendChild(tr);
                 subtotal += item.amount;
+                if (item.trust) trustEligible += item.amount;
             });
-            updateInvoiceTotals(subtotal, state.trustBalances[state.cases[caseId].client]);
+            updateInvoiceTotals(subtotal, trustEligible, state.trustBalances[document.getElementById('invoiceClient').value]);
+        }
+
+        function updateInvoiceTotals(subtotal, trustEligible, trustAvailable) {
+            const vat = subtotal * 0.15;
+            const totalBeforeTrust = subtotal + vat;
+            const trustDeducted = Math.min(trustEligible, trustAvailable);
+            const totalDue = totalBeforeTrust - trustDeducted;
+            document.getElementById('invoiceSubtotal').innerHTML = `<span>Subtotal (excl. VAT):</span> <strong>R${subtotal.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</strong>`;
+            document.getElementById('invoiceVat').innerHTML = `<span>VAT @ 15%:</span> <strong>R${vat.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</strong>`;
+            document.getElementById('invoiceTotalBeforeTrust').innerHTML = `<span>Total Before Trust:</span> <strong>R${totalBeforeTrust.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</strong>`;
+            document.getElementById('invoiceTrustAvailable').innerHTML = `<span>Trust Available:</span> <strong>R${trustAvailable.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</strong>`;
+            document.getElementById('invoiceTrustDeducted').innerHTML = `<span>Trust Deducted:</span> <strong>-R${trustDeducted.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")} (capped)</strong>`;
+            document.getElementById('invoiceTotalDue').innerHTML = `<span>Total Due:</span> <strong>R${totalDue.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</strong>`;
         }
 
         function deleteUnbilledItem(caseId, index) {
-            const amount = state.unbilled[caseId][index].amount;
             state.unbilled[caseId].splice(index, 1);
-            state.unbilledTime -= amount;
-            updateDashboard();
             loadUnbilledItems(caseId);
         }
 
-        function updateInvoiceTotals(subtotal, trustAvailable) {
-            const vat = subtotal * 0.15;
-            const totalBeforeTrust = subtotal + vat;
-            const trustDeducted = Math.min(trustAvailable, totalBeforeTrust); // Simplified
-            const totalDue = totalBeforeTrust - trustDeducted;
-            document.getElementById('invoiceSubtotal').innerHTML = `<span>Subtotal (excl. VAT):</span> <strong>R${subtotal.toLocaleString()}</strong>`;
-            document.getElementById('invoiceVat').innerHTML = `<span>VAT @ 15%:</span> <strong>R${vat.toLocaleString()}</strong>`;
-            document.getElementById('invoiceTotalBeforeTrust').innerHTML = `<span>Total Before Trust:</span> <strong>R${totalBeforeTrust.toLocaleString()}</strong>`;
-            document.getElementById('invoiceTrustAvailable').innerHTML = `<span>Trust Available:</span> <strong class="trust-warning">R${trustAvailable.toLocaleString()}</strong>`;
-            document.getElementById('invoiceTrustDeducted').innerHTML = `<span>Trust Deducted:</span> <strong>-R${trustDeducted.toLocaleString()} (capped to available)</strong>`;
-            document.getElementById('invoiceTotalDue').innerHTML = `<span>Total Due:</span> <strong>R${totalDue.toLocaleString()}</strong>`;
-        }
-
         function saveInvoiceDraft() {
-            alert('Invoice draft saved for ' + document.getElementById('invoiceCase').value);
+            alert('Invoice saved as draft');
             closeModal('invoiceModal');
         }
 
         function previewInvoicePDF() {
-            alert('Previewing PDF for invoice');
+            alert('Preview PDF');
         }
 
         function sendInvoice() {
-            const caseId = document.getElementById('invoiceCase').value;
-            state.outstandingInvoices += parseFloat(document.getElementById('invoiceTotalDue').querySelector('strong').innerText.replace('R', ''));
-            updateDashboard();
-            alert('Invoice sent for ' + caseId);
+            alert('Invoice sent');
             closeModal('invoiceModal');
         }
 
@@ -1512,41 +1448,18 @@ Branch: 012345</textarea>
             state.totalTrust += amount;
             updateDashboard();
             closeModal('depositModal');
-            alert('Deposit recorded for ' + client + ': R' + amount);
-            if (state.trustBalances[client] >= 5000) {
-                document.getElementById('trustLowAlert').style.display = 'none';
-            }
+            alert('Deposit recorded');
         }
 
         function openAddClientModal() {
             openModal('addClientModal');
         }
 
-        function openAddClientModalFromTimeEntry() {
-            openModal('addClientModal');
-            // After save, refresh selects
-        }
-
-        function openAddClientModalFromInvoice() {
-            openModal('addClientModal');
-        }
-
-        function openAddClientModalFromDeposit() {
-            openModal('addClientModal');
-        }
-
         function saveNewClient() {
             const name = document.getElementById('newClientName').value;
             if (!name) return alert('Name required');
-            const id = name.toLowerCase().replace(' ', '_');
-            state.clients[id] = {
-                name,
-                email: document.getElementById('newClientEmail').value,
-                phone: document.getElementById('newClientPhone').value,
-                address: document.getElementById('newClientAddress').value,
-                id: document.getElementById('newClientID').value
-            };
-            // Add to selects
+            const id = name.toLowerCase().replace(/ /g, '_');
+            state.clients[id] = {name};
             const option = document.createElement('option');
             option.value = id;
             option.text = name;
@@ -1556,36 +1469,18 @@ Branch: 012345</textarea>
             document.getElementById('depositClient').add(option.cloneNode(true));
             document.getElementById('newCaseClient').add(option.cloneNode(true));
             closeModal('addClientModal');
-            alert('Client added: ' + name);
         }
 
         function openAddCaseModal() {
             openModal('addCaseModal');
         }
 
-        function openAddCaseModalFromTimeEntry() {
-            openModal('addCaseModal');
-        }
-
-        function openAddCaseModalFromInvoice() {
-            openModal('addCaseModal');
-        }
-
         function saveNewCase() {
             const name = document.getElementById('newCaseName').value;
             if (!name) return alert('Name required');
-            const id = name.toLowerCase().replace(' ', '_');
-            state.cases[id] = {
-                client: document.getElementById('newCaseClient').value,
-                name,
-                number: document.getElementById('newCaseNumber').value,
-                court: document.getElementById('newCaseCourt').value,
-                type: document.getElementById('newCaseType').value,
-                status: document.getElementById('newCaseStatus').value,
-                opposing: document.getElementById('newCaseOpposing').value,
-                description: document.getElementById('newCaseDescription').value
-            };
-            // Add to selects
+            const id = name.toLowerCase().replace(/ /g, '_');
+            const client = document.getElementById('newCaseClient').value;
+            state.cases[id] = {client, name};
             const option = document.createElement('option');
             option.value = id;
             option.text = name;
@@ -1594,47 +1489,27 @@ Branch: 012345</textarea>
             document.getElementById('invoiceCase').add(option.cloneNode(true));
             document.getElementById('depositCase').add(option.cloneNode(true));
             closeModal('addCaseModal');
-            alert('Case added: ' + name);
         }
 
-        function openAddDisbursementModal(context = 'timeEntry') {
-            state.currentDisbursementContext = context;
+        function openAddDisbursementModal() {
             openModal('addDisbursementModal');
         }
 
         function saveDisbursement() {
             const desc = document.getElementById('disbursementDesc').value;
-            const amount = document.getElementById('disbursementAmount').value;
-            const trust = document.getElementById('disbursementTrust').value;
-            state.disbursements.push({desc, amount, trust});
-            // Add to table
-            const tbody = document.getElementById(state.currentDisbursementContext === 'timeEntry' ? 'disbursementsTable' : 'unbilledItemsTable').querySelector('tbody');
-            const tr = document.createElement('tr');
-            tr.innerHTML = `
-                <td>${desc}</td>
-                <td>${amount}</td>
-                <td>${trust}</td>
-                <td><button class="btn-small btn-danger" onclick="deleteDisbursement(${state.disbursements.length - 1})">Delete</button></td>
-            `;
-            tbody.appendChild(tr);
-            closeModal('addDisbursementModal');
-        }
-
-        function deleteDisbursement(index) {
-            state.disbursements.splice(index, 1);
-            // Reload table
-            const tbody = document.getElementById(state.currentDisbursementContext === 'timeEntry' ? 'disbursementsTable' : 'unbilledItemsTable').querySelector('tbody');
-            tbody.innerHTML = '';
-            state.disbursements.forEach((d, i) => {
-                const tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td>${d.desc}</td>
-                    <td>${d.amount}</td>
-                    <td>${d.trust}</td>
-                    <td><button class="btn-small btn-danger" onclick="deleteDisbursement(${i})">Delete</button></td>
-                `;
-                tbody.appendChild(tr);
+            const amount = parseFloat(document.getElementById('disbursementAmount').value) || 0;
+            const trust = document.getElementById('disbursementTrust').value === 'Yes';
+            const caseId = document.getElementById('timeEntryCase')?.value || document.getElementById('invoiceCase')?.value;
+            state.unbilled[caseId].push({
+                item: desc,
+                hours: 0,
+                rate: 0,
+                amount: amount,
+                trust: trust,
+                lawyer: '-'
             });
+            loadUnbilledItems(caseId);
+            closeModal('addDisbursementModal');
         }
 
         function openAddManualItemModal() {
@@ -1642,46 +1517,24 @@ Branch: 012345</textarea>
         }
 
         function saveManualItem() {
-            const item = {
+            const hours = parseFloat(document.getElementById('manualItemHours').value) || 0;
+            const rate = parseFloat(document.getElementById('manualItemRate').value.replace('R', '')) || 0;
+            const amount = hours * rate;
+            document.getElementById('manualItemAmount').value = 'R' + amount.toFixed(2);
+            const caseId = document.getElementById('invoiceCase').value;
+            state.unbilled[caseId].push({
                 item: document.getElementById('manualItemName').value,
-                hours: parseFloat(document.getElementById('manualItemHours').value) || 0,
-                rate: parseFloat(document.getElementById('manualItemRate').value.replace('R', '')) || 0,
-                amount: parseFloat(document.getElementById('manualItemAmount').value.replace('R', '')) || 0,
+                hours: hours,
+                rate: rate,
+                amount: amount,
                 trust: document.getElementById('manualItemTrust').value === 'Yes',
                 lawyer: document.getElementById('manualItemLawyer').value
-            };
-            const caseId = document.getElementById('invoiceCase').value;
-            state.unbilled[caseId].push(item);
+            });
             loadUnbilledItems(caseId);
             closeModal('addManualItemModal');
         }
 
-        // Manual item amount calc
-        document.getElementById('addManualItemModal').addEventListener('input', (e) => {
-            if (e.target.id === 'manualItemHours' || e.target.id === 'manualItemRate') {
-                const hours = parseFloat(document.getElementById('manualItemHours').value) || 0;
-                const rate = parseFloat(document.getElementById('manualItemRate').value.replace('R', '')) || 0;
-                const amount = hours * rate;
-                document.getElementById('manualItemAmount').value = 'R' + amount.toLocaleString();
-            }
-        });
-
         function openReportsModal() {
-            const client = document.getElementById('clientSelect').value;
-            const caseId = document.getElementById('caseSelect').value;
-            const tbody = document.getElementById('reportsTable').querySelector('tbody');
-            tbody.innerHTML = '';
-            (state.invoices[caseId] || []).forEach(inv => {
-                const tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td>${inv.id}</td>
-                    <td>${inv.date}</td>
-                    <td>R${inv.amount}</td>
-                    <td>${inv.status}</td>
-                    <td><button class="btn-small btn-info" onclick="openInvoiceModal('${state.cases[caseId].client}', '${caseId}', true)">View</button></td>
-                `;
-                tbody.appendChild(tr);
-            });
             openModal('reportsModal');
         }
 
@@ -1689,19 +1542,12 @@ Branch: 012345</textarea>
             openModal('settingsModal');
         }
 
-        function openAdminDashboard() {
-            openModal('adminDashboardModal');
-        }
-
-        // Initialize
+        // Initialize buttons
         document.getElementById('openTimeEntryModal').onclick = openTimeEntryModal;
-        document.getElementById('openInvoiceModal').onclick = () => openInvoiceModal(document.getElementById('clientSelect').value, document.getElementById('caseSelect').value);
-        document.getElementById('openDepositModal').onclick = () => openDepositModal(document.getElementById('clientSelect').value, document.getElementById('caseSelect').value);
         document.getElementById('openAddClientModal').onclick = openAddClientModal;
         document.getElementById('openAddCaseModal').onclick = openAddCaseModal;
         document.getElementById('openReportsModal').onclick = openReportsModal;
         document.getElementById('openSettingsModal').onclick = openSettingsModal;
-        document.getElementById('openAdminDashboard').onclick = openAdminDashboard;
 
         updateDashboard();
     </script>
