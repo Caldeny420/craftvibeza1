@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LexPilot Dashboard</title>
+    <title>LexPilot Dashboard – Complete Invoicer (January 01, 2026)</title>
     <style>
         * {
             margin: 0;
@@ -24,6 +24,9 @@
             justify-content: space-between;
             align-items: center;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 900;
         }
         .header h1 {
             font-size: 1.5rem;
@@ -81,6 +84,8 @@
             justify-content: space-between;
             align-items: center;
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            flex-wrap: wrap;
+            gap: 1rem;
         }
         .top-bar-section {
             display: flex;
@@ -165,6 +170,9 @@
             font-size: 1.1rem;
             font-weight: 600;
             margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         .alert-item {
             padding: 0.8rem;
@@ -192,21 +200,20 @@
         .btn-info { background: #3498db; color: white; }
         .btn-warning { background: #f39c12; color: white; }
         .quick-actions {
-            display: flex;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 1rem;
-            flex-wrap: wrap;
         }
         .action-btn {
-            flex: 1;
-            min-width: 150px;
-            padding: 1rem;
+            padding: 1.2rem;
             background: white;
             border: 2px solid #3498db;
             color: #3498db;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
             font-weight: 600;
             transition: all 0.2s;
+            text-align: center;
         }
         .action-btn:hover {
             background: #3498db;
@@ -220,21 +227,23 @@
             width: 100%;
             height: 100%;
             background: rgba(0,0,0,0.5);
-            align-items: center;
-            justify-content: center;
             z-index: 1000;
+            justify-content: center;
+            align-items: center;
             overflow-y: auto;
+            padding: 1rem;
+        }
+        .modal-overlay.active {
+            display: flex;
         }
         .modal {
             background: white;
-            width: 90%;
+            width: 100%;
             max-width: 1000px;
             max-height: 95vh;
             overflow-y: auto;
             border-radius: 8px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-            position: relative;
-            z-index: 1001;
         }
         .modal-header {
             padding: 1.5rem;
@@ -258,13 +267,10 @@
             margin-bottom: 1.5rem;
         }
         .form-row {
-            display: flex;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 1rem;
-            align-items: end;
             margin-bottom: 1rem;
-        }
-        .form-row > div {
-            flex: 1;
         }
         label {
             display: block;
@@ -316,10 +322,19 @@
             color: #e74c3c;
             font-weight: bold;
         }
+        .trust-shortfall-banner {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-weight: bold;
+            border-left: 5px solid #e74c3c;
+        }
         .modal-actions {
             padding: 1.5rem;
             border-top: 1px solid #eee;
-            text-align: right;
             display: flex;
             justify-content: flex-end;
             gap: 1rem;
@@ -351,16 +366,6 @@
             color: #e74c3c;
             font-size: 1.2rem;
         }
-        .timer-controls-small button {
-            padding: 0.4rem 0.8rem;
-            margin-right: 0.3rem;
-        }
-        .subtotal {
-            font-size: 1.2rem;
-            font-weight: 700;
-            text-align: right;
-            margin: 1rem 0;
-        }
         .service-edit {
             padding: 0.4rem 0.8rem;
             background: #f39c12;
@@ -377,6 +382,30 @@
             background: #f8f9fa;
             border-radius: 4px;
             margin-top: 0.5rem;
+        }
+        .payfast-link-box {
+            background: #e8f5e9;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-top: 1rem;
+            word-break: break-all;
+        }
+        .copy-btn {
+            background: #28a745;
+            color: white;
+            margin-top: 0.5rem;
+        }
+        @media (max-width: 768px) {
+            .top-bar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            .quick-actions {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -397,6 +426,7 @@
             <input type="text" class="search-box" placeholder="Search Client/Case/Invoice">
         </div>
     </div>
+
     <div class="container">
         <div class="top-bar">
             <div class="top-bar-section">
@@ -419,6 +449,7 @@
                 <button class="btn btn-primary" onclick="openModal('addCaseModal')">+ Add Case</button>
             </div>
         </div>
+
         <div class="metrics-grid">
             <div class="metric-card">
                 <div class="metric-label">Unbilled Time</div>
@@ -453,6 +484,7 @@
                 <div class="progress-text">75% of target</div>
             </div>
         </div>
+
         <div class="alert-section">
             <div class="section-title">
                 <span>⚠️ ATTENTION (Firm-wide alerts)</span>
@@ -463,27 +495,28 @@
             </div>
             <div class="alert-item danger" id="trustLowAlert">
                 <span>Trust Low: Smith v RAF (R5,000 shortfall)</span>
-                <div class="alert-actions">
-                    <button class="btn-small btn-primary" onclick="openDepositModal('john_smith', 'smith_v_raf')">Deposit</button>
+                <div>
+                    <button class="btn-small btn-primary" onclick="openModal('depositModal')">Deposit</button>
                 </div>
             </div>
             <div class="alert-item warning" id="invoiceOverdueAlert">
                 <span>Invoice Overdue: Dlamini (7 days late)</span>
-                <div class="alert-actions">
-                    <button class="btn-small btn-info" onclick="openInvoiceModal('jane_dlamini', 'dlamini_case', true)">View Invoice</button>
+                <div>
+                    <button class="btn-small btn-info" onclick="openModal('invoiceModal')">View Invoice</button>
                     <button class="btn-small btn-warning">Remind</button>
                 </div>
             </div>
         </div>
+
         <div class="quick-actions-section">
             <div class="section-title">⚡ Quick Actions</div>
             <div class="quick-actions">
-                <button class="action-btn" id="openTimeEntryModal" onclick="openTimeEntryModal()">+ Time Entry</button>
-                <button class="action-btn" id="openInvoiceModalBtn" onclick="openInvoiceModal(document.getElementById('clientSelect').value, document.getElementById('caseSelect').value)">+ Invoice</button>
-                <button class="action-btn" id="openDepositModalBtn" onclick="openDepositModal()">+ Deposit</button>
-                <button class="action-btn" id="openReportsModal" onclick="openReportsModal()">Reports ▼</button>
-                <button class="action-btn" id="openSettingsModal" onclick="openModal('settingsModal')">Settings</button>
-                <button class="action-btn" id="openAdminDashboard">Admin Dashboard</button>
+                <button class="action-btn" onclick="openModal('timeEntryModal')">+ Time Entry</button>
+                <button class="action-btn" onclick="openModal('invoiceModal')">+ Invoice</button>
+                <button class="action-btn" onclick="openModal('depositModal')">+ Deposit</button>
+                <button class="action-btn" onclick="openModal('reportsModal')">Reports</button>
+                <button class="action-btn" onclick="openModal('settingsModal')">Settings</button>
+                <button class="action-btn" onclick="navigateToAdmin()">Admin Dashboard</button>
             </div>
         </div>
     </div>
@@ -552,7 +585,7 @@
         </div>
     </div>
 
-    <!-- Add Case / Matter Modal -->
+    <!-- Add Case Modal -->
     <div class="modal-overlay" id="addCaseModal">
         <div class="modal" style="max-width: 700px;">
             <div class="modal-header">
@@ -684,6 +717,9 @@
                 <span class="modal-close" onclick="closeModal('timeEntryModal')">×</span>
             </div>
             <div class="modal-body">
+                <div id="trustShortfallBanner" class="trust-shortfall-banner" style="display:none;">
+                    ⚠️ TRUST SHORTFALL: Requested amount exceeds available trust balance
+                </div>
                 <div class="form-row">
                     <div class="form-group">
                         <label>Client</label>
@@ -719,7 +755,7 @@
                 </div>
                 <h3 style="margin: 1.5rem 0 1rem;">Services (One timer per service – only one running at a time)</h3>
                 <div id="servicesContainer"></div>
-                <button class="btn btn-primary" onclick="openServiceModal('add')">+ Add Service to This Session</button>
+                <button class="btn btn-primary" onclick="openModal('serviceModal')">+ Add Service to This Session</button>
                 <h3 style="margin: 2rem 0 1rem;">Current Session Total</h3>
                 <table id="sessionTotalTable">
                     <thead>
@@ -773,8 +809,11 @@
                 <span class="modal-close" onclick="closeModal('invoiceModal')">×</span>
             </div>
             <div class="modal-body">
+                <div id="invoiceTrustShortfallBanner" class="trust-shortfall-banner" style="display:none;">
+                    ⚠️ TRUST SHORTFALL: Requested amount exceeds available trust balance
+                </div>
                 <div class="form-row">
-                    <div>
+                    <div class="form-group">
                         <label>Client</label>
                         <select id="invoiceClient" onchange="updateInvoiceCaseOptions()">
                             <option value="john_smith" selected>John Smith</option>
@@ -782,27 +821,27 @@
                             <option value="mike_jones">Mike Jones</option>
                         </select>
                     </div>
-                    <div>
+                    <div class="form-group">
                         <button class="btn btn-primary" onclick="openModal('addClientModal')">+ Add Client</button>
                     </div>
                 </div>
                 <div class="form-row">
-                    <div>
+                    <div class="form-group">
                         <label>Case</label>
                         <select id="invoiceCase">
                             <option value="smith_v_raf" selected>Smith v RAF</option>
                         </select>
                     </div>
-                    <div>
+                    <div class="form-group">
                         <button class="btn btn-primary" onclick="openModal('addCaseModal')">+ Add Case</button>
                     </div>
                 </div>
                 <div class="form-row">
-                    <div>
+                    <div class="form-group">
                         <label>Date</label>
                         <input type="date" id="invoiceDate" value="2026-01-01">
                     </div>
-                    <div>
+                    <div class="form-group">
                         <label>Due</label>
                         <input type="date" id="invoiceDue" value="2026-01-15">
                     </div>
@@ -823,9 +862,9 @@
                     <tbody></tbody>
                 </table>
                 <div style="margin: 1rem 0;">
-                    <button class="btn btn-primary" onclick="openAddManualItemModal()">+ Add Manual Item</button>
+                    <button class="btn btn-primary" onclick="openModal('addManualItemModal')">+ Add Manual Item</button>
                     <button class="btn btn-primary" style="margin-left: 0.5rem;" onclick="openModal('addDisbursementModal')">+ Add Disbursement</button>
-                    <button class="btn btn-primary" style="margin-left: 0.5rem;" onclick="openServiceModal('add')">+ Add Service</button>
+                    <button class="btn btn-primary" style="margin-left: 0.5rem;" onclick="openModal('serviceModal')">+ Add Service</button>
                 </div>
                 <div style="text-align: right; margin-top: 2rem;">
                     <div class="summary-line" id="invoiceSubtotal"><span>Subtotal (excl. VAT):</span> <strong>R3,850</strong></div>
@@ -837,8 +876,13 @@
                 </div>
                 <h3 style="margin: 2rem 0 1rem;">Payment Options</h3>
                 <div class="checkbox-group">
-                    <input type="checkbox" id="invoicePayfast">
-                    <label for="invoicePayfast">Generate Payfast Link for R3,227.50</label>
+                    <input type="checkbox" id="invoicePayfast" checked>
+                    <label for="invoicePayfast">Generate Payfast Link</label>
+                </div>
+                <div id="payfastLinkBox" class="payfast-link-box" style="display:block;">
+                    <strong>Payfast Payment Link:</strong><br>
+                    <span id="payfastUrl">https://payfast.co.za/eng/process?merchant_id=12345&amount=3227.50&item_name=LexPilot+Invoice+INV-001</span>
+                    <button class="btn copy-btn btn-small" onclick="copyPayfastLink()">Copy Link</button>
                 </div>
                 <div class="checkbox-group">
                     <input type="checkbox" id="invoiceBankDetails">
@@ -856,6 +900,7 @@ Phone: +27 11 123 4567</textarea>
                 </div>
             </div>
             <div class="modal-actions">
+                <button class="btn btn-danger" onclick="openModal('voidInvoiceModal')">Void / Refund Trust</button>
                 <button class="btn" onclick="closeModal('invoiceModal')">Cancel</button>
                 <button class="btn btn-primary" onclick="saveInvoiceDraft()">Save Draft</button>
                 <button class="btn btn-primary" onclick="previewInvoicePDF()">Preview PDF</button>
@@ -919,7 +964,7 @@ Phone: +27 11 123 4567</textarea>
         </div>
     </div>
 
-    <!-- Service Modal (Add/Edit) - Enhanced with more practical fields -->
+    <!-- Service Modal -->
     <div class="modal-overlay" id="serviceModal">
         <div class="modal" style="max-width: 700px;">
             <div class="modal-header">
@@ -928,12 +973,21 @@ Phone: +27 11 123 4567</textarea>
             </div>
             <div class="modal-body">
                 <div class="form-group">
+                    <label>Use Preset</label>
+                    <select onchange="loadServicePreset(this.value)">
+                        <option value="">Custom</option>
+                        <option value="consultation">Consultation (R2000/hr)</option>
+                        <option value="draft">Draft Letter (R2000/hr)</option>
+                        <option value="court">Court Appearance (R3000/hr)</option>
+                    </select>
+                </div>
+                <div class="form-group">
                     <label>Service Name <span style="color:red">*</span></label>
-                    <input type="text" id="serviceName" placeholder="e.g., Consultation, Draft Pleading">
+                    <input type="text" id="serviceName" placeholder="e.g., Consultation">
                 </div>
                 <div class="form-group">
                     <label>Description <span style="color:red">*</span></label>
-                    <textarea id="serviceDescription" rows="3" placeholder="Detailed description that will appear on invoice"></textarea>
+                    <textarea id="serviceDescription" rows="3" placeholder="Detailed description"></textarea>
                 </div>
                 <div class="form-group">
                     <label>Billing Type <span style="color:red">*</span></label>
@@ -944,7 +998,7 @@ Phone: +27 11 123 4567</textarea>
                 </div>
                 <div class="form-group">
                     <label>Rate / Fixed Amount <span style="color:red">*</span></label>
-                    <input type="text" id="rateAmount" placeholder="R2000 or R5000">
+                    <input type="text" id="rateAmount" placeholder="R2000">
                 </div>
                 <div class="form-group">
                     <label>Lawyer</label>
@@ -962,7 +1016,7 @@ Phone: +27 11 123 4567</textarea>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>Estimated / Manual Hours (for fixed or non-timed)</label>
+                    <label>Estimated / Manual Hours</label>
                     <input type="number" step="0.1" id="estimatedHours" value="1.0">
                 </div>
                 <div class="checkbox-group">
@@ -976,9 +1030,6 @@ Phone: +27 11 123 4567</textarea>
             </div>
         </div>
     </div>
-
-    <!-- All other modals (Add Disbursement, Manual Item, Reports, Settings) -->
-    <!-- (Same as previous full version – included completely below) -->
 
     <!-- Add Disbursement Modal -->
     <div class="modal-overlay" id="addDisbursementModal">
@@ -1120,11 +1171,39 @@ Branch: 012345</textarea>
         </div>
     </div>
 
+    <!-- Void / Refund Modal -->
+    <div class="modal-overlay" id="voidInvoiceModal">
+        <div class="modal" style="max-width: 700px;">
+            <div class="modal-header">
+                <span>Void / Refund Invoice</span>
+                <span class="modal-close" onclick="closeModal('voidInvoiceModal')">×</span>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Reason for Void <span style="color:red">*</span></label>
+                    <select>
+                        <option>Error in billing</option>
+                        <option>Client dispute</option>
+                        <option>Duplicate</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="refundTrust" checked>
+                    <label for="refundTrust">Auto-refund deducted trust amount to client trust balance</label>
+                </div>
+                <div class="form-group">
+                    <label>Notes</label>
+                    <textarea rows="3"></textarea>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn" onclick="closeModal('voidInvoiceModal')">Cancel</button>
+                <button class="btn btn-danger" onclick="voidInvoice()">Void & Refund Trust</button>
+            </div>
+        </div>
+    </div>
+
     <script src="invoice.js"></script>
-    <script>
-        document.getElementById('openAdminDashboard').onclick = function() {
-            window.location.href = 'admin_dashboard.html';
-        };
-    </script>
 </body>
 </html>
