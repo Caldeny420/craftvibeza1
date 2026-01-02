@@ -44,7 +44,7 @@
     @media (min-width: 640px) { .badge { font-size: 1rem; padding: 0.875rem 1.75rem; } }
     .founding-badge {
       position: absolute;
-      top: -1.2rem;
+      top: -1.4rem;
       left: 50%;
       transform: translateX(-50%);
       background: linear-gradient(to right, #fbbf24, #fb923c, #f59e0b);
@@ -63,9 +63,10 @@
     }
     @media (max-width: 767px) {
       .founding-badge {
-        top: -1rem;
-        font-size: 0.65rem;
+        top: -1.1rem;
+        font-size: 0.625rem;
         padding: 0.5rem 1rem;
+        line-height: 1.2;
       }
     }
     @media (min-width: 640px) { .founding-badge { padding: 0.875rem 2rem; font-size: 0.875rem; } }
@@ -88,7 +89,7 @@
     @media (max-width: 767px) {
       .apex-badge {
         top: -0.9rem;
-        font-size: 0.65rem;
+        font-size: 0.625rem;
         padding: 0.4rem 1rem;
       }
     }
@@ -131,7 +132,7 @@
       flex-shrink: 0;
       background: linear-gradient(to bottom, #18181b, #000);
       border-radius: 1.5rem;
-      padding: 2.5rem 1rem 1.5rem;
+      padding: 3rem 1rem 1.5rem;
       text-align: center;
       border: 2px solid;
       box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
@@ -141,8 +142,8 @@
       width: 80vw;
       max-width: 320px;
     }
-    @media (min-width: 640px) { .pricing-card { padding: 3rem 1.5rem 2rem; min-height: 560px; width: 90vw; max-width: 360px; } }
-    @media (min-width: 768px) { .pricing-card { width: 30vw; max-width: none; padding: 3.5rem 2rem 2rem; } }
+    @media (min-width: 640px) { .pricing-card { padding: 3.5rem 1.5rem 2rem; min-height: 560px; width: 90vw; max-width: 360px; } }
+    @media (min-width: 768px) { .pricing-card { width: 30vw; max-width: none; padding: 4rem 2rem 2rem; } }
     .pricing-scroll-container {
       display: flex;
       flex-direction: row;
@@ -184,6 +185,46 @@
       text-transform: uppercase;
       letter-spacing: 0.05em;
       font-size: 0.875rem;
+    }
+    /* Improved Table for Mobile */
+    .feature-table-container {
+      overflow-x: auto;
+      border-radius: 1.5rem;
+      border: 1px solid #27272a;
+      scrollbar-width: thin;
+      scrollbar-color: #10b981 #18181b;
+      -webkit-overflow-scrolling: touch;
+      position: relative;
+    }
+    .feature-table-container::after {
+      content: "← Swipe to compare tiers →";
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.7);
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      font-size: 0.875rem;
+      opacity: 0.8;
+      pointer-events: none;
+      z-index: 20;
+    }
+    @media (min-width: 768px) {
+      .feature-table-container::after { display: none; }
+    }
+    .feature-table-container table th:first-child,
+    .feature-table-container table td:first-child {
+      position: sticky;
+      left: 0;
+      background: linear-gradient(to right, #000, #18181b);
+      z-index: 10;
+    }
+    .feature-table-container table thead th {
+      position: sticky;
+      top: 0;
+      background: linear-gradient(to bottom, #18181b, #000);
+      z-index: 11;
     }
   </style>
 </head>
@@ -389,7 +430,7 @@
         <table class="w-full text-left">
           <thead class="bg-gradient-to-r from-zinc-900 to-black">
             <tr>
-              <th class="px-8 py-6 text-lg font-black">Category / Feature</th>
+              <th class="px-8 py-6 text-lg font-black sticky left-0 z-10 bg-gradient-to-r from-black to-zinc-900">Category / Feature</th>
               <th class="text-center px-8 py-6 text-2xl font-black text-green-400">
                 Growth<br><span class="text-base font-normal opacity-80">R999 pm</span>
               </th>
@@ -404,10 +445,10 @@
           </thead>
           <tbody class="text-lg">
             <tr class="category-header border-b border-zinc-800">
-              <td colspan="5" class="px-8 py-4">Firm Size</td>
+              <td colspan="5" class="px-8 py-4 sticky left-0 bg-#18181b">Firm Size</td>
             </tr>
             <tr class="border-b border-zinc-800 bg-zinc-900/30">
-              <td class="px-8 py-7 font-bold">Team Size (Attorneys + Staff)</td>
+              <td class="px-8 py-7 font-bold sticky left-0 bg-zinc-900/30">Team Size (Attorneys + Staff)</td>
               <td class="text-center text-green-400 font-black text-2xl">1–5</td>
               <td class="text-center text-yellow-400 font-black text-3xl">5–15</td>
               <td class="text-center" style="color: var(--gold); font-weight: 900; font-size: 1.875rem;">Unlimited</td>
@@ -415,38 +456,38 @@
             </tr>
 
             <tr class="category-header border-b border-zinc-800">
-              <td colspan="5" class="px-8 py-4">Website & Client Acquisition</td>
+              <td colspan="5" class="px-8 py-4 sticky left-0 bg-#18181b">Website & Client Acquisition</td>
             </tr>
             <tr class="border-b border-zinc-800">
-              <td class="px-8 py-6">Professional Website</td>
+              <td class="px-8 py-6 sticky left-0 bg-black">Professional Website</td>
               <td class="text-center text-green-400 font-bold">Standard site</td>
               <td class="text-center text-green-400 font-bold">Same</td>
               <td class="text-center text-green-400 font-bold">White-label + domain</td>
               <td class="px-8 py-6 text-zinc-300">Credibility & client trust</td>
             </tr>
             <tr class="border-b border-zinc-800">
-              <td class="px-8 py-6">AI Website Generator</td>
+              <td class="px-8 py-6 sticky left-0 bg-black">AI Website Generator</td>
               <td class="text-center text-green-400 font-bold">Yes</td>
               <td class="text-center text-green-400 font-bold">Yes</td>
               <td class="text-center text-green-400 font-bold">Yes</td>
               <td class="px-8 py-6 text-zinc-300">Keep content updated effortlessly</td>
             </tr>
             <tr class="border-b border-zinc-800">
-              <td class="px-8 py-6">Client Intake & CRM</td>
+              <td class="px-8 py-6 sticky left-0 bg-black">Client Intake & CRM</td>
               <td class="text-center text-green-400 font-bold">Yes</td>
               <td class="text-center text-green-400 font-bold">Yes</td>
               <td class="text-center text-green-400 font-bold">Yes</td>
               <td class="px-8 py-6 text-zinc-300">Capture leads automatically</td>
             </tr>
             <tr class="border-b border-zinc-800">
-              <td class="px-8 py-6">Lead Dashboard</td>
+              <td class="px-8 py-6 sticky left-0 bg-black">Lead Dashboard</td>
               <td class="text-center text-red-500 font-bold">—</td>
               <td class="text-center text-green-400 font-bold">Yes</td>
               <td class="text-center text-green-400 font-bold">Yes</td>
               <td class="px-8 py-6 text-zinc-300">See revenue potential</td>
             </tr>
             <tr class="border-b border-zinc-800">
-              <td class="px-8 py-6">Calendar / Booking</td>
+              <td class="px-8 py-6 sticky left-0 bg-black">Calendar / Booking</td>
               <td class="text-center text-green-400 font-bold">Yes</td>
               <td class="text-center text-green-400 font-bold">Yes</td>
               <td class="text-center text-green-400 font-bold">Yes</td>
@@ -454,45 +495,45 @@
             </tr>
 
             <tr class="category-header border-b border-zinc-800">
-              <td colspan="5" class="px-8 py-4">Billing & Trust Compliance</td>
+              <td colspan="5" class="px-8 py-4 sticky left-0 bg-#18181b">Billing & Trust Compliance</td>
             </tr>
             <tr class="border-b border-zinc-800">
-              <td class="px-8 py-6">Smart Billing & Invoicing</td>
+              <td class="px-8 py-6 sticky left-0 bg-black">Smart Billing & Invoicing</td>
               <td class="text-center text-green-400 font-bold">Single-case</td>
               <td class="text-center text-green-400 font-bold">Multi-case, bulk, reminders</td>
               <td class="text-center text-green-400 font-bold">Same</td>
               <td class="px-8 py-6 text-zinc-300">Faster payments, fewer errors</td>
             </tr>
             <tr class="border-b border-zinc-800">
-              <td class="px-8 py-6">Trust Account Monitoring</td>
+              <td class="px-8 py-6 sticky left-0 bg-black">Trust Account Monitoring</td>
               <td class="text-center text-green-400 font-bold">Low-balance alerts</td>
               <td class="text-center text-green-400 font-bold">Auto allocation & tracking</td>
               <td class="text-center text-green-400 font-bold">Same</td>
               <td class="px-8 py-6 text-zinc-300">Prevent trust violations</td>
             </tr>
             <tr class="border-b border-zinc-800">
-              <td class="px-8 py-6">Client Deposits</td>
+              <td class="px-8 py-6 sticky left-0 bg-black">Client Deposits</td>
               <td class="text-center text-red-500 font-bold">—</td>
               <td class="text-center text-green-400 font-bold">Yes</td>
               <td class="text-center text-green-400 font-bold">Yes</td>
               <td class="px-8 py-6 text-zinc-300">Get paid upfront</td>
             </tr>
             <tr class="border-b border-zinc-800">
-              <td class="px-8 py-6">Refund / Void Invoice</td>
+              <td class="px-8 py-6 sticky left-0 bg-black">Refund / Void Invoice</td>
               <td class="text-center text-green-400 font-bold">Manual</td>
               <td class="text-center text-green-400 font-bold">Bulk</td>
               <td class="text-center text-green-400 font-bold">Same</td>
               <td class="px-8 py-6 text-zinc-300">Fix mistakes fast</td>
             </tr>
             <tr class="border-b border-zinc-800">
-              <td class="px-8 py-6">Compliance Alerts</td>
+              <td class="px-8 py-6 sticky left-0 bg-black">Compliance Alerts</td>
               <td class="text-center text-green-400 font-bold">Basic</td>
               <td class="text-center text-green-400 font-bold">Rule 54 & 86 alerts</td>
               <td class="text-center text-green-400 font-bold">Same</td>
               <td class="px-8 py-6 text-zinc-300">Reduce regulatory risk</td>
             </tr>
             <tr class="border-b border-zinc-800">
-              <td class="px-8 py-6">Bank Import & Trust Reconciliation</td>
+              <td class="px-8 py-6 sticky left-0 bg-black">Bank Import & Trust Reconciliation</td>
               <td class="text-center text-green-400 font-bold">Yes</td>
               <td class="text-center text-green-400 font-bold">Yes</td>
               <td class="text-center text-green-400 font-bold">Yes</td>
@@ -500,31 +541,31 @@
             </tr>
 
             <tr class="category-header border-b border-zinc-800">
-              <td colspan="5" class="px-8 py-4">Case & Operations</td>
+              <td colspan="5" class="px-8 py-4 sticky left-0 bg-#18181b">Case & Operations</td>
             </tr>
             <tr class="border-b border-zinc-800">
-              <td class="px-8 py-6">Case / Matter Management</td>
+              <td class="px-8 py-6 sticky left-0 bg-black">Case / Matter Management</td>
               <td class="text-center text-green-400 font-bold">Track cases</td>
               <td class="text-center text-green-400 font-bold">Assign & manage</td>
               <td class="text-center text-green-400 font-bold">Same</td>
               <td class="px-8 py-6 text-zinc-300">Full case visibility</td>
             </tr>
             <tr class="border-b border-zinc-800">
-              <td class="px-8 py-6">Time Entry & Tracking</td>
+              <td class="px-8 py-6 sticky left-0 bg-black">Time Entry & Tracking</td>
               <td class="text-center text-green-400 font-bold">Per session</td>
               <td class="text-center text-green-400 font-bold">Multi-session</td>
               <td class="text-center text-green-400 font-bold">Same</td>
               <td class="px-8 py-6 text-zinc-300">Every minute billable</td>
             </tr>
             <tr class="border-b border-zinc-800">
-              <td class="px-8 py-6">Disbursements</td>
+              <td class="px-8 py-6 sticky left-0 bg-black">Disbursements</td>
               <td class="text-center text-green-400 font-bold">Manual</td>
               <td class="text-center text-green-400 font-bold">Automated & batch</td>
               <td class="text-center text-green-400 font-bold">Same</td>
               <td class="px-8 py-6 text-zinc-300">Accurate accounting</td>
             </tr>
             <tr class="border-b border-zinc-800">
-              <td class="px-8 py-6">Document Storage</td>
+              <td class="px-8 py-6 sticky left-0 bg-black">Document Storage</td>
               <td class="text-center text-green-400 font-bold">Attach files</td>
               <td class="text-center text-green-400 font-bold">Advanced file management</td>
               <td class="text-center text-green-400 font-bold">Same</td>
@@ -532,24 +573,24 @@
             </tr>
 
             <tr class="category-header border-b border-zinc-800">
-              <td colspan="5" class="px-8 py-4">Automation & Scaling</td>
+              <td colspan="5" class="px-8 py-4 sticky left-0 bg-#18181b">Automation & Scaling</td>
             </tr>
             <tr class="border-b border-zinc-800">
-              <td class="px-8 py-6">Automated Workflows</td>
+              <td class="px-8 py-6 sticky left-0 bg-black">Automated Workflows</td>
               <td class="text-center text-red-500 font-bold">—</td>
               <td class="text-center text-green-400 font-bold">Yes</td>
               <td class="text-center text-green-400 font-bold">Yes</td>
               <td class="px-8 py-6 text-zinc-300">No missed follow-ups</td>
             </tr>
             <tr class="border-b border-zinc-800">
-              <td class="px-8 py-6">Multi-Lawyer Collaboration</td>
+              <td class="px-8 py-6 sticky left-0 bg-black">Multi-Lawyer Collaboration</td>
               <td class="text-center text-red-500 font-bold">—</td>
               <td class="text-center text-green-400 font-bold">Yes</td>
               <td class="text-center text-green-400 font-bold">Yes</td>
               <td class="px-8 py-6 text-zinc-300">Team clarity</td>
             </tr>
             <tr class="border-b border-zinc-800">
-              <td class="px-8 py-6">Admin Dashboard & Reporting</td>
+              <td class="px-8 py-6 sticky left-0 bg-black">Admin Dashboard & Reporting</td>
               <td class="text-center text-red-500 font-bold">—</td>
               <td class="text-center text-green-400 font-bold">Yes</td>
               <td class="text-center text-green-400 font-bold">Yes</td>
@@ -557,17 +598,17 @@
             </tr>
 
             <tr class="category-header border-b border-zinc-800">
-              <td colspan="5" class="px-8 py-4">Support & Control</td>
+              <td colspan="5" class="px-8 py-4 sticky left-0 bg-#18181b">Support & Control</td>
             </tr>
             <tr class="border-b border-zinc-800">
-              <td class="px-8 py-6">User & Permissions</td>
+              <td class="px-8 py-6 sticky left-0 bg-black">User & Permissions</td>
               <td class="text-center text-red-500 font-bold">—</td>
               <td class="text-center text-green-400 font-bold">Yes</td>
               <td class="text-center text-green-400 font-bold">Yes</td>
               <td class="px-8 py-6 text-zinc-300">Control access</td>
             </tr>
             <tr class="border-b border-zinc-800">
-              <td class="px-8 py-6">Support</td>
+              <td class="px-8 py-6 sticky left-0 bg-black">Support</td>
               <td class="text-center text-green-400 font-bold">Email & WhatsApp</td>
               <td class="text-center text-green-400 font-bold">Priority</td>
               <td class="text-center text-green-400 font-bold">Priority + founder onboarding</td>
@@ -575,7 +616,7 @@
             </tr>
 
             <tr class="bg-green-900/30 border-t-4 border-b-4 border-green-600">
-              <td class="px-8 py-10 font-bold text-2xl text-green-300">
+              <td class="px-8 py-10 font-bold text-2xl text-green-300 sticky left-0 bg-green-900/30">
                 Founding Referral Rewards<br>
                 <span class="block mt-4 text-base font-normal opacity-95 leading-relaxed">
                   • Refer 1 firm → next 12 months FREE<br>
@@ -588,7 +629,7 @@
               <td class="px-8 py-10 text-zinc-300">Earn free subscription</td>
             </tr>
             <tr class="bg-green-900/40 border-t-4 border-green-600">
-              <td class="px-8 py-10 font-bold text-2xl text-green-400">
+              <td class="px-8 py-10 font-bold text-2xl text-green-400 sticky left-0 bg-green-900/40">
                 Price Locked Forever<br>
                 <span class="text-base opacity-90">Even when public price exceeds R20,000/month</span>
               </td>
