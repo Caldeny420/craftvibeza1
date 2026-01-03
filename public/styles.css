@@ -47,7 +47,7 @@ main {
 
 .founding-badge {
   position: absolute;
-  top: -1.9rem;
+  top: -2.8rem;                  /* Pulled much higher to use the increased gap */
   left: 50%;
   transform: translateX(-50%);
   background: linear-gradient(to right, #fbbf24, #fb923c, #f59e0b);
@@ -67,7 +67,7 @@ main {
 
 @media (max-width: 767px) {
   .founding-badge {
-    top: -1.6rem;
+    top: -2.4rem;                /* Adjusted for mobile – fully visible, no cut-off */
     font-size: 0.625rem;
     padding: 0.5rem 1rem;
     line-height: 1.2;
@@ -182,15 +182,15 @@ main {
   .credibility-block { font-size: 1.2rem; margin-top: 3rem; }
 }
 
-/* Pricing Section – INCREASED spacing above cards */
+/* Pricing Section – Increased spacing above cards + fix for Dominance cut-off */
 #pricing h2 {
-  margin-bottom: 2rem;           /* More space after main title */
+  margin-bottom: 2rem;
   line-height: 1.1;
 }
 
-#pricing h2 + .text-2xl {         /* The "(Founding Price — Locked Forever)" subtitle */
+#pricing h2 + .text-2xl {         /* "(Founding Price — Locked Forever)" */
   margin-top: -0.5rem;
-  margin-bottom: 4rem;           /* Significantly increased gap to cards */
+  margin-bottom: 4rem;            /* Generous space to cards */
   opacity: 0.8;
   font-weight: normal;
 }
@@ -200,7 +200,7 @@ main {
     margin-bottom: 1.5rem;
   }
   #pricing h2 + .text-2xl {
-    margin-bottom: 3rem;         /* Still generous on mobile */
+    margin-bottom: 3rem;
   }
 }
 
@@ -209,7 +209,12 @@ main {
   #pricing h2 + .text-2xl { margin-bottom: 5rem; }
 }
 
-/* Pricing Cards – Standard spacing (Dominance remains slightly tighter internally) */
+/* Remove Tailwind scale that was pushing Dominance upward */
+.pricing-card:nth-child(2) {
+  transform: none !important;     /* Overrides original scale-105 */
+}
+
+/* Pricing Cards */
 .pricing-card {
   position: relative;
   flex-shrink: 0;
@@ -227,9 +232,9 @@ main {
   margin: 0 auto;
 }
 
-/* Dominance Card – Keeps previous internal tightening */
+/* Dominance internal tightening (kept from before) */
 .pricing-card:nth-child(2) {
-  padding-top: 2.2rem;
+  padding-top: 2.6rem;
 }
 
 @media (min-width: 640px) {
@@ -239,7 +244,7 @@ main {
     max-width: 380px;
   }
   .pricing-card:nth-child(2) {
-    padding-top: 2.6rem;
+    padding-top: 3rem;
   }
 }
 
@@ -250,16 +255,17 @@ main {
     padding: 4.5rem 2rem 2.5rem;
   }
   .pricing-card:nth-child(2) {
-    padding-top: 3rem;
+    padding-top: 3.5rem;
   }
 }
 
-/* Scroll Container */
+/* Scroll Container – Extra buffer to prevent any perceived cut-off */
 .pricing-scroll-container {
   display: flex;
   flex-direction: row;
   gap: 1.25rem;
   padding: 2rem 1rem 3rem;
+  margin-top: 1.5rem;             /* Additional safety buffer */
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
@@ -283,7 +289,8 @@ main {
     overflow-x: visible;
     justify-content: center;
     gap: 2rem;
-    padding: 3rem 0 4rem; /* Extra bottom padding to balance top space */
+    padding: 3rem 0 4rem;
+    margin-top: 2rem;
   }
 }
 
@@ -291,11 +298,11 @@ main {
   .pricing-scroll-container {
     gap: 3rem;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 0 auto 2rem auto;
   }
 }
 
-/* Internal Dominance tightening */
+/* Internal Dominance tweaks */
 .pricing-card:nth-child(2) .text-center.mt-6 {
   margin-top: 0.5rem;
 }
@@ -308,7 +315,7 @@ main {
   margin-bottom: 0.5rem;
 }
 
-/* Feature Lists & Others */
+/* Feature Lists & Misc */
 .feature-list-top { margin-bottom: 1.5rem; }
 .feature-list-support { opacity: 0.85; font-size: 0.95em; }
 .lock-icon { font-size: 6rem; margin-bottom: 2rem; }
