@@ -16,7 +16,7 @@
     .fluid-heading { font-size: clamp(3rem, 12vw, 6rem); line-height: 1.1; }
     .fluid-subheading { font-size: clamp(2.5rem, 8vw, 4rem); line-height: 1.2; }
     .fluid-question { font-size: clamp(2rem, 7vw, 3.5rem); line-height: 1.2; }
-    /* Hero-style container — same as privacy policy */
+    /* Hero-style container */
     @media (max-width: 767px) {
       .hero-container {
         min-height: calc(100vh - var(--header-height, 80px));
@@ -53,7 +53,7 @@
           <li class="ml-8">By accessing, registering for, or using LexPilot (the "Service"), you agree to these Terms of Service ("Terms"). If you do not agree, do not use the Service. These Terms form a binding contract between you (the "User" or "Firm") and LexPilot (the "Provider").</li>
         
           <li class="text-amber-300 font-black fluid-title mt-10">2. Service Description</li>
-          <li class="ml-8">LexPilot provides an AI-assisted practice management platform for South African law firms, including billing, AI drafting, CPD tracking, trust account alerts, and other features as described on the website. Access is tiered (Growth, Dominance, Elite) based on your selected plan.</li>
+          <li class="ml-8">LexPilot provides a practice management platform for South African law firms, including billing, trust account alerts, matter & workflow management, automated workflows, and other features as described on the website. Access is tiered (Growth, Dominance, Apex) based on your selected plan.</li>
         
           <li class="text-green-300 font-black fluid-title mt-10">3. Accounts & Registration</li>
           <li class="ml-8">You must provide accurate information during registration. You are responsible for maintaining the confidentiality of your account credentials. Notify us immediately of any unauthorized access. We reserve the right to suspend or terminate accounts for violations.</li>
@@ -62,10 +62,10 @@
           <li class="ml-8">All fees are non-refundable except as stated in the Refund Policy. Payments are processed via PayFast. Subscriptions auto-renew monthly. You may cancel anytime with 30 days' notice via WhatsApp. No refunds for partial months. Setup fees are waived for early adopters as advertised.</li>
         
           <li class="text-green-300 font-black fluid-title mt-10">5. User Responsibilities</li>
-          <li class="ml-8">You must comply with South African law, including LSSA rules and trust account regulations. You are solely responsible for all data you input. Do not use the Service for illegal activities or to store sensitive client data without proper safeguards.</li>
+          <li class="ml-8">You must comply with South African law, including LPC rules and trust account regulations. You are solely responsible for all data you input. Do not use the Service for illegal activities or to store sensitive client data without proper safeguards.</li>
         
           <li class="text-amber-300 font-black fluid-title mt-10">6. Intellectual Property</li>
-          <li class="ml-8">All content, AI models, features, and proprietary technology are owned by LexPilot or its licensors. You are granted a limited, non-exclusive, non-transferable license to use the Service during your active subscription for your firm's internal purposes only. You agree not to reverse-engineer, decompile, disassemble, copy, modify, or create derivative works based on the Service. You also agree not to develop or launch a competing product using knowledge gained from LexPilot for 24 months after termination (limited to South Africa).</li>
+          <li class="ml-8">All content, features, and proprietary technology are owned by LexPilot or its licensors. You are granted a limited, non-exclusive, non-transferable license to use the Service during your active subscription for your firm's internal purposes only. You agree not to reverse-engineer, decompile, disassemble, copy, modify, or create derivative works based on the Service. You also agree not to develop or launch a competing product using knowledge gained from LexPilot for 24 months after termination (limited to South Africa).</li>
         
           <li class="text-green-300 font-black fluid-title mt-10">7. Limitation of Liability</li>
           <li class="ml-8">To the fullest extent permitted by law, LexPilot is not liable for any indirect, consequential, incidental, or punitive damages arising from use of the Service. Our total liability shall not exceed the fees paid by you in the last 12 months. The Service is provided "as is" without warranties of any kind.</li>
@@ -80,8 +80,8 @@
           <li class="ml-8">We may update these Terms. Material changes will be notified via email/WhatsApp. Continued use after changes constitutes acceptance.</li>
         
           <li class="mt-10 fluid-body">
-            • Effective Date: 20 December 2025<br>
-            • Last Updated: 20 December 2025<br>
+            • Effective Date: 05 January 2026<br>
+            • Last Updated: 05 January 2026<br>
             • Contact: support@lexpilot.co.za or WhatsApp 076 431 2871
           </li>
         </ul>
@@ -93,14 +93,12 @@
   </main>
   <div id="footer-placeholder" class="mt-auto"></div>
   <script>
-    // Load header & footer
     fetch('header.html?v='+Date.now())
       .then(r => r.ok ? r.text() : '')
       .then(h => document.getElementById('header-placeholder').innerHTML = h);
     fetch('footer.html?v='+Date.now())
       .then(r => r.ok ? r.text() : '')
       .then(f => document.getElementById('footer-placeholder').innerHTML = f);
-    // Same header padding fix as privacy policy
     function adjustMainPadding() {
       const header = document.querySelector('header');
       const main = document.querySelector('main');

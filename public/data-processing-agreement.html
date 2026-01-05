@@ -16,7 +16,7 @@
     .fluid-heading { font-size: clamp(3rem, 12vw, 6rem); line-height: 1.1; }
     .fluid-subheading { font-size: clamp(2.5rem, 8vw, 4rem); line-height: 1.2; }
     .fluid-question { font-size: clamp(2rem, 7vw, 3.5rem); line-height: 1.2; }
-    /* Hero-style container — same as privacy/terms */
+    /* Hero-style container */
     @media (max-width: 767px) {
       .hero-container {
         min-height: calc(100vh - var(--header-height, 80px));
@@ -59,7 +59,7 @@
           </li>
         
           <li class="text-amber-300 font-black fluid-title mt-10">2. Processing Instructions</li>
-          <li class="ml-8">LexPilot processes Personal Data only on the Firm's documented instructions, including for providing the Service (billing, AI drafting, CPD tracking, trust alerts). The Firm instructs LexPilot to process data in South Africa only.</li>
+          <li class="ml-8">LexPilot processes Personal Data only on the Firm's documented instructions, including for providing the Service (billing, trust alerts, matter & workflow management, automated workflows). The Firm instructs LexPilot to process data in South Africa only.</li>
         
           <li class="text-green-300 font-black fluid-title mt-10">3. Purpose & Scope</li>
           <li class="ml-8">Processing is limited to: Firm management, client data input/output, billing, compliance alerts. Categories: Firm staff, clients (names, contacts, case details). No special categories (e.g., health, race) unless explicitly provided by the Firm.</li>
@@ -122,8 +122,8 @@
           </li>
         
           <li class="mt-10 fluid-body">
-            • Effective Date: 28 December 2025<br>
-            • Last Updated: 28 December 2025<br>
+            • Effective Date: 05 January 2026<br>
+            • Last Updated: 05 January 2026<br>
             • Controller Sign-off: ____________________ Date: __________<br>
             • Processor (LexPilot): ____________________ Date: __________<br>
             • Contact: privacy@lexpilot.co.za or WhatsApp 076 431 2871
@@ -137,14 +137,12 @@
   </main>
   <div id="footer-placeholder" class="mt-auto"></div>
   <script>
-    // Load header & footer
     fetch('header.html?v='+Date.now())
       .then(r => r.ok ? r.text() : '')
       .then(h => document.getElementById('header-placeholder').innerHTML = h);
     fetch('footer.html?v='+Date.now())
       .then(r => r.ok ? r.text() : '')
       .then(f => document.getElementById('footer-placeholder').innerHTML = f);
-    // Same header padding fix as privacy/terms
     function adjustMainPadding() {
       const header = document.querySelector('header');
       const main = document.querySelector('main');
