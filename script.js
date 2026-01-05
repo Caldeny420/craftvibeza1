@@ -1,88 +1,68 @@
 (() => {
   'use strict';
-
   // ====================== CONFIG ======================
   const CONFIG = {
-    WHATSAPP_NUMBER: '27764312871',
-    BACKUP_API_URL: '/api/lead' // optional encrypted backup
+    WHATSAPP_NUMBER: '27764312871'
   };
-
   // ====================== TIERS ======================
   const TIERS = {
     Growth: {
       name: "Growth",
       monthly: 999,
-      setup: 0, // NO SETUP FEE EVER
+      setup: 0,
       normal: 2999,
-      limit: 100,
       color: "from-green-500 to-emerald-600",
-      badge: false,
-      waiveLimit: 999 // irrelevant, since setup is 0
+      waiveLimit: 999
     },
     Dominance: {
       name: "Dominance",
       monthly: 2999,
-      setup: 7999,
+      setup: 4999,
       normal: 7999,
-      limit: 200,
       color: "from-yellow-400 to-amber-500",
-      badge: true,
       waiveLimit: 100
     },
-    Elite: {
-      name: "Elite",
+    Apex: {
+      name: "Apex",
       monthly: 9999,
       setup: 9999,
       normal: 19999,
-      limit: 200,
-      color: "from-amber-500 to-orange-600",
-      badge: false,
+      color: "from-yellow-500 to-gold",
       waiveLimit: 50
     }
   };
-
   // ====================== QUIZ QUESTIONS ======================
   const QUIZ = [
     { q: "How many attorneys + staff will use the platform?", o: ["1–5", "5–15", "16+ / Unlimited"] },
     { q: "Do you want client deposit capture (card / EFT / Payfast)?", o: ["No thanks", "Yes – I need it"], requires: "Dominance" },
     { q: "Do you want automated email/WhatsApp sequences (chasers, referrals, etc)?", o: ["No", "Yes"], requires: "Dominance" },
-    { q: "Do you need automated CPD tracking + 1-click LPC report?", o: ["I’ll do it manually", "Yes – never miss points again"], requires: "Elite" },
-    { q: "Would you use an AI Brief & Letter Writer trained on SA law?", o: ["Not interested", "Yes – huge time saver"], requires: "Elite" },
-    { q: "Do you need full white-label (your own domain, no LexPilot branding)?", o: ["Subdomain is fine", "Yes – full white-label"], requires: "Elite" }
+    { q: "Do you need automated CPD tracking + 1-click LPC report?", o: ["I’ll do it manually", "Yes – never miss points again"], requires: "Apex" },
+    { q: "Would you use an AI Brief & Letter Writer trained on SA law?", o: ["Not interested", "Yes – huge time saver"], requires: "Apex" },
+    { q: "Do you need full white-label (your own domain, no LexPilot branding)?", o: ["Subdomain is fine", "Yes – full white-label"], requires: "Apex" }
   ];
-
   // ====================== STATE ======================
   let currentQuestion = 0;
   let answers = [];
   let finalTier = "Growth";
-
   const $ = id => document.getElementById(id);
   const format = n => `R${n.toLocaleString('en-ZA')}`;
-
   // ====================== FIREBASE COUNTERS ======================
   const initCounters = () => {
     if (typeof firebase === 'undefined') return;
     const db = firebase.firestore();
-
-    const updateCounter = (tierKey, displaySelector) => {
+    const updateCounter = (tierKey) => {
       const docRef = db.collection("spots").doc(tierKey.toLowerCase());
       docRef.onSnapshot(doc => {
         if (!doc.exists) return;
         const taken = doc.data()?.taken || 0;
-        if ($(displaySelector)) $(displaySelector).textContent = taken;
-        if (tierKey === "Dominance" && taken >= TIERS.Dominance.waiveLimit) {
-          document.querySelectorAll('.claim-btn[data-tier="Dominance"] span, #dominance-btn-text').forEach(el => {
-            el.textContent = "CLAIM DOMINANCE SPOT (Setup applies)";
-          });
-        }
+        const displayId = `${tierKey.toLowerCase()}-taken`;
+        if ($(displayId)) $(displayId).textContent = taken;
       });
     };
-
-    updateCounter("Growth", "growth-taken");
-    updateCounter("Dominance", "dominance-taken");
-    updateCounter("Elite", "elite-taken");
+    updateCounter("Growth");
+    updateCounter("Dominance");
+    updateCounter("Apex");
   };
-
   // ====================== QUIZ ENGINE ======================
   const Quiz = {
     start: () => {
@@ -93,143 +73,230 @@
       document.body.style.overflow = 'hidden';
       Quiz.next();
     },
-
     next: () => {
       if (currentQuestion >= QUIZ.length) return Quiz.results();
       const q = QUIZ[currentQuestion];
-      if ($('quiz-question-text')) $('quiz-question-text').textContent = q.q;
-      if ($('quiz-progress')) $('quiz-progress').style.width = `${((currentQuestion + 1) / QUIZ.length) * 100}%`;
-      if ($('quiz-options')) {
-        $('quiz-options').innerHTML = q.o.map((opt, i) => `
-          <button class="w-full bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 py-10 px-8 rounded-2xl text-2xl font-bold transition-all hover:scale-105 hover:border-green-500" data-index="${i}">
-            ${opt}
-          </button>
-        `).join('');
-        document.querySelectorAll('#quiz-options button').forEach(btn => {
-          btn.onclick = () => {
-            const choice = q.o[btn.dataset.index];
-            answers.push({ answer: choice, requires: q.requires || null });
-            currentQuestion++;
-            btn.classList.add('border-green-500', 'bg-zinc-700');
-            setTimeout(Quiz.next, 400);
-          };
-        });
-      }
+      $('quiz-question-text').textContent = q.q;
+      $('quiz-progress').style.width = `${((currentQuestion + 1) / QUIZ.length) * 100}%`;
+      $('quiz-options').innerHTML = q.o.map((opt, i) => `
+        <button class="w-full bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 py-10 px-8 rounded-2xl text-2xl font-bold transition-all hover:scale-105 hover:border-green-500" data-index="${i}">
+          ${opt}
+        </button>
+      `).join('');
+      document.querySelectorAll('#quiz-options button').forEach(btn => {
+        btn.onclick = () => {
+          answers.push({ answer: q.o[btn.dataset.index], requires: q.requires || null });
+          currentQuestion++;
+          btn.classList.add('border-green-500', 'bg-zinc-700');
+          setTimeout(Quiz.next, 400);
+        };
+      });
     },
-
     results: () => {
-      // Recommendation logic
-      const needsElite = answers.some(a => a.requires === "Elite" && (a.answer.includes("Yes") || a.answer.includes("never miss") || a.answer.includes("full white-label")));
+      const needsApex = answers.some(a => a.requires === "Apex" && /Yes|never miss|full white-label/.test(a.answer));
       const needsDominance = answers.some(a => a.requires === "Dominance" && a.answer.includes("Yes"));
       const userCount = answers[0]?.answer || "1–5";
-
-      if (needsElite || userCount === "16+ / Unlimited") {
-        finalTier = "Elite";
-      } else if (needsDominance || userCount === "5–15") {
-        finalTier = "Dominance";
-      } else {
-        finalTier = "Growth";
-      }
-
+      finalTier = (needsApex || userCount === "16+ / Unlimited") ? "Apex" :
+                  (needsDominance || userCount === "5–15") ? "Dominance" : "Growth";
       const t = TIERS[finalTier];
+
       const takenDominance = parseInt($('dominance-taken')?.textContent || '0');
-      const takenElite = parseInt($('elite-taken')?.textContent || '0');
-      const isWaived = (finalTier === "Dominance" && takenDominance < TIERS.Dominance.waiveLimit) ||
-                       (finalTier === "Elite" && takenElite < TIERS.Elite.waiveLimit) ||
+      const takenApex = parseInt($('apex-taken')?.textContent || '0');
+      const isWaived = (finalTier === "Dominance" && takenDominance < t.waiveLimit) ||
+                       (finalTier === "Apex" && takenApex < t.waiveLimit) ||
                        finalTier === "Growth";
 
-      // Update UI
-      if ($('tier-name')) {
-        $('tier-name').textContent = t.name.toUpperCase();
-        $('tier-name').className = `inline-block px-6 sm:px-10 md:px-16 py-5 sm:py-7 md:py-8 rounded-full text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-black bg-gradient-to-r ${t.color} shadow-2xl text-center leading-none`;
-      }
-      if ($('popular-badge')) $('popular-badge').style.display = t.badge ? "block" : "none";
+      // Tier styling
+      $('tier-name').textContent = t.name.toUpperCase();
+      $('tier-name').className = `inline-block px-6 sm:px-10 md:px-16 py-5 sm:py-7 md:py-8 rounded-full text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-black bg-gradient-to-r ${t.color} shadow-2xl text-center leading-none`;
+      $('popular-badge').style.display = finalTier === "Dominance" ? "block" : "none";
 
-      if ($('tier-price')) {
-        $('tier-price').innerHTML = `
-          <div class="text-6xl md:text-8xl font-black text-green-400">${format(t.monthly)}<span class="text-4xl">/mo</span></div>
-          <div class="text-3xl opacity-70 mt-4"><s>${format(t.normal)}</s></div>
-        `;
-      }
-      if ($('final-total')) {
-        $('final-total').innerHTML = `
-          <div class="text-3xl mt-8">
-            ${t.setup > 0 ? `Setup: ${format(t.setup)}${isWaived ? '<span class="text-green-400 text-2xl block font-bold"> (WAIVED!)</span>' : '<span class="text-green-400 text-lg block">(waived for first ' + t.waiveLimit + ')</span>'}` : 'No Setup Fee'}
+      // Pricing
+      $('tier-price').innerHTML = `
+        <div class="text-6xl md:text-8xl font-black text-green-400">${format(t.monthly)}<span class="text-4xl">/mo</span></div>
+        <div class="text-3xl opacity-70 mt-4"><s>${format(t.normal)}</s></div>
+      `;
+      $('final-total').innerHTML = `
+        <div class="text-3xl mt-8">
+          ${t.setup > 0
+            ? `Setup: ${format(t.setup)}${isWaived ? '<span class="text-green-400 text-2xl block font-bold">(WAIVED!)</span>' : `<span class="text-green-400 text-lg block">(waived for first ${t.waiveLimit} firms)</span>`}`
+            : 'No Setup Fee'}
+        </div>
+        <div class="text-2xl mt-6 text-green-300 font-bold">Your founding price locked FOREVER</div>
+      `;
+
+      // FULL FEATURES — GROUPED EXACTLY LIKE PRICING CARDS ON LANDING PAGE
+      const featuresHTML = {
+        Growth: `
+          <div class="space-y-10 text-left">
+            <div>
+              <p class="text-2xl font-black mb-4 text-green-400">Core Features</p>
+              <ul class="space-y-3 text-lg">
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Professional law firm website (standard)</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>AI website content generator + no-code editor</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Client intake & CRM</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Calendar / client booking</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Case / matter management</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Time tracking (per session)</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Document & file storage</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Disbursements (manual)</span></li>
+              </ul>
+            </div>
+            <div>
+              <p class="text-2xl font-black mb-4 text-green-400">Billing & Trust</p>
+              <ul class="space-y-3 text-lg">
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Smart single-case invoicing</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>PDF invoice generation & email sending</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>PayFast “Pay Now” links for invoices & deposits</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Auto trust deduction if balance exists</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Low-balance trust alerts</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Manual refund / void invoice</span></li>
+              </ul>
+            </div>
+            <div>
+              <p class="text-2xl font-black mb-4 text-green-400">VAT & Invoicing</p>
+              <ul class="space-y-3 text-lg">
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Manual VAT field only</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Standard invoices (not tax invoices)</span></li>
+              </ul>
+            </div>
+            <div>
+              <p class="text-2xl font-black mb-4 text-green-400">Support</p>
+              <ul class="space-y-3 text-lg">
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Email & WhatsApp support</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Founding referral rewards (refer 1 firm → 12 months free, 2 firms → free forever)</span></li>
+              </ul>
+            </div>
           </div>
-          <div class="text-2xl mt-6 text-green-300 font-bold">Your founding price locked FOREVER</div>
-        `;
-      }
-
-      const highlights = {
-        Growth: ["Professional website", "AI site generator", "Smart invoicing", "Rule 54 & 86 protection", "Founding referral rewards"],
-        Dominance: ["Everything in Growth", "Capture Client Details & Deposits (Card / EFT / PayFast)", "Lead dashboard", "Automated sequences", "Priority support"],
-        Elite: ["Everything in Dominance", "Automated CPD + LPC reports", "AI Brief & Letter Writer (SA law)", "Full white-label + domain", "Strategy day"]
+        `,
+        Dominance: `
+          <div class="space-y-10 text-left">
+            <p class="text-xl font-bold mb-8 opacity-90">Everything in Growth, plus:</p>
+            <div>
+              <p class="text-2xl font-black mb-4 text-yellow-400">Advanced Compliance</p>
+              <ul class="space-y-3 text-lg">
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Real-time Rule 54 & Rule 86 alerts</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Auto trust allocation & tracking</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Advanced trust reconciliation & audit logs</span></li>
+              </ul>
+            </div>
+            <div>
+              <p class="text-2xl font-black mb-4 text-yellow-400">Automation & Scale</p>
+              <ul class="space-y-3 text-lg">
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Multi-case & bulk invoicing</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Automatic invoice sending</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Automatic trust settlement</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Automated workflows: lead nurturing, payment chasers, referral requests</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Lead dashboard & revenue visibility</span></li>
+              </ul>
+            </div>
+            <div>
+              <p class="text-2xl font-black mb-4 text-yellow-400">VAT & SARS-Compliant Invoices</p>
+              <ul class="space-y-3 text-lg">
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>VAT dropdown per invoice: Yes/No</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Automatic SARS-compliant tax invoices (if VAT = Yes)</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Audit log for VAT and invoice type</span></li>
+              </ul>
+            </div>
+            <div>
+              <p class="text-2xl font-black mb-4 text-yellow-400">Firm Operations</p>
+              <ul class="space-y-3 text-lg">
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Multi-lawyer collaboration</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Assign cases & split billing</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Admin dashboard & firm-wide reporting</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>User & permission management</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Advanced document storage</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Bulk refunds & adjustments</span></li>
+              </ul>
+            </div>
+            <div>
+              <p class="text-2xl font-black mb-4 text-yellow-400">Support</p>
+              <ul class="space-y-3 text-lg">
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Priority WhatsApp & email support</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Founding referral rewards (refer 1 firm → 12 months free, 2 firms → free forever)</span></li>
+              </ul>
+            </div>
+          </div>
+        `,
+        Apex: `
+          <div class="space-y-10 text-left">
+            <p class="text-xl font-bold mb-8 opacity-90">Everything in Dominance, plus:</p>
+            <div>
+              <p class="text-2xl font-black mb-4 text-yellow-300">Brand & Control</p>
+              <ul class="space-y-3 text-lg">
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>White-label website (your brand, your domain)</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Premium presentation for high-value clients</span></li>
+              </ul>
+            </div>
+            <div>
+              <p class="text-2xl font-black mb-4 text-yellow-300">Founder-Level Access</p>
+              <ul class="space-y-3 text-lg">
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Dedicated onboarding</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Direct founder access & priority escalation</span></li>
+              </ul>
+            </div>
+            <div>
+              <p class="text-2xl font-black mb-4 text-yellow-300">Scale</p>
+              <ul class="space-y-3 text-lg">
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Unlimited users & cases</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Full operational freedom without tier-switching</span></li>
+              </ul>
+            </div>
+            <div>
+              <p class="text-2xl font-black mb-4 text-yellow-300">Support & Rewards</p>
+              <ul class="space-y-3 text-lg">
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Founding referral rewards (refer 1 firm → 12 months free, 2 firms → free forever)</span></li>
+              </ul>
+            </div>
+          </div>
+        `
       };
 
-      if ($('recommended-list')) {
-        $('recommended-list').innerHTML = highlights[finalTier]
-          .map(f => `<li class="text-xl py-3 flex items-center gap-4"><i class="fas fa-check-circle text-green-400 text-2xl"></i>${f}</li>`)
-          .join('');
-      }
+      $('recommended-list').innerHTML = featuresHTML[finalTier];
 
-      // Remove old CTA
-      const oldCta = $('recommended-list')?.nextElementSibling;
-      if (oldCta?.querySelector('a[href^="https://wa.me"]')) oldCta.remove();
-
-      // POST-QUIZ STICKY CTA (Founding LEAD format)
+      // Dynamic CTA
+      const oldCta = document.querySelector('#quiz-results .dynamic-cta');
+      if (oldCta) oldCta.remove();
+      const buttonText = finalTier === "Apex" ? "JOIN APEX WAITLIST" : `CLAIM MY ${t.name.toUpperCase()} SPOT NOW`;
       const setupText = t.setup > 0 ? ` + ${format(t.setup)} setup${isWaived ? " (WAIVED!)" : ""}` : "";
-      const waMsg = encodeURIComponent(
-        `LexPilot FOUNDING LEAD! ` +
-        `Tier: ${t.name} ` +
-        `Price: ${format(t.monthly)}/mo${setupText} ` +
-        `Normal: ${format(t.normal)}/mo ` +
-        `Ready to secure my spot!`
-      );
+      const action = finalTier === "Apex" ? "Join Apex waitlist" : "Secure my founding spot";
+      const waMsg = encodeURIComponent(`LexPilot FOUNDING LEAD! Tier: ${t.name} | Price: ${format(t.monthly)}/mo${setupText} | Normal: ${format(t.normal)}/mo | ${action}!`);
 
-      $('recommended-list')?.insertAdjacentHTML('afterend', `
-        <div class="mt-16">
-          <a href="https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${waMsg}" target="_blank"
-             class="inline-block bg-gradient-to-r ${t.color} hover:scale-105 transition-all text-black font-black text-3xl md:text-4xl px-12 py-8 rounded-full shadow-2xl">
-            <i class="fab fa-whatsapp mr-4 text-4xl"></i> CLAIM MY ${t.name.toUpperCase()} SPOT NOW
-          </a>
+      $('recommended-list').insertAdjacentHTML('afterend', `
+        <div class="mt-16 dynamic-cta">
+          <button class="claim-btn" data-tier="${finalTier}">
+            <div class="inline-block bg-gradient-to-r ${t.color} hover:scale-105 transition-all text-black font-black text-3xl md:text-4xl px-12 py-8 rounded-full shadow-2xl w-full max-w-md">
+              <i class="fab fa-whatsapp mr-4 text-4xl"></i> ${buttonText}
+            </div>
+          </button>
           <p class="mt-6 text-xl opacity-80">Reply in under 60 seconds • 24/7</p>
         </div>
       `);
 
-      $('quiz-overlay')?.classList.add('hidden');
+      $('quiz-overlay').classList.add('hidden');
       document.body.style.overflow = '';
-      $('quiz-results')?.classList.remove('hidden');
-      $('quiz-results')?.scrollIntoView({ behavior: 'smooth' });
+      $('quiz-results').classList.remove('hidden');
+      $('quiz-results').scrollIntoView({ behavior: 'smooth' });
     }
   };
 
-  // ====================== PRICING CARD WHATSAPP BUTTONS ======================
+  // ====================== GLOBAL WHATSAPP HANDLER ======================
   document.addEventListener('click', e => {
     const btn = e.target.closest('.claim-btn');
     if (!btn) return;
     e.preventDefault();
-
-    const tier = btn.dataset.tier;
-    if (!TIERS[tier]) return;
-
+    let tier = btn.dataset.tier || $('tier-name')?.textContent.trim();
+    if (!tier || !TIERS[tier]) return;
     const t = TIERS[tier];
     const takenDominance = parseInt($('dominance-taken')?.textContent || '0');
-    const takenElite = parseInt($('elite-taken')?.textContent || '0');
-    const isWaived = (tier === "Dominance" && takenDominance < TIERS.Dominance.waiveLimit) ||
-                     (tier === "Elite" && takenElite < TIERS.Elite.waiveLimit) ||
+    const takenApex = parseInt($('apex-taken')?.textContent || '0');
+    const isWaived = (tier === "Dominance" && takenDominance < t.waiveLimit) ||
+                     (tier === "Apex" && takenApex < t.waiveLimit) ||
                      tier === "Growth";
-
     const setupText = t.setup > 0 ? ` + ${format(t.setup)} setup${isWaived ? " (WAIVED!)" : ""}` : "";
-
-    const msg = encodeURIComponent(
-      `LexPilot FOUNDING LEAD! ` +
-      `Tier: ${t.name} ` +
-      `Price: ${format(t.monthly)}/mo${setupText} ` +
-      `Normal: ${format(t.normal)}/mo ` +
-      `Ready to secure my spot!`
-    );
-
-    window.open(`https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${msg}`, '_blank');
+    const action = tier === "Apex" ? "Join Apex waitlist" : "Secure my founding spot";
+    const waMsg = encodeURIComponent(`LexPilot FOUNDING LEAD! Tier: ${t.name} | Price: ${format(t.monthly)}/mo${setupText} | Normal: ${format(t.normal)}/mo | ${action}!`);
+    window.open(`https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${waMsg}`, '_blank');
   });
 
   // ====================== HEADER & FOOTER LOADER ======================
@@ -250,14 +317,12 @@
     loadPart('header', 'header-placeholder');
     loadPart('footer', 'footer-placeholder');
     initCounters();
-
     $('quiz-overlay')?.addEventListener('click', e => {
       if (e.target === $('quiz-overlay')) {
         $('quiz-overlay').classList.add('hidden');
         document.body.style.overflow = '';
       }
     });
-
     const closeBtn = document.createElement('button');
     closeBtn.innerHTML = '×';
     closeBtn.className = 'absolute top-6 right-6 text-7xl opacity-40 hover:opacity-100 z-50 text-white';
