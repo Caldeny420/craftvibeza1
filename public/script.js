@@ -34,35 +34,35 @@
   // ====================== QUIZ QUESTIONS ======================
   const QUIZ = [
     { q: "How many attorneys + staff will use the platform?", o: ["1–5", "5–15", "16+ / Unlimited"] },
-    
+
     // THE #1 EMOTIONAL DRIVER – Trust Protection
-    { q: "Do you want real-time alerts to prevent trust account violations (Rule 54 & 86)?", 
-      o: ["Not a priority right now", "Yes – this is critical"], 
+    { q: "Do you want real-time alerts to prevent trust account violations (Rule 54 & 86)?",
+      o: ["Not a priority right now", "Yes – this is critical"],
       requires: "Dominance" },
-    
+
     // Advanced Trust Automation
-    { q: "Do you need automatic trust allocation, tracking & full audit logs?", 
-      o: ["Basic alerts are enough", "Yes – full automation & reconciliation"], 
+    { q: "Do you need automatic trust allocation, tracking & full audit logs?",
+      o: ["Basic alerts are enough", "Yes – full automation & reconciliation"],
       requires: "Dominance" },
-    
+
     // Automation Workflows
-    { q: "Do you want automated workflows (payment chasers, referral requests, lead nurturing)?", 
-      o: ["No thanks", "Yes – save time & grow"], 
+    { q: "Do you want automated workflows (payment chasers, referral requests, lead nurturing)?",
+      o: ["No thanks", "Yes – save time & grow"],
       requires: "Dominance" },
-    
+
     // SARS & VAT Compliance
-    { q: "Do you need SARS-compliant tax invoices with VAT options?", 
-      o: ["No", "Yes – must be correct"], 
+    { q: "Do you need SARS-compliant tax invoices with VAT options?",
+      o: ["No", "Yes – must be correct"],
       requires: "Dominance" },
-    
+
     // Apex – Branding
-    { q: "Do you need full white-label (your own domain, no LexPilot branding)?", 
-      o: ["Subdomain is fine", "Yes – full white-label"], 
+    { q: "Do you need full white-label (your own domain, no LexPilot branding)?",
+      o: ["Subdomain is fine", "Yes – full white-label"],
       requires: "Apex" },
-    
+
     // Apex – Premium Support
-    { q: "Do you want dedicated onboarding & direct founder access?", 
-      o: ["No", "Yes – priority support"], 
+    { q: "Do you want dedicated onboarding & direct founder access?",
+      o: ["No", "Yes – priority support"],
       requires: "Apex" }
   ];
   // ====================== STATE ======================
@@ -122,10 +122,8 @@
       const needsApex = answers.some(a => a.requires === "Apex" && a.answer.includes("Yes"));
       const needsDominance = answers.some(a => a.requires === "Dominance" && /Yes|critical|full automation|save time|must be correct/.test(a.answer));
       const userCount = answers[0]?.answer || "1–5";
-
       finalTier = (needsApex || userCount === "16+ / Unlimited") ? "Apex" :
                   (needsDominance || userCount === "5–15") ? "Dominance" : "Growth";
-
       const t = TIERS[finalTier];
       const takenDominance = parseInt($('dominance-taken')?.textContent || '0');
       const takenApex = parseInt($('apex-taken')?.textContent || '0');
@@ -152,16 +150,14 @@
         <div class="text-2xl mt-6 text-green-300 font-bold">Your founding price locked FOREVER</div>
       `;
 
-      // FEATURES – Exact match to pricing cards
+      // RECOMMENDED FEATURES – Updated to match current landing page (no website, no intake forms, updated dashboard names)
       const featuresHTML = {
         Growth: `
           <div class="space-y-10 text-left">
             <div>
               <p class="text-2xl font-black mb-4 text-green-400">Core Features</p>
               <ul class="space-y-3 text-lg">
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Professional law firm website (standard)</span></li>
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>AI website content generator + no-code editor</span></li>
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Client intake & CRM</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Client & matter management</span></li>
                 <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Calendar / client booking</span></li>
                 <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Case / matter management</span></li>
                 <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Time tracking (per session)</span></li>
@@ -214,7 +210,7 @@
                 <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Automatic invoice sending</span></li>
                 <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Automatic trust settlement</span></li>
                 <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Automated workflows: lead nurturing, payment chasers, referral requests</span></li>
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Lead dashboard & revenue visibility</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Matter & workflow dashboard</span></li>
               </ul>
             </div>
             <div>
@@ -297,7 +293,6 @@
           <p class="mt-6 text-xl opacity-80">Reply in under 60 seconds • 24/7</p>
         </div>
       `);
-
       $('quiz-overlay').classList.add('hidden');
       document.body.style.overflow = '';
       $('quiz-results').classList.remove('hidden');
