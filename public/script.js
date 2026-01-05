@@ -34,11 +34,36 @@
   // ====================== QUIZ QUESTIONS ======================
   const QUIZ = [
     { q: "How many attorneys + staff will use the platform?", o: ["1–5", "5–15", "16+ / Unlimited"] },
-    { q: "Do you want client deposit capture (card / EFT / Payfast)?", o: ["No thanks", "Yes – I need it"], requires: "Dominance" },
-    { q: "Do you want automated email/WhatsApp sequences (chasers, referrals, etc)?", o: ["No", "Yes"], requires: "Dominance" },
-    { q: "Do you need automated CPD tracking + 1-click LPC report?", o: ["I’ll do it manually", "Yes – never miss points again"], requires: "Apex" },
-    { q: "Would you use an AI Brief & Letter Writer trained on SA law?", o: ["Not interested", "Yes – huge time saver"], requires: "Apex" },
-    { q: "Do you need full white-label (your own domain, no LexPilot branding)?", o: ["Subdomain is fine", "Yes – full white-label"], requires: "Apex" }
+    
+    // THE #1 EMOTIONAL DRIVER – Trust Protection
+    { q: "Do you want real-time alerts to prevent trust account violations (Rule 54 & 86)?", 
+      o: ["Not a priority right now", "Yes – this is critical"], 
+      requires: "Dominance" },
+    
+    // Advanced Trust Automation
+    { q: "Do you need automatic trust allocation, tracking & full audit logs?", 
+      o: ["Basic alerts are enough", "Yes – full automation & reconciliation"], 
+      requires: "Dominance" },
+    
+    // Automation Workflows
+    { q: "Do you want automated workflows (payment chasers, referral requests, lead nurturing)?", 
+      o: ["No thanks", "Yes – save time & grow"], 
+      requires: "Dominance" },
+    
+    // SARS & VAT Compliance
+    { q: "Do you need SARS-compliant tax invoices with VAT options?", 
+      o: ["No", "Yes – must be correct"], 
+      requires: "Dominance" },
+    
+    // Apex – Branding
+    { q: "Do you need full white-label (your own domain, no LexPilot branding)?", 
+      o: ["Subdomain is fine", "Yes – full white-label"], 
+      requires: "Apex" },
+    
+    // Apex – Premium Support
+    { q: "Do you want dedicated onboarding & direct founder access?", 
+      o: ["No", "Yes – priority support"], 
+      requires: "Apex" }
   ];
   // ====================== STATE ======================
   let currentQuestion = 0;
@@ -93,13 +118,15 @@
       });
     },
     results: () => {
-      const needsApex = answers.some(a => a.requires === "Apex" && /Yes|never miss|full white-label/.test(a.answer));
-      const needsDominance = answers.some(a => a.requires === "Dominance" && a.answer.includes("Yes"));
+      // Determine tier
+      const needsApex = answers.some(a => a.requires === "Apex" && a.answer.includes("Yes"));
+      const needsDominance = answers.some(a => a.requires === "Dominance" && /Yes|critical|full automation|save time|must be correct/.test(a.answer));
       const userCount = answers[0]?.answer || "1–5";
+
       finalTier = (needsApex || userCount === "16+ / Unlimited") ? "Apex" :
                   (needsDominance || userCount === "5–15") ? "Dominance" : "Growth";
-      const t = TIERS[finalTier];
 
+      const t = TIERS[finalTier];
       const takenDominance = parseInt($('dominance-taken')?.textContent || '0');
       const takenApex = parseInt($('apex-taken')?.textContent || '0');
       const isWaived = (finalTier === "Dominance" && takenDominance < t.waiveLimit) ||
@@ -125,7 +152,7 @@
         <div class="text-2xl mt-6 text-green-300 font-bold">Your founding price locked FOREVER</div>
       `;
 
-      // FULL FEATURES — GROUPED EXACTLY LIKE PRICING CARDS ON LANDING PAGE
+      // FEATURES – Exact match to pricing cards
       const featuresHTML = {
         Growth: `
           <div class="space-y-10 text-left">
@@ -147,7 +174,7 @@
               <ul class="space-y-3 text-lg">
                 <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Smart single-case invoicing</span></li>
                 <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>PDF invoice generation & email sending</span></li>
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>PayFast “Pay Now” links for invoices & deposits</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>PayFast payment links</span></li>
                 <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Auto trust deduction if balance exists</span></li>
                 <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Low-balance trust alerts</span></li>
                 <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Manual refund / void invoice</span></li>
@@ -251,7 +278,6 @@
           </div>
         `
       };
-
       $('recommended-list').innerHTML = featuresHTML[finalTier];
 
       // Dynamic CTA
@@ -261,7 +287,6 @@
       const setupText = t.setup > 0 ? ` + ${format(t.setup)} setup${isWaived ? " (WAIVED!)" : ""}` : "";
       const action = finalTier === "Apex" ? "Join Apex waitlist" : "Secure my founding spot";
       const waMsg = encodeURIComponent(`LexPilot FOUNDING LEAD! Tier: ${t.name} | Price: ${format(t.monthly)}/mo${setupText} | Normal: ${format(t.normal)}/mo | ${action}!`);
-
       $('recommended-list').insertAdjacentHTML('afterend', `
         <div class="mt-16 dynamic-cta">
           <button class="claim-btn" data-tier="${finalTier}">
@@ -279,7 +304,6 @@
       $('quiz-results').scrollIntoView({ behavior: 'smooth' });
     }
   };
-
   // ====================== GLOBAL WHATSAPP HANDLER ======================
   document.addEventListener('click', e => {
     const btn = e.target.closest('.claim-btn');
@@ -298,7 +322,6 @@
     const waMsg = encodeURIComponent(`LexPilot FOUNDING LEAD! Tier: ${t.name} | Price: ${format(t.monthly)}/mo${setupText} | Normal: ${format(t.normal)}/mo | ${action}!`);
     window.open(`https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${waMsg}`, '_blank');
   });
-
   // ====================== HEADER & FOOTER LOADER ======================
   const loadPart = async (file, placeholderId) => {
     const el = $(placeholderId);
@@ -311,7 +334,6 @@
       el.innerHTML = `<div class="text-red-500 p-10 text-center text-2xl">Failed to load ${file}.html</div>`;
     }
   };
-
   // ====================== INIT ======================
   document.addEventListener('DOMContentLoaded', () => {
     loadPart('header', 'header-placeholder');
@@ -332,6 +354,5 @@
     };
     $('quiz-overlay')?.prepend(closeBtn);
   });
-
   window.startQuiz = Quiz.start;
 })();
