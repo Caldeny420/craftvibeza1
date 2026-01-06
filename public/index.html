@@ -94,38 +94,28 @@
       50% { opacity: 0.8; }
     }
 
-    /* Hero Responsive */
-    @media (max-width: 767px) {
-      .hero-container {
-        min-height: calc(100vh - 80px);
-        padding: 1rem 0.5rem 3rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-      }
-      .badge { font-size: 0.75rem; padding: 0.5rem 1rem; margin-bottom: 0.75rem; }
-      .hero-headline-upper { font-size: 2.5rem; line-height: 1; margin-bottom: 0.25rem; }
-      .hero-headline-lower { font-size: 2.8rem; line-height: 1; margin-bottom: 0.75rem; }
-      .hero-subheadline { font-size: 1.25rem; line-height: 1.4; padding: 0 1rem; }
-      .hero-cta-button { font-size: 1.75rem; padding: 1rem 2rem; width: 90%; max-width: 340px; }
-      .whatsapp-cta-text { font-size: 1rem; margin-top: 1rem; }
-      .credibility-block { font-size: 0.9375rem; margin-top: 1.5rem; line-height: 1.4; }
+    /* Hero Responsive - Perfect fold fit & header respect */
+    .hero-container {
+      min-height: calc(100vh - var(--header-height, 80px));
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 1rem 0.5rem 3rem;
     }
     @media (min-width: 768px) {
       .hero-container {
-        min-height: calc(100vh - 100px);
+        min-height: calc(100vh - var(--header-height, 100px));
         padding: 2rem 2rem 5rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
       }
-      .hero-headline-upper { font-size: clamp(3.5rem, 6vw, 5rem); line-height: 1; }
-      .hero-headline-lower { font-size: clamp(4rem, 7vw, 6rem); line-height: 1; }
-      .hero-subheadline { font-size: clamp(1.5rem, 3vw, 2.2rem); max-width: 800px; margin: 0 auto; }
-      .hero-cta-button { font-size: clamp(2rem, 4vw, 2.8rem); padding: clamp(1rem, 3vw, 1.5rem) clamp(3rem, 8vw, 5rem); }
     }
+    .hero-headline-upper { font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1; margin-bottom: 0.25rem; }
+    .hero-headline-lower { font-size: clamp(2.5rem, 6vw, 4rem); line-height: 1; margin-bottom: 0.75rem; }
+    .hero-subheadline { font-size: clamp(1rem, 3vw, 1.5rem); line-height: 1.3; margin-bottom: 1rem; padding: 0 1rem; }
+    .hero-cta-button { font-size: clamp(1.5rem, 4vw, 2rem); padding: 1rem 2.5rem; width: 90%; max-width: 340px; }
+    .whatsapp-cta-text { font-size: 1rem; margin-top: 1rem; }
+    .credibility-block { font-size: clamp(0.875rem, 2vw, 1rem); margin-top: 1.5rem; line-height: 1.4; }
 
-    /* Pricing Section - Fully Optimized */
+    /* Pricing Section */
     .pricing-section {
       padding: 4rem 1rem 6rem;
     }
@@ -960,6 +950,9 @@
     window.addEventListener('load', adjustMainPadding);
     window.addEventListener('resize', adjustMainPadding);
     document.fonts?.ready.then(adjustMainPadding);
+    setTimeout(adjustMainPadding, 100);
+    setTimeout(adjustMainPadding, 500);
+    setTimeout(adjustMainPadding, 1000);
   </script>
 </body>
 </html>
