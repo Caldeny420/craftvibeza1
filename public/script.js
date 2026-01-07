@@ -34,35 +34,29 @@
   // ====================== QUIZ QUESTIONS ======================
   const QUIZ = [
     { q: "How many attorneys + staff will use the platform?", o: ["1–5", "5–15", "16+ / Unlimited"] },
-
-    // THE #1 EMOTIONAL DRIVER – Trust Protection
-    { q: "Do you want real-time alerts to prevent trust account violations (Rule 54 & 86)?",
-      o: ["Not a priority right now", "Yes – this is critical"],
+    // Trust Protection – #1 emotional driver
+    { q: "How important is preventing trust account violations (Rule 54 & 86)?",
+      o: ["Not a priority", "Very important – I need real-time alerts"],
       requires: "Dominance" },
-
     // Advanced Trust Automation
-    { q: "Do you need automatic trust allocation, tracking & full audit logs?",
-      o: ["Basic alerts are enough", "Yes – full automation & reconciliation"],
+    { q: "Do you want fully automated trust handling on invoices?",
+      o: ["Manual is fine", "Yes – auto deduction, allocation & reconciliation"],
       requires: "Dominance" },
-
     // Automation Workflows
-    { q: "Do you want automated workflows (payment chasers, referral requests, lead nurturing)?",
-      o: ["No thanks", "Yes – save time & grow"],
+    { q: "Do you want automated payment chasers & overdue reminders?",
+      o: ["No thanks", "Yes – get paid faster automatically"],
       requires: "Dominance" },
-
     // SARS & VAT Compliance
-    { q: "Do you need SARS-compliant tax invoices with VAT options?",
-      o: ["No", "Yes – must be correct"],
+    { q: "Do you need SARS-compliant tax invoices with proper VAT handling?",
+      o: ["Basic is enough", "Yes – must be fully compliant"],
       requires: "Dominance" },
-
-    // Apex – Branding
-    { q: "Do you need full white-label (your own domain, no LexPilot branding)?",
-      o: ["Subdomain is fine", "Yes – full white-label"],
+    // Apex – White-label Branding
+    { q: "Do you want full white-label (your own domain, no LexPilot branding)?",
+      o: ["Subdomain is fine", "Yes – complete white-label"],
       requires: "Apex" },
-
-    // Apex – Premium Support
-    { q: "Do you want dedicated onboarding & direct founder access?",
-      o: ["No", "Yes – priority support"],
+    // Apex – Client Portal & Self-Service
+    { q: "Do you want a client portal so clients can top up trust themselves?",
+      o: ["Not needed", "Yes – premium client experience"],
       requires: "Apex" }
   ];
   // ====================== STATE ======================
@@ -120,7 +114,7 @@
     results: () => {
       // Determine tier
       const needsApex = answers.some(a => a.requires === "Apex" && a.answer.includes("Yes"));
-      const needsDominance = answers.some(a => a.requires === "Dominance" && /Yes|critical|full automation|save time|must be correct/.test(a.answer));
+      const needsDominance = answers.some(a => a.requires === "Dominance" && /Yes|Very important|auto deduction|paid faster|fully compliant/.test(a.answer));
       const userCount = answers[0]?.answer || "1–5";
       finalTier = (needsApex || userCount === "16+ / Unlimited") ? "Apex" :
                   (needsDominance || userCount === "5–15") ? "Dominance" : "Growth";
@@ -130,12 +124,10 @@
       const isWaived = (finalTier === "Dominance" && takenDominance < t.waiveLimit) ||
                        (finalTier === "Apex" && takenApex < t.waiveLimit) ||
                        finalTier === "Growth";
-
       // Tier styling
       $('tier-name').textContent = t.name.toUpperCase();
       $('tier-name').className = `inline-block px-6 sm:px-10 md:px-16 py-5 sm:py-7 md:py-8 rounded-full text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-black bg-gradient-to-r ${t.color} shadow-2xl text-center leading-none`;
       $('popular-badge').style.display = finalTier === "Dominance" ? "block" : "none";
-
       // Pricing
       $('tier-price').innerHTML = `
         <div class="text-6xl md:text-8xl font-black text-green-400">${format(t.monthly)}<span class="text-4xl">/mo</span></div>
@@ -149,45 +141,42 @@
         </div>
         <div class="text-2xl mt-6 text-green-300 font-bold">Your founding price locked FOREVER</div>
       `;
-
-      // RECOMMENDED FEATURES – Updated to match current landing page (no website, no intake forms, updated dashboard names)
+      // RECOMMENDED FEATURES – Perfectly aligned with current landing page cards
       const featuresHTML = {
         Growth: `
           <div class="space-y-10 text-left">
             <div>
               <p class="text-2xl font-black mb-4 text-green-400">Core Features</p>
               <ul class="space-y-3 text-lg">
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Client & matter management</span></li>
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Calendar / client booking</span></li>
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Case / matter management</span></li>
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Time tracking (per session)</span></li>
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Document & file storage</span></li>
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Disbursements (manual)</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Client & Matter Management</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Calendar & Booking</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Time Tracking & Billing</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Document & File Storage</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Disbursements (Manual)</span></li>
               </ul>
             </div>
             <div>
               <p class="text-2xl font-black mb-4 text-green-400">Billing & Trust</p>
               <ul class="space-y-3 text-lg">
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Smart single-case invoicing</span></li>
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>PDF invoice generation & email sending</span></li>
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>PayFast payment links</span></li>
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Auto trust deduction if balance exists</span></li>
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Low-balance trust alerts</span></li>
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Manual refund / void invoice</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>PayFast Payment & Trust Deposit Links — One-click payments and top-ups</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>PDF Invoice Generation & Email Sending</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Manual Trust Deduction from Invoices — With shortfall warnings</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Low-Balance Alerts & Trust Shortfall Protection</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Manual Refund / Void with Auto Trust Refund</span></li>
               </ul>
             </div>
             <div>
               <p class="text-2xl font-black mb-4 text-green-400">VAT & Invoicing</p>
               <ul class="space-y-3 text-lg">
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Manual VAT field only</span></li>
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Standard invoices (not tax invoices)</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Manual VAT Field Only</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Standard Invoices</span></li>
               </ul>
             </div>
             <div>
-              <p class="text-2xl font-black mb-4 text-green-400">Support</p>
+              <p class="text-2xl font-black mb-4 text-green-400">Support & Growth</p>
               <ul class="space-y-3 text-lg">
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Email & WhatsApp support</span></li>
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Founding referral rewards (refer 1 firm → 12 months free, 2 firms → free forever)</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Email & WhatsApp Support</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Referral Rewards — Refer 1 firm → 12 months free, 2 firms → free forever</span></li>
               </ul>
             </div>
           </div>
@@ -196,47 +185,27 @@
           <div class="space-y-10 text-left">
             <p class="text-xl font-bold mb-8 opacity-90">Everything in Growth, plus:</p>
             <div>
-              <p class="text-2xl font-black mb-4 text-yellow-400">Advanced Compliance</p>
-              <ul class="space-y-3 text-lg">
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Real-time Rule 54 & Rule 86 alerts</span></li>
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Auto trust allocation & tracking</span></li>
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Advanced trust reconciliation & audit logs</span></li>
-              </ul>
-            </div>
-            <div>
               <p class="text-2xl font-black mb-4 text-yellow-400">Automation & Scale</p>
               <ul class="space-y-3 text-lg">
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Multi-case & bulk invoicing</span></li>
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Automatic invoice sending</span></li>
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Automatic trust settlement</span></li>
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Automated workflows: lead nurturing, payment chasers, referral requests</span></li>
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Matter & workflow dashboard</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Bulk & Multi-Case Invoicing</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Fully Automated Trust Deductions from Invoices — Auto allocation, reconciliation, shortfall capping</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Automated Workflows — Payment chasers, overdue reminders, lead nurturing</span></li>
               </ul>
             </div>
             <div>
-              <p class="text-2xl font-black mb-4 text-yellow-400">VAT & SARS-Compliant Invoices</p>
+              <p class="text-2xl font-black mb-4 text-yellow-400">Team & Operations</p>
               <ul class="space-y-3 text-lg">
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>VAT dropdown per invoice: Yes/No</span></li>
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Automatic SARS-compliant tax invoices (if VAT = Yes)</span></li>
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Audit log for VAT and invoice type</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Firm-Wide Dashboard — Real-time revenue, workloads, trust status</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Multi-Lawyer Collaboration</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Advanced Document Storage with Version Control</span></li>
               </ul>
             </div>
             <div>
-              <p class="text-2xl font-black mb-4 text-yellow-400">Firm Operations</p>
+              <p class="text-2xl font-black mb-4 text-yellow-400">Compliance & Reporting</p>
               <ul class="space-y-3 text-lg">
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Multi-lawyer collaboration</span></li>
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Assign cases & split billing</span></li>
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Admin dashboard & firm-wide reporting</span></li>
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>User & permission management</span></li>
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Advanced document storage</span></li>
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Bulk refunds & adjustments</span></li>
-              </ul>
-            </div>
-            <div>
-              <p class="text-2xl font-black mb-4 text-yellow-400">Support</p>
-              <ul class="space-y-3 text-lg">
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Priority WhatsApp & email support</span></li>
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Founding referral rewards (refer 1 firm → 12 months free, 2 firms → free forever)</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Real-Time Rule 54 & 86 Alerts</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>SARS-Compliant Invoices with Audit Logs</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Advanced Reporting — Aged Debtors, LPC/Fidelity Fund exports</span></li>
               </ul>
             </div>
           </div>
@@ -245,51 +214,46 @@
           <div class="space-y-10 text-left">
             <p class="text-xl font-bold mb-8 opacity-90">Everything in Dominance, plus:</p>
             <div>
-              <p class="text-2xl font-black mb-4 text-yellow-300">Brand & Control</p>
+              <p class="text-2xl font-black mb-4 text-yellow-300">Brand & Client Experience</p>
               <ul class="space-y-3 text-lg">
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>White-label website (your brand, your domain)</span></li>
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Premium presentation for high-value clients</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>White-Label Website & Client Portal</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Client Portal Trust Top-Ups, Invoice Viewing & Payments</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Premium Automated Client Communications</span></li>
               </ul>
             </div>
             <div>
-              <p class="text-2xl font-black mb-4 text-yellow-300">Founder-Level Access</p>
+              <p class="text-2xl font-black mb-4 text-yellow-300">Advanced Automation</p>
               <ul class="space-y-3 text-lg">
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Dedicated onboarding</span></li>
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Direct founder access & priority escalation</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Workflow & Escalation Automation</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Advanced KPI & Lawyer Performance Dashboards</span></li>
               </ul>
             </div>
             <div>
-              <p class="text-2xl font-black mb-4 text-yellow-300">Scale</p>
+              <p class="text-2xl font-black mb-4 text-yellow-300">Firm-Wide Control</p>
               <ul class="space-y-3 text-lg">
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Unlimited users & cases</span></li>
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Full operational freedom without tier-switching</span></li>
-              </ul>
-            </div>
-            <div>
-              <p class="text-2xl font-black mb-4 text-yellow-300">Support & Rewards</p>
-              <ul class="space-y-3 text-lg">
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Founding referral rewards (refer 1 firm → 12 months free, 2 firms → free forever)</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Unlimited Users & Cases</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Customizable Dashboard</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Full Audit & Compliance Suite</span></li>
               </ul>
             </div>
           </div>
         `
       };
       $('recommended-list').innerHTML = featuresHTML[finalTier];
-
-      // Dynamic CTA
+      // Dynamic WhatsApp CTA Button
       const oldCta = document.querySelector('#quiz-results .dynamic-cta');
       if (oldCta) oldCta.remove();
-      const buttonText = finalTier === "Apex" ? "JOIN APEX WAITLIST" : `CLAIM MY ${t.name.toUpperCase()} SPOT NOW`;
-      const setupText = t.setup > 0 ? ` + ${format(t.setup)} setup${isWaived ? " (WAIVED!)" : ""}` : "";
+      const buttonText = finalTier === "Apex" ? "JOIN APEX WAITLIST" : `CLAIM MY ${t.name.toUpperCase()} SPOT`;
       const action = finalTier === "Apex" ? "Join Apex waitlist" : "Secure my founding spot";
+      const setupText = t.setup > 0 ? ` + ${format(t.setup)} setup${isWaived ? " (WAIVED!)" : ""}` : "";
       const waMsg = encodeURIComponent(`LexPilot FOUNDING LEAD! Tier: ${t.name} | Price: ${format(t.monthly)}/mo${setupText} | Normal: ${format(t.normal)}/mo | ${action}!`);
       $('recommended-list').insertAdjacentHTML('afterend', `
         <div class="mt-16 dynamic-cta">
-          <button class="claim-btn" data-tier="${finalTier}">
-            <div class="inline-block bg-gradient-to-r ${t.color} hover:scale-105 transition-all text-black font-black text-3xl md:text-4xl px-12 py-8 rounded-full shadow-2xl w-full max-w-md">
+          <a href="https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${waMsg}" target="_blank" class="block">
+            <div class="inline-block bg-gradient-to-r ${t.color} hover:scale-105 transition-all text-black font-black text-3xl md:text-4xl px-12 py-8 rounded-full shadow-2xl w-full max-w-md text-center">
               <i class="fab fa-whatsapp mr-4 text-4xl"></i> ${buttonText}
             </div>
-          </button>
+          </a>
           <p class="mt-6 text-xl opacity-80">Reply in under 60 seconds • 24/7</p>
         </div>
       `);
@@ -299,13 +263,13 @@
       $('quiz-results').scrollIntoView({ behavior: 'smooth' });
     }
   };
-  // ====================== GLOBAL WHATSAPP HANDLER ======================
+  // ====================== GLOBAL WHATSAPP HANDLER (for pricing page buttons) ======================
   document.addEventListener('click', e => {
     const btn = e.target.closest('.claim-btn');
     if (!btn) return;
     e.preventDefault();
-    let tier = btn.dataset.tier || $('tier-name')?.textContent.trim();
-    if (!tier || !TIERS[tier]) return;
+    let tier = btn.dataset.tier;
+    if (!tier) return;
     const t = TIERS[tier];
     const takenDominance = parseInt($('dominance-taken')?.textContent || '0');
     const takenApex = parseInt($('apex-taken')?.textContent || '0');
@@ -316,6 +280,19 @@
     const action = tier === "Apex" ? "Join Apex waitlist" : "Secure my founding spot";
     const waMsg = encodeURIComponent(`LexPilot FOUNDING LEAD! Tier: ${t.name} | Price: ${format(t.monthly)}/mo${setupText} | Normal: ${format(t.normal)}/mo | ${action}!`);
     window.open(`https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${waMsg}`, '_blank');
+  });
+  // ====================== TRIAL BUTTONS → WhatsApp "Free Trial" ======================
+  document.addEventListener('click', e => {
+    if (e.target.closest('button') && e.target.textContent.includes('Start 14-Day Free Trial')) {
+      e.preventDefault();
+      const waMsg = encodeURIComponent(`Hi LexPilot! I'd like to start the 14-day free trial.`);
+      window.open(`https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${waMsg}`, '_blank');
+    }
+    if (e.target.closest('button') && e.target.textContent.includes('Join Waitlist')) {
+      e.preventDefault();
+      const waMsg = encodeURIComponent(`Hi LexPilot! Please add me to the Apex waitlist.`);
+      window.open(`https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${waMsg}`, '_blank');
+    }
   });
   // ====================== HEADER & FOOTER LOADER ======================
   const loadPart = async (file, placeholderId) => {
@@ -334,12 +311,14 @@
     loadPart('header', 'header-placeholder');
     loadPart('footer', 'footer-placeholder');
     initCounters();
+    // Close quiz overlay on background click
     $('quiz-overlay')?.addEventListener('click', e => {
       if (e.target === $('quiz-overlay')) {
         $('quiz-overlay').classList.add('hidden');
         document.body.style.overflow = '';
       }
     });
+    // Add close button to quiz
     const closeBtn = document.createElement('button');
     closeBtn.innerHTML = '×';
     closeBtn.className = 'absolute top-6 right-6 text-7xl opacity-40 hover:opacity-100 z-50 text-white';
