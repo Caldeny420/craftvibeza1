@@ -116,54 +116,22 @@
     .credibility-block { font-size: clamp(0.9rem, 1.9vw, 1.05rem); margin-top: 1.8rem; line-height: 1.4; opacity: 0.9; }
     section { padding: 4rem 1rem; }
     @media (min-width: 768px) { section { padding: 5rem 2rem; } }
-    @media (min-width: 1024px) { section { padding: 6rem 3rem; } }
-    @media (min-width: 1280px) { section { padding: 7rem 4rem; } }
-
-    /* Pricing Section – Optimized for all screen sizes including large horizontal screens */
+    @media (min-width: 1024px) { section { padding: 6rem 2rem; } }
     .pricing-scroll-container {
       display: flex;
-      gap: 2rem;
-      padding: 2rem 0 4rem;
+      gap: 1.5rem;
+      padding: 1rem 0 3rem;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
       scrollbar-width: none;
     }
     .pricing-scroll-container::-webkit-scrollbar { display: none; }
-
-    @media (max-width: 767px) {
-      .pricing-scroll-container {
-        gap: 1.5rem;
-        padding: 1rem 0 3rem;
-      }
-    }
-
-    @media (min-width: 768px) and (max-width: 1023px) {
-      .pricing-scroll-container {
-        justify-content: center;
-        overflow-x: visible;
-      }
-    }
-
-    @media (min-width: 1024px) {
-      .pricing-scroll-container {
-        justify-content: center;
-        overflow-x: visible;
-        gap: 3rem;
-      }
-    }
-
-    @media (min-width: 1536px) {
-      .pricing-scroll-container {
-        gap: 4rem;
-      }
-    }
-
     .pricing-card {
-      flex: 0 0 88vw;
-      max-width: 420px;
+      flex: 0 0 86vw;
+      max-width: 380px;
       background: linear-gradient(to bottom, #18181b, #000);
       border-radius: 1.5rem;
-      padding: 3rem 2rem 3rem;
+      padding: 2.75rem 1.5rem 2.5rem;
       text-align: center;
       border: 2px solid;
       box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
@@ -172,46 +140,13 @@
       display: flex;
       flex-direction: column;
     }
-
-    @media (max-width: 640px) {
-      .pricing-card {
-        flex: 0 0 86vw;
-        max-width: 380px;
-        padding: 2.75rem 1.5rem 2.5rem;
-      }
+    @media (min-width: 640px) {
+      .pricing-card { flex: 0 0 78vw; max-width: 400px; padding: 3rem 2rem 2.75rem; }
     }
-
-    @media (min-width: 768px) and (max-width: 1023px) {
-      .pricing-card {
-        flex: 0 0 45%;
-        max-width: 460px;
-        padding: 3.5rem 2.5rem;
-      }
-    }
-
     @media (min-width: 1024px) {
-      .pricing-card {
-        flex: 1 1 380px;
-        max-width: 480px;
-        padding: 4rem 2.5rem;
-      }
+      .pricing-scroll-container { overflow-x: visible; justify-content: center; gap: 2rem; }
+      .pricing-card { flex: 1 1 360px; max-width: 420px; padding: 3.25rem 2rem 3rem; }
     }
-
-    @media (min-width: 1280px) {
-      .pricing-card {
-        max-width: 520px;
-        padding: 4.5rem 3rem;
-      }
-    }
-
-    @media (min-width: 1536px) {
-      .pricing-card {
-        max-width: 560px;
-        padding: 5rem 3.5rem;
-      }
-    }
-
-    /* Feature Table – Better column widths and responsiveness */
     .feature-table-container {
       overflow-x: auto;
       border-radius: 1.5rem;
@@ -233,109 +168,62 @@
       pointer-events: none;
       z-index: 20;
     }
-    @media (min-width: 1024px) { .feature-table-container::after { display: none; } }
-
+    @media (min-width: 768px) { .feature-table-container::after { display: none; } }
     .feature-table-container table {
       width: 100%;
-      min-width: 700px;
+      min-width: 620px; /* Reduced from 680px to fit more on mobile */
     }
-
     .feature-table-container th,
     .feature-table-container td {
-      padding: 1.2rem 1rem;
+      padding: 1rem 0.75rem;
       font-size: 0.9375rem;
       vertical-align: middle;
       text-align: center;
     }
-
     @media (min-width: 768px) {
       .feature-table-container th,
       .feature-table-container td {
-        padding: 1.5rem 1.2rem;
+        padding: 1.25rem 1rem;
         font-size: 1rem;
       }
     }
-
-    @media (min-width: 1280px) {
-      .feature-table-container th,
-      .feature-table-container td {
-        padding: 1.8rem 1.5rem;
-        font-size: 1.1rem;
-      }
-    }
-
+    /* Reduced feature column width on mobile */
     .feature-table-container th:first-child,
     .feature-table-container td:first-child {
       position: sticky;
       left: 0;
       background: linear-gradient(to right, #000, #18181b);
       z-index: 10;
-      min-width: 180px;
-      max-width: 180px;
+      min-width: 160px;   /* Reduced from 220px */
+      max-width: 160px;   /* Reduced from 220px */
       text-align: left;
       font-weight: 600;
+      font-size: 0.875rem; /* Slightly smaller text on mobile */
     }
-
-    @media (max-width: 767px) {
+    @media (min-width: 768px) {
       .feature-table-container th:first-child,
       .feature-table-container td:first-child {
-        min-width: 160px;
-        max-width: 160px;
-        font-size: 0.875rem;
+        min-width: 220px;
+        max-width: 220px;
+        font-size: 1rem;
       }
     }
-
-    @media (min-width: 1024px) {
-      .feature-table-container th:first-child,
-      .feature-table-container td:first-child {
-        min-width: 240px;
-        max-width: 240px;
-      }
-    }
-
     .feature-table-container th:not(:first-child):not(:last-child),
     .feature-table-container td:not(:first-child):not(:last-child) {
-      min-width: 130px;
-      width: 130px;
+      min-width: 110px; /* Slightly reduced */
+      width: 110px;
     }
-
-    @media (min-width: 1280px) {
-      .feature-table-container th:not(:first-child):not(:last-child),
-      .feature-table-container td:not(:first-child):not(:last-child) {
-        min-width: 160px;
-        width: 160px;
-      }
-    }
-
     .feature-table-container th:last-child,
     .feature-table-container td:last-child {
-      min-width: 180px;
+      min-width: 160px;
       text-align: left;
       padding-left: 1.5rem;
     }
-
-    @media (min-width: 1024px) {
-      .feature-table-container th:last-child,
-      .feature-table-container td:last-child {
-        min-width: 220px;
-      }
-    }
-
     .feature-table-container thead th {
       position: sticky;
       top: 0;
       background: linear-gradient(to bottom, #18181b, #000);
       z-index: 11;
-    }
-
-    /* Final CTA button size improvement */
-    .final-cta-primary {
-      font-size: clamp(2.5rem, 6vw, 5rem);
-      padding: clamp(1.5rem, 4vw, 3rem) clamp(4rem, 10vw, 8rem);
-    }
-    .final-cta-secondary {
-      font-size: clamp(2rem, 5vw, 4rem);
-      padding: clamp(1.2rem, 3.5vw, 2.5rem) clamp(3rem, 8vw, 6rem);
     }
   </style>
 </head>
@@ -357,6 +245,7 @@
         <button onclick="startQuiz()" class="block mx-auto bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-black font-black rounded-full shadow-2xl hover:scale-105 transition-all duration-300 border-4 border-green-400/50 hero-cta-primary">
           <span class="drop-shadow-lg">Apply Now</span>
         </button>
+
         <p class="whatsapp-cta-text">
           or
           <a href="https://wa.me/27764312871?text=Hi%20LexPilot%20-%20Early%20Access" target="_blank" class="text-green-400 underline hover:text-green-300 font-bold hover:no-underline transition">
@@ -410,7 +299,7 @@
   </section>
   <!-- PRICING -->
   <section id="pricing" class="bg-black">
-    <div class="max-w-7xl mx-auto text-center px-4">
+    <div class="max-w-6xl mx-auto text-center">
       <h2 class="text-5xl sm:text-6xl md:text-7xl font-black mb-6 leading-tight">
         Early Access Pricing
       </h2>
@@ -582,7 +471,7 @@
   </section>
   <!-- FEATURE TABLE -->
   <section id="features" class="py-20 px-6 bg-black">
-    <div class="max-w-7xl mx-auto">
+    <div class="max-w-6xl mx-auto">
       <h2 class="text-5xl sm:text-6xl md:text-7xl font-black text-center mb-16">Complete Feature Breakdown</h2>
       <div class="feature-table-container">
         <table class="w-full text-left">
@@ -720,6 +609,7 @@
       </div>
     </div>
   </section>
+  <!-- Remaining sections (How It Works, Referral, Security, Final CTA, etc.) unchanged -->
   <section class="py-32 px-6 bg-zinc-950">
     <div class="max-w-6xl mx-auto text-center">
       <h2 class="text-5xl sm:text-6xl font-black mb-20">How It Works</h2>
@@ -774,19 +664,19 @@
       <p class="text-2xl opacity-90 mb-16">
         Lock your price forever and protect your firm from costly trust account violations.
       </p>
-      <button onclick="startQuiz()" class="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-black font-black rounded-full shadow-2xl hover:scale-105 transition final-cta-primary">
+      <button onclick="startQuiz()" class="bg-gradient-to-r from-green-500 to-emerald-600 text-black font-black text-4xl sm:text-6xl px-20 py-12 rounded-full shadow-2xl hover:scale-105 transition">
         Claim Your Founding Spot — Only 500 Firms
       </button>
-      <button class="block mx-auto mt-6 bg-gradient-to-r from-zinc-700 to-zinc-600 hover:from-zinc-600 hover:to-zinc-500 text-white font-black rounded-full shadow-2xl hover:scale-105 transition final-cta-secondary">
+      <button class="block mx-auto mt-6 bg-gradient-to-r from-zinc-700 to-zinc-600 text-white font-black text-3xl sm:text-5xl px-20 py-10 rounded-full shadow-2xl hover:scale-105 transition">
         Start 14-Day Free Trial
       </button>
       <p class="mt-8 text-xl opacity-80">
-        or <a href="https://wa.me/27764312871?text=Hi%20LexPilot%2C%0A%0AI%27m%20interested%20in%20Early%20Access" target="_blank" class="text-green-400 underline">message the founder on WhatsApp</a>
+        or <a href="https://wa.me/27764312871?text=Hi%20LexPilot%20-%20Early%20Access" target="_blank" class="text-green-400 underline">message the founder on WhatsApp</a>
         <br><span class="text-sm opacity-70">Replies in &lt;60 seconds — 24/7 support</span>
       </p>
     </div>
   </section>
-  <!-- QUIZ OVERLAY -->
+ <!-- QUIZ OVERLAY -->
   <div id="quiz-overlay" class="fixed inset-0 bg-black/98 backdrop-blur-2xl flex items-center justify-center z-[1000] hidden px-4 overflow-y-auto">
     <div class="w-full max-w-lg mx-auto my-8">
       <div class="h-3 bg-zinc-800 rounded-full mb-8 overflow-hidden">
