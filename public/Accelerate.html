@@ -122,6 +122,17 @@
       box-shadow: 0 10px 20px rgba(0,0,0,0.5);
       z-index: 10;
     }
+    .gradient-text {
+      background: linear-gradient(to right, var(--gold), var(--gold-dark));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .apex-border {
+      border: 2px solid transparent;
+      border-image: linear-gradient(to bottom, var(--gold), var(--gold-dark)) 1;
+      border-image-slice: 1;
+    }
   </style>
 </head>
 <body class="min-h-screen flex flex-col">
@@ -241,8 +252,8 @@
         </div>
 
         <!-- APEX TAKEOVER -->
-        <div class="pricing-card" style="border-image: linear-gradient(to bottom, var(--gold), var(--gold-dark)) 1;">
-          <h3 class="text-4xl lg:text-5xl font-black mb-4" style="background: linear-gradient(to right, var(--gold), var(--gold-dark)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Apex Takeover</h3>
+        <div class="pricing-card apex-border">
+          <h3 class="text-4xl lg:text-5xl font-black mb-4 gradient-text">Apex Takeover</h3>
           <p class="text-2xl opacity-90 mb-3">Market Leadership System</p>
           <p class="text-lg opacity-80 mb-8 max-w-sm mx-auto">For established firms ready to dominate their city or practice area with advanced, compliant marketing automation.</p>
           <div class="text-6xl lg:text-7xl font-black text-green-400 mb-4">R27,900<span class="text-3xl lg:text-4xl opacity-80"> once</span></div>
@@ -259,7 +270,7 @@
             <span class="text-sm opacity-90">(Unlimited users & premium client portal • Value R119,988)</span>
           </div>
           <a href="https://wa.me/27764312871?text=Hi%20-%20Interested%20in%20The%20Apex%20Takeover%20(R27,900)" target="_blank"
-             class="mt-8 w-full bg-gradient-to-r from-yellow-500 to-gold text-black font-black text-2xl py-6 rounded-2xl hover:scale-105 transition shadow-2xl block">
+             class="mt-8 w-full bg-gradient-to-r from-yellow-500 to-yellow-600 text-black font-black text-2xl py-6 rounded-2xl hover:scale-105 transition shadow-2xl block">
             SECURE MY SPOT
           </a>
         </div>
@@ -278,7 +289,7 @@
               <th class="px-8 py-6 text-lg font-black">What's Included</th>
               <th class="text-center px-8 py-6 text-2xl font-black text-green-400">Authority Starter<br><span class="text-xl">R9,900</span></th>
               <th class="text-center px-8 py-6 text-2xl font-black text-yellow-400">Growth Accelerator<br><span class="text-xl">R17,900</span></th>
-              <th class="text-center px-8 py-6 text-2xl font-black" style="background: linear-gradient(to right, var(--gold), var(--gold-dark)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Apex Takeover<br><span class="text-xl">R27,900</span></th>
+              <th class="text-center px-8 py-6 text-2xl font-black gradient-text">Apex Takeover<br><span class="text-xl">R27,900</span></th>
             </tr>
           </thead>
           <tbody class="text-lg">
@@ -334,37 +345,37 @@
               <td class="px-8 py-5 font-semibold">Custom lead magnet</td>
               <td class="text-center text-red-500 font-bold">—</td>
               <td class="text-center text-red-500 font-bold">—</td>
-              <td class="text-center" style="color: var(--gold); font-weight: 900;">✓</td>
+              <td class="text-center gradient-text font-bold text-3xl">✓</td>
             </tr>
             <tr class="border-b border-zinc-800">
               <td class="px-8 py-5 font-semibold">Automated referral engine</td>
               <td class="text-center text-red-500 font-bold">—</td>
               <td class="text-center text-red-500 font-bold">—</td>
-              <td class="text-center" style="color: var(--gold); font-weight: 900;">✓</td>
+              <td class="text-center gradient-text font-bold text-3xl">✓</td>
             </tr>
             <tr class="border-b border-zinc-800">
               <td class="px-8 py-5 font-semibold">90-day full posting management</td>
               <td class="text-center text-red-500 font-bold">—</td>
               <td class="text-center text-red-500 font-bold">—</td>
-              <td class="text-center" style="color: var(--gold); font-weight: 900;">✓</td>
+              <td class="text-center gradient-text font-bold text-3xl">✓</td>
             </tr>
             <tr class="border-b border-zinc-800">
               <td class="px-8 py-5 font-semibold">Compliant Google Ads setup</td>
               <td class="text-center text-red-500 font-bold">—</td>
               <td class="text-center text-red-500 font-bold">—</td>
-              <td class="text-center" style="color: var(--gold); font-weight: 900;">✓</td>
+              <td class="text-center gradient-text font-bold text-3xl">✓</td>
             </tr>
             <tr class="border-b border-zinc-800 bg-zinc-900/30">
               <td class="px-8 py-6 font-semibold">12-Month LexPilot SaaS Bundle</td>
               <td class="text-center text-green-400 font-bold">GROWTH<br><span class="text-sm opacity-90">R11,988 value</span></td>
               <td class="text-center text-yellow-400 font-bold">DOMINANCE<br><span class="text-sm opacity-90">R35,988 value</span></td>
-              <td class="text-center" style="color: var(--gold); font-weight: 900;">APEX<br><span class="text-sm opacity-90">R119,988 value</span></td>
+              <td class="text-center gradient-text font-bold">APEX<br><span class="text-sm opacity-90">R119,988 value</span></td>
             </tr>
             <tr class="bg-green-900/30 border-t-4 border-green-600">
               <td class="px-8 py-8 font-bold text-2xl text-green-300">Expected Outcome</td>
               <td class="text-center text-green-400 font-bold text-lg leading-tight">Strong local visibility<br>+ consistent early enquiries</td>
               <td class="text-center text-yellow-400 font-bold text-lg leading-tight">Multi-channel lead flow<br>+ referral growth</td>
-              <td class="text-center" style="color: var(--gold); font-weight: 900; text-lg leading-tight">Market leadership<br>+ automated instruction pipeline</td>
+              <td class="text-center gradient-text font-bold text-lg leading-tight">Market leadership<br>+ automated instruction pipeline</td>
             </tr>
           </tbody>
         </table>
