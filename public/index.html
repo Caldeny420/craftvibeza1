@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta name="theme-color" content="#000000" />
-  <meta name="description" content="LexPilot – The AI-powered practice platform built exclusively for South African law firms. Only 500 Early Access places forever." />
-  <title>LexPilot | Early Access – Only 500 Places</title>
+  <meta name="description" content="LexPilot – The complete practice platform for South African law firms. Real-time trust alerts, automation & compliance. Only 500 Founding spots forever – closing 28 March 2026." />
+  <title>LexPilot | Founding Access – Only 500 Spots Forever</title>
   <link rel="icon" href="/images/craftvibe-logo.jpg" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
@@ -17,9 +17,7 @@
       --gold: #ffd700;
       --gold-dark: #b8860b;
     }
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
     body {
       font-family: 'Inter', sans-serif;
       background: #000;
@@ -36,14 +34,9 @@
       border-radius: 9999px;
       font-size: 0.875rem;
       letter-spacing: 0.1em;
+      text-transform: uppercase;
     }
-    @media (max-width: 640px) {
-      .badge {
-        font-size: 0.75rem;
-        padding: 0.625rem 1.25rem;
-      }
-    }
-    @media (min-width: 640px) { .badge { font-size: 1rem; padding: 0.875rem 1.75rem; } }
+    @media (min-width: 640px) { .badge { font-size: 1rem; padding: 1rem 2rem; } }
     .founding-badge {
       position: absolute;
       top: -1.6rem;
@@ -64,14 +57,8 @@
       white-space: nowrap;
     }
     @media (max-width: 767px) {
-      .founding-badge {
-        top: -1.4rem;
-        font-size: 0.625rem;
-        padding: 0.5rem 1rem;
-        line-height: 1.2;
-      }
+      .founding-badge { top: -1.4rem; font-size: 0.625rem; padding: 0.5rem 1rem; }
     }
-    @media (min-width: 640px) { .founding-badge { padding: 0.875rem 2rem; font-size: 0.875rem; } }
     .apex-badge {
       position: absolute;
       top: -1.2rem;
@@ -88,35 +75,13 @@
       border: 2px solid #000;
       z-index: 30;
     }
-    @media (max-width: 767px) {
-      .apex-badge {
-        top: -1rem;
-        font-size: 0.625rem;
-        padding: 0.4rem 1rem;
-      }
-    }
     @keyframes pulse {
       0%, 100% { opacity: 1; }
       50% { opacity: 0.8; }
     }
-    .hero-container {
-      min-height: calc(100vh - var(--header-height, 80px));
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 1rem 1rem 2.5rem;
-    }
-    @media (min-width: 768px) {
-      .hero-container { padding: 1.5rem 2rem 3.5rem; }
-    }
-    .hero-headline { font-size: clamp(2.4rem, 6.5vw, 4.2rem); line-height: 1.05; margin-bottom: 0.75rem; }
-    .hero-subheadline { font-size: clamp(1.1rem, 3.2vw, 1.6rem); line-height: 1.4; margin-bottom: 1.5rem; padding: 0 0.75rem; opacity: 0.95; }
-    .hero-cta-primary { font-size: clamp(1.4rem, 3.8vw, 2rem); padding: clamp(0.9rem, 2.8vw, 1.4rem) clamp(2.2rem, 5.5vw, 4rem); width: 92%; max-width: 400px; }
-    .whatsapp-cta-text { font-size: clamp(0.95rem, 2.4vw, 1.1rem); margin-top: 1.2rem; }
-    .credibility-block { font-size: clamp(0.9rem, 1.9vw, 1.05rem); margin-top: 1.8rem; line-height: 1.4; opacity: 0.9; }
-    section { padding: 4rem 1rem; }
-    @media (min-width: 768px) { section { padding: 5rem 2rem; } }
-    @media (min-width: 1024px) { section { padding: 6rem 2rem; } }
+    .hero-headline { font-size: clamp(2.5rem, 7vw, 5rem); line-height: 1.05; font-weight: 900; }
+    .hero-subheadline { font-size: clamp(1.1rem, 3vw, 1.75rem); line-height: 1.5; opacity: 0.95; }
+    .cta-primary { font-size: clamp(1.5rem, 4vw, 2.5rem); padding: clamp(1rem, 3vw, 1.5rem) clamp(2.5rem, 6vw, 5rem); }
     .pricing-scroll-container {
       display: flex;
       gap: 1.5rem;
@@ -127,32 +92,32 @@
     }
     .pricing-scroll-container::-webkit-scrollbar { display: none; }
     .pricing-card {
-      flex: 0 0 86vw;
-      max-width: 380px;
+      flex: 0 0 88vw;
+      max-width: 420px;
       background: linear-gradient(to bottom, #18181b, #000);
-      border-radius: 1.5rem;
-      padding: 2.75rem 1.5rem 2.5rem;
+      border-radius: 1.8rem;
+      padding: 3rem 1.8rem 2.8rem;
       text-align: center;
       border: 2px solid;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
       scroll-snap-align: center;
       position: relative;
       display: flex;
       flex-direction: column;
     }
-    @media (min-width: 640px) {
-      .pricing-card { flex: 0 0 78vw; max-width: 400px; padding: 3rem 2rem 2.75rem; }
+    @media (min-width: 768px) {
+      .pricing-card { flex: 0 0 70vw; max-width: 440px; }
+      .pricing-scroll-container { justify-content: center; overflow-x: visible; }
     }
     @media (min-width: 1024px) {
-      .pricing-scroll-container { overflow-x: visible; justify-content: center; gap: 2rem; }
-      .pricing-card { flex: 1 1 360px; max-width: 420px; padding: 3.25rem 2rem 3rem; }
+      .pricing-card { flex: 1 1 380px; max-width: 460px; }
     }
     .feature-table-container {
       overflow-x: auto;
       border-radius: 1.5rem;
       border: 1px solid #27272a;
       position: relative;
-      margin: 2rem 0;
+      margin: 3rem 0;
     }
     .feature-table-container::after {
       content: "← Swipe for more →";
@@ -160,7 +125,7 @@
       top: 50%;
       right: 10px;
       transform: translateY(-50%);
-      background: rgba(0,0,0,0.7);
+      background: rgba(0,0,0,0.8);
       padding: 0.5rem 1rem;
       border-radius: 9999px;
       font-size: 0.875rem;
@@ -171,7 +136,7 @@
     @media (min-width: 768px) { .feature-table-container::after { display: none; } }
     .feature-table-container table {
       width: 100%;
-      min-width: 620px; /* Reduced from 680px to fit more on mobile */
+      min-width: 680px;
     }
     .feature-table-container th,
     .feature-table-container td {
@@ -182,40 +147,29 @@
     }
     @media (min-width: 768px) {
       .feature-table-container th,
-      .feature-table-container td {
-        padding: 1.25rem 1rem;
-        font-size: 1rem;
-      }
+      .feature-table-container td { padding: 1.25rem 1rem; font-size: 1rem; }
     }
-    /* Reduced feature column width on mobile */
     .feature-table-container th:first-child,
     .feature-table-container td:first-child {
       position: sticky;
       left: 0;
       background: linear-gradient(to right, #000, #18181b);
       z-index: 10;
-      min-width: 160px;   /* Reduced from 220px */
-      max-width: 160px;   /* Reduced from 220px */
+      min-width: 180px;
       text-align: left;
       font-weight: 600;
-      font-size: 0.875rem; /* Slightly smaller text on mobile */
     }
     @media (min-width: 768px) {
       .feature-table-container th:first-child,
-      .feature-table-container td:first-child {
-        min-width: 220px;
-        max-width: 220px;
-        font-size: 1rem;
-      }
+      .feature-table-container td:first-child { min-width: 240px; }
     }
     .feature-table-container th:not(:first-child):not(:last-child),
     .feature-table-container td:not(:first-child):not(:last-child) {
-      min-width: 110px; /* Slightly reduced */
-      width: 110px;
+      min-width: 120px;
     }
     .feature-table-container th:last-child,
     .feature-table-container td:last-child {
-      min-width: 160px;
+      min-width: 180px;
       text-align: left;
       padding-left: 1.5rem;
     }
@@ -228,97 +182,79 @@
   </style>
 </head>
 <body class="min-h-screen flex flex-col">
-  <div id="header-placeholder"></div>
-  <!-- HERO -->
-  <main class="flex-1 px-4 sm:px-6 lg:px-8 text-center">
-    <div class="max-w-7xl mx-auto hero-container">
-      <div class="badge mb-6 sm:mb-8 lg:mb-10">
-        FOUNDING MEMBERS • ONLY 500 FOREVER • CLOSING MARCH 28TH 2026
-      </div>
-      <h1 class="font-black leading-[0.95] tracking-tighter hero-headline">
-        Proactively Protect Your Firm from Trust Account Violations
-      </h1>
-      <p class="font-semibold hero-subheadline">
-        Real-time Rule 54 & 86 alerts, automated trust deductions from invoices, one-click PayFast top-ups, and fully POPIA-compliant operations — built exclusively for South African attorneys.
-      </p>
-      <div class="mt-8 sm:mt-10 lg:mt-12 space-y-4">
-        <button onclick="startQuiz()" class="block mx-auto bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-black font-black rounded-full shadow-2xl hover:scale-105 transition-all duration-300 border-4 border-green-400/50 hero-cta-primary">
-          <span class="drop-shadow-lg">Apply Now</span>
-        </button>
+   <div id="header-placeholder"></div>
 
-        <p class="whatsapp-cta-text">
-          or
-          <a href="https://wa.me/27764312871?text=Hi%20LexPilot%20-%20Early%20Access" target="_blank" class="text-green-400 underline hover:text-green-300 font-bold hover:no-underline transition">
-            message the founder on WhatsApp
-          </a>
-          <br class="sm:hidden">
-          <span class="text-sm opacity-70 block mt-2">(Replies in &lt;60 seconds • 24/7)</span>
+  <!-- HERO -->
+  <main class="flex-1 px-4 py-16 text-center">
+    <div class="max-w-7xl mx-auto">
+      <div class="badge mb-8">FOUNDING MEMBERS • ONLY 500 SPOTS FOREVER • CLOSING 28 MARCH 2026</div>
+      <h1 class="hero-headline mb-6">Proactively Protect Your Firm from Costly Trust Account Violations</h1>
+      <p class="hero-subheadline max-w-5xl mx-auto mb-12">Real-time Rule 54 & 86 alerts, guided or fully automated trust deductions, one-click PayFast top-ups, and 100% POPIA-compliant operations — built exclusively for South African law firms.</p>
+      <div class="space-y-6">
+        <button onclick="startQuiz()" class="block mx-auto bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-black font-black rounded-full shadow-2xl hover:scale-105 transition-all duration-300 border-4 border-green-400/50 cta-primary">
+          Claim Your Founding Spot Now
+        </button>
+        <p class="text-lg">
+          or <a href="https://wa.me/27764312871?text=Hi%20LexPilot%20-%20Founding%20Access" target="_blank" class="text-green-400 underline font-bold hover:no-underline">message the founder on WhatsApp</a><br>
+          <span class="text-sm opacity-70">(Replies in &lt;60 seconds • 24/7)</span>
         </p>
       </div>
-      <div class="credibility-block font-black tracking-wider">
-        Proudly South African • <strong class="font-black">100% POPIA-compliant</strong> • Locally hosted • Fully audited
-      </div>
+      <p class="mt-12 font-black text-lg tracking-wider opacity-90">Proudly South African • 100% POPIA-Compliant • Locally Hosted • Independently Audited</p>
     </div>
   </main>
-  <!-- Why Trust Section -->
-  <section class="py-24 sm:py-32 px-6 bg-zinc-950 text-white">
+
+  <!-- Why Trust LexPilot -->
+  <section class="py-20 px-6 bg-zinc-950">
     <div class="max-w-6xl mx-auto text-center">
-      <h2 class="text-4xl sm:text-5xl md:text-6xl font-black mb-16 sm:mb-20">
-        Why South African Law Firms Can Trust LexPilot
-      </h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 sm:gap-12 mb-16 sm:mb-20">
+      <h2 class="text-4xl sm:text-5xl md:text-6xl font-black mb-16">Why South African Law Firms Trust LexPilot</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-5xl mx-auto">
         <div>
-          <div class="text-5xl sm:text-6xl mb-4">🔔</div>
-          <h3 class="text-xl sm:text-2xl font-bold mb-3">Real-time Rule 54 & 86 Alerts</h3>
-          <p class="text-base sm:text-lg text-zinc-300">Proactively reduce risk of costly violations</p>
+          <div class="text-6xl mb-6">🔔</div>
+          <h3 class="text-2xl font-bold mb-4">Real-Time Rule 54 & 86 Alerts</h3>
+          <p class="text-zinc-300">Catch trust risks before they become costly violations</p>
         </div>
         <div>
-          <div class="text-5xl sm:text-6xl mb-4">💬</div>
-          <h3 class="text-xl sm:text-2xl font-bold mb-3">24/7 Direct Founder Access</h3>
-          <p class="text-base sm:text-lg text-zinc-300">Instant support via WhatsApp – replies in under 60 seconds</p>
+          <div class="text-6xl mb-6">💬</div>
+          <h3 class="text-2xl font-bold mb-4">24/7 Direct Founder Access</h3>
+          <p class="text-zinc-300">Instant WhatsApp support – replies in under 60 seconds</p>
         </div>
         <div>
-          <div class="text-5xl sm:text-6xl mb-4">⚙️</div>
-          <h3 class="text-xl sm:text-2xl font-bold mb-3">Purpose-built Billing & Compliance Tools</h3>
-          <p class="text-base sm:text-lg text-zinc-300">Designed specifically for South African legal workflows</p>
+          <div class="text-6xl mb-6">⚙️</div>
+          <h3 class="text-2xl font-bold mb-4">Purpose-Built for SA Legal Workflows</h3>
+          <p class="text-zinc-300">Designed around real LPC audit scenarios</p>
         </div>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 sm:gap-12 max-w-4xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-12 max-w-4xl mx-auto">
         <div>
-          <div class="text-5xl sm:text-6xl mb-4">🔒</div>
-          <h3 class="text-xl sm:text-2xl font-bold mb-3">Fully POPIA-Compliant</h3>
-          <p class="text-base sm:text-lg text-zinc-300">Independently audited, locally hosted in South Africa</p>
+          <div class="text-6xl mb-6">🔒</div>
+          <h3 class="text-2xl font-bold mb-4">Fully POPIA-Compliant</h3>
+          <p class="text-zinc-300">Independently audited, data hosted only in South Africa</p>
         </div>
         <div>
-          <div class="text-5xl sm:text-6xl mb-4">🇿🇦</div>
-          <h3 class="text-xl sm:text-2xl font-bold mb-3">Built with Practising SA Attorneys</h3>
-          <p class="text-base sm:text-lg text-zinc-300">Rule logic aligned with LPC guidelines</p>
+          <div class="text-6xl mb-6">🇿🇦</div>
+          <h3 class="text-2xl font-bold mb-4">Built with Practising SA Attorneys</h3>
+          <p class="text-zinc-300">Rule logic reviewed against LPC guidelines & real firm needs</p>
         </div>
       </div>
     </div>
   </section>
+
   <!-- PRICING -->
-  <section id="pricing" class="bg-black">
-    <div class="max-w-6xl mx-auto text-center">
-      <h2 class="text-5xl sm:text-6xl md:text-7xl font-black mb-6 leading-tight">
-        Early Access Pricing
-      </h2>
-      <p class="text-2xl md:text-4xl opacity-80 font-normal mb-20">
-        Founding Price — Locked Forever
-      </p>
+  <section id="pricing" class="py-20 px-6 bg-black">
+    <div class="max-w-7xl mx-auto text-center">
+      <h2 class="text-5xl sm:text-6xl md:text-7xl font-black mb-8">Early Access Pricing</h2>
+      <p class="text-2xl md:text-3xl opacity-80 mb-16">Founding Price — Locked Forever (even when public pricing exceeds R20,000/month)</p>
       <div class="pricing-scroll-container">
         <!-- Growth -->
-        <div class="pricing-card border-zinc-600">
-          <div class="text-center mb-6">
-            <h3 class="text-4xl lg:text-5xl font-black text-green-400 mb-4">Growth</h3>
-            <p class="text-3xl lg:text-4xl font-black opacity-90 mb-2">R999 <span class="text-xl">/ month</span></p>
-            <p class="text-lg opacity-70 mb-6">Team: 1–5 attorneys & staff</p>
-          </div>
-          <div class="text-left px-4 space-y-6 flex-1">
-            <p class="text-base opacity-80 mb-6">Best for: Solo or small practices wanting accurate billing, trust monitoring, and streamlined operations</p>
+        <div class="pricing-card border-zinc-500">
+          <h3 class="text-4xl lg:text-5xl font-black text-green-400 mb-6">Growth</h3>
+          <p class="text-4xl font-black mb-2">R999 <span class="text-xl">/ month</span></p>
+          <p class="text-lg opacity-70 mb-8">Team: 1–5 attorneys & staff</p>
+          <p class="text-base opacity-80 mb-8">Best for: Solo/small firms wanting guided compliance & streamlined operations</p>
+          <div class="text-left space-y-8 flex-1">
             <div>
-              <p class="text-lg font-bold mb-3">💼 Core Features</p>
-              <ul class="space-y-3 text-base lg:text-lg">
+              <p class="text-lg font-bold mb-4">💼 Core Features</p>
+              <ul class="space-y-3">
                 <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Client & Matter Management</span></li>
                 <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Calendar & Booking</span></li>
                 <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Time Tracking & Billing</span></li>
@@ -327,352 +263,306 @@
               </ul>
             </div>
             <div>
-              <p class="text-lg font-bold mb-3">📄 Billing & Trust</p>
-              <ul class="space-y-3 text-base lg:text-lg">
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>PayFast Payment & Trust Deposit Links — One-click payments and top-ups</span></li>
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>PDF Invoice Generation & Email Sending</span></li>
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Manual Trust Deduction from Invoices — With shortfall warnings</span></li>
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Low-Balance Alerts & Trust Shortfall Protection</span></li>
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Manual Refund / Void with Auto Trust Refund</span></li>
-              </ul>
-            </div>
-            <div>
-              <p class="text-lg font-bold mb-3">🧾 VAT & Invoicing</p>
-              <ul class="space-y-3 text-base lg:text-lg">
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Manual VAT Field Only</span></li>
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Standard Invoices</span></li>
-              </ul>
-            </div>
-            <div>
-              <p class="text-lg font-bold mb-3">📩 Support & Growth</p>
-              <ul class="space-y-3 text-base lg:text-lg">
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Email & WhatsApp Support</span></li>
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Referral Rewards — Refer 1 firm → 12 months free, 2 firms → free forever</span></li>
+              <p class="text-lg font-bold mb-4">📄 Billing & Trust (Guided)</p>
+              <ul class="space-y-3">
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>PayFast Payment & Trust Top-Up Links</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>PDF Invoice Generation & Email</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Manual Trust Deduction with Live Shortfall Warnings</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Low-Balance & Shortfall Alerts</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Manual Void/Refund with Auto Trust Correction</span></li>
               </ul>
             </div>
             <p class="text-lg font-bold mb-3">🎯 Outcome</p>
-            <p class="text-base opacity-80">Safe manual trust handling, faster collections, solid compliance foundation</p>
+            <p class="opacity-80">Hands-on trust control with real-time safeguards – perfect for firms not ready to automate yet</p>
           </div>
-          <div class="mt-auto px-4 pt-8">
-            <div class="space-y-4">
-              <button class="w-full bg-zinc-700 hover:bg-zinc-600 text-white font-black text-lg lg:text-xl py-4 rounded-2xl transition shadow-xl">
-                Start 14-Day Free Trial (Live March 28)
-              </button>
-              <button class="claim-btn w-full bg-gradient-to-r from-green-500 to-emerald-600 text-black font-black text-lg lg:text-xl py-5 rounded-2xl hover:scale-105 transition shadow-xl" data-tier="Growth">
-                CLAIM FOUNDING PRICE R999/MONTH → LOCK FOREVER
-              </button>
-            </div>
+          <div class="mt-10 space-y-4">
+            <button class="w-full bg-zinc-700 hover:bg-zinc-600 text-white font-black py-4 rounded-2xl shadow-xl">Start 14-Day Free Trial (Live 28 March)</button>
+            <button class="claim-btn w-full bg-gradient-to-r from-green-500 to-emerald-600 text-black font-black py-5 rounded-2xl hover:scale-105 shadow-xl" data-tier="Growth">
+              CLAIM FOUNDING PRICE – R999/MONTH FOREVER
+            </button>
           </div>
         </div>
-        <!-- Dominance -->
+
+        <!-- Dominance (Recommended) -->
         <div class="pricing-card border-green-500 relative">
           <div class="founding-badge">FOUNDING PRICE LOCKED FOREVER</div>
-          <div class="text-center mt-6 mb-6">
-            <h3 class="text-4xl lg:text-5xl font-black text-yellow-400 mb-4">Dominance</h3>
-            <p class="text-3xl lg:text-4xl font-black opacity-90 mb-2">R2,999 <span class="text-xl">/ month</span></p>
-            <p class="text-lg opacity-70 mb-6">Team: 5–15 attorneys & staff</p>
-          </div>
-          <div class="text-left px-4 space-y-6 flex-1">
-            <p class="text-base opacity-80 mb-6">Best for: Growing firms needing automation, compliance, and team visibility</p>
-            <p class="text-lg font-bold mb-4">Everything in Growth, plus:</p>
+          <h3 class="text-4xl lg:text-5xl font-black text-yellow-400 mb-6 mt-6">Dominance</h3>
+          <p class="text-4xl font-black mb-2">R2,999 <span class="text-xl">/ month</span></p>
+          <p class="text-lg opacity-70 mb-8">Team: 5–15 attorneys & staff</p>
+          <p class="text-base opacity-80 mb-8">Best for: Growing firms ready to automate trust safely and scale</p>
+          <div class="text-left space-y-8 flex-1">
+            <p class="font-bold mb-4">Everything in Growth, plus:</p>
             <div>
-              <p class="text-lg font-bold mb-3">🚀 Automation & Scale</p>
-              <ul class="space-y-3 text-base lg:text-lg">
+              <p class="text-lg font-bold mb-4">🚀 Automation & Scale</p>
+              <ul class="space-y-3">
                 <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Bulk & Multi-Case Invoicing</span></li>
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Fully Automated Trust Deductions from Invoices — Auto allocation, reconciliation, shortfall capping</span></li>
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Automated Workflows — Payment chasers, overdue reminders, lead nurturing</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Fully Automated Trust Deductions (allocation, reconciliation, capping)</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Automated Workflows (chasers, reminders, nurturing)</span></li>
               </ul>
             </div>
             <div>
-              <p class="text-lg font-bold mb-3">👥 Team & Operations</p>
-              <ul class="space-y-3 text-base lg:text-lg">
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Firm-Wide Dashboard — Real-time revenue, workloads, trust status</span></li>
+              <p class="text-lg font-bold mb-4">👥 Team & Operations</p>
+              <ul class="space-y-3">
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Firm-Wide Dashboard (revenue, workload, trust)</span></li>
                 <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Multi-Lawyer Collaboration</span></li>
                 <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Advanced Document Storage with Version Control</span></li>
               </ul>
             </div>
             <div>
-              <p class="text-lg font-bold mb-3">⚖️ Compliance & Reporting</p>
-              <ul class="space-y-3 text-base lg:text-lg">
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Real-Time Rule 54 & 86 Alerts</span></li>
+              <p class="text-lg font-bold mb-4">⚖️ Compliance & Reporting</p>
+              <ul class="space-y-3">
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Full Real-Time Rule 54 & 86 Alerts</span></li>
                 <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>SARS-Compliant Invoices with Audit Logs</span></li>
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Advanced Reporting — Aged Debtors, LPC/Fidelity Fund exports</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Advanced Reports (Aged Debtors, LPC/Fidelity Fund)</span></li>
               </ul>
             </div>
             <p class="text-lg font-bold mb-3">🎯 Outcome</p>
-            <p class="text-base opacity-80">Zero-touch trust deductions, instant reconciliation, scale without risk</p>
+            <p class="opacity-80">Zero-touch trust handling, instant reconciliation – grow without compliance anxiety</p>
           </div>
-          <div class="mt-auto px-4 pt-8">
-            <div class="space-y-4">
-              <button class="w-full bg-zinc-700 hover:bg-zinc-600 text-white font-black text-lg lg:text-xl py-4 rounded-2xl transition shadow-xl">
-                Start 14-Day Free Trial (Live March 28)
-              </button>
-              <button class="claim-btn w-full bg-yellow-400 text-black font-black text-lg lg:text-xl py-5 rounded-2xl hover:scale-105 transition shadow-xl" data-tier="Dominance">
-                CLAIM FOUNDING PRICE R2,999/MONTH → LOCK FOREVER
-              </button>
-            </div>
+          <div class="mt-10 space-y-4">
+            <button class="w-full bg-zinc-700 hover:bg-zinc-600 text-white font-black py-4 rounded-2xl shadow-xl">Start 14-Day Free Trial (Live 28 March)</button>
+            <button class="claim-btn w-full bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-black py-5 rounded-2xl hover:scale-105 shadow-xl" data-tier="Dominance">
+              CLAIM FOUNDING PRICE – R2,999/MONTH FOREVER
+            </button>
           </div>
         </div>
+
         <!-- Apex -->
         <div class="pricing-card" style="border-image: linear-gradient(to bottom, var(--gold), var(--gold-dark)) 1;">
-          <div class="apex-badge">LIVE APRIL 28 • WAITLIST OPEN</div>
-          <div class="text-center mt-6 mb-6">
-            <h3 class="text-4xl lg:text-5xl font-black" style="background: linear-gradient(to right, var(--gold), var(--gold-dark)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Apex</h3>
-            <p class="text-3xl lg:text-4xl font-black opacity-90 mb-2">R9,999 <span class="text-xl">/ month</span></p>
-            <p class="text-lg opacity-70 mb-6">Team: Unlimited</p>
-          </div>
-          <div class="text-left px-4 space-y-6 flex-1">
-            <p class="text-base opacity-80 mb-6">Best for: Established firms wanting full automation, premium branding, and complete freedom</p>
-            <p class="text-lg font-bold mb-4">Everything in Dominance, plus:</p>
+          <div class="apex-badge">WAITLIST OPEN • LIVE 28 APRIL</div>
+          <h3 class="text-4xl lg:text-5xl font-black mb-6 mt-6" style="background: linear-gradient(to right, var(--gold), var(--gold-dark)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Apex</h3>
+          <p class="text-4xl font-black mb-2">R9,999 <span class="text-xl">/ month</span></p>
+          <p class="text-lg opacity-70 mb-8">Team: Unlimited</p>
+          <p class="text-base opacity-80 mb-8">Best for: Established firms wanting enterprise automation & client self-service</p>
+          <div class="text-left space-y-8 flex-1">
+            <p class="font-bold mb-4">Everything in Dominance, plus:</p>
             <div>
-              <p class="text-lg font-bold mb-3">🌐 Brand & Client Experience</p>
-              <ul class="space-y-3 text-base lg:text-lg">
+              <p class="text-lg font-bold mb-4">🌐 Brand & Client Experience</p>
+              <ul class="space-y-3">
                 <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>White-Label Website & Client Portal</span></li>
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Client Portal Trust Top-Ups, Invoice Viewing & Payments</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Client Self-Service Trust Top-Ups & Payments</span></li>
                 <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Premium Automated Client Communications</span></li>
               </ul>
             </div>
             <div>
-              <p class="text-lg font-bold mb-3">🤖 Advanced Automation</p>
-              <ul class="space-y-3 text-base lg:text-lg">
+              <p class="text-lg font-bold mb-4">🤖 Advanced Automation</p>
+              <ul class="space-y-3">
                 <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Workflow & Escalation Automation</span></li>
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Advanced KPI & Lawyer Performance Dashboards</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Advanced KPI & Performance Dashboards</span></li>
               </ul>
             </div>
             <div>
-              <p class="text-lg font-bold mb-3">🛡️ Firm-Wide Control</p>
-              <ul class="space-y-3 text-base lg:text-lg">
+              <p class="text-lg font-bold mb-4">🛡️ Firm-Wide Control</p>
+              <ul class="space-y-3">
                 <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Unlimited Users & Cases</span></li>
-                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Customizable Dashboard</span></li>
+                <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Customizable Dashboards</span></li>
                 <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Full Audit & Compliance Suite</span></li>
               </ul>
             </div>
             <p class="text-lg font-bold mb-3">🎯 Outcome</p>
-            <p class="text-base opacity-80">Client self-service trust top-ups, enterprise-grade automation, total freedom</p>
+            <p class="opacity-80">Remove trust handling from daily operations entirely – total peace of mind</p>
           </div>
-          <div class="mt-auto px-4 pt-8">
-            <div class="space-y-4">
-              <button class="w-full bg-zinc-700 hover:bg-zinc-600 text-white font-black text-lg lg:text-xl py-4 rounded-2xl transition shadow-xl">
-                Join Waitlist — Live April 28
-              </button>
-              <button class="claim-btn w-full bg-gradient-to-r from-yellow-500 to-gold text-black font-black text-lg lg:text-xl py-5 rounded-2xl hover:scale-105 transition shadow-xl" data-tier="Apex">
-                CLAIM FOUNDING PRICE R9,999/MONTH → LOCK FOREVER
-              </button>
-            </div>
+          <div class="mt-10 space-y-4">
+            <button class="w-full bg-zinc-700 hover:bg-zinc-600 text-white font-black py-4 rounded-2xl shadow-xl">Join Waitlist – Live 28 April</button>
+            <button class="claim-btn w-full bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-black py-5 rounded-2xl hover:scale-105 shadow-xl" data-tier="Apex">
+              CLAIM FOUNDING PRICE – R9,999/MONTH FOREVER
+            </button>
           </div>
         </div>
       </div>
-      <div class="mt-20 text-center text-lg opacity-90 max-w-4xl mx-auto">
+
+      <div class="mt-20 text-lg opacity-90 max-w-4xl mx-auto">
         <p class="font-bold mb-4">Included in All Plans</p>
-        <p>South African hosting only • 100% POPIA compliant • End-to-end encryption • Annual independent security audits</p>
-        <p class="mt-4">Founding referral rewards (refer 1 firm → 12 months free, 2 firms → free forever)</p>
+        <p>South African hosting only • 100% POPIA compliant • End-to-end encryption • Annual independent audits</p>
+        <p class="mt-6">Founding referral rewards: Refer 1 firm → 12 months free • Refer 2 firms → free forever</p>
       </div>
     </div>
   </section>
-  <!-- FEATURE TABLE -->
-  <section id="features" class="py-20 px-6 bg-black">
-    <div class="max-w-6xl mx-auto">
+
+  <!-- Complete Feature Table -->
+  <section class="py-20 px-6 bg-black">
+    <div class="max-w-7xl mx-auto">
       <h2 class="text-5xl sm:text-6xl md:text-7xl font-black text-center mb-16">Complete Feature Breakdown</h2>
       <div class="feature-table-container">
         <table class="w-full text-left">
-          <thead class="bg-gradient-to-r from-zinc-900 to-black">
+          <thead>
             <tr>
               <th class="px-8 py-6 text-lg font-black sticky left-0 z-10 bg-gradient-to-r from-black to-zinc-900">Category / Feature</th>
-              <th class="text-center px-8 py-6 text-2xl font-black text-green-400">Growth<br><span class="text-base font-normal opacity-80">R999 pm</span></th>
-              <th class="text-center px-8 py-6 text-2xl font-black text-yellow-400 drop-shadow-md">Dominance<br><span class="text-base font-normal opacity-80">R2,999 pm</span></th>
-              <th class="text-center px-8 py-6 text-2xl font-black" style="background: linear-gradient(to right, var(--gold), var(--gold-dark)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Apex<br><span class="text-base font-normal opacity-80">R9,999 pm</span></th>
+              <th class="text-center px-8 py-6 text-2xl font-black text-green-400">Growth<br><span class="text-base opacity-80">R999 pm</span></th>
+              <th class="text-center px-8 py-6 text-2xl font-black text-yellow-400">Dominance<br><span class="text-base opacity-80">R2,999 pm</span></th>
+              <th class="text-center px-8 py-6 text-2xl font-black" style="background: linear-gradient(to right, var(--gold), var(--gold-dark)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Apex<br><span class="text-base opacity-80">R9,999 pm</span></th>
               <th class="px-8 py-6 text-lg font-black">Why It Matters</th>
             </tr>
           </thead>
-          <tbody class="text-lg">
-            <tr class="category-header border-b border-zinc-800">
-              <td colspan="5" class="px-8 py-4 sticky left-0 bg-zinc-900">Team & Firm Size</td>
-            </tr>
-            <tr class="border-b border-zinc-800 bg-zinc-900/30">
-              <td class="px-8 py-7 font-bold sticky left-0 bg-zinc-900/30">Team Size</td>
+          <tbody>
+            <tr class="bg-zinc-900/50 border-b border-zinc-800"><td colspan="5" class="px-8 py-4 font-bold">Team & Firm Size</td></tr>
+            <tr class="border-b border-zinc-800">
+              <td class="px-8 py-6 font-bold sticky left-0 bg-black">Team Size</td>
               <td class="text-center text-green-400 font-bold">1–5</td>
               <td class="text-center text-yellow-400 font-bold">5–15</td>
-              <td class="text-center" style="color: var(--gold); font-weight: 900;">Unlimited</td>
-              <td class="px-8 py-7 text-zinc-300">Scale without surprise costs</td>
-            </tr>
-            <tr class="border-b border-zinc-800 bg-zinc-900/30">
-              <td class="px-8 py-7 font-bold sticky left-0 bg-zinc-900/30">Multi-Lawyer Collaboration</td>
-              <td class="text-center text-red-500 font-bold">—</td>
-              <td class="text-center text-green-400 font-bold">Yes</td>
-              <td class="text-center text-green-400 font-bold">Yes</td>
-              <td class="px-8 py-7 text-zinc-300">Seamless teamwork</td>
-            </tr>
-            <tr class="category-header border-b border-zinc-800">
-              <td colspan="5" class="px-8 py-4 sticky left-0 bg-zinc-900">Billing & Trust Core</td>
+              <td class="text-center font-bold" style="color: var(--gold);">Unlimited</td>
+              <td class="text-zinc-300">Scale without surprise costs</td>
             </tr>
             <tr class="border-b border-zinc-800">
-              <td class="px-8 py-6 sticky left-0 bg-black">PayFast Payment & Trust Deposit Links</td>
+              <td class="px-8 py-6 font-bold sticky left-0 bg-black">Multi-Lawyer Collaboration</td>
+              <td class="text-center text-red-500">—</td>
+              <td class="text-center text-green-400 font-bold">Yes</td>
+              <td class="text-center text-green-400 font-bold">Yes</td>
+              <td class="text-zinc-300">Seamless teamwork</td>
+            </tr>
+            <tr class="bg-zinc-900/50 border-b border-zinc-800"><td colspan="5" class="px-8 py-4 font-bold">Billing & Trust</td></tr>
+            <tr class="border-b border-zinc-800">
+              <td class="px-8 py-6 sticky left-0 bg-black">PayFast Links & Trust Top-Ups</td>
               <td class="text-center text-green-400 font-bold">Yes</td>
               <td class="text-center text-green-400 font-bold">Yes</td>
               <td class="text-center text-green-400 font-bold">Yes</td>
-              <td class="px-8 py-6 text-zinc-300">One-click payments and instant trust top-ups</td>
+              <td class="text-zinc-300">One-click client payments</td>
             </tr>
             <tr class="border-b border-zinc-800">
               <td class="px-8 py-6 sticky left-0 bg-black">Trust Deduction from Invoices</td>
-              <td class="text-center text-green-400 font-bold">Manual<br><small>(with shortfall alerts)</small></td>
-              <td class="text-center text-green-400 font-bold">Fully Automated<br><small>(allocation, reconciliation, capping)</small></td>
+              <td class="text-center text-green-400 font-bold">Manual + alerts</td>
               <td class="text-center text-green-400 font-bold">Fully Automated</td>
-              <td class="px-8 py-6 text-zinc-300">Auto deduct available trust on invoicing — prevents violations</td>
+              <td class="text-center text-green-400 font-bold">Fully Automated</td>
+              <td class="text-zinc-300">Prevents Rule 54/86 violations</td>
             </tr>
             <tr class="border-b border-zinc-800">
-              <td class="px-8 py-6 sticky left-0 bg-black">Trust Low-Balance & Shortfall Alerts</td>
+              <td class="px-8 py-6 sticky left-0 bg-black">Low-Balance & Shortfall Alerts</td>
               <td class="text-center text-green-400 font-bold">Yes</td>
               <td class="text-center text-green-400 font-bold">Yes</td>
               <td class="text-center text-green-400 font-bold">Yes</td>
-              <td class="px-8 py-6 text-zinc-300">Proactive warnings before violations occur</td>
-            </tr>
-            <tr class="border-b border-zinc-800">
-              <td class="px-8 py-6 sticky left-0 bg-black">Void/Refund Auto-Refunds Trust</td>
-              <td class="text-center text-green-400 font-bold">Yes</td>
-              <td class="text-center text-green-400 font-bold">Yes</td>
-              <td class="text-center text-green-400 font-bold">Yes</td>
-              <td class="px-8 py-6 text-zinc-300">Instant trust correction on errors</td>
+              <td class="text-zinc-300">Proactive compliance protection</td>
             </tr>
             <tr class="border-b border-zinc-800">
               <td class="px-8 py-6 sticky left-0 bg-black">Bulk / Multi-Case Invoicing</td>
-              <td class="text-center text-red-500 font-bold">—</td>
+              <td class="text-center text-red-500">—</td>
               <td class="text-center text-green-400 font-bold">Yes</td>
               <td class="text-center text-green-400 font-bold">Yes</td>
-              <td class="px-8 py-6 text-zinc-300">Bill faster across matters</td>
+              <td class="text-zinc-300">Bill faster across matters</td>
             </tr>
             <tr class="border-b border-zinc-800">
-              <td class="px-8 py-6 sticky left-0 bg-black">Automated Payment Chasers & Reminders</td>
-              <td class="text-center text-red-500 font-bold">—</td>
+              <td class="px-8 py-6 sticky left-0 bg-black">Automated Payment Chasers</td>
+              <td class="text-center text-red-500">—</td>
               <td class="text-center text-green-400 font-bold">Yes</td>
               <td class="text-center text-green-400 font-bold">Yes</td>
-              <td class="px-8 py-6 text-zinc-300">Get paid faster automatically</td>
+              <td class="text-zinc-300">Get paid faster</td>
             </tr>
-            <tr class="category-header border-b border-zinc-800">
-              <td colspan="5" class="px-8 py-4 sticky left-0 bg-zinc-900">Client Experience</td>
-            </tr>
+            <tr class="bg-zinc-900/50 border-b border-zinc-800"><td colspan="5" class="px-8 py-4 font-bold">Client Experience</td></tr>
             <tr class="border-b border-zinc-800">
-              <td class="px-8 py-6 sticky left-0 bg-black">Client Portal (View Invoices, Trust Top-Ups)</td>
-              <td class="text-center text-red-500 font-bold">—</td>
-              <td class="text-center text-red-500 font-bold">—</td>
+              <td class="px-8 py-6 sticky left-0 bg-black">Client Portal (Invoices & Top-Ups)</td>
+              <td class="text-center text-red-500">—</td>
+              <td class="text-center text-red-500">—</td>
               <td class="text-center text-green-400 font-bold">Yes</td>
-              <td class="px-8 py-6 text-zinc-300">Clients self-serve payments and top-ups</td>
+              <td class="text-zinc-300">Clients self-serve – less admin</td>
             </tr>
-            <tr class="category-header border-b border-zinc-800">
-              <td colspan="5" class="px-8 py-4 sticky left-0 bg-zinc-900">Compliance & Reporting</td>
-            </tr>
+            <tr class="bg-zinc-900/50 border-b border-zinc-800"><td colspan="5" class="px-8 py-4 font-bold">Compliance & Reporting</td></tr>
             <tr class="border-b border-zinc-800">
               <td class="px-8 py-6 sticky left-0 bg-black">Real-Time Rule 54 & 86 Alerts</td>
               <td class="text-center text-green-400 font-bold">Basic</td>
               <td class="text-center text-green-400 font-bold">Full</td>
               <td class="text-center text-green-400 font-bold">Full</td>
-              <td class="px-8 py-6 text-zinc-300">Stay compliant effortlessly</td>
+              <td class="text-zinc-300">Stay audit-ready effortlessly</td>
             </tr>
             <tr class="border-b border-zinc-800">
-              <td class="px-8 py-6 sticky left-0 bg-black">SARS-Compliant Tax Invoices</td>
-              <td class="text-center text-red-500 font-bold">—</td>
+              <td class="px-8 py-6 sticky left-0 bg-black">SARS-Compliant Invoices</td>
+              <td class="text-center text-red-500">—</td>
               <td class="text-center text-green-400 font-bold">Yes</td>
               <td class="text-center text-green-400 font-bold">Yes</td>
-              <td class="px-8 py-6 text-zinc-300">Audit-ready invoicing</td>
+              <td class="text-zinc-300">Audit-ready tax invoices</td>
             </tr>
             <tr class="border-b border-zinc-800">
-              <td class="px-8 py-6 sticky left-0 bg-black">Aged Debtors & Fidelity Fund Reports</td>
-              <td class="text-center text-red-500 font-bold">—</td>
+              <td class="px-8 py-6 sticky left-0 bg-black">Advanced Reports & Exports</td>
+              <td class="text-center text-red-500">—</td>
               <td class="text-center text-green-400 font-bold">Yes</td>
               <td class="text-center text-green-400 font-bold">Yes</td>
-              <td class="px-8 py-6 text-zinc-300">One-click compliance exports</td>
-            </tr>
-            <tr class="bg-green-900/30 border-t-4 border-b-4 border-green-600">
-              <td class="px-8 py-10 font-bold text-2xl text-green-300 sticky left-0 bg-green-900/30">
-                Referral Rewards<br>
-                <span class="block mt-4 text-base font-normal opacity-95 leading-relaxed">
-                  • Refer 1 Firm → 12 months free<br>
-                  • Refer 2 Firms → <strong class="text-green-400">Free forever</strong>
-                </span>
-              </td>
-              <td class="text-center text-green-400 font-bold text-4xl">YES</td>
-              <td class="text-center text-green-400 font-bold text-4xl">YES</td>
-              <td class="text-center text-green-400 font-bold text-4xl">YES</td>
-              <td class="px-8 py-10 text-zinc-300">Massive long-term savings</td>
+              <td class="text-zinc-300">One-click LPC/Fidelity Fund compliance</td>
             </tr>
             <tr class="bg-green-900/40 border-t-4 border-green-600">
-              <td class="px-8 py-10 font-bold text-2xl text-green-400 sticky left-0 bg-green-900/40">
-                Price Locked Forever<br>
-                <span class="text-base opacity-90">Even when public price exceeds R20,000/month</span>
+              <td class="px-8 py-8 font-bold text-xl sticky left-0 bg-green-900/40">
+                Referral Rewards<br><span class="text-base opacity-90">• Refer 1 → 12 months free<br>• Refer 2 → <strong class="text-green-400">Free forever</strong></span>
               </td>
-              <td class="text-center text-green-400 font-bold text-4xl">YES</td>
-              <td class="text-center text-green-400 font-bold text-4xl">YES</td>
-              <td class="text-center text-green-400 font-bold text-4xl">YES</td>
-              <td class="px-8 py-10 text-zinc-300">Permanent founding advantage</td>
+              <td class="text-center text-4xl text-green-400 font-black">YES</td>
+              <td class="text-center text-4xl text-green-400 font-black">YES</td>
+              <td class="text-center text-4xl text-green-400 font-black">YES</td>
+              <td class="text-zinc-300">Massive long-term savings</td>
+            </tr>
+            <tr class="bg-green-900/50 border-t-4 border-b-4 border-green-600">
+              <td class="px-8 py-8 font-bold text-xl sticky left-0 bg-green-900/50">
+                Price Locked Forever<br><span class="text-base opacity-90">Even after public price > R20,000/month</span>
+              </td>
+              <td class="text-center text-4xl text-green-400 font-black">YES</td>
+              <td class="text-center text-4xl text-green-400 font-black">YES</td>
+              <td class="text-center text-4xl text-green-400 font-black">YES</td>
+              <td class="text-zinc-300">Permanent founding advantage</td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
   </section>
-  <!-- Remaining sections (How It Works, Referral, Security, Final CTA, etc.) unchanged -->
+
+  <!-- How It Works -->
   <section class="py-32 px-6 bg-zinc-950">
     <div class="max-w-6xl mx-auto text-center">
       <h2 class="text-5xl sm:text-6xl font-black mb-20">How It Works</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-16">
-        <div class="space-y-6">
-          <div class="text-8xl font-black text-green-400">1</div>
-          <h3 class="text-3xl font-black">Take 90-Second Quiz</h3>
-          <p class="text-xl opacity-90">Qualify your firm instantly</p>
+        <div>
+          <div class="text-8xl font-black text-green-400 mb-6">1</div>
+          <h3 class="text-3xl font-black mb-4">Take 90-Second Quiz</h3>
+          <p class="text-xl opacity-90">Instantly qualify your firm</p>
         </div>
-        <div class="space-y-6">
-          <div class="text-8xl font-black text-green-400">2</div>
-          <h3 class="text-3xl font-black">Select Tier & Pay First Month</h3>
-          <p class="text-xl opacity-90">Lock your founding rate today</p>
+        <div>
+          <div class="text-8xl font-black text-green-400 mb-6">2</div>
+          <h3 class="text-3xl font-black mb-4">Select Tier & Pay First Month</h3>
+          <p class="text-xl opacity-90">Lock your founding price today</p>
         </div>
-        <div class="space-y-6">
-          <div class="text-8xl font-black text-green-400">3</div>
-          <h3 class="text-3xl font-black">WhatsApp Onboarding</h3>
+        <div>
+          <div class="text-8xl font-black text-green-400 mb-6">3</div>
+          <h3 class="text-3xl font-black mb-4">WhatsApp Onboarding</h3>
           <p class="text-xl opacity-90">Go live with direct founder support</p>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- Referrals -->
   <section class="py-24 px-6 bg-black">
-    <div class="max-w-6xl mx-auto text-center">
-      <h2 class="text-5xl font-black mb-10">Get Your Subscription Free by Referring Other Law Firms</h2>
-      <div class="text-xl space-y-5 max-w-3xl mx-auto">
+    <div class="max-w-5xl mx-auto text-center">
+      <h2 class="text-5xl font-black mb-12">Get LexPilot Free Forever Through Referrals</h2>
+      <div class="text-2xl space-y-6">
         <p>• Refer 1 firm → 12 months FREE</p>
         <p>• Refer 2 firms → <strong class="text-green-400">FREE FOREVER</strong></p>
-        <p class="mt-8 text-lg opacity-70">
-          Unlimited referrals • Only your two longest-paying referrals count<br>
-          Credit applied after their 6th paid invoice and manual verification
-        </p>
       </div>
+      <p class="mt-10 text-lg opacity-70 max-w-3xl mx-auto">
+        Unlimited referrals • Credit applied after their 6th paid invoice & verification
+      </p>
     </div>
   </section>
+
+  <!-- Security -->
   <section class="py-24 px-6 bg-zinc-950">
-    <div class="max-w-6xl mx-auto text-center">
-      <h2 class="text-5xl font-black mb-10">Security & Compliance</h2>
+    <div class="max-w-5xl mx-auto text-center">
+      <h2 class="text-5xl font-black mb-12">Security & Compliance</h2>
       <div class="text-6xl mb-8">🔒</div>
       <div class="text-xl space-y-4 opacity-90">
         <p><strong class="font-black">100% POPIA compliant</strong> • Data hosted in South Africa only</p>
-        <p>End-to-end encryption</p>
-        <p>Independent security audits every year</p>
+        <p>End-to-end encryption • Annual independent security audits</p>
       </div>
     </div>
   </section>
+
+  <!-- Final CTA -->
   <section class="py-32 px-6 bg-gradient-to-b from-black to-zinc-950">
     <div class="max-w-6xl mx-auto text-center">
-      <h2 class="text-6xl md:text-7xl font-black mb-8">
-        Reserve Your Founding Spot Today<br>Limited to 500 Firms Forever
+      <h2 class="text-5xl sm:text-6xl md:text-7xl font-black mb-10">
+        Reserve Your Founding Spot<br class="sm:hidden"> – Only 500 Firms Forever
       </h2>
-      <p class="text-2xl opacity-90 mb-16">
-        Lock your price forever and protect your firm from costly trust account violations.
-      </p>
-      <button onclick="startQuiz()" class="bg-gradient-to-r from-green-500 to-emerald-600 text-black font-black text-4xl sm:text-6xl px-20 py-12 rounded-full shadow-2xl hover:scale-105 transition">
-        Claim Your Founding Spot — Only 500 Firms
+      <p class="text-2xl opacity-90 mb-16">Lock your price forever and eliminate trust account risk.</p>
+      <button onclick="startQuiz()" class="bg-gradient-to-r from-green-500 to-emerald-600 text-black font-black text-3xl sm:text-5xl px-16 py-10 rounded-full shadow-2xl hover:scale-105 transition mb-8">
+        Claim Founding Spot Now
       </button>
-      <button class="block mx-auto mt-6 bg-gradient-to-r from-zinc-700 to-zinc-600 text-white font-black text-3xl sm:text-5xl px-20 py-10 rounded-full shadow-2xl hover:scale-105 transition">
-        Start 14-Day Free Trial
-      </button>
-      <p class="mt-8 text-xl opacity-80">
-        or <a href="https://wa.me/27764312871?text=Hi%20LexPilot%20-%20Early%20Access" target="_blank" class="text-green-400 underline">message the founder on WhatsApp</a>
-        <br><span class="text-sm opacity-70">Replies in &lt;60 seconds — 24/7 support</span>
+      <p class="text-xl opacity-80">
+        or <a href="https://wa.me/27764312871?text=Hi%20LexPilot" target="_blank" class="text-green-400 underline">message the founder on WhatsApp</a><br>
+        <span class="text-sm opacity-70">Replies in &lt;60 seconds • 24/7</span>
       </p>
     </div>
   </section>
