@@ -26,19 +26,27 @@
       padding: 0;
       overflow-x: hidden;
     }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: #000;
+      border-bottom: 4px solid var(--green);
+      box-shadow: 0 10px 30px -10px rgba(0,0,0,0.8);
+    }
     .badge {
       display: inline-block;
       background: #f59e0b;
       color: #000;
       font-weight: 900;
-      padding: 0.35rem 0.9rem;
+      padding: 0.4rem 1rem;
       border-radius: 9999px;
       font-size: 0.75rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
     }
     @media (min-width: 640px) {
-      .badge { font-size: 0.875rem; padding: 0.5rem 1.2rem; }
+      .badge { font-size: 0.875rem; padding: 0.6rem 1.4rem; }
     }
     .hero-headline {
       font-size: clamp(2.25rem, 7vw, 4.5rem);
@@ -62,11 +70,11 @@
     }
     .pricing-scroll-container::-webkit-scrollbar { display: none; }
     .pricing-card {
-      flex: 0 0 88vw;
+      flex: 0 0 92vw;
       max-width: 420px;
       background: linear-gradient(to bottom, #18181b, #000);
       border-radius: 1.5rem;
-      padding: 2rem 1.5rem;
+      padding: 2.5rem 1.5rem 2rem;
       text-align: center;
       border: 2px solid;
       box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
@@ -76,18 +84,18 @@
       flex-direction: column;
     }
     @media (min-width: 640px) {
-      .pricing-card { flex: 0 0 75vw; max-width: 460px; padding: 2.5rem 2rem; }
+      .pricing-card { flex: 0 0 78vw; max-width: 460px; padding: 3rem 2rem; }
     }
     @media (min-width: 1024px) {
       .pricing-scroll-container { overflow-x: visible; justify-content: center; gap: 2rem; padding-bottom: 4rem; }
-      .pricing-card { flex: 1 1 380px; max-width: 480px; padding: 3rem 2.5rem; }
+      .pricing-card { flex: 1 1 380px; max-width: 480px; padding: 3.5rem 2.5rem; }
     }
-    .most-popular-badge {
+    .recommended-badge {
       position: absolute;
       top: -1rem;
       left: 50%;
       transform: translateX(-50%);
-      background: var(--yellow);
+      background: var(--green);
       color: #000;
       font-weight: 900;
       padding: 0.5rem 1.5rem;
@@ -95,7 +103,7 @@
       font-size: 0.875rem;
       text-transform: uppercase;
       letter-spacing: 0.1em;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.6);
       z-index: 10;
     }
     .gradient-text {
@@ -132,11 +140,59 @@
       margin-top: 0.75rem;
       font-style: italic;
     }
+    /* Comparison Table with Sticky First Column */
+    .comparison-table-container {
+      overflow-x: auto;
+      border-radius: 1.5rem;
+      border: 1px solid #27272a;
+      position: relative;
+      margin: 2rem 0;
+    }
+    .comparison-table-container::after {
+      content: "← Swipe →";
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.8);
+      padding: 0.5rem 1rem;
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      opacity: 0.8;
+      pointer-events: none;
+      z-index: 20;
+    }
+    @media (min-width: 1024px) { .comparison-table-container::after { display: none; } }
+    .comparison-table-container table {
+      width: 100%;
+      min-width: 800px;
+    }
+    .comparison-table-container th,
+    .comparison-table-container td {
+      padding: 1rem 0.75rem;
+      font-size: 0.9375rem;
+      vertical-align: middle;
+      text-align: center;
+    }
+    @media (min-width: 640px) {
+      .comparison-table-container th,
+      .comparison-table-container td { padding: 1.25rem 1rem; font-size: 1rem; }
+    }
+    .comparison-table-container th:first-child,
+    .comparison-table-container td:first-child {
+      position: sticky;
+      left: 0;
+      background: linear-gradient(to right, #000, #18181b);
+      z-index: 10;
+      min-width: 200px;
+      text-align: left;
+      font-weight: 600;
+    }
   </style>
 </head>
 <body class="min-h-screen flex flex-col">
   <!-- HEADER -->
-  <header class="bg-black border-b-4 border-green-500 sticky top-0 z-50 shadow-2xl">
+  <header class="bg-black border-b-4 border-green-500 shadow-2xl">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3">
       <div class="hidden lg:flex items-center justify-between">
         <a href="Accelerate.html" class="flex items-center gap-4 group">
@@ -195,27 +251,27 @@
       <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black text-center mb-12">Why LexPilot Accelerate Works</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <div class="text-center">
-          <img src="https://www.localfalcon.com/uploads/blog-imagery/the-complete-guide-to-google-business-profile-for-lawyers-and-law-firms/how-to-optimize-google-business-profile-for-law-firms.png" alt="Optimized Google Business Profile for law firms" class="rounded-2xl shadow-2xl mx-auto mb-6 max-w-full h-auto">
+          <img src="https://www.localfalcon.com/uploads/blog-imagery/the-complete-guide-to-google-business-profile-for-lawyers-and-law-firms/how-to-optimize-google-business-profile-for-law-firms.png" alt="Optimized Google Business Profile for law firms" class="rounded-2xl shadow-2xl mx-auto mb-6 w-full max-w-sm h-auto object-cover">
           <h3 class="text-2xl font-black text-green-400 mb-4">Local Visibility & Authority</h3>
           <p class="opacity-90">Google Business, Map Pack, LinkedIn & social profiles optimised for maximum exposure.</p>
         </div>
         <div class="text-center">
-          <img src="https://z7r7n9e9.delivery.rocketcdn.me/wp-content/uploads/2017/06/Recommendations-with-Stars-e1497407062250.png" alt="Ethical client reviews and testimonials" class="rounded-2xl shadow-2xl mx-auto mb-6 max-w-full h-auto">
+          <img src="https://z7r7n9e9.delivery.rocketcdn.me/wp-content/uploads/2017/06/Recommendations-with-Stars-e1497407062250.png" alt="Ethical client reviews and testimonials" class="rounded-2xl shadow-2xl mx-auto mb-6 w-full max-w-sm h-auto object-cover">
           <h3 class="text-2xl font-black text-green-400 mb-4">Ethical Social Proof</h3>
           <p class="opacity-90">LPC-compliant client review system builds credibility safely.</p>
         </div>
         <div class="text-center">
-          <img src="https://media.licdn.com/dms/image/v2/D4D10AQE2KohEfsznrg/image-shrink_800/image-shrink_800/0/1732017150101?e=2147483647&v=beta&t=Usbq_Td7Y2iuYbETK1Ar8YwyjkAtxcDN495azg0ANzE" alt="Professional LinkedIn profile for South African attorney" class="rounded-2xl shadow-2xl mx-auto mb-6 max-w-full h-auto">
+          <img src="https://media.licdn.com/dms/image/v2/D4D10AQE2KohEfsznrg/image-shrink_800/image-shrink_800/0/1732017150101?e=2147483647&v=beta&t=Usbq_Td7Y2iuYbETK1Ar8YwyjkAtxcDN495azg0ANzE" alt="Professional LinkedIn profile for South African attorney" class="rounded-2xl shadow-2xl mx-auto mb-6 w-full max-w-sm h-auto object-cover">
           <h3 class="text-2xl font-black text-green-400 mb-4">Done-for-You Content & Automation</h3>
           <p class="opacity-90">Pre-made posts, landing pages, email templates, and referral engines that actually drive leads.</p>
         </div>
         <div class="text-center">
-          <img src="https://www.hoganlovells.com/-/media/project/our-locations/offices/johannesburg/hogan-lovells-johannesburg-office-interior---9.jpg" alt="Modern professional law firm office in Johannesburg" class="rounded-2xl shadow-2xl mx-auto mb-6 max-w-full h-auto">
+          <img src="https://www.hoganlovells.com/-/media/project/our-locations/offices/johannesburg/hogan-lovells-johannesburg-office-interior---9.jpg" alt="Modern professional law firm office in Johannesburg" class="rounded-2xl shadow-2xl mx-auto mb-6 w-full max-w-sm h-auto object-cover">
           <h3 class="text-2xl font-black text-green-400 mb-4">Founder-Led Delivery</h3>
           <p class="opacity-90">No call centers, no generic agencies. You work directly with the founder who knows South African legal marketing inside-out.</p>
         </div>
         <div class="text-center md:col-span-2 lg:col-span-1">
-          <img src="https://wpcms.chambers.com/wp-content/uploads/2025/06/Group-1003628.png" alt="Growth chart showing increasing client enquiries" class="rounded-2xl shadow-2xl mx-auto mb-6 max-w-full h-auto">
+          <img src="https://wpcms.chambers.com/wp-content/uploads/2025/06/Group-1003628.png" alt="Growth chart showing increasing client enquiries" class="rounded-2xl shadow-2xl mx-auto mb-6 w-full max-w-sm h-auto object-cover">
           <h3 class="text-2xl font-black text-green-400 mb-4">Results You Can Measure</h3>
           <p class="opacity-90">Expected 10–50%+ more client enquiries in 3–6 months, depending on package.</p>
         </div>
@@ -228,7 +284,6 @@
     <div class="max-w-7xl mx-auto text-center">
       <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black mb-4">Choose Your Accelerate Package</h2>
       <p class="text-xl sm:text-2xl lg:text-3xl opacity-80 mb-10">(One-Time Investment • Personally Delivered • Includes 12 Months LexPilot SaaS)</p>
-
       <div class="pricing-scroll-container">
         <!-- Authority Starter -->
         <div class="pricing-card border-zinc-600">
@@ -252,9 +307,9 @@
           </a>
         </div>
 
-        <!-- Growth Accelerator (Most Popular) -->
+        <!-- Growth Accelerator (Recommended) -->
         <div class="pricing-card border-green-500 transform scale-105 shadow-2xl shadow-green-500/40 relative">
-          <div class="most-popular-badge">MOST POPULAR</div>
+          <div class="recommended-badge">RECOMMENDED</div>
           <h3 class="text-3xl sm:text-4xl lg:text-5xl font-black text-yellow-400 mb-4">Growth Accelerator</h3>
           <p class="text-xl sm:text-2xl opacity-90 mb-4">Multi-Channel Lead & Authority System</p>
           <div class="text-5xl sm:text-6xl lg:text-7xl font-black text-green-400 mb-2">R17,900<span class="text-2xl sm:text-3xl lg:text-4xl opacity-80"> once</span></div>
@@ -303,12 +358,12 @@
     </div>
   </section>
 
-  <!-- COMPARISON TABLE (kept for completeness) -->
+  <!-- COMPARISON TABLE with sticky column -->
   <section class="py-16 px-4 bg-black">
     <div class="max-w-7xl mx-auto">
       <h2 class="text-4xl sm:text-5xl lg:text-7xl font-black text-center mb-12">Package Comparison</h2>
-      <div class="overflow-x-auto border border-zinc-800 rounded-2xl">
-        <table class="w-full min-w-[800px] text-left">
+      <div class="comparison-table-container">
+        <table class="w-full text-left">
           <thead class="bg-gradient-to-r from-zinc-900 to-black">
             <tr>
               <th class="px-6 py-6 text-lg font-black">Feature</th>
