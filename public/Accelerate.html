@@ -155,6 +155,9 @@
       z-index: 20;
     }
     @media (min-width: 1024px) { .comparison-table-container::after { display: none; } }
+    .comparison-table-container table {
+      min-width: 720px;
+    }
     .why-img {
       transition: transform 0.4s ease;
     }
@@ -196,8 +199,8 @@
     </div>
   </header>
 
-  <!-- HERO – Optimized height for above-the-fold on all devices -->
-  <section class="flex-1 flex flex-col justify-center items-center px-4 pt-12 pb-16 text-center bg-black">
+  <!-- HERO – Reduced top padding for tighter spacing after header -->
+  <section class="flex-1 flex flex-col justify-center items-center px-4 pt-6 pb-16 text-center bg-black">
     <div class="max-w-7xl mx-auto w-full">
       <div class="badge mb-6 animate-pulse">Limited Launch Offer • Only First 15 Firms • Starting Now</div>
       <h1 class="hero-headline mb-6">
@@ -254,7 +257,7 @@
     </div>
   </section>
 
-  <!-- PRICING CARDS – Updated with new tiers & payment plans -->
+  <!-- PRICING CARDS -->
   <section id="pricing" class="py-12 lg:py-16 bg-black">
     <div class="w-full">
       <div class="text-center px-4 mb-12">
@@ -331,7 +334,7 @@
     </div>
   </section>
 
-  <!-- COMPARISON TABLE – Updated -->
+  <!-- COMPARISON TABLE – Removed sticky first column -->
   <section class="py-14 px-4 bg-black">
     <div class="max-w-7xl mx-auto">
       <h2 class="text-3xl sm:text-4xl lg:text-6xl font-black text-center mb-10">Comparison Table – Optimized with Payment Plans</h2>
