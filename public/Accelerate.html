@@ -83,6 +83,11 @@
       position: relative;
       display: flex;
       flex-direction: column;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .pricing-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.9);
     }
     @media (min-width: 640px) {
       .pricing-scroll-container { padding: 0 1rem 3rem 1rem; gap: 1rem; }
@@ -120,6 +125,12 @@
       letter-spacing: 0.1em;
       box-shadow: 0 10px 20px rgba(0,0,0,0.6);
       z-index: 10;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(16,185,129,0.7); }
+      70% { box-shadow: 0 0 0 10px rgba(16,185,129,0); }
+      100% { box-shadow: 0 0 0 0 rgba(16,185,129,0); }
     }
     .gradient-text {
       background: linear-gradient(to right, var(--gold), var(--gold-dark));
@@ -207,6 +218,12 @@
       .comparison-table-container th:first-child,
       .comparison-table-container td:first-child { min-width: 200px; }
     }
+    .why-img {
+      transition: transform 0.4s ease;
+    }
+    .why-img:hover {
+      transform: scale(1.05);
+    }
   </style>
 </head>
 <body class="min-h-screen flex flex-col">
@@ -244,7 +261,7 @@
   <!-- HERO -->
   <section class="flex-1 flex flex-col justify-center items-center px-4 pt-6 pb-10 text-center">
     <div class="max-w-7xl mx-auto w-full">
-      <div class="badge mb-4">Pre-Launch Special • Only First 15 Firms • Delivered Jan/Feb 2026</div>
+      <div class="badge mb-4 animate-pulse">Pre-Launch Special • Only First 15 Firms • Delivered Jan/Feb 2026</div>
       <h1 class="hero-headline mb-4">
         <span class="block">LexPilot Accelerate:</span>
         <span class="block bg-gradient-to-r from-green-400 via-green-300 to-emerald-400 bg-clip-text text-transparent">Founder-Led Growth Packages — More Client Enquiries, Faster</span>
@@ -270,27 +287,27 @@
       <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-center mb-10">Why LexPilot Accelerate Works</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
         <div class="text-center">
-          <img src="https://www.localfalcon.com/uploads/blog-imagery/the-complete-guide-to-google-business-profile-for-lawyers-and-law-firms/how-to-optimize-google-business-profile-for-law-firms.png" alt="Google Business optimisation" class="rounded-2xl shadow-2xl mx-auto mb-5 w-full max-w-sm h-auto object-cover">
+          <img src="https://locallawseo.com/wp-content/uploads/2025/04/GMB-Optimization-law-firm-1024x683.png" alt="Optimised Google Business Profile example for law firms" class="rounded-2xl shadow-2xl mx-auto mb-5 w-full max-w-sm h-auto object-cover why-img">
           <h3 class="text-xl font-black text-green-400 mb-3">Local Visibility & Authority</h3>
           <p class="opacity-90 text-sm">Google Business, Map Pack, LinkedIn & social profiles optimised for maximum exposure.</p>
         </div>
         <div class="text-center">
-          <img src="https://z7r7n9e9.delivery.rocketcdn.me/wp-content/uploads/2017/06/Recommendations-with-Stars-e1497407062250.png" alt="Client reviews" class="rounded-2xl shadow-2xl mx-auto mb-5 w-full max-w-sm h-auto object-cover">
+          <img src="https://www.paperstreet.com/wp-content/uploads/2025/10/reviews-hero-white.webp" alt="Client reviews and testimonials with stars" class="rounded-2xl shadow-2xl mx-auto mb-5 w-full max-w-sm h-auto object-cover why-img">
           <h3 class="text-xl font-black text-green-400 mb-3">Ethical Social Proof</h3>
           <p class="opacity-90 text-sm">LPC-compliant client review system builds credibility safely.</p>
         </div>
         <div class="text-center">
-          <img src="https://media.licdn.com/dms/image/v2/D4D10AQE2KohEfsznrg/image-shrink_800/image-shrink_800/0/1732017150101?e=2147483647&v=beta&t=Usbq_Td7Y2iuYbETK1Ar8YwyjkAtxcDN495azg0ANzE" alt="LinkedIn content" class="rounded-2xl shadow-2xl mx-auto mb-5 w-full max-w-sm h-auto object-cover">
+          <img src="https://media.licdn.com/dms/image/v2/D4D12AQEeKZsyBqF7jA/article-cover_image-shrink_720_1280/B4DZU8bVjmHIAI-/0/1740475556029?e=2147483647&v=beta&t=WZ69WzD6RxyOvDv1R6tZ0LiOTPaAzUdt7tLxDhzElbU" alt="Professional LinkedIn thought leadership post example for lawyers" class="rounded-2xl shadow-2xl mx-auto mb-5 w-full max-w-sm h-auto object-cover why-img">
           <h3 class="text-xl font-black text-green-400 mb-3">Done-for-You Content & Automation</h3>
           <p class="opacity-90 text-sm">Pre-made posts, landing pages, email templates, and referral engines that actually drive leads.</p>
         </div>
         <div class="text-center">
-          <img src="https://www.hoganlovells.com/-/media/project/our-locations/offices/johannesburg/hogan-lovells-johannesburg-office-interior---9.jpg" alt="Founder delivery" class="rounded-2xl shadow-2xl mx-auto mb-5 w-full max-w-sm h-auto object-cover">
+          <img src="https://officesnapshots.com/wp-content/uploads/2020/11/hogan-lovells-offices-johannesburg-2-1200x800.jpg" alt="Modern Johannesburg law firm office interior representing founder-led expertise" class="rounded-2xl shadow-2xl mx-auto mb-5 w-full max-w-sm h-auto object-cover why-img">
           <h3 class="text-xl font-black text-green-400 mb-3">Founder-Led Delivery</h3>
           <p class="opacity-90 text-sm">No call centers, no generic agencies. You work directly with the founder who knows South African legal marketing inside-out.</p>
         </div>
         <div class="text-center md:col-span-2 lg:col-span-1">
-          <img src="https://wpcms.chambers.com/wp-content/uploads/2025/06/Group-1003628.png" alt="Results chart" class="rounded-2xl shadow-2xl mx-auto mb-5 w-full max-w-sm h-auto object-cover">
+          <img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXfJm7CF9IIo4TMJdCgc8z0mfNSRY65yBsN6mr5WAKFgGCLyjbQhwWWRLDeH6l2SsAvxLWGs6b5lYm2sl-T0YO2Qgmp3KcQoHQJWovhWDN5G8kPIqZ5t-ikyAGGpMY_dQ3AWz30K?key=EThQQnCl4-6pnBT6WBIVJNTi" alt="Growth chart showing increase in client enquiries and leads" class="rounded-2xl shadow-2xl mx-auto mb-5 w-full max-w-sm h-auto object-cover why-img">
           <h3 class="text-xl font-black text-green-400 mb-3">Results You Can Measure</h3>
           <p class="opacity-90 text-sm">Expected 10–50%+ more client enquiries in 3–6 months, depending on package.</p>
         </div>
@@ -328,7 +345,7 @@
         </div>
         <!-- Growth Accelerator (Recommended) -->
         <div class="pricing-card border-green-500 transform scale-105 shadow-2xl shadow-green-500/40 relative">
-          <div class="recommended-badge">RECOMMENDED</div>
+          <div class="recommended-badge">MOST POPULAR</div>
           <h3 class="text-2.5xl sm:text-3xl lg:text-4xl font-black text-yellow-400 mb-3">Growth Accelerator</h3>
           <p class="text-lg sm:text-xl opacity-90 mb-3">Multi-Channel Lead & Authority System</p>
           <div class="text-4xl sm:text-5xl lg:text-6xl font-black text-green-400 mb-1">R17,900<span class="text-xl sm:text-2xl lg:text-3xl opacity-80"> once</span></div>
@@ -485,13 +502,12 @@
       </div>
     </div>
   </section>
-
   <!-- FINAL CTA -->
   <section class="py-16 px-4 bg-gradient-to-b from-black to-zinc-950">
     <div class="max-w-5xl mx-auto text-center">
       <h2 class="text-4xl sm:text-5xl lg:text-7xl font-black mb-6 leading-tight">
         Accelerate Your Firm Today<br>
-        <span class="text-3xl sm:text-4xl lg:text-5xl text-yellow-400 block mt-3">Only 15 Spots Remaining</span>
+        <span class="text-3xl sm:text-4xl lg:text-5xl text-yellow-400 block mt-3">Only 15 Spots Remaining – Act Fast!</span>
       </h2>
       <p class="text-xl sm:text-2xl opacity-90 mb-10 max-w-3xl mx-auto">
         Secure your pre-launch package and get the fastest, most reliable path to more clients — delivered personally by the LexPilot founder.
