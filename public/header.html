@@ -19,6 +19,7 @@
       font-family: 'Inter', sans-serif;
       font-weight: 900;
       letter-spacing: -0.025em;
+      white-space: nowrap;
     }
   </style>
 </head>
@@ -27,7 +28,7 @@
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5">
     <!-- Desktop / Large Tablet (lg+) -->
     <div class="hidden lg:flex items-center justify-between">
-      <a href="/" class="flex items-center gap-3.5 group">
+      <a href="/" class="flex items-center gap-4 group">
         <img src="/images/lexpilot-logo.jpg" alt="LexPilot Logo"
              class="h-11 md:h-12 rounded-full shadow-2xl ring-4 ring-green-500/30
                     transition-all duration-300 group-hover:scale-110 group-hover:ring-green-400">
@@ -53,15 +54,15 @@
       </div>
     </div>
 
-    <!-- Mobile & Small Tablet (below lg) -->
+    <!-- Mobile & Small Tablet (below lg) – NOW ALWAYS SHOWS NAME -->
     <div class="lg:hidden space-y-3">
-      <!-- Top row: Logo + CTA -->
-      <div class="flex items-center justify-between">
-        <a href="/" class="flex items-center gap-3 group">
+      <!-- Top row: Logo + Name + CTA -->
+      <div class="flex items-center justify-between gap-3">
+        <a href="/" class="flex items-center gap-3 group flex-shrink-0">
           <img src="/images/lexpilot-logo.jpg" alt="LexPilot Logo"
-               class="h-10 rounded-full shadow-2xl ring-4 ring-green-500/30
+               class="h-9 sm:h-10 rounded-full shadow-2xl ring-4 ring-green-500/30
                       transition-all duration-300 group-hover:scale-110 group-hover:ring-green-400">
-          <span class="logo-text text-2xl sm:text-3xl">
+          <span class="logo-text text-xl sm:text-2xl">
             <span class="text-white">Lex</span><span class="text-green-400">Pilot</span>
           </span>
         </a>
@@ -69,16 +70,16 @@
         <a href="https://wa.me/27764312871?text=Hi%20-%20Interested%20in%20LexPilot%20Accelerate"
            target="_blank"
            class="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700
-                  text-black font-black px-5 py-3 rounded-full shadow-2xl hover:scale-105 transition-all duration-300
-                  text-sm sm:text-base flex items-center gap-2 border-2 border-green-400/50 whitespace-nowrap">
-          <i class="fab fa-whatsapp text-2xl"></i>
+                  text-black font-black px-4 py-2.5 sm:px-5 sm:py-3 rounded-full shadow-2xl hover:scale-105 transition-all duration-300
+                  text-xs sm:text-sm flex items-center gap-2 border-2 border-green-400/50 whitespace-nowrap flex-shrink-0">
+          <i class="fab fa-whatsapp text-xl sm:text-2xl"></i>
           <span class="hidden xs:inline">CHAT NOW</span>
           <span class="xs:hidden">CHAT</span>
         </a>
       </div>
 
       <!-- Bottom row: Quick nav links -->
-      <nav class="flex justify-center gap-12 sm:gap-16 text-base font-bold pt-1 pb-2 border-b border-green-500/20">
+      <nav class="flex justify-center gap-10 sm:gap-16 text-sm sm:text-base font-bold pt-1 pb-2 border-b border-green-500/20">
         <a href="#pricing" class="text-white/90 hover:text-green-400 transition duration-300">Pricing</a>
         <a href="#features" class="text-white/90 hover:text-green-400 transition duration-300">Features</a>
       </nav>
@@ -86,9 +87,9 @@
   </div>
 </header>
 
-<!-- Recommended spacing helper for your main content (add this to your index.html <main> or first section) -->
-<!-- Example usage in your main page: -->
-<!-- <main class="pt-[140px] lg:pt-[100px] ..."> ... -->
+<!-- Add this padding to your main/hero content in index.html to prevent overlap -->
+<!-- Example: -->
+<!-- <main class="pt-[140px] sm:pt-[130px] lg:pt-[100px] ..."> -->
 
 </body>
 </html>
