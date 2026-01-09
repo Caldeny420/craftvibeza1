@@ -24,6 +24,8 @@
       color: #fff;
       margin: 0;
       overflow-x: hidden;
+      font-size: 1.0625rem;
+      line-height: 1.6;
     }
     .badge {
       display: inline-block;
@@ -134,10 +136,7 @@
       z-index: 20;
     }
     @media (min-width: 768px) { .feature-table-container::after { display: none; } }
-    .feature-table-container table {
-      width: 100%;
-      min-width: 680px;
-    }
+    .feature-table-container table { width: 100%; min-width: 680px; }
     .feature-table-container th,
     .feature-table-container td {
       padding: 0.8rem 0.6rem;
@@ -163,16 +162,6 @@
       .feature-table-container th:first-child,
       .feature-table-container td:first-child { min-width: 220px; }
     }
-    .feature-table-container th:not(:first-child):not(:last-child),
-    .feature-table-container td:not(:first-child):not(:last-child) {
-      min-width: 100px;
-    }
-    .feature-table-container th:last-child,
-    .feature-table-container td:last-child {
-      min-width: 160px;
-      text-align: left;
-      padding-left: 1.2rem;
-    }
     .feature-table-container thead th {
       position: sticky;
       top: 0;
@@ -182,9 +171,63 @@
   </style>
 </head>
 <body class="min-h-screen flex flex-col">
-  <div id="header-placeholder"></div>
-  <!-- HERO -->
-  <main class="flex-1 px-4 py-8 text-center">
+  <header class="fixed top-0 left-0 right-0 z-[999] bg-black/90 backdrop-blur-xl border-b border-green-500/30">
+    <div class="max-w-7xl mx-auto px-5 py-4">
+      <div class="hidden lg:flex items-center justify-between">
+        <a href="/" class="flex items-center gap-4 group">
+          <img src="/images/lexpilot-logo.jpg" alt="LexPilot Logo"
+               class="h-10 md:h-12 rounded-full shadow-2xl ring-4 ring-green-500/30
+                      transition-all duration-300 group-hover:scale-110 group-hover:ring-green-400">
+          <span class="hidden md:flex items-baseline font-black tracking-tighter leading-none">
+            <span class="text-3xl md:text-4xl text-white">Lex</span>
+            <span class="text-4xl md:text-5xl text-green-400">Pilot</span>
+          </span>
+        </a>
+        <div class="flex items-center gap-10 xl:gap-14">
+          <nav class="flex items-center gap-12 text-base font-bold">
+            <a href="#pricing" class="text-white/85 hover:text-green-400 transition duration-300">Pricing</a>
+            <a href="#features" class="text-white/85 hover:text-green-400 transition duration-300">Features</a>
+          </nav>
+          <a href="https://wa.me/27764312871?text=Hi%20-%20Interested%20in%20LexPilot%20Accelerate%20Pre-Launch%20Packages"
+             target="_blank"
+             class="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700
+                    text-black font-black px-7 py-4 rounded-full shadow-2xl hover:scale-105 transition-all duration-300
+                    text-base flex items-center gap-3 border-2 border-green-400/50">
+            <i class="fab fa-whatsapp text-2xl"></i>
+            <span>CHAT WITH FOUNDER</span>
+          </a>
+        </div>
+      </div>
+      <div class="lg:hidden flex flex-col gap-4">
+        <div class="flex items-center justify-between">
+          <a href="/" class="flex items-center gap-3 group">
+            <img src="/images/lexpilot-logo.jpg" alt="LexPilot Logo"
+                 class="h-10 rounded-full shadow-2xl ring-4 ring-green-500/30
+                        transition-all duration-300 group-hover:scale-110 group-hover:ring-green-400">
+            <span class="hidden xs:flex items-baseline font-black tracking-tighter leading-none">
+              <span class="text-2xl text-white">Lex</span>
+              <span class="text-3xl text-green-400">Pilot</span>
+            </span>
+          </a>
+          <a href="https://wa.me/27764312871?text=Hi%20-%20Interested%20in%20LexPilot%20Accelerate"
+             target="_blank"
+             class="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700
+                    text-black font-black px-5 py-3 rounded-full shadow-2xl hover:scale-105 transition-all duration-300
+                    text-sm flex items-center gap-2 border-2 border-green-400/50">
+            <i class="fab fa-whatsapp text-2xl"></i>
+            <span class="hidden xs:inline">CHAT NOW</span>
+            <span class="xs:hidden">CHAT</span>
+          </a>
+        </div>
+        <nav class="flex justify-center gap-10 text-base font-bold pb-2 border-b border-green-500/20">
+          <a href="#pricing" class="text-white/85 hover:text-green-400 transition duration-300">Pricing</a>
+          <a href="#features" class="text-white/85 hover:text-green-400 transition duration-300">Features</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-1 px-4 py-8 text-center pt-[160px] lg:pt-[120px]">
     <div class="max-w-7xl mx-auto">
       <div class="badge mb-4">FOUNDING MEMBERS • ONLY 500 SPOTS FOREVER • CLOSING 28 MARCH 2026</div>
       <h1 class="hero-headline mb-4">Proactively Protect Your Firm from Costly Trust Account Violations</h1>
@@ -201,7 +244,7 @@
       <p class="mt-8 font-black text-base tracking-wider opacity-90">Proudly South African • 100% POPIA-Compliant • Locally Hosted • Independently Audited</p>
     </div>
   </main>
-  <!-- Why Trust LexPilot -->
+
   <section class="py-16 px-6 bg-zinc-950">
     <div class="max-w-6xl mx-auto text-center">
       <h2 class="text-3xl sm:text-4xl md:text-5xl font-black mb-12">Why South African Law Firms Trust LexPilot</h2>
@@ -236,13 +279,14 @@
       </div>
     </div>
   </section>
-  <!-- PRICING -->
+
   <section id="pricing" class="py-16 px-6 bg-black">
     <div class="max-w-7xl mx-auto text-center">
       <h2 class="text-4xl sm:text-5xl md:text-6xl font-black mb-6">Early Access Pricing</h2>
-      <p class="text-xl md:text-2xl opacity-80 mb-12">Founding Price — Locked Forever (even when public pricing exceeds R20,000/month)</p>
+      <p class="text-xl md:text-2xl opacity-80 mb-12 max-w-3xl mx-auto whitespace-normal leading-relaxed">
+        Founding Price — Locked Forever <br class="sm:hidden">(even when public pricing exceeds R20,000/month)
+      </p>
       <div class="pricing-scroll-container">
-        <!-- Growth -->
         <div class="pricing-card border-zinc-500">
           <h3 class="text-3xl lg:text-4xl font-black text-green-400 mb-4">Growth</h3>
           <p class="text-3xl font-black mb-2">R999 <span class="text-lg">/ month</span></p>
@@ -279,7 +323,6 @@
             </button>
           </div>
         </div>
-        <!-- Dominance (Recommended) -->
         <div class="pricing-card border-green-500 relative">
           <div class="founding-badge">FOUNDING PRICE LOCKED FOREVER</div>
           <h3 class="text-3xl lg:text-4xl font-black text-yellow-400 mb-4 mt-4">Dominance</h3>
@@ -322,7 +365,6 @@
             </button>
           </div>
         </div>
-        <!-- Apex -->
         <div class="pricing-card" style="border-image: linear-gradient(to bottom, var(--gold), var(--gold-dark)) 1;">
           <div class="apex-badge">WAITLIST OPEN • LIVE 28 APRIL</div>
           <h3 class="text-3xl lg:text-4xl font-black mb-4 mt-4" style="background: linear-gradient(to right, var(--gold), var(--gold-dark)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Apex</h3>
@@ -372,8 +414,8 @@
       </div>
     </div>
   </section>
-  <!-- Complete Feature Table -->
-  <section class="py-16 px-6 bg-black">
+
+  <section id="features" class="py-16 px-6 bg-black">
     <div class="max-w-7xl mx-auto">
       <h2 class="text-4xl sm:text-5xl md:text-6xl font-black text-center mb-12">Complete Feature Breakdown</h2>
       <div class="feature-table-container">
@@ -492,7 +534,7 @@
       </div>
     </div>
   </section>
-  <!-- How It Works -->
+
   <section class="py-24 px-6 bg-zinc-950">
     <div class="max-w-6xl mx-auto text-center">
       <h2 class="text-4xl sm:text-5xl font-black mb-16">How It Works</h2>
@@ -515,7 +557,7 @@
       </div>
     </div>
   </section>
-  <!-- Referrals -->
+
   <section class="py-20 px-6 bg-black">
     <div class="max-w-5xl mx-auto text-center">
       <h2 class="text-4xl font-black mb-10">Get LexPilot Free Forever Through Referrals</h2>
@@ -528,7 +570,7 @@
       </p>
     </div>
   </section>
-  <!-- Security -->
+
   <section class="py-20 px-6 bg-zinc-950">
     <div class="max-w-5xl mx-auto text-center">
       <h2 class="text-4xl font-black mb-10">Security & Compliance</h2>
@@ -539,7 +581,7 @@
       </div>
     </div>
   </section>
-  <!-- Final CTA -->
+
   <section class="py-24 px-6 bg-gradient-to-b from-black to-zinc-950">
     <div class="max-w-6xl mx-auto text-center">
       <h2 class="text-4xl sm:text-5xl md:text-6xl font-black mb-8">
@@ -555,7 +597,7 @@
       </p>
     </div>
   </section>
-  <!-- QUIZ OVERLAY -->
+
   <div id="quiz-overlay" class="fixed inset-0 bg-black/98 backdrop-blur-2xl flex items-center justify-center z-[1000] hidden px-4 overflow-y-auto">
     <div class="w-full max-w-lg mx-auto my-8">
       <div class="h-3 bg-zinc-800 rounded-full mb-8 overflow-hidden">
@@ -565,7 +607,7 @@
       <div id="quiz-options" class="grid grid-cols-1 gap-4"></div>
     </div>
   </div>
-  <!-- QUIZ RESULTS -->
+
   <section id="quiz-results" class="py-16 px-6 bg-black hidden">
     <div class="max-w-5xl mx-auto text-center">
       <h2 class="text-3xl md:text-5xl font-black mb-8 text-green-400">Your Perfect Founding Plan</h2>
@@ -580,19 +622,23 @@
       <div id="recommended-list" class="max-w-4xl mx-auto text-left text-lg leading-relaxed bg-zinc-900/50 rounded-3xl p-8"></div>
     </div>
   </section>
+
   <a href="https://wa.me/27764312871?text=Hi%20LexPilot%2C%0A%0AI%27m%20interested%20in%20Early%20Access" class="fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-white text-black rounded-full shadow-2xl pl-5 pr-7 py-4 font-bold hover:scale-110 transition">
     <span class="absolute inset-0 rounded-full bg-green-500 opacity-75 animate-ping"></span>
     <i class="fab fa-whatsapp text-4xl text-green-500"></i>
     <span class="hidden md:block">Chat with founder<br><small>Replies in &lt;60 sec • 24/7</small></span>
   </a>
+
   <div id="footer-placeholder"></div>
+
   <script src="script.js"></script>
   <script>
     function adjustMainPadding() {
-      const header = document.querySelector('header') || { offsetHeight: 0 };
+      const header = document.querySelector('header');
       const main = document.querySelector('main');
-      if (main) {
-        main.style.paddingTop = `${header.offsetHeight + 20}px`; // small extra for safety
+      if (header && main) {
+        const headerHeight = header.offsetHeight;
+        main.style.paddingTop = `${headerHeight + 8}px`; // tiny buffer only
       }
     }
     window.addEventListener('load', adjustMainPadding);
@@ -600,7 +646,6 @@
     document.fonts?.ready.then(adjustMainPadding);
     setTimeout(adjustMainPadding, 100);
     setTimeout(adjustMainPadding, 500);
-    setTimeout(adjustMainPadding, 1000);
   </script>
 </body>
 </html>
