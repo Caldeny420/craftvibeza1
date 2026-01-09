@@ -9,79 +9,86 @@
     body {
       margin: 0;
       padding: 0;
-      padding-top: 0 !important; /* Overridden by JS on main page */
     }
     header {
-      box-shadow: 0 4px 20px rgba(0, 255, 0, 0.1);
+      box-shadow: 0 4px 20px rgba(0, 255, 0, 0.08);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .logo-text {
+      font-family: 'Inter', sans-serif;
+      font-weight: 900;
+      letter-spacing: -0.025em;
     }
   </style>
 </head>
 <body class="bg-gray-900 min-h-screen text-white">
-
-<header class="fixed top-0 left-0 right-0 z-[999] bg-black/95 backdrop-blur-2xl border-b border-green-500/20">
-  <div class="max-w-7xl mx-auto px-5 py-4">
-    
-    <!-- Desktop Layout -->
+<header class="fixed top-0 left-0 right-0 z-[999] bg-black/90 backdrop-blur-xl border-b border-green-500/30">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5">
+    <!-- Desktop / Large Tablet (lg+) -->
     <div class="hidden lg:flex items-center justify-between">
-      <a href="/" class="flex items-center gap-4 group">
+      <a href="/" class="flex items-center gap-3.5 group">
         <img src="/images/lexpilot-logo.jpg" alt="LexPilot Logo"
-             class="h-10 md:h-12 rounded-full shadow-2xl ring-4 ring-green-500/30
+             class="h-11 md:h-12 rounded-full shadow-2xl ring-4 ring-green-500/30
                     transition-all duration-300 group-hover:scale-110 group-hover:ring-green-400">
-        <span class="hidden md:flex items-baseline font-black tracking-tighter leading-none">
-          <span class="text-3xl md:text-4xl text-white">Lex</span>
-          <span class="text-4xl md:text-5xl text-green-400">Pilot</span>
+        <span class="logo-text text-3xl md:text-4xl">
+          <span class="text-white">Lex</span><span class="text-green-400">Pilot</span>
         </span>
       </a>
 
-      <div class="flex items-center gap-8 xl:gap-12">
-        <nav class="flex items-center gap-10 text-base font-bold">
-          <a href="index.html#pricing" class="text-white/80 hover:text-green-400 transition duration-300">Pricing</a>
-          <a href="index.html#features" class="text-white/80 hover:text-green-400 transition duration-300">Features</a>
+      <div class="flex items-center gap-10 xl:gap-16">
+        <nav class="flex items-center gap-12 text-base font-bold">
+          <a href="#pricing" class="text-white/90 hover:text-green-400 transition duration-300">Pricing</a>
+          <a href="#features" class="text-white/90 hover:text-green-400 transition duration-300">Features</a>
         </nav>
-        
-        <button onclick="startQuiz()"
-                class="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700
-                        text-black font-black px-7 py-4 rounded-full shadow-2xl hover:scale-110 transition-all duration-300
-                        text-sm md:text-lg flex items-center gap-3 whitespace-nowrap border-2 border-green-400/50">
+
+        <a href="https://wa.me/27764312871?text=Hi%20-%20Interested%20in%20LexPilot%20Accelerate%20Pre-Launch%20Packages"
+           target="_blank"
+           class="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700
+                  text-black font-black px-7 py-4 rounded-full shadow-2xl hover:scale-105 transition-all duration-300
+                  text-base flex items-center gap-3 border-2 border-green-400/50 whitespace-nowrap">
           <i class="fab fa-whatsapp text-2xl"></i>
-          <span class="hidden xs:inline">SECURE MY SPOT NOW</span>
-          <span class="xs:hidden">APPLY</span>
-        </button>
+          <span>CHAT WITH FOUNDER</span>
+        </a>
       </div>
     </div>
 
-    <!-- Mobile & Tablet Layout (now includes Pricing & Features links) -->
-    <div class="lg:hidden flex flex-col gap-4">
+    <!-- Mobile & Small Tablet (below lg) -->
+    <div class="lg:hidden space-y-3">
+      <!-- Top row: Logo + CTA -->
       <div class="flex items-center justify-between">
         <a href="/" class="flex items-center gap-3 group">
           <img src="/images/lexpilot-logo.jpg" alt="LexPilot Logo"
                class="h-10 rounded-full shadow-2xl ring-4 ring-green-500/30
                       transition-all duration-300 group-hover:scale-110 group-hover:ring-green-400">
-          <span class="hidden xs:flex items-baseline font-black tracking-tighter leading-none">
-            <span class="text-2xl text-white">Lex</span>
-            <span class="text-3xl text-green-400">Pilot</span>
+          <span class="logo-text text-2xl sm:text-3xl">
+            <span class="text-white">Lex</span><span class="text-green-400">Pilot</span>
           </span>
         </a>
 
-        <button onclick="startQuiz()"
-                class="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700
-                        text-black font-black px-5 py-3 rounded-full shadow-2xl hover:scale-110 transition-all duration-300
-                        text-sm flex items-center gap-2 whitespace-nowrap border-2 border-green-400/50">
+        <a href="https://wa.me/27764312871?text=Hi%20-%20Interested%20in%20LexPilot%20Accelerate"
+           target="_blank"
+           class="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700
+                  text-black font-black px-5 py-3 rounded-full shadow-2xl hover:scale-105 transition-all duration-300
+                  text-sm sm:text-base flex items-center gap-2 border-2 border-green-400/50 whitespace-nowrap">
           <i class="fab fa-whatsapp text-2xl"></i>
-          <span class="hidden xs:inline">SECURE MY SPOT</span>
-          <span class="xs:hidden">APPLY</span>
-        </button>
+          <span class="hidden xs:inline">CHAT NOW</span>
+          <span class="xs:hidden">CHAT</span>
+        </a>
       </div>
 
-      <!-- Quick menu visible on all mobile/tablet devices -->
-      <nav class="flex justify-center gap-8 text-base font-bold pb-2 border-b border-green-500/20">
-        <a href="index.html#pricing" class="text-white/80 hover:text-green-400 transition duration-300">Pricing</a>
-        <a href="index.html#features" class="text-white/80 hover:text-green-400 transition duration-300">Features</a>
+      <!-- Bottom row: Quick nav links -->
+      <nav class="flex justify-center gap-12 sm:gap-16 text-base font-bold pt-1 pb-2 border-b border-green-500/20">
+        <a href="#pricing" class="text-white/90 hover:text-green-400 transition duration-300">Pricing</a>
+        <a href="#features" class="text-white/90 hover:text-green-400 transition duration-300">Features</a>
       </nav>
     </div>
-
   </div>
 </header>
+
+<!-- Recommended spacing helper for your main content (add this to your index.html <main> or first section) -->
+<!-- Example usage in your main page: -->
+<!-- <main class="pt-[140px] lg:pt-[100px] ..."> ... -->
 
 </body>
 </html>
