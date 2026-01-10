@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta name="theme-color" content="#000000" />
-  <meta name="description" content="LexPilot Sites – Bespoke websites and marketing sequences for South African legal professionals. Custom-built, SEO-optimized, with automation. Only 300 Founding spots forever – closing 30 April 2026." />
-  <title>LexPilot Sites | Founding Access – Only 300 Spots Forever</title>
+  <meta name="description" content="LexPilot Sites – Premium, hand-coded bespoke websites for South African lawyers. Custom-built in Visual Studio Code, SEO-optimized, lead-focused. Limited Launch Offer – Only First 15 Firms – Starting Now." />
+  <title>LexPilot Sites | Limited Launch – Only First 15 Firms</title>
   <link rel="icon" href="/images/lexpilot-sites-logo.jpg" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
@@ -27,9 +27,20 @@
       font-size: 1.0625rem;
       line-height: 1.6;
     }
+    header {
+      box-shadow: 0 4px 20px rgba(59, 130, 246, 0.12);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .logo-text {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-weight: 900;
+      letter-spacing: -0.025em;
+      white-space: nowrap;
+    }
     .badge {
       display: inline-block;
-      background: #6366f1;
+      background: var(--indigo);
       color: #fff;
       font-weight: 900;
       padding: 0.5rem 1.2rem;
@@ -39,80 +50,58 @@
       text-transform: uppercase;
     }
     @media (min-width: 640px) { .badge { font-size: 0.875rem; padding: 0.75rem 1.5rem; } }
-    .founding-badge {
+    .limited-badge {
       position: absolute;
-      top: -1.4rem;
+      top: -1.6rem;
       left: 50%;
       transform: translateX(-50%);
-      background: linear-gradient(to right, #6366f1, #4f46e5, #4338ca);
-      color: #fff;
-      font-weight: 900;
-      padding: 0.5rem 1.2rem;
-      border-radius: 9999px;
-      font-size: 0.625rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-      border: 3px solid #000;
-      z-index: 30;
-      white-space: nowrap;
-    }
-    @media (min-width: 640px) {
-      .founding-badge { top: -1.6rem; font-size: 0.75rem; padding: 0.75rem 1.5rem; }
-    }
-    .apex-badge {
-      position: absolute;
-      top: -1.2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      background: linear-gradient(to right, var(--gold), var(--gold-dark));
+      background: linear-gradient(to right, #fbbf24, #f59e0b);
       color: #000;
       font-weight: 900;
-      padding: 0.5rem 1.2rem;
+      padding: 0.6rem 1.8rem;
       border-radius: 9999px;
-      font-size: 0.75rem;
+      font-size: 0.85rem;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
-      border: 2px solid #000;
-      z-index: 30;
+      letter-spacing: 0.12em;
+      box-shadow: 0 12px 25px rgba(251,191,36,0.5);
+      animation: pulse 2.2s infinite;
+      white-space: nowrap;
+      border: 3px solid #000;
     }
     @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.8; }
+      0%, 100% { box-shadow: 0 0 0 0 rgba(251,191,36,0.7); }
+      70% { box-shadow: 0 0 0 14px rgba(251,191,36,0); }
     }
-    .hero-headline { font-size: clamp(2rem, 6vw, 4.5rem); line-height: 1.05; font-weight: 900; }
-    .hero-subheadline { font-size: clamp(1rem, 2.5vw, 1.5rem); line-height: 1.4; opacity: 0.95; }
-    .cta-primary { font-size: clamp(1.2rem, 3.5vw, 2rem); padding: clamp(0.8rem, 2.5vw, 1.2rem) clamp(2rem, 5vw, 4rem); }
+    .hero-headline { font-size: clamp(2.2rem, 6vw, 4.8rem); line-height: 1.05; font-weight: 900; }
+    .hero-subheadline { font-size: clamp(1.1rem, 2.8vw, 1.45rem); line-height: 1.45; opacity: 0.95; }
+    .cta-primary { font-size: clamp(1.3rem, 3.8vw, 2.2rem); padding: clamp(1rem, 3vw, 1.5rem) clamp(2.5rem, 6vw, 5rem); }
     .pricing-scroll-container {
       display: flex;
-      gap: 1rem;
-      padding: 0.5rem 0 2rem;
+      gap: 1.25rem;
+      padding: 1rem 0.5rem 3rem;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
       scrollbar-width: none;
     }
     .pricing-scroll-container::-webkit-scrollbar { display: none; }
     .pricing-card {
-      flex: 0 0 82vw;
-      max-width: 380px;
+      flex: 0 0 85vw;
+      max-width: 400px;
       background: linear-gradient(to bottom, #18181b, #000);
-      border-radius: 1.5rem;
-      padding: 2.5rem 1.5rem 2.5rem;
+      border-radius: 1.8rem;
+      padding: 2.8rem 1.8rem 3rem;
       text-align: center;
-      border: 2px solid;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+      border: 2px solid #27272a;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.7);
       scroll-snap-align: center;
       position: relative;
       display: flex;
       flex-direction: column;
     }
-    @media (min-width: 768px) {
-      .pricing-card { flex: 0 0 65vw; max-width: 400px; }
-      .pricing-scroll-container { justify-content: center; overflow-x: visible; gap: 1.5rem; }
-    }
+    @media (min-width: 640px) { .pricing-card { flex: 0 0 72vw; max-width: 440px; } }
     @media (min-width: 1024px) {
-      .pricing-card { flex: 1 1 340px; max-width: 420px; }
+      .pricing-scroll-container { overflow-x: visible; justify-content: center; padding: 2rem 0 5rem 0; gap: 2rem; }
+      .pricing-card { flex: 1 1 380px; max-width: 460px; padding: 3.2rem 2.5rem 3rem; }
     }
     .feature-table-container {
       overflow-x: auto;
@@ -137,19 +126,16 @@
     }
     @media (min-width: 768px) { .feature-table-container::after { display: none; } }
     .feature-table-container table { width: 100%; min-width: 680px; }
-    .feature-table-container th,
-    .feature-table-container td {
+    .feature-table-container th, .feature-table-container td {
       padding: 0.8rem 0.6rem;
       font-size: 0.875rem;
       vertical-align: middle;
       text-align: center;
     }
     @media (min-width: 768px) {
-      .feature-table-container th,
-      .feature-table-container td { padding: 1rem 0.8rem; font-size: 0.9375rem; }
+      .feature-table-container th, .feature-table-container td { padding: 1rem 0.8rem; font-size: 0.9375rem; }
     }
-    .feature-table-container th:first-child,
-    .feature-table-container td:first-child {
+    .feature-table-container th:first-child, .feature-table-container td:first-child {
       position: sticky;
       left: 0;
       background: linear-gradient(to right, #000, #18181b);
@@ -159,8 +145,7 @@
       font-weight: 600;
     }
     @media (min-width: 768px) {
-      .feature-table-container th:first-child,
-      .feature-table-container td:first-child { min-width: 220px; }
+      .feature-table-container th:first-child, .feature-table-container td:first-child { min-width: 220px; }
     }
     .feature-table-container thead th {
       position: sticky;
@@ -171,438 +156,407 @@
   </style>
 </head>
 <body class="min-h-screen flex flex-col">
-  <header class="fixed top-0 left-0 right-0 z-[999] bg-black/90 backdrop-blur-xl border-b border-blue-500/30">
-    <div class="max-w-7xl mx-auto px-5 py-4">
-      <div class="hidden lg:flex items-center justify-between">
-        <a href="/" class="flex items-center gap-4 group">
+
+<!-- HEADER -->
+<header class="fixed top-0 left-0 right-0 z-[999] bg-black/90 backdrop-blur-xl border-b border-blue-500/30">
+  <div class="max-w-7xl mx-auto px-5 py-4">
+    <div class="hidden lg:flex items-center justify-between">
+      <a href="/sites.html" class="flex items-center gap-4 group">
+        <img src="/images/lexpilot-sites-logo.jpg" alt="LexPilot Sites Logo"
+             class="h-11 md:h-12 rounded-full shadow-2xl ring-4 ring-blue-500/30
+                    transition-all duration-300 group-hover:scale-110 group-hover:ring-blue-400">
+        <span class="logo-text text-3xl md:text-4xl">
+          <span class="text-white">LexPilot</span><span class="text-blue-400"> Sites</span>
+        </span>
+      </a>
+      <div class="flex items-center gap-10 xl:gap-14">
+        <nav class="flex items-center gap-12 text-base font-bold">
+          <a href="#pricing" class="text-white/90 hover:text-blue-400 transition duration-300">Pricing</a>
+          <a href="#features" class="text-white/90 hover:text-blue-400 transition duration-300">Features</a>
+        </nav>
+        <a href="https://wa.me/27764312871?text=Hi%20-%20I%20want%20one%20of%20the%20first%2015%20LexPilot%20Sites%20spots"
+           target="_blank" rel="noopener noreferrer"
+           class="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700
+                  text-white font-black px-7 py-4 rounded-full shadow-2xl hover:scale-105 transition-all duration-300
+                  text-base flex items-center gap-3 border-2 border-blue-400/50 whitespace-nowrap">
+          <i class="fab fa-whatsapp text-2xl"></i>
+          <span>CHAT WITH FOUNDER</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Mobile -->
+    <div class="lg:hidden flex flex-col gap-4">
+      <div class="flex items-center justify-between">
+        <a href="/sites.html" class="flex items-center gap-3 group">
           <img src="/images/lexpilot-sites-logo.jpg" alt="LexPilot Sites Logo"
-               class="h-10 md:h-12 rounded-full shadow-2xl ring-4 ring-blue-500/30
+               class="h-10 rounded-full shadow-2xl ring-4 ring-blue-500/30
                       transition-all duration-300 group-hover:scale-110 group-hover:ring-blue-400">
-          <span class="hidden md:flex items-baseline font-black tracking-tighter leading-none">
-            <span class="text-3xl md:text-4xl text-white">LexPilot</span>
-            <span class="text-4xl md:text-5xl text-blue-400">Sites</span>
+          <span class="logo-text text-xl sm:text-2xl">
+            <span class="text-white">LexPilot</span><span class="text-blue-400"> Sites</span>
           </span>
         </a>
-        <div class="flex items-center gap-10 xl:gap-14">
-          <nav class="flex items-center gap-12 text-base font-bold">
-            <a href="#pricing" class="text-white/85 hover:text-blue-400 transition duration-300">Pricing</a>
-            <a href="#features" class="text-white/85 hover:text-blue-400 transition duration-300">Features</a>
-          </nav>
-          <a href="https://wa.me/27764312871?text=Hi%20-%20Interested%20in%20LexPilot%20Sites%20Founding%20Access"
-             target="_blank"
-             class="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700
-                    text-white font-black px-7 py-4 rounded-full shadow-2xl hover:scale-105 transition-all duration-300
-                    text-base flex items-center gap-3 border-2 border-blue-400/50">
-            <i class="fab fa-whatsapp text-2xl"></i>
-            <span>CHAT WITH FOUNDER</span>
-          </a>
-        </div>
+        <a href="https://wa.me/27764312871?text=Hi%20-%20I%20want%20one%20of%20the%20first%2015%20LexPilot%20Sites%20spots"
+           target="_blank" rel="noopener noreferrer"
+           class="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700
+                  text-white font-black px-5 py-3 rounded-full shadow-2xl hover:scale-105 transition-all duration-300
+                  text-sm flex items-center gap-2 border-2 border-blue-400/50">
+          <i class="fab fa-whatsapp text-2xl"></i>
+          <span class="hidden xs:inline">CHAT NOW</span>
+          <span class="xs:hidden">CHAT</span>
+        </a>
       </div>
-      <div class="lg:hidden flex flex-col gap-4">
-        <div class="flex items-center justify-between">
-          <a href="/" class="flex items-center gap-3 group">
-            <img src="/images/lexpilot-sites-logo.jpg" alt="LexPilot Sites Logo"
-                 class="h-10 rounded-full shadow-2xl ring-4 ring-blue-500/30
-                        transition-all duration-300 group-hover:scale-110 group-hover:ring-blue-400">
-            <span class="hidden xs:flex items-baseline font-black tracking-tighter leading-none">
-              <span class="text-2xl text-white">LexPilot</span>
-              <span class="text-3xl text-blue-400">Sites</span>
-            </span>
-          </a>
-          <a href="https://wa.me/27764312871?text=Hi%20-%20Interested%20in%20LexPilot%20Sites"
-             target="_blank"
-             class="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700
-                    text-white font-black px-5 py-3 rounded-full shadow-2xl hover:scale-105 transition-all duration-300
-                    text-sm flex items-center gap-2 border-2 border-blue-400/50">
-            <i class="fab fa-whatsapp text-2xl"></i>
-            <span class="hidden xs:inline">CHAT NOW</span>
-            <span class="xs:hidden">CHAT</span>
-          </a>
-        </div>
-        <nav class="flex justify-center gap-10 text-base font-bold pb-2 border-b border-blue-500/20">
-          <a href="#pricing" class="text-white/85 hover:text-blue-400 transition duration-300">Pricing</a>
-          <a href="#features" class="text-white/85 hover:text-blue-400 transition duration-300">Features</a>
-        </nav>
-      </div>
-    </div>
-  </header>
-  <main class="flex-1 px-4 py-8 text-center pt-[160px] lg:pt-[120px]">
-    <div class="max-w-7xl mx-auto">
-      <div class="badge mb-4">FOUNDING MEMBERS • ONLY 300 SPOTS FOREVER • CLOSING 30 APRIL 2026</div>
-      <h1 class="hero-headline mb-4">Bespoke Websites & Marketing Sequences for South African Legal Pros</h1>
-      <p class="hero-subheadline max-w-4xl mx-auto mb-8">Custom-built, SEO-optimized sites with automated email sequences, lead capture, and compliance tools – designed to attract high-value clients and streamline your practice.</p>
-      <div class="space-y-4">
-        <button onclick="startQuiz()" class="block mx-auto bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-black rounded-full shadow-2xl hover:scale-105 transition-all duration-300 border-4 border-blue-400/50 cta-primary">
-          Claim Your Founding Spot Now
-        </button>
-        <p class="text-base">
-          or <a href="https://wa.me/27764312871?text=Hi%20LexPilot%20Sites%20-%20Founding%20Access" target="_blank" class="text-blue-400 underline font-bold hover:no-underline">message the founder on WhatsApp</a><br>
-          <span class="text-sm opacity-70">(Replies in &lt;60 seconds • 24/7)</span>
-        </p>
-      </div>
-      <p class="mt-8 font-black text-base tracking-wider opacity-90">Proudly South African • GDPR & POPIA-Compliant • Locally Hosted • Independently Audited</p>
-    </div>
-  </main>
-  <section class="py-16 px-6 bg-zinc-950">
-    <div class="max-w-6xl mx-auto text-center">
-      <h2 class="text-3xl sm:text-4xl md:text-5xl font-black mb-12">Why Legal Pros Choose LexPilot Sites</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-5xl mx-auto">
-        <div>
-          <div class="text-5xl mb-4">🌐</div>
-          <h3 class="text-xl font-bold mb-3">Custom-Built Websites</h3>
-          <p class="text-zinc-300 text-sm">Tailored designs that reflect your firm's expertise</p>
-        </div>
-        <div>
-          <div class="text-5xl mb-4">📧</div>
-          <h3 class="text-xl font-bold mb-3">Automated Sequences</h3>
-          <p class="text-zinc-300 text-sm">Email nurturing for leads and clients</p>
-        </div>
-        <div>
-          <div class="text-5xl mb-4">📈</div>
-          <h3 class="text-xl font-bold mb-3">SEO & Analytics</h3>
-          <p class="text-zinc-300 text-sm">Drive traffic and measure success</p>
-        </div>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mt-10 max-w-4xl mx-auto">
-        <div>
-          <div class="text-5xl mb-4">🔒</div>
-          <h3 class="text-xl font-bold mb-3">Fully Compliant</h3>
-          <p class="text-zinc-300 text-sm">POPIA-ready with secure hosting</p>
-        </div>
-        <div>
-          <div class="text-5xl mb-4">🇿🇦</div>
-          <h3 class="text-xl font-bold mb-3">Built for SA Legal Market</h3>
-          <p class="text-zinc-300 text-sm">Integrated with local regulations & tools</p>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section id="pricing" class="py-16 px-6 bg-black">
-    <div class="max-w-7xl mx-auto text-center">
-      <h2 class="text-4xl sm:text-5xl md:text-6xl font-black mb-6">Founding Access Pricing</h2>
-      <p class="text-xl md:text-2xl opacity-80 mb-12 max-w-3xl mx-auto whitespace-normal leading-relaxed">
-        Founding Price — Locked Forever <br class="sm:hidden">(even when public pricing exceeds R15,000/month)
-      </p>
-      <div class="pricing-scroll-container">
-        <div class="pricing-card border-zinc-500">
-          <h3 class="text-3xl lg:text-4xl font-black text-blue-400 mb-4">Essentials</h3>
-          <p class="text-3xl font-black mb-2">R799 <span class="text-lg">/ month</span></p>
-          <p class="text-base opacity-70 mb-2">+ R4,999 Setup Fee</p>
-          <p class="text-base opacity-70 mb-6">For solo practitioners</p>
-          <p class="text-sm opacity-80 mb-6">Best for: Starting with a professional online presence</p>
-          <div class="text-left space-y-6 flex-1">
-            <div>
-              <p class="text-base font-bold mb-3">🌟 Core Features</p>
-              <ul class="space-y-2 text-sm">
-                <li class="flex items-start gap-2"><i class="fas fa-check text-blue-400 mt-1"></i><span>Custom Website Design (5 Pages)</span></li>
-                <li class="flex items-start gap-2"><i class="fas fa-check text-blue-400 mt-1"></i><span>Basic SEO Optimization</span></li>
-                <li class="flex items-start gap-2"><i class="fas fa-check text-blue-400 mt-1"></i><span>Contact Form & Lead Capture</span></li>
-                <li class="flex items-start gap-2"><i class="fas fa-check text-blue-400 mt-1"></i><span>Mobile-Responsive</span></li>
-                <li class="flex items-start gap-2"><i class="fas fa-check text-blue-400 mt-1"></i><span>Basic Analytics</span></li>
-              </ul>
-            </div>
-            <div>
-              <p class="text-base font-bold mb-3">📧 Marketing</p>
-              <ul class="space-y-2 text-sm">
-                <li class="flex items-start gap-2"><i class="fas fa-check text-blue-400 mt-1"></i><span>1 Email Sequence (Welcome)</span></li>
-                <li class="flex items-start gap-2"><i class="fas fa-check text-blue-400 mt-1"></i><span>Basic Integration (e.g., Mailchimp)</span></li>
-              </ul>
-            </div>
-            <p class="text-base font-bold mb-2">🎯 Outcome</p>
-            <p class="opacity-80 text-sm">Professional site to showcase your services and capture leads</p>
-          </div>
-          <div class="mt-8 space-y-3">
-            <button class="w-full bg-zinc-700 hover:bg-zinc-600 text-white font-black py-3 rounded-2xl shadow-xl text-sm">Start 14-Day Free Trial (Live 30 April)</button>
-            <button class="claim-btn w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-black py-4 rounded-2xl hover:scale-105 shadow-xl text-base" data-tier="Essentials">
-              CLAIM FOUNDING PRICE – R799/MONTH FOREVER
-            </button>
-          </div>
-        </div>
-        <div class="pricing-card border-blue-500 relative">
-          <div class="founding-badge">FOUNDING PRICE LOCKED FOREVER</div>
-          <h3 class="text-3xl lg:text-4xl font-black text-indigo-400 mb-4 mt-4">Pro</h3>
-          <p class="text-3xl font-black mb-2">R1,999 <span class="text-lg">/ month</span></p>
-          <p class="text-base opacity-70 mb-2">+ R9,999 Setup Fee</p>
-          <p class="text-base opacity-70 mb-6">For growing firms</p>
-          <p class="text-sm opacity-80 mb-6">Best for: Advanced marketing and client engagement</p>
-          <div class="text-left space-y-6 flex-1">
-            <p class="font-bold mb-3 text-base">Everything in Essentials, plus:</p>
-            <div>
-              <p class="text-base font-bold mb-3">🚀 Advanced Design</p>
-              <ul class="space-y-2 text-sm">
-                <li class="flex items-start gap-2"><i class="fas fa-check text-blue-400 mt-1"></i><span>Unlimited Pages</span></li>
-                <li class="flex items-start gap-2"><i class="fas fa-check text-blue-400 mt-1"></i><span>Advanced SEO & Blog Setup</span></li>
-                <li class="flex items-start gap-2"><i class="fas fa-check text-blue-400 mt-1"></i><span>Custom Forms & Bookings</span></li>
-              </ul>
-            </div>
-            <div>
-              <p class="text-base font-bold mb-3">📧 Marketing Automation</p>
-              <ul class="space-y-2 text-sm">
-                <li class="flex items-start gap-2"><i class="fas fa-check text-blue-400 mt-1"></i><span>3 Email Sequences (Nurture, Follow-up)</span></li>
-                <li class="flex items-start gap-2"><i class="fas fa-check text-blue-400 mt-1"></i><span>CRM Integration</span></li>
-                <li class="flex items-start gap-2"><i class="fas fa-check text-blue-400 mt-1"></i><span>A/B Testing</span></li>
-              </ul>
-            </div>
-            <div>
-              <p class="text-base font-bold mb-3">📊 Analytics & Support</p>
-              <ul class="space-y-2 text-sm">
-                <li class="flex items-start gap-2"><i class="fas fa-check text-blue-400 mt-1"></i><span>Advanced Analytics Dashboard</span></li>
-                <li class="flex items-start gap-2"><i class="fas fa-check text-blue-400 mt-1"></i><span>Priority Support</span></li>
-              </ul>
-            </div>
-            <p class="text-base font-bold mb-2">🎯 Outcome</p>
-            <p class="opacity-80 text-sm">Convert visitors to clients with automated marketing</p>
-          </div>
-          <div class="mt-8 space-y-3">
-            <button class="w-full bg-zinc-700 hover:bg-zinc-600 text-white font-black py-3 rounded-2xl shadow-xl text-sm">Start 14-Day Free Trial (Live 30 April)</button>
-            <button class="claim-btn w-full bg-gradient-to-r from-indigo-400 to-purple-500 text-white font-black py-4 rounded-2xl hover:scale-105 shadow-xl text-base" data-tier="Pro">
-              CLAIM FOUNDING PRICE – R1,999/MONTH FOREVER
-            </button>
-          </div>
-        </div>
-        <div class="pricing-card" style="border-image: linear-gradient(to bottom, var(--gold), var(--gold-dark)) 1;">
-          <div class="apex-badge">WAITLIST OPEN • LIVE 30 MAY</div>
-          <h3 class="text-3xl lg:text-4xl font-black mb-4 mt-4" style="background: linear-gradient(to right, var(--gold), var(--gold-dark)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Enterprise</h3>
-          <p class="text-3xl font-black mb-2">R4,999 <span class="text-lg">/ month</span></p>
-          <p class="text-base opacity-70 mb-2">+ R19,999 Setup Fee</p>
-          <p class="text-base opacity-70 mb-6">For large firms</p>
-          <p class="text-sm opacity-80 mb-6">Best for: Full-scale digital transformation</p>
-          <div class="text-left space-y-6 flex-1">
-            <p class="font-bold mb-3 text-base">Everything in Pro, plus:</p>
-            <div>
-              <p class="text-base font-bold mb-3">🌐 Premium Features</p>
-              <ul class="space-y-2 text-sm">
-                <li class="flex items-start gap-2"><i class="fas fa-check text-blue-400 mt-1"></i><span>White-Label Multi-Site Management</span></li>
-                <li class="flex items-start gap-2"><i class="fas fa-check text-blue-400 mt-1"></i><span>E-Commerce Integration for Services</span></li>
-                <li class="flex items-start gap-2"><i class="fas fa-check text-blue-400 mt-1"></i><span>Custom API Integrations</span></li>
-              </ul>
-            </div>
-            <div>
-              <p class="text-base font-bold mb-3">🤖 Advanced Automation</p>
-              <ul class="space-y-2 text-sm">
-                <li class="flex items-start gap-2"><i class="fas fa-check text-blue-400 mt-1"></i><span>Unlimited Sequences & Workflows</span></li>
-                <li class="flex items-start gap-2"><i class="fas fa-check text-blue-400 mt-1"></i><span>AI-Powered Content Generation</span></li>
-              </ul>
-            </div>
-            <div>
-              <p class="text-base font-bold mb-3">🛡️ Enterprise Tools</p>
-              <ul class="space-y-2 text-sm">
-                <li class="flex items-start gap-2"><i class="fas fa-check text-blue-400 mt-1"></i><span>Dedicated Account Manager</span></li>
-                <li class="flex items-start gap-2"><i class="fas fa-check text-blue-400 mt-1"></i><span>Custom Dashboards & Reports</span></li>
-                <li class="flex items-start gap-2"><i class="fas fa-check text-blue-400 mt-1"></i><span>Full Compliance Suite</span></li>
-              </ul>
-            </div>
-            <p class="text-base font-bold mb-2">🎯 Outcome</p>
-            <p class="opacity-80 text-sm">Dominate online with enterprise-grade tools</p>
-          </div>
-          <div class="mt-8 space-y-3">
-            <button class="w-full bg-zinc-700 hover:bg-zinc-600 text-white font-black py-3 rounded-2xl shadow-xl text-sm">Join Waitlist – Live 30 May</button>
-            <button class="claim-btn w-full bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-black py-4 rounded-2xl hover:scale-105 shadow-xl text-base" data-tier="Enterprise">
-              CLAIM FOUNDING PRICE – R4,999/MONTH FOREVER
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="mt-16 text-base opacity-90 max-w-4xl mx-auto">
-        <p class="font-bold mb-3">Included in All Plans</p>
-        <p>South African hosting only • GDPR & POPIA compliant • End-to-end encryption • Annual independent audits • Unlimited bandwidth</p>
-        <p class="mt-4">Founding referral rewards: Refer 1 firm → 6 months free • Refer 3 firms → free forever</p>
-      </div>
-    </div>
-  </section>
-  <section id="features" class="py-16 px-6 bg-black">
-    <div class="max-w-7xl mx-auto">
-      <h2 class="text-4xl sm:text-5xl md:text-6xl font-black text-center mb-12">Complete Feature Breakdown</h2>
-      <div class="feature-table-container">
-        <table class="w-full text-left">
-          <thead>
-            <tr>
-              <th class="px-6 py-5 text-base font-black sticky left-0 z-10 bg-gradient-to-r from-black to-zinc-900">Category / Feature</th>
-              <th class="text-center px-6 py-5 text-xl font-black text-blue-400">Essentials<br><span class="text-sm opacity-80">R799 pm + R4,999 setup</span></th>
-              <th class="text-center px-6 py-5 text-xl font-black text-indigo-400">Pro<br><span class="text-sm opacity-80">R1,999 pm + R9,999 setup</span></th>
-              <th class="text-center px-6 py-5 text-xl font-black" style="background: linear-gradient(to right, var(--gold), var(--gold-dark)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Enterprise<br><span class="text-sm opacity-80">R4,999 pm + R19,999 setup</span></th>
-              <th class="px-6 py-5 text-base font-black">Why It Matters</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="bg-zinc-900/50 border-b border-zinc-800"><td colspan="5" class="px-6 py-3 font-bold text-sm">Website Design & Development</td></tr>
-            <tr class="border-b border-zinc-800">
-              <td class="px-6 py-5 font-bold sticky left-0 bg-black text-sm">Custom Pages</td>
-              <td class="text-center text-blue-400 font-bold">5</td>
-              <td class="text-center text-indigo-400 font-bold">Unlimited</td>
-              <td class="text-center font-bold" style="color: var(--gold);">Unlimited + Multi-Site</td>
-              <td class="text-zinc-300 text-sm">Flexibility for your content needs</td>
-            </tr>
-            <tr class="border-b border-zinc-800">
-              <td class="px-6 py-5 font-bold sticky left-0 bg-black text-sm">SEO Optimization</td>
-              <td class="text-center text-blue-400 font-bold">Basic</td>
-              <td class="text-center text-indigo-400 font-bold">Advanced</td>
-              <td class="text-center text-indigo-400 font-bold">Enterprise-Level</td>
-              <td class="text-zinc-300 text-sm">Higher search rankings for clients</td>
-            </tr>
-            <tr class="bg-zinc-900/50 border-b border-zinc-800"><td colspan="5" class="px-6 py-3 font-bold text-sm">Marketing & Automation</td></tr>
-            <tr class="border-b border-zinc-800">
-              <td class="px-6 py-5 sticky left-0 bg-black text-sm">Email Sequences</td>
-              <td class="text-center text-blue-400 font-bold">1</td>
-              <td class="text-center text-indigo-400 font-bold">3</td>
-              <td class="text-center text-indigo-400 font-bold">Unlimited</td>
-              <td class="text-zinc-300 text-sm">Nurture leads automatically</td>
-            </tr>
-            <tr class="border-b border-zinc-800">
-              <td class="px-6 py-5 sticky left-0 bg-black text-sm">CRM & Integrations</td>
-              <td class="text-center text-red-500">—</td>
-              <td class="text-center text-indigo-400 font-bold">Yes</td>
-              <td class="text-center text-indigo-400 font-bold">Custom APIs</td>
-              <td class="text-zinc-300 text-sm">Seamless workflow</td>
-            </tr>
-            <tr class="border-b border-zinc-800">
-              <td class="px-6 py-5 sticky left-0 bg-black text-sm">Lead Capture Forms</td>
-              <td class="text-center text-blue-400 font-bold">Basic</td>
-              <td class="text-center text-indigo-400 font-bold">Custom</td>
-              <td class="text-center text-indigo-400 font-bold">Advanced</td>
-              <td class="text-zinc-300 text-sm">Capture more inquiries</td>
-            </tr>
-            <tr class="bg-zinc-900/50 border-b border-zinc-800"><td colspan="5" class="px-6 py-3 font-bold text-sm">Analytics & Support</td></tr>
-            <tr class="border-b border-zinc-800">
-              <td class="px-6 py-5 sticky left-0 bg-black text-sm">Analytics Dashboard</td>
-              <td class="text-center text-blue-400 font-bold">Basic</td>
-              <td class="text-center text-indigo-400 font-bold">Advanced</td>
-              <td class="text-center text-indigo-400 font-bold">Custom</td>
-              <td class="text-zinc-300 text-sm">Track performance</td>
-            </tr>
-            <tr class="border-b border-zinc-800">
-              <td class="px-6 py-5 sticky left-0 bg-black text-sm">Support Level</td>
-              <td class="text-center text-blue-400 font-bold">Standard</td>
-              <td class="text-center text-indigo-400 font-bold">Priority</td>
-              <td class="text-center text-indigo-400 font-bold">Dedicated</td>
-              <td class="text-zinc-300 text-sm">Faster resolutions</td>
-            </tr>
-            <tr class="bg-blue-900/40 border-t-4 border-blue-600">
-              <td class="px-6 py-7 font-bold text-lg sticky left-0 bg-blue-900/40">
-                Referral Rewards<br><span class="text-sm opacity-90">• Refer 1 → 6 months free<br>• Refer 3 → <strong class="text-blue-400">Free forever</strong></span>
-              </td>
-              <td class="text-center text-3xl text-blue-400 font-black">YES</td>
-              <td class="text-center text-3xl text-blue-400 font-black">YES</td>
-              <td class="text-center text-3xl text-blue-400 font-black">YES</td>
-              <td class="text-zinc-300 text-sm">Long-term savings</td>
-            </tr>
-            <tr class="bg-blue-900/50 border-t-4 border-b-4 border-blue-600">
-              <td class="px-6 py-7 font-bold text-lg sticky left-0 bg-blue-900/50">
-                Price Locked Forever<br><span class="text-sm opacity-90">Even after public price > R15,000/month</span>
-              </td>
-              <td class="text-center text-3xl text-blue-400 font-black">YES</td>
-              <td class="text-center text-3xl text-blue-400 font-black">YES</td>
-              <td class="text-center text-3xl text-blue-400 font-black">YES</td>
-              <td class="text-zinc-300 text-sm">Permanent advantage</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-  <section class="py-24 px-6 bg-zinc-950">
-    <div class="max-w-6xl mx-auto text-center">
-      <h2 class="text-4xl sm:text-5xl font-black mb-16">How It Works</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-        <div>
-          <div class="text-6xl font-black text-blue-400 mb-4">1</div>
-          <h3 class="text-2xl font-black mb-3">Complete Quick Quiz</h3>
-          <p class="text-lg opacity-90">Assess your needs in 60 seconds</p>
-        </div>
-        <div>
-          <div class="text-6xl font-black text-blue-400 mb-4">2</div>
-          <h3 class="text-2xl font-black mb-3">Choose Tier & Pay Setup</h3>
-          <p class="text-lg opacity-90">Secure your custom build</p>
-        </div>
-        <div>
-          <div class="text-6xl font-black text-blue-400 mb-4">3</div>
-          <h3 class="text-2xl font-black mb-3">Launch with Support</h3>
-          <p class="text-lg opacity-90">Go live in weeks with founder guidance</p>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section class="py-20 px-6 bg-black">
-    <div class="max-w-5xl mx-auto text-center">
-      <h2 class="text-4xl font-black mb-10">Earn Free Months Through Referrals</h2>
-      <div class="text-xl space-y-4">
-        <p>• Refer 1 firm → 6 months FREE</p>
-        <p>• Refer 3 firms → <strong class="text-blue-400">FREE FOREVER</strong></p>
-      </div>
-      <p class="mt-8 text-base opacity-70 max-w-3xl mx-auto">
-        Unlimited referrals • Credits after their first paid month
-      </p>
-    </div>
-  </section>
-  <section class="py-20 px-6 bg-zinc-950">
-    <div class="max-w-5xl mx-auto text-center">
-      <h2 class="text-4xl font-black mb-10">Security & Compliance</h2>
-      <div class="text-5xl mb-6">🔒</div>
-      <div class="text-lg space-y-3 opacity-90">
-        <p><strong class="font-black">GDPR & POPIA compliant</strong> • Data hosted in South Africa only</p>
-        <p>SSL encryption • Annual security audits • Uptime 99.99%</p>
-      </div>
-    </div>
-  </section>
-  <section class="py-24 px-6 bg-gradient-to-b from-black to-zinc-950">
-    <div class="max-w-6xl mx-auto text-center">
-      <h2 class="text-4xl sm:text-5xl md:text-6xl font-black mb-8">
-        Secure Your Founding Spot<br class="sm:hidden"> – Only 300 Firms Forever
-      </h2>
-      <p class="text-xl opacity-90 mb-12">Get a bespoke site that grows your practice.</p>
-      <button onclick="startQuiz()" class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-black text-2xl sm:text-4xl px-12 py-8 rounded-full shadow-2xl hover:scale-105 transition mb-6">
-        Claim Founding Spot Now
-      </button>
-      <p class="text-lg opacity-80">
-        or <a href="https://wa.me/27764312871?text=Hi%20LexPilot%20Sites" target="_blank" class="text-blue-400 underline">message the founder on WhatsApp</a><br>
-        <span class="text-sm opacity-70">Replies in &lt;60 seconds • 24/7</span>
-      </p>
-    </div>
-  </section>
-  <div id="quiz-overlay" class="fixed inset-0 bg-black/98 backdrop-blur-2xl flex items-center justify-center z-[1000] hidden px-4 overflow-y-auto">
-    <div class="w-full max-w-lg mx-auto my-8">
-      <div class="h-3 bg-zinc-800 rounded-full mb-8 overflow-hidden">
-        <div id="quiz-progress" class="h-full bg-gradient-to-r from-blue-500 to-indigo-600 transition-all duration-700" style="width:0%"></div>
-      </div>
-      <h2 id="quiz-question-text" class="text-3xl sm:text-4xl font-black text-center mb-8 leading-tight"></h2>
-      <div id="quiz-options" class="grid grid-cols-1 gap-4"></div>
+      <nav class="flex justify-center gap-10 text-base font-bold pb-2 border-b border-blue-500/20">
+        <a href="#pricing" class="text-white/85 hover:text-blue-400 transition duration-300">Pricing</a>
+        <a href="#features" class="text-white/85 hover:text-blue-400 transition duration-300">Features</a>
+      </nav>
     </div>
   </div>
-  <section id="quiz-results" class="py-16 px-6 bg-black hidden">
-    <div class="max-w-5xl mx-auto text-center">
-      <h2 class="text-3xl md:text-5xl font-black mb-8 text-blue-400">Your Ideal Founding Plan</h2>
-      <div class="relative inline-block mb-10">
-        <div id="tier-name" class="inline-block px-5 sm:px-8 md:px-12 py-4 sm:py-6 md:py-7 rounded-full text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white shadow-2xl text-center leading-none">
-          <span class="inline-block max-w-full">CALCULATING...</span>
-        </div>
-        <div id="popular-badge" class="founding-badge" style="display:none">FOUNDING PRICE – LOCKED FOREVER</div>
-      </div>
-      <div id="tier-price" class="text-5xl md:text-7xl font-black text-blue-400 mb-6"></div>
-      <div id="final-total" class="text-3xl opacity-80 mb-10"></div>
-      <div id="recommended-list" class="max-w-4xl mx-auto text-left text-lg leading-relaxed bg-zinc-900/50 rounded-3xl p-8"></div>
+</header>
+
+<main class="flex-1 px-4 py-12 text-center pt-[160px] lg:pt-[120px]">
+  <div class="max-w-7xl mx-auto">
+    <div class="badge mb-6">LIMITED LAUNCH OFFER • ONLY FIRST 15 FIRMS • STARTING NOW</div>
+    <h1 class="hero-headline mb-6">Premium Hand-Coded Websites That Win Clients</h1>
+    <p class="hero-subheadline max-w-4xl mx-auto mb-10">Bespoke, pixel-perfect sites built from scratch in Visual Studio Code — modern design, strong local SEO, smart lead capture & full POPIA compliance. Designed exclusively for South African lawyers.</p>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
+      <a href="https://wa.me/27764312871?text=Hi%20-%20I%20want%20one%20of%20the%20first%2015%20LexPilot%20Sites%20spots"
+         target="_blank" rel="noopener noreferrer"
+         class="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-black rounded-full shadow-2xl hover:scale-105 transition-all duration-300 px-12 py-6 text-xl sm:text-2xl flex items-center gap-4 border-4 border-blue-400/50">
+        <i class="fab fa-whatsapp text-3xl"></i>
+        SECURE MY SPOT NOW
+      </a>
     </div>
-  </section>
-  <a href="https://wa.me/27764312871?text=Hi%20LexPilot%20Sites%2C%0A%0AI%27m%20interested%20in%20Founding%20Access" class="fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-white text-black rounded-full shadow-2xl pl-5 pr-7 py-4 font-bold hover:scale-110 transition">
-    <span class="absolute inset-0 rounded-full bg-blue-500 opacity-75 animate-ping"></span>
-    <i class="fab fa-whatsapp text-4xl text-blue-500"></i>
-    <span class="hidden md:block">Chat with founder<br><small>Replies in &lt;60 sec • 24/7</small></span>
-  </a>
-  <div id="footer-placeholder"></div>
-  <script src="script.js"></script>
-  <script>
-    function adjustMainPadding() {
-      const header = document.querySelector('header');
-      const main = document.querySelector('main');
-      if (header && main) {
-        const headerHeight = header.offsetHeight;
-        main.style.paddingTop = `${headerHeight + 8}px`;
-      }
-    }
-    window.addEventListener('load', adjustMainPadding);
-    window.addEventListener('resize', adjustMainPadding);
-    document.fonts?.ready.then(adjustMainPadding);
-    setTimeout(adjustMainPadding, 100);
-    setTimeout(adjustMainPadding, 500);
-  </script>
+    <p class="mt-8 text-lg opacity-90">
+      Only 15 spots available – first come, first served.<br>
+      <span class="text-sm opacity-70">Direct founder replies in &lt;60 seconds • 24/7</span>
+    </p>
+  </div>
+</main>
+
+<section class="py-20 px-6 bg-zinc-950">
+  <div class="max-w-6xl mx-auto text-center">
+    <h2 class="text-4xl sm:text-5xl font-black mb-16">Why Top SA Lawyers Are Choosing Us</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-5xl mx-auto">
+      <div>
+        <div class="text-6xl mb-6">🖥️</div>
+        <h3 class="text-2xl font-black mb-4">100% Custom Hand-Coded</h3>
+        <p class="text-zinc-300 text-lg">No templates. Every line of code built specifically for your firm — fast, secure, unique.</p>
+      </div>
+      <div>
+        <div class="text-6xl mb-6">🚀</div>
+        <h3 class="text-2xl font-black mb-4">Local SEO That Actually Works</h3>
+        <p class="text-zinc-300 text-lg">Google Business optimized + targeted keywords so clients find you first.</p>
+      </div>
+      <div>
+        <div class="text-6xl mb-6">📩</div>
+        <h3 class="text-2xl font-black mb-4">Smart Lead Automation</h3>
+        <p class="text-zinc-300 text-lg">Built-in forms & email sequences that turn visitors into booked consultations.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING SECTION -->
+<section id="pricing" class="py-20 px-6 bg-black">
+  <div class="max-w-7xl mx-auto text-center">
+    <h2 class="text-5xl sm:text-6xl font-black mb-8">Launch Pricing – Locked Forever</h2>
+    <p class="text-2xl opacity-90 mb-16">Only 15 firms get these founding rates – act now before they're gone.</p>
+
+    <div class="pricing-scroll-container">
+      <!-- Starter -->
+      <div class="pricing-card border-zinc-600">
+        <div class="limited-badge">FIRST 15 ONLY</div>
+        <h3 class="text-4xl font-black text-blue-400 mb-6 mt-10">Starter</h3>
+        <p class="text-5xl font-black mb-4">R1,499<span class="text-2xl"> / month</span></p>
+        <p class="text-xl opacity-70 mb-8">+ R8,500 one-time setup</p>
+        <p class="text-lg opacity-80 mb-10">Ideal for solo practitioners & small firms</p>
+        <div class="text-left space-y-8 flex-1">
+          <div>
+            <p class="text-xl font-bold mb-4 text-blue-300">Core Website</p>
+            <ul class="space-y-3 text-base">
+              <li class="flex items-start gap-3"><i class="fas fa-check text-blue-400 mt-1 text-xl"></i>Up to 7 custom pages</li>
+              <li class="flex items-start gap-3"><i class="fas fa-check text-blue-400 mt-1 text-xl"></i>Fully hand-coded & responsive</li>
+              <li class="flex items-start gap-3"><i class="fas fa-check text-blue-400 mt-1 text-xl"></i>Basic on-page SEO + meta tags</li>
+              <li class="flex items-start gap-3"><i class="fas fa-check text-blue-400 mt-1 text-xl"></i>Google Business Profile optimization</li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-xl font-bold mb-4 text-blue-300">Lead Generation</p>
+            <ul class="space-y-3 text-base">
+              <li class="flex items-start gap-3"><i class="fas fa-check text-blue-400 mt-1 text-xl"></i>Contact & consultation forms</li>
+              <li class="flex items-start gap-3"><i class="fas fa-check text-blue-400 mt-1 text-xl"></i>1 automated welcome sequence</li>
+              <li class="flex items-start gap-3"><i class="fas fa-check text-blue-400 mt-1 text-xl"></i>Basic analytics setup</li>
+            </ul>
+          </div>
+        </div>
+        <div class="mt-12">
+          <a href="https://wa.me/27764312871?text=Hi%20-%20I%20want%20the%20Starter%20package%20–%20one%20of%20the%20first%2015%20spots"
+             target="_blank" rel="noopener noreferrer"
+             class="block w-full bg-gradient-to-r from-blue-600 to-indigo-700 text-white font-black py-6 rounded-2xl text-2xl hover:scale-105 transition shadow-2xl">
+            CLAIM STARTER SPOT
+          </a>
+        </div>
+      </div>
+
+      <!-- Growth (Recommended) -->
+      <div class="pricing-card border-indigo-600 relative scale-105 z-10">
+        <div class="limited-badge">MOST POPULAR • FIRST 15 ONLY</div>
+        <h3 class="text-4xl font-black text-indigo-400 mb-6 mt-10">Growth</h3>
+        <p class="text-5xl font-black mb-4">R2,999<span class="text-2xl"> / month</span></p>
+        <p class="text-xl opacity-70 mb-8">+ R14,900 one-time setup</p>
+        <p class="text-lg opacity-80 mb-10">Ideal for growing firms (2–10 lawyers)</p>
+        <div class="text-left space-y-8 flex-1">
+          <div>
+            <p class="text-xl font-bold mb-4 text-indigo-300">Everything in Starter, plus:</p>
+            <ul class="space-y-3 text-base">
+              <li class="flex items-start gap-3"><i class="fas fa-check text-indigo-400 mt-1 text-xl"></i>Unlimited custom pages + blog</li>
+              <li class="flex items-start gap-3"><i class="fas fa-check text-indigo-400 mt-1 text-xl"></i>Advanced local & practice-area SEO</li>
+              <li class="flex items-start gap-3"><i class="fas fa-check text-indigo-400 mt-1 text-xl"></i>Custom animations & interactions</li>
+              <li class="flex items-start gap-3"><i class="fas fa-check text-indigo-400 mt-1 text-xl"></i>Client booking calendar integration</li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-xl font-bold mb-4 text-indigo-300">Lead & Marketing Automation</p>
+            <ul class="space-y-3 text-base">
+              <li class="flex items-start gap-3"><i class="fas fa-check text-indigo-400 mt-1 text-xl"></i>3 full nurture email sequences</li>
+              <li class="flex items-start gap-3"><i class="fas fa-check text-indigo-400 mt-1 text-xl"></i>Lead scoring & follow-up logic</li>
+              <li class="flex items-start gap-3"><i class="fas fa-check text-indigo-400 mt-1 text-xl"></i>Basic CRM / calendar sync</li>
+            </ul>
+          </div>
+        </div>
+        <div class="mt-12">
+          <a href="https://wa.me/27764312871?text=Hi%20-%20I%20want%20the%20Growth%20package%20–%20one%20of%20the%20first%2015%20spots"
+             target="_blank" rel="noopener noreferrer"
+             class="block w-full bg-gradient-to-r from-indigo-600 to-blue-700 text-white font-black py-6 rounded-2xl text-2xl hover:scale-105 transition shadow-2xl">
+            CLAIM GROWTH SPOT (MOST POPULAR)
+          </a>
+        </div>
+      </div>
+
+      <!-- Premium -->
+      <div class="pricing-card border-yellow-600">
+        <div class="limited-badge">ULTRA-PREMIUM • FIRST 15 ONLY</div>
+        <h3 class="text-4xl font-black mb-6 mt-10" style="background: linear-gradient(to right, var(--gold), var(--gold-dark)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Premium</h3>
+        <p class="text-5xl font-black mb-4">R5,499<span class="text-2xl"> / month</span></p>
+        <p class="text-xl opacity-70 mb-8">+ R24,900 one-time setup</p>
+        <p class="text-lg opacity-80 mb-10">Ideal for established & multi-location firms</p>
+        <div class="text-left space-y-8 flex-1">
+          <div>
+            <p class="text-xl font-bold mb-4 text-yellow-300">Everything in Growth, plus:</p>
+            <ul class="space-y-3 text-base">
+              <li class="flex items-start gap-3"><i class="fas fa-check text-yellow-400 mt-1 text-xl"></i>Multi-location / multi-brand support</li>
+              <li class="flex items-start gap-3"><i class="fas fa-check text-yellow-400 mt-1 text-xl"></i>Custom integrations (e.g. payment gateways)</li>
+              <li class="flex items-start gap-3"><i class="fas fa-check text-yellow-400 mt-1 text-xl"></i>Advanced performance optimizations</li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-xl font-bold mb-4 text-yellow-300">Enterprise-Grade Automation</p>
+            <ul class="space-y-3 text-base">
+              <li class="flex items-start gap-3"><i class="fas fa-check text-yellow-400 mt-1 text-xl"></i>Unlimited smart sequences & workflows</li>
+              <li class="flex items-start gap-3"><i class="fas fa-check text-yellow-400 mt-1 text-xl"></i>AI-assisted content suggestions</li>
+              <li class="flex items-start gap-3"><i class="fas fa-check text-yellow-400 mt-1 text-xl"></i>Dedicated priority support</li>
+            </ul>
+          </div>
+        </div>
+        <div class="mt-12">
+          <a href="https://wa.me/27764312871?text=Hi%20-%20I%20want%20the%20Premium%20package%20–%20one%20of%20the%20first%2015%20spots"
+             target="_blank" rel="noopener noreferrer"
+             class="block w-full bg-gradient-to-r from-yellow-500 to-orange-600 text-black font-black py-6 rounded-2xl text-2xl hover:scale-105 transition shadow-2xl">
+            CLAIM PREMIUM SPOT
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-20 text-lg opacity-90 max-w-4xl mx-auto">
+      <p class="font-bold mb-4">Included in Every Package</p>
+      <p class="mb-6">Hand-coded from scratch in Visual Studio Code • South African hosting • 100% POPIA & GDPR compliant • SSL encryption • 2 rounds of revisions • Ongoing security & speed updates</p>
+      <p class="font-bold text-2xl mt-10 text-indigo-300">Only 15 spots total – first come, first served.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE BREAKDOWN TABLE -->
+<section id="features" class="py-20 px-6 bg-black">
+  <div class="max-w-7xl mx-auto">
+    <h2 class="text-5xl sm:text-6xl font-black text-center mb-12">Complete Feature Comparison</h2>
+    <div class="feature-table-container">
+      <table class="w-full text-left">
+        <thead>
+          <tr>
+            <th class="px-6 py-5 text-base font-black sticky left-0 z-10 bg-gradient-to-r from-black to-zinc-900">Feature</th>
+            <th class="text-center px-6 py-5 text-xl font-black text-blue-400">Starter</th>
+            <th class="text-center px-6 py-5 text-xl font-black text-indigo-400">Growth</th>
+            <th class="text-center px-6 py-5 text-xl font-black" style="background: linear-gradient(to right, var(--gold), var(--gold-dark)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Premium</th>
+            <th class="px-6 py-5 text-base font-black">Why It Matters</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="bg-zinc-900/50 border-b border-zinc-800"><td colspan="5" class="px-6 py-3 font-bold text-sm">Website & Design</td></tr>
+          <tr class="border-b border-zinc-800">
+            <td class="px-6 py-5 font-bold sticky left-0 bg-black text-sm">Custom Hand-Coded Pages</td>
+            <td class="text-center text-blue-400 font-bold">Up to 7</td>
+            <td class="text-center text-indigo-400 font-bold">Unlimited</td>
+            <td class="text-center font-bold" style="color: var(--gold);">Unlimited + Multi-site</td>
+            <td class="text-zinc-300 text-sm">Tailored exactly to your firm</td>
+          </tr>
+          <tr class="border-b border-zinc-800">
+            <td class="px-6 py-5 font-bold sticky left-0 bg-black text-sm">SEO Foundation</td>
+            <td class="text-center text-blue-400 font-bold">Basic + GBP</td>
+            <td class="text-center text-indigo-400 font-bold">Advanced + Local</td>
+            <td class="text-center text-indigo-400 font-bold">Enterprise</td>
+            <td class="text-zinc-300 text-sm">Get found by local clients</td>
+          </tr>
+
+          <tr class="bg-zinc-900/50 border-b border-zinc-800"><td colspan="5" class="px-6 py-3 font-bold text-sm">Lead Capture & Automation</td></tr>
+          <tr class="border-b border-zinc-800">
+            <td class="px-6 py-5 sticky left-0 bg-black text-sm">Contact & Intake Forms</td>
+            <td class="text-center text-blue-400 font-bold">Basic</td>
+            <td class="text-center text-indigo-400 font-bold">Advanced + Custom</td>
+            <td class="text-center text-indigo-400 font-bold">Full + Routing</td>
+            <td class="text-zinc-300 text-sm">Capture more consultations</td>
+          </tr>
+          <tr class="border-b border-zinc-800">
+            <td class="px-6 py-5 sticky left-0 bg-black text-sm">Email Sequences</td>
+            <td class="text-center text-blue-400 font-bold">1 (Welcome)</td>
+            <td class="text-center text-indigo-400 font-bold">3 (Full nurture)</td>
+            <td class="text-center text-indigo-400 font-bold">Unlimited + AI assist</td>
+            <td class="text-zinc-300 text-sm">Convert visitors automatically</td>
+          </tr>
+          <tr class="border-b border-zinc-800">
+            <td class="px-6 py-5 sticky left-0 bg-black text-sm">Calendar / Booking Integration</td>
+            <td class="text-center text-red-500">—</td>
+            <td class="text-center text-indigo-400 font-bold">Yes</td>
+            <td class="text-center text-indigo-400 font-bold">Advanced</td>
+            <td class="text-zinc-300 text-sm">Book clients directly</td>
+          </tr>
+
+          <tr class="bg-zinc-900/50 border-b border-zinc-800"><td colspan="5" class="px-6 py-3 font-bold text-sm">Support & Extras</td></tr>
+          <tr class="border-b border-zinc-800">
+            <td class="px-6 py-5 sticky left-0 bg-black text-sm">Support Level</td>
+            <td class="text-center text-blue-400 font-bold">Standard</td>
+            <td class="text-center text-indigo-400 font-bold">Priority</td>
+            <td class="text-center text-indigo-400 font-bold">Dedicated</td>
+            <td class="text-zinc-300 text-sm">Faster fixes</td>
+          </tr>
+          <tr class="border-b border-zinc-800">
+            <td class="px-6 py-5 sticky left-0 bg-black text-sm">Revisions</td>
+            <td class="text-center text-blue-400 font-bold">2 rounds</td>
+            <td class="text-center text-indigo-400 font-bold">3 rounds</td>
+            <td class="text-center text-indigo-400 font-bold">Unlimited</td>
+            <td class="text-zinc-300 text-sm">Perfect fit</td>
+          </tr>
+          <tr class="bg-blue-900/40 border-t-4 border-blue-600">
+            <td class="px-6 py-7 font-bold text-lg sticky left-0 bg-blue-900/40">
+              Referral Rewards<br><span class="text-sm opacity-90">• Refer 1 → 3 months free<br>• Refer 3 → <strong class="text-blue-400">Free forever</strong></span>
+            </td>
+            <td class="text-center text-3xl text-blue-400 font-black">YES</td>
+            <td class="text-center text-3xl text-blue-400 font-black">YES</td>
+            <td class="text-center text-3xl text-blue-400 font-black">YES</td>
+            <td class="text-zinc-300 text-sm">Massive long-term savings</td>
+          </tr>
+          <tr class="bg-blue-900/50 border-t-4 border-b-4 border-blue-600">
+            <td class="px-6 py-7 font-bold text-lg sticky left-0 bg-blue-900/50">
+              Price Locked Forever<br><span class="text-sm opacity-90">Even after public > R18,000/month</span>
+            </td>
+            <td class="text-center text-3xl text-blue-400 font-black">YES</td>
+            <td class="text-center text-3xl text-blue-400 font-black">YES</td>
+            <td class="text-center text-3xl text-blue-400 font-black">YES</td>
+            <td class="text-zinc-300 text-sm">Permanent founding advantage</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="py-24 px-6 bg-gradient-to-b from-black to-zinc-950">
+  <div class="max-w-6xl mx-auto text-center">
+    <h2 class="text-5xl sm:text-6xl font-black mb-10">Only 15 Spots Exist – Claim Yours</h2>
+    <p class="text-2xl opacity-90 mb-12 max-w-4xl mx-auto">
+      Get your premium, hand-coded website built to attract high-value clients – before the 15 spots disappear.
+    </p>
+    <a href="https://wa.me/27764312871?text=Hi%20-%20I%20want%20one%20of%20the%20first%2015%20LexPilot%20Sites%20spots"
+       target="_blank" rel="noopener noreferrer"
+       class="inline-block bg-gradient-to-r from-blue-600 to-indigo-700 text-white font-black text-3xl sm:text-4xl px-16 py-10 rounded-full shadow-2xl hover:scale-105 transition border-4 border-blue-400/50">
+      SECURE MY SPOT BEFORE THEY'RE GONE
+    </a>
+    <p class="mt-12 text-xl opacity-90">
+      Questions? <a href="https://wa.me/27764312871?text=Hi%20LexPilot%20Sites" target="_blank" class="text-blue-400 underline">Message the founder directly</a><br>
+      <span class="text-lg opacity-70">Replies in &lt;60 seconds – 24/7</span>
+    </p>
+  </div>
+</section>
+
+<!-- FLOATING WHATSAPP -->
+<a href="https://wa.me/27764312871?text=Hi%20-%20I%20want%20one%20of%20the%20first%2015%20LexPilot%20Sites%20spots"
+   class="fixed bottom-8 right-8 z-50 flex items-center gap-4 bg-white text-black rounded-full shadow-2xl pl-6 pr-10 py-5 font-black hover:scale-110 transition text-lg border-4 border-blue-500">
+  <span class="absolute inset-0 rounded-full bg-blue-500 opacity-75 animate-ping"></span>
+  <i class="fab fa-whatsapp text-5xl text-blue-600"></i>
+  <span class="hidden md:block">Claim One of 15 Spots</span>
+</a>
+
+<footer class="bg-black border-t-4 border-blue-500 pt-16 pb-20">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+      <div class="text-center md:text-left">
+        <div class="flex items-center justify-center md:justify-start gap-5 mb-8">
+          <img src="/images/lexpilot-sites-logo.jpg" alt="LexPilot Sites Logo" class="h-20 rounded-full shadow-2xl border-4 border-blue-500/50">
+          <div>
+            <h3 class="text-4xl md:text-5xl font-black leading-none">
+              <span class="text-white">LexPilot</span><span class="text-blue-400"> Sites</span>
+            </h3>
+            <p class="text-indigo-400 font-bold text-xl tracking-wider mt-2">Only First 15 Firms • Starting Now</p>
+          </div>
+        </div>
+        <p class="text-gray-400 text-lg leading-relaxed">
+          Premium hand-coded websites built exclusively for South African lawyers.<br>
+          <strong class="text-blue-300">Custom • Fast • Client-winning</strong>
+        </p>
+      </div>
+
+      <div class="text-center md:text-left">
+        <h4 class="text-3xl font-black text-blue-400 mb-8">Quick Links</h4>
+        <ul class="space-y-5 text-gray-300 text-xl">
+          <li><a href="#pricing" class="hover:text-blue-400 transition">Pricing</a></li>
+          <li><a href="#features" class="hover:text-blue-400 transition">Features</a></li>
+        </ul>
+      </div>
+
+      <div class="text-center md:text-left">
+        <h4 class="text-3xl font-black text-blue-400 mb-8">Legal</h4>
+        <ul class="space-y-5 text-gray-300 text-xl">
+          <li><a href="/privacy-policy.html" class="hover:text-blue-400 transition">Privacy Policy</a></li>
+          <li><a href="/terms-of-service.html" class="hover:text-blue-400 transition">Terms of Service</a></li>
+          <li><a href="/refund-policy.html" class="hover:text-blue-400 transition">Refund Policy</a></li>
+          <li><a href="/popia-compliance.html" class="hover:text-blue-400 transition">POPIA Compliance</a></li>
+        </ul>
+      </div>
+
+      <div class="text-center md:text-left">
+        <h4 class="text-3xl font-black text-blue-400 mb-8">Claim Your Spot</h4>
+        <p class="text-gray-400 text-xl mb-10">Only 15 spots exist – secure yours today</p>
+        <a href="https://wa.me/27764312871?text=Hi%20-%20I%20want%20one%20of%20the%20first%2015%20LexPilot%20Sites%20spots"
+           target="_blank"
+           class="inline-flex items-center gap-6 bg-white text-black font-black px-12 py-8 rounded-full hover:scale-110 transition-all shadow-2xl text-2xl border-4 border-blue-500">
+          <i class="fab fa-whatsapp text-5xl text-blue-600"></i>
+          MESSAGE FOUNDER NOW
+        </a>
+      </div>
+    </div>
+
+    <div class="border-t border-gray-800 pt-12 text-center">
+      <p class="text-gray-500 text-lg">
+        © 2026 LexPilot Sites • All rights reserved • Proudly South African
+      </p>
+      <p class="mt-8 font-black text-indigo-300 text-3xl tracking-wider">
+        ONLY FIRST 15 FIRMS – STARTING NOW
+      </p>
+    </div>
+  </div>
+</footer>
+
 </body>
 </html>
