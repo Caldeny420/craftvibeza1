@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
@@ -24,9 +24,11 @@
   </style>
 </head>
 <body class="bg-gray-900 min-h-screen text-white">
+
 <header class="fixed top-0 left-0 right-0 z-[999] bg-black/90 backdrop-blur-xl border-b border-green-500/30">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5">
-    <!-- Desktop / Large Tablet (lg+) -->
+
+    <!-- DESKTOP / LARGE TABLET (lg+) -->
     <div class="hidden lg:flex items-center justify-between">
       <a href="/" class="flex items-center gap-4 group">
         <img src="/images/lexpilot-logo.jpg" alt="LexPilot Logo"
@@ -54,9 +56,9 @@
       </div>
     </div>
 
-    <!-- Mobile & Small Tablet (below lg) – NOW ALWAYS SHOWS NAME -->
-    <div class="lg:hidden space-y-3">
-      <!-- Top row: Logo + Name + CTA -->
+    <!-- MOBILE & TABLET (below lg) – Logo + Name ALWAYS visible -->
+    <div class="lg:hidden flex flex-col gap-3">
+      <!-- Logo + Name + CTA row -->
       <div class="flex items-center justify-between gap-3">
         <a href="/" class="flex items-center gap-3 group flex-shrink-0">
           <img src="/images/lexpilot-logo.jpg" alt="LexPilot Logo"
@@ -78,18 +80,20 @@
         </a>
       </div>
 
-      <!-- Bottom row: Quick nav links -->
-      <nav class="flex justify-center gap-10 sm:gap-16 text-sm sm:text-base font-bold pt-1 pb-2 border-b border-green-500/20">
+      <!-- Navigation links row -->
+      <nav class="flex justify-center gap-12 sm:gap-16 text-sm sm:text-base font-bold pt-1 pb-2 border-b border-green-500/20">
         <a href="#pricing" class="text-white/90 hover:text-green-400 transition duration-300">Pricing</a>
         <a href="#features" class="text-white/90 hover:text-green-400 transition duration-300">Features</a>
       </nav>
     </div>
+
   </div>
 </header>
 
-<!-- Add this padding to your main/hero content in index.html to prevent overlap -->
-<!-- Example: -->
-<!-- <main class="pt-[140px] sm:pt-[130px] lg:pt-[100px] ..."> -->
+<!-- 
+  Recommended padding for your main content to prevent overlap with fixed header:
+  <main class="pt-[130px] xs:pt-[120px] sm:pt-[110px] lg:pt-[100px]">
+-->
 
 </body>
 </html>
