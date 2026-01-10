@@ -49,12 +49,12 @@
       .badge { font-size: 0.875rem; padding: 0.6rem 1.4rem; }
     }
     .hero-headline {
-      font-size: clamp(2rem, 6.5vw, 4rem);
+      font-size: clamp(1.75rem, 5vw, 4rem);
       line-height: 1.05;
       font-weight: 900;
     }
     .hero-subheadline {
-      font-size: clamp(1rem, 3.5vw, 1.5rem);
+      font-size: clamp(0.875rem, 2.5vw, 1.5rem);
       line-height: 1.5;
       opacity: 0.95;
       max-width: 800px;
@@ -63,7 +63,7 @@
     .pricing-scroll-container {
       display: flex;
       gap: 1.5rem;
-      padding: 0 1rem 3rem 1rem;
+      padding: 2rem 1rem 3rem 1rem;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
       scrollbar-width: none;
@@ -93,12 +93,12 @@
       .pricing-card { flex: 0 0 75vw; max-width: 440px; }
     }
     @media (min-width: 1024px) {
-      .pricing-scroll-container { overflow-x: visible; justify-content: center; padding: 0 0 4rem 0; }
+      .pricing-scroll-container { overflow-x: visible; justify-content: center; padding: 2rem 0 4rem 0; }
       .pricing-card { flex: 1 1 360px; max-width: 460px; padding: 3.2rem 2.4rem 2.8rem; }
     }
     .recommended-badge {
       position: absolute;
-      top: -1rem;
+      top: -1.5rem;
       left: 50%;
       transform: translateX(-50%);
       background: var(--green);
@@ -198,21 +198,20 @@
       </div>
     </div>
   </header>
-
-  <!-- HERO – Reduced top padding for tighter spacing after header -->
-  <section class="flex-1 flex flex-col justify-center items-center px-4 pt-6 pb-16 text-center bg-black">
+  <!-- HERO – Adjusted padding and clamps for fold fit -->
+  <section class="flex-1 flex flex-col justify-center items-center px-4 pt-4 pb-12 text-center bg-black">
     <div class="max-w-7xl mx-auto w-full">
-      <div class="badge mb-6 animate-pulse">Limited Launch Offer • Only First 15 Firms • Starting Now</div>
-      <h1 class="hero-headline mb-6">
+      <div class="badge mb-4 animate-pulse">Limited Launch Offer • Only First 15 Firms • Starting Now</div>
+      <h1 class="hero-headline mb-4">
         <span class="block">LexPilot Accelerate:</span>
         <span class="block bg-gradient-to-r from-green-400 via-green-300 to-emerald-400 bg-clip-text text-transparent">Founder-Led Growth Packages — More Client Enquiries, Faster</span>
       </h1>
-      <p class="hero-subheadline font-semibold mb-10">
+      <p class="hero-subheadline font-semibold mb-6">
         Professional Google Business optimisation • Ethical social proof systems • Done-for-you LinkedIn & Instagram content<br class="hidden sm:block">
         <span class="text-green-400 font-black">Delivered personally by the LexPilot founder</span>
       </p>
-      <div class="space-y-6 max-w-lg mx-auto w-full">
-        <a href="#pricing" class="block w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-black font-black rounded-full shadow-2xl hover:scale-105 transition-all duration-300 border-4 border-green-400/50 text-2xl sm:text-3xl py-6">
+      <div class="space-y-4 max-w-lg mx-auto w-full">
+        <a href="#pricing" class="block w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-black font-black rounded-full shadow-2xl hover:scale-105 transition-all duration-300 border-4 border-green-400/50 text-xl sm:text-2xl py-4">
           VIEW PACKAGES
         </a>
         <p class="text-base opacity-80">
@@ -222,7 +221,6 @@
       </div>
     </div>
   </section>
-
   <!-- WHY SECTION -->
   <section class="py-16 px-4 bg-zinc-950">
     <div class="max-w-7xl mx-auto">
@@ -256,9 +254,8 @@
       </div>
     </div>
   </section>
-
   <!-- PRICING CARDS -->
-  <section id="pricing" class="py-12 lg:py-16 bg-black">
+  <section id="pricing" class="py-16 lg:py-20 bg-black">
     <div class="w-full">
       <div class="text-center px-4 mb-12">
         <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black mb-4">Choose Your Accelerate Package</h2>
@@ -285,7 +282,6 @@
             RESERVE SPOT ON WHATSAPP
           </a>
         </div>
-
         <!-- Tier 2 – Referral & Growth Engine (Recommended) -->
         <div class="pricing-card border-green-500 transform scale-105 shadow-2xl shadow-green-500/40 relative">
           <div class="recommended-badge">MOST POPULAR</div>
@@ -307,7 +303,6 @@
             RESERVE SPOT ON WHATSAPP
           </a>
         </div>
-
         <!-- Tier 3 – Market Dominator -->
         <div class="pricing-card apex-border">
           <h3 class="text-3xl sm:text-4xl font-black gradient-text mb-4">Market Dominator</h3>
@@ -333,7 +328,6 @@
       </div>
     </div>
   </section>
-
   <!-- COMPARISON TABLE – Removed sticky first column -->
   <section class="py-14 px-4 bg-black">
     <div class="max-w-7xl mx-auto">
@@ -432,7 +426,6 @@
       </div>
     </div>
   </section>
-
   <!-- FINAL CTA -->
   <section class="py-20 px-4 bg-gradient-to-b from-black to-zinc-950">
     <div class="max-w-5xl mx-auto text-center">
@@ -451,7 +444,6 @@
       </p>
     </div>
   </section>
-
   <!-- Floating WhatsApp Button -->
   <a href="https://wa.me/27764312871?text=Hi%20LexPilot%20Accelerate%20-%20Pre-Launch%20Packages" target="_blank"
      class="fixed bottom-5 right-5 z-50 flex items-center gap-4 bg-white text-black rounded-full shadow-2xl px-7 py-6 font-bold hover:scale-110 transition-all">
@@ -459,7 +451,6 @@
     <i class="fab fa-whatsapp text-5xl text-green-500"></i>
     <span class="hidden sm:block text-left leading-tight">Chat now<br><small class="opacity-70 font-normal">Reply in &lt;60 sec</small></span>
   </a>
-
   <!-- FOOTER -->
   <footer class="bg-black border-t-4 border-green-500 pt-12 pb-16">
     <div class="max-w-7xl mx-auto px-6">
@@ -488,10 +479,10 @@
         <div class="text-center md:text-left">
           <h4 class="text-2xl font-black text-green-400 mb-6">Legal</h4>
           <ul class="space-y-4 text-gray-300 text-base">
-            <li><a href="/privacy-policy.html" class="hover:text-green-400 transition">Privacy Policy</a></li>
-            <li><a href="/terms-of-service.html" class="hover:text-green-400 transition">Terms of Service</a></li>
-            <li><a href="/popia-compliance.html" class="hover:text-green-400 transition">POPIA Compliance</a></li>
-            <li><a href="/refund-policy.html" class="hover:text-green-400 transition">Refund Policy</a></li>
+            <li><a href="/Accelerate-privacy-policy.html" class="hover:text-green-400 transition">Privacy Policy</a></li>
+            <li><a href="/Accelerate-terms-of-service.html" class="hover:text-green-400 transition">Terms of Service</a></li>
+            <li><a href="/Accelerate-popia-compliance.html" class="hover:text-green-400 transition">POPIA Compliance</a></li>
+            <li><a href="/Accelerate-refund-policy.html" class="hover:text-green-400 transition">Refund Policy</a></li>
           </ul>
         </div>
         <div class="text-center md:text-left">
