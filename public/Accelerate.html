@@ -144,6 +144,16 @@
       font-weight: 600;
       font-size: 1.1rem;
     }
+    .outcomes-box {
+      background: rgba(16,185,129,0.1);
+      border: 1px solid var(--green);
+      border-radius: 1rem;
+      padding: 1.2rem;
+      margin: 1.5rem 0;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #d1fae5;
+    }
     .comparison-table-container {
       overflow-x: auto;
       border-radius: 1.5rem;
@@ -151,7 +161,7 @@
       margin: 2.5rem 0;
     }
     .comparison-table-container::after {
-   
+      content: "← Swipe →";
       position: absolute;
       top: 50%;
       right: 10px;
@@ -231,24 +241,37 @@
             <span class="text-white">Lex</span><span class="text-green-400">Pilot</span> <span class="text-2xl text-yellow-400">Accelerate</span>
           </span>
         </a>
-        <a href="https://wa.me/27764312871?text=Hi%20LexPilot" target="_blank"
-           class="bg-gradient-to-r from-green-500 to-emerald-600 text-black font-black px-8 py-4 rounded-full shadow-2xl hover:scale-105 transition-all flex items-center gap-3 text-xl border-4 border-green-400/50">
-          <i class="fab fa-whatsapp text-3xl"></i>
-          CHAT WITH FOUNDER
-        </a>
+        <div class="flex items-center gap-10 xl:gap-14">
+          <nav class="flex items-center gap-12 text-base font-bold">
+            <a href="#pricing" class="text-white/90 hover:text-[var(--green)] transition-colors duration-300">Pricing</a>
+            <a href="#features" class="text-white/90 hover:text-[var(--green)] transition-colors duration-300">Features</a>
+          </nav>
+          <a href="https://wa.me/27764312871?text=Hi%20LexPilot" target="_blank"
+             class="bg-gradient-to-r from-green-500 to-emerald-600 text-black font-black px-8 py-4 rounded-full shadow-2xl hover:scale-105 transition-all flex items-center gap-3 text-xl border-4 border-green-400/50">
+            <i class="fab fa-whatsapp text-3xl"></i>
+            CHAT WITH FOUNDER
+          </a>
+        </div>
       </div>
-      <div class="lg:hidden flex items-center justify-between">
-        <a href="Accelerate.html" class="flex items-center gap-3 group">
-          <img src="/images/lexpilot-logo.jpg" alt="LexPilot Logo" class="h-11 rounded-full shadow-2xl ring-4 ring-green-500/30 transition-all group-hover:scale-110 group-hover:ring-green-400">
-          <span class="font-black tracking-tighter leading-none">
-            <span class="text-2xl text-white">Lex</span><span class="text-3xl text-green-400">Pilot</span> <span class="text-xl text-yellow-400">Accelerate</span>
-          </span>
-        </a>
-        <a href="https://wa.me/27764312871?text=Hi%20LexPilot" target="_blank"
-           class="bg-gradient-to-r from-green-500 to-emerald-600 text-black font-black px-6 py-3.5 rounded-full shadow-2xl hover:scale-110 transition-all flex items-center gap-2 text-lg border-3 border-green-400/50">
-          <i class="fab fa-whatsapp text-3xl"></i>
-          CHAT
-        </a>
+      <div class="lg:hidden flex flex-col items-center">
+        <div class="flex items-center justify-between w-full mb-3">
+          <a href="Accelerate.html" class="flex items-center gap-3 group">
+            <img src="/images/lexpilot-logo.jpg" alt="LexPilot Logo" class="h-11 rounded-full shadow-2xl ring-4 ring-green-500/30 transition-all group-hover:scale-110 group-hover:ring-green-400">
+            <span class="font-black tracking-tighter leading-none">
+              <span class="text-2xl text-white">Lex</span><span class="text-3xl text-green-400">Pilot</span> <span class="text-xl text-yellow-400">Accelerate</span>
+            </span>
+          </a>
+          <a href="https://wa.me/27764312871?text=Hi%20LexPilot" target="_blank"
+             class="bg-gradient-to-r from-green-500 to-emerald-600 text-black font-black px-6 py-3.5 rounded-full shadow-2xl hover:scale-110 transition-all flex items-center gap-2 text-lg border-3 border-green-400/50">
+            <i class="fab fa-whatsapp text-3xl"></i>
+            CHAT
+          </a>
+        </div>
+        <!-- Nav links row for mobile -->
+        <nav class="flex justify-center gap-12 sm:gap-16 text-sm sm:text-base font-bold mt-3 pt-2.5 pb-2.5 border-t border-green-500/20 w-full">
+          <a href="#pricing" class="text-white/90 hover:text-[var(--green)] transition-colors duration-300">Pricing</a>
+          <a href="#features" class="text-white/90 hover:text-[var(--green)] transition-colors duration-300">Features</a>
+        </nav>
       </div>
     </div>
   </header>
@@ -278,7 +301,7 @@
   </section>
 
   <!-- WHY SECTION -->
-  <section class="py-16 px-4 bg-zinc-950">
+  <section id="features" class="py-16 px-4 bg-zinc-950">
     <div class="max-w-7xl mx-auto">
       <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-center mb-12">Why LexPilot Accelerate Works</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -332,6 +355,12 @@
             <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>Instagram & Facebook Profiles Optimised</span></li>
             <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>5 Done-for-You Legal Tip Posts</span></li>
           </ul>
+          <div class="outcomes-box">
+            Expected Outcomes:<br>
+            • 15–35% more client enquiries in 3–6 months<br>
+            • Stronger Map Pack visibility & more calls/directions<br>
+            • Early credibility boost from ethical reviews
+          </div>
           <div class="bundle-highlight">
             Bundled LexPilot SaaS: Growth (R11,988 value) – 12 Months Free!
           </div>
@@ -356,6 +385,12 @@
             <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>3-Month Content Roadmap</span></li>
             <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>30 Done-for-You Legal Tip Posts</span></li>
           </ul>
+          <div class="outcomes-box">
+            Expected Outcomes:<br>
+            • 30–60%+ increase in qualified enquiries<br>
+            • Better referral flow from LinkedIn authority<br>
+            • Multi-channel leads (Google + social) compounding monthly
+          </div>
           <div class="bundle-highlight">
             Bundled LexPilot SaaS: Dominance (R35,988 value) – 12 Months Free!
           </div>
@@ -381,6 +416,12 @@
             <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>50 Done-for-You Posts + Video Snippets</span></li>
             <li class="flex items-start gap-3"><i class="fas fa-check text-green-400 mt-1"></i><span>LinkedIn CEO/Founder Profile Build + 20 Posts</span></li>
           </ul>
+          <div class="outcomes-box">
+            Expected Outcomes:<br>
+            • 50–100%+ growth in client enquiries (6–12 months)<br>
+            • Automated systems for consistent leads & referrals<br>
+            • Position as local market leader with strong authority
+          </div>
           <div class="bundle-highlight">
             Bundled LexPilot SaaS: Apex (R119,988 value) – 12 Months Free!
           </div>
@@ -394,7 +435,7 @@
     </div>
   </section>
 
- <!-- COMPARISON TABLE – Removed sticky first column -->
+  <!-- COMPARISON TABLE – Removed sticky first column -->
   <section class="py-14 px-4 bg-black">
     <div class="max-w-7xl mx-auto">
       <h2 class="text-3xl sm:text-4xl lg:text-6xl font-black text-center mb-10">Comparison Table – Optimized with Payment Plans</h2>
