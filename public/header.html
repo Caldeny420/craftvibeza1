@@ -5,85 +5,91 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
   <script src="https://cdn.tailwindcss.com"></script>
+  
   <style>
+    :root {
+      --green: #10b981;
+    }
     body {
       margin: 0;
       padding: 0;
+      background: #000;
     }
     header {
-      box-shadow: 0 4px 20px rgba(0, 255, 0, 0.08);
+      box-shadow: 0 4px 20px rgba(16, 185, 129, 0.08);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
     }
     .logo-text {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Inter', system-ui, sans-serif;
       font-weight: 900;
       letter-spacing: -0.025em;
       white-space: nowrap;
     }
   </style>
 </head>
-<body class="bg-gray-900 min-h-screen text-white">
+<body class="bg-black text-white">
 
-<header class="fixed top-0 left-0 right-0 z-[999] bg-black/90 backdrop-blur-xl border-b border-green-500/30">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5">
+<header class="fixed top-0 left-0 right-0 z-[999] bg-black/85 backdrop-blur-xl border-b border-green-500/30">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-    <!-- DESKTOP / LARGE TABLET (lg+) -->
-    <div class="hidden lg:flex items-center justify-between">
+    <!-- DESKTOP / lg+ -->
+    <div class="hidden lg:flex items-center justify-between py-4">
       <a href="/" class="flex items-center gap-4 group">
         <img src="/images/lexpilot-logo.jpg" alt="LexPilot Logo"
              class="h-11 md:h-12 rounded-full shadow-2xl ring-4 ring-green-500/30
-                    transition-all duration-300 group-hover:scale-110 group-hover:ring-green-400">
-        <span class="logo-text text-3xl md:text-4xl">
-          <span class="text-white">Lex</span><span class="text-green-400">Pilot</span>
+                    transition-all duration-300 group-hover:scale-110 group-hover:ring-green-400/60">
+        <span class="logo-text text-3xl xl:text-4xl tracking-tight">
+          <span class="text-white">Lex</span><span class="text-[var(--green)]">Pilot</span>
         </span>
       </a>
 
-      <div class="flex items-center gap-10 xl:gap-16">
+      <div class="flex items-center gap-10 xl:gap-14">
         <nav class="flex items-center gap-12 text-base font-bold">
-          <a href="#pricing" class="text-white/90 hover:text-green-400 transition duration-300">Pricing</a>
-          <a href="#features" class="text-white/90 hover:text-green-400 transition duration-300">Features</a>
+          <a href="#pricing" class="text-white/90 hover:text-[var(--green)] transition-colors duration-300">Pricing</a>
+          <a href="#features" class="text-white/90 hover:text-[var(--green)] transition-colors duration-300">Features</a>
         </nav>
 
         <a href="https://wa.me/27764312871?text=Hi%20-%20Interested%20in%20LexPilot%20Accelerate%20Pre-Launch%20Packages"
-           target="_blank"
+           target="_blank" rel="noopener noreferrer"
            class="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700
                   text-black font-black px-7 py-4 rounded-full shadow-2xl hover:scale-105 transition-all duration-300
-                  text-base flex items-center gap-3 border-2 border-green-400/50 whitespace-nowrap">
+                  text-base flex items-center gap-3 border-2 border-green-400/40 whitespace-nowrap">
           <i class="fab fa-whatsapp text-2xl"></i>
           <span>CHAT WITH FOUNDER</span>
         </a>
       </div>
     </div>
 
-    <!-- MOBILE & TABLET (below lg) – Logo + Name ALWAYS visible -->
-    <div class="lg:hidden flex flex-col gap-3">
-      <!-- Logo + Name + CTA row -->
+    <!-- MOBILE & TABLET (< lg) – Logo + Name ALWAYS visible -->
+    <div class="lg:hidden py-3.5">
       <div class="flex items-center justify-between gap-3">
+        <!-- Logo + Name -->
         <a href="/" class="flex items-center gap-3 group flex-shrink-0">
           <img src="/images/lexpilot-logo.jpg" alt="LexPilot Logo"
                class="h-9 sm:h-10 rounded-full shadow-2xl ring-4 ring-green-500/30
-                      transition-all duration-300 group-hover:scale-110 group-hover:ring-green-400">
-          <span class="logo-text text-xl sm:text-2xl">
-            <span class="text-white">Lex</span><span class="text-green-400">Pilot</span>
+                      transition-all duration-300 group-hover:scale-110 group-hover:ring-green-400/60">
+          <span class="logo-text text-xl sm:text-2xl tracking-tight">
+            <span class="text-white">Lex</span><span class="text-[var(--green)]">Pilot</span>
           </span>
         </a>
 
+        <!-- WhatsApp CTA -->
         <a href="https://wa.me/27764312871?text=Hi%20-%20Interested%20in%20LexPilot%20Accelerate"
-           target="_blank"
+           target="_blank" rel="noopener noreferrer"
            class="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700
-                  text-black font-black px-4 py-2.5 sm:px-5 sm:py-3 rounded-full shadow-2xl hover:scale-105 transition-all duration-300
-                  text-xs sm:text-sm flex items-center gap-2 border-2 border-green-400/50 whitespace-nowrap flex-shrink-0">
+                  text-black font-black px-4 py-2.5 sm:px-6 sm:py-3 rounded-full shadow-2xl hover:scale-105 transition-all duration-300
+                  text-xs sm:text-sm flex items-center gap-2 border-2 border-green-400/40 whitespace-nowrap flex-shrink-0">
           <i class="fab fa-whatsapp text-xl sm:text-2xl"></i>
           <span class="hidden xs:inline">CHAT NOW</span>
           <span class="xs:hidden">CHAT</span>
         </a>
       </div>
 
-      <!-- Navigation links row -->
-      <nav class="flex justify-center gap-12 sm:gap-16 text-sm sm:text-base font-bold pt-1 pb-2 border-b border-green-500/20">
-        <a href="#pricing" class="text-white/90 hover:text-green-400 transition duration-300">Pricing</a>
-        <a href="#features" class="text-white/90 hover:text-green-400 transition duration-300">Features</a>
+      <!-- Nav links row -->
+      <nav class="flex justify-center gap-12 sm:gap-16 text-sm sm:text-base font-bold mt-3 pt-2 pb-2.5 border-t border-green-500/20">
+        <a href="#pricing" class="text-white/90 hover:text-[var(--green)] transition-colors duration-300">Pricing</a>
+        <a href="#features" class="text-white/90 hover:text-[var(--green)] transition-colors duration-300">Features</a>
       </nav>
     </div>
 
@@ -91,8 +97,8 @@
 </header>
 
 <!-- 
-  Recommended padding for your main content to prevent overlap with fixed header:
-  <main class="pt-[130px] xs:pt-[120px] sm:pt-[110px] lg:pt-[100px]">
+  Recommended starting padding for your <main> content:
+  <main class="pt-[110px] sm:pt-[105px] lg:pt-[92px] ...">
 -->
 
 </body>
