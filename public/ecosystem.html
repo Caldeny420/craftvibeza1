@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="LexPilot – The Complete Digital Infrastructure for South African Law Firms. Founder-direct, LPC-compliant websites, digital authority, and bundled SaaS (early access launches 28 March 2026)." />
+  <title>LexPilot | The Complete Digital Infrastructure</title>
+  <link rel="icon" href="/images/lexpilot-logo.jpg" />
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxVe5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --green: #10b981;
+      --yellow: #fbbf24;
+      --gold: #ffd700;
+      --gold-dark: #b8860b;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #000;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: #000;
+      border-bottom: 4px solid var(--green);
+      box-shadow: 0 10px 30px -10px rgba(0,0,0,0.8);
+    }
+    .badge {
+      display: inline-block;
+      background: #f59e0b;
+      color: #000;
+      font-weight: 900;
+      padding: 0.5rem 1.25rem;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    @media (min-width: 640px) {
+      .badge { font-size: 0.95rem; padding: 0.65rem 1.5rem; }
+    }
+    .hero-headline {
+      font-size: clamp(2.1rem, 6vw, 3.8rem);
+      line-height: 1.05;
+      font-weight: 900;
+    }
+    .hero-subheadline {
+      font-size: clamp(1rem, 2.8vw, 1.25rem);
+      line-height: 1.45;
+      opacity: 0.95;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .pricing-scroll-container {
+      display: flex;
+      gap: 1.5rem;
+      padding: 2rem 1rem 4rem 1rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+    .pricing-scroll-container::-webkit-scrollbar { display: none; }
+    .pricing-card {
+      flex: 0 0 88vw;
+      max-width: 420px;
+      background: linear-gradient(to bottom, #18181b, #0f0f0f);
+      border-radius: 1.8rem;
+      padding: 3rem 2.2rem 3.5rem;
+      text-align: center;
+      border: 2px solid #27272a;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+      scroll-snap-align: center;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.4s ease;
+      margin-top: 2.5rem;
+    }
+    .pricing-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 35px 70px -12px rgba(0, 0, 0, 0.9);
+    }
+    @media (min-width: 640px) {
+      .pricing-card { flex: 0 0 75vw; max-width: 460px; }
+    }
+    @media (min-width: 1024px) {
+      .pricing-scroll-container { overflow-x: visible; justify-content: center; padding: 2rem 0 5rem 0; }
+      .pricing-card { flex: 1 1 380px; max-width: 520px; padding: 3.2rem 2.4rem 3rem; }
+    }
+    .recommended-badge {
+      position: absolute;
+      top: -1.8rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--green);
+      color: #000;
+      font-weight: 900;
+      padding: 0.6rem 1.8rem;
+      border-radius: 9999px;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      box-shadow: 0 12px 25px rgba(0,0,0,0.6);
+      animation: pulse 2.2s infinite;
+      white-space: nowrap;
+    }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(16,185,129,0.7); }
+      70% { box-shadow: 0 0 0 14px rgba(16,185,129,0); }
+    }
+    .gradient-text {
+      background: linear-gradient(to right, var(--gold), var(--gold-dark));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .apex-border {
+      border: 2px solid transparent;
+      border-image: linear-gradient(to bottom, var(--gold), var(--gold-dark)) 1;
+      border-image-slice: 1;
+    }
+    .bundle-highlight {
+      background: rgba(16,185,129,0.15);
+      border-radius: 1rem;
+      padding: 1.2rem;
+      margin: 1.5rem 0;
+      border: 1px solid var(--green);
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+    .disclaimer {
+      font-size: 0.875rem;
+      color: #9ca3af;
+      text-align: center;
+      margin-top: 1rem;
+      line-height: 1.4;
+    }
+    .strong-disclaimer {
+      color: #f87171;
+      font-weight: 700;
+    }
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    @media (min-width: 768px) {
+      .pillars-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 1024px) {
+      .pillars-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+    .pillar-card {
+      background: #111;
+      border: 1px solid #27272a;
+      border-radius: 1rem;
+      padding: 1.8rem;
+      text-align: center;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .pillar-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--green);
+      margin-bottom: 1rem;
+    }
+    .monthly-price {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--yellow);
+      margin: 0.5rem 0;
+    }
+    .strikethrough {
+      text-decoration: line-through;
+      opacity: 0.7;
+      font-size: 1.1rem;
+    }
+    .feature-list li {
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+    .feature-list i {
+      color: var(--green);
+      min-width: 20px;
+      margin-top: 0.2rem;
+    }
+    .comparison-table-container {
+      overflow-x: auto;
+      border-radius: 1.5rem;
+      border: 1px solid #27272a;
+      margin: 2.5rem 0;
+      position: relative;
+    }
+    .comparison-table-container::after {
+      content: "← Swipe →";
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.8);
+      padding: 0.6rem 1.2rem;
+      border-radius: 9999px;
+      font-size: 0.95rem;
+      opacity: 0.9;
+      pointer-events: none;
+      z-index: 20;
+    }
+    @media (min-width: 1024px) { .comparison-table-container::after { display: none; } }
+    .comparison-table-container table {
+      min-width: 720px;
+      width: 100%;
+    }
+    .floating-whatsapp {
+      position: fixed;
+      bottom: 1.2rem;
+      right: 1.2rem;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 70px;
+      height: 70px;
+      background: #10b981;
+      color: white;
+      border-radius: 9999px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      transition: all 0.3s ease;
+    }
+    .floating-whatsapp:hover {
+      transform: scale(1.08);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+    }
+    .floating-whatsapp i { font-size: 2.8rem; }
+    .floating-whatsapp .ping {
+      position: absolute;
+      inset: 0;
+      border-radius: 9999px;
+      background: #10b981;
+      opacity: 0.7;
+      animation: ping 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+    }
+    @keyframes ping {
+      75%, 100% { transform: scale(1.4); opacity: 0; }
+    }
+    @media (min-width: 1024px) {
+      .floating-whatsapp {
+        width: auto;
+        height: auto;
+        padding: 1.1rem 1.8rem;
+        border-radius: 9999px;
+        background: white;
+        color: black;
+        flex-direction: row;
+        gap: 0.9rem;
+        font-weight: 700;
+        font-size: 1.1rem;
+      }
+      .floating-whatsapp i { font-size: 2.2rem; }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col bg-black">
+
+  <!-- HEADER -->
+  <header class="bg-black border-b-4 border-green-500 shadow-2xl">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 lg:py-4">
+      <div class="flex items-center justify-between">
+        <a href="#" class="flex items-center gap-3 sm:gap-4 group">
+          <img src="/images/lexpilot-logo.jpg" alt="LexPilot Logo" class="h-10 lg:h-12 rounded-full shadow-2xl ring-4 ring-green-500/30 transition-all group-hover:scale-110 group-hover:ring-green-400">
+          <span class="font-black text-2xl sm:text-3xl tracking-tighter">
+            <span class="text-white">Lex</span><span class="text-green-400">Pilot</span>
+          </span>
+        </a>
+        <a href="https://wa.me/27764312871?text=Hi%20Callum%2C%0A%0AI'd%20like%20to%20discuss%20if%20LexPilot%20might%20suit%20my%20firm." target="_blank"
+           class="bg-gradient-to-r from-green-500 to-emerald-600 text-black font-black px-5 sm:px-6 py-3 rounded-full shadow-2xl hover:scale-105 transition-all flex items-center gap-2 sm:gap-3 text-base sm:text-lg border-4 border-green-400/50">
+          <i class="fab fa-whatsapp text-2xl sm:text-3xl"></i>
+          Message Callum
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="flex-1 flex flex-col justify-start items-center px-4 pt-6 pb-12 text-center">
+    <div class="max-w-6xl mx-auto w-full">
+      <div class="badge mb-4 animate-pulse">Limited Launch • Founder-Direct • LPC-Compliant</div>
+      
+      <h1 class="hero-headline mb-3">The Complete Digital Infrastructure</h1>
+      <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black text-green-400 mb-6">The Modern Operating System for South African Law Firms</h2>
+      
+      <p class="hero-subheadline font-semibold mb-8 leading-relaxed">
+        Founder-led, integrated development of your Firm’s Website, Digital Authority, and Compliance Systems.<br class="hidden sm:block">
+        We build the house, start the engine, and install the brain — all in one ethical, POPIA-ready ecosystem.
+      </p>
+
+      <div class="space-y-4 max-w-md sm:max-w-lg mx-auto">
+        <a href="https://wa.me/27764312871?text=Hi%20Callum%2C%0A%0AI'd%20like%20to%20discuss%20suitability%20for%20my%20firm." target="_blank"
+           class="block w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-black font-black rounded-full shadow-2xl hover:scale-105 transition-all py-5 text-xl sm:text-2xl">
+          Discuss Your Firm’s Suitability
+        </a>
+        <p class="text-sm opacity-90">
+          or <a href="https://wa.me/27764312871?text=Hi%20Callum%2C%0A%0AI%20would%20like%20to%20discuss%20LexPilot%20on%20WhatsApp." class="text-green-400 underline hover:text-green-300 font-bold">Message Callum on WhatsApp →</a><br>
+          <span class="text-xs opacity-70">(Fast replies • Business hours)</span>
+        </p>
+      </div>
+
+      <p class="strong-disclaimer mt-6 text-sm max-w-3xl mx-auto font-medium">
+        <strong>Important Notice:</strong> This is marketing material only. We focus on ethical, LPC-compliant processes—no specific business outcomes, enquiry volumes, or revenue increases are promised or guaranteed.
+      </p>
+    </div>
+  </section>
+
+  <!-- FOUR PILLARS -->
+  <section class="py-16 px-4 bg-zinc-950">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-4xl sm:text-5xl font-black text-center mb-10">Services Included (The Four Pillars)</h2>
+      <p class="text-xl text-center opacity-80 mb-12 max-w-4xl mx-auto">Foundational assets built for compliance, credibility, and professional consistency.</p>
+      
+      <div class="pillars-grid">
+        <div class="pillar-card">
+          <div class="pillar-title">1. High-Precision Visibility</div>
+          <p class="text-base opacity-90">Google Business & Map Pack. We optimize your firm for 2026 AI Search and Local Maps, ensuring strong, compliant local presence when clients search for experts.</p>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-title">2. Ethical Trust Facilitation</div>
+          <p class="text-base opacity-90">LPC-Compliant Review Systems. We install an ethical facilitation system to gather authentic client feedback, building social proof within Law Council guidelines.</p>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-title">3. Authority Content Architecture</div>
+          <p class="text-base opacity-90">Professional Network Presence. High-signal legal tips and thought-leadership content for LinkedIn. We position you as a specialist to keep your referral network active.</p>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-title">4. Strategic Founder Partnership</div>
+          <p class="text-base opacity-90">Direct Callum Support. No junior account managers. You work directly with the founder to ensure every asset is tailored to the nuances of SA Law.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+<!-- FOUNDER SECTION -->
+  <section id="founder" class="py-16 px-4 bg-black">
+    <div class="max-w-5xl mx-auto text-center">
+      <h2 class="text-4xl sm:text-5xl font-black mb-10">Meet the Founder</h2>
+      <div class="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12">
+        <img src="/images/callum-founder.jpg" alt="Callum Denysschen, Founder of LexPilot" class="w-48 h-48 md:w-64 md:h-64 rounded-full object-cover shadow-2xl ring-4 ring-green-500/30 border-4 border-green-400/20">
+        <div class="text-left max-w-xl">
+          <h3 class="text-2xl md:text-3xl font-black text-green-400 mb-4">Callum Denysschen</h3>
+          <p class="text-lg opacity-90 mb-6">
+            Hi, I'm Callum from Sandton, Johannesburg. I founded LexPilot after seeing how many South African law firms struggle with fragmented digital tools, compliance headaches, and inconsistent online presence.
+          </p>
+          <p class="text-lg opacity-90 mb-6">
+            Unlike big agencies with junior teams, I personally handle a limited number of firms to keep everything ethical, LPC-compliant, and genuinely useful for how SA practices actually work.
+          </p>
+          <p class="text-lg opacity-90 mb-6">
+            My main focus is LexPilot.co.za — a purpose-built SaaS for SA law firms (trust accounting alerts, automation, POPIA-ready). With these Founding Bundles, you get direct access to me for setup + early SaaS priority.
+          </p>
+          <p class="text-lg opacity-90">
+            Hit me on WhatsApp — fast replies during business hours. Let's see if this fits your firm.
+          </p>
+        </div>
+      </div>
+      <p class="strong-disclaimer mt-10 text-center">
+        Marketing material only. All services comply with LPC rules. No outcomes guaranteed.
+      </p>
+    </div>
+  </section>
+  <!-- PRICING CARDS -->
+  <section id="pricing" class="py-20 px-4 bg-black">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black text-center mb-6">The Founding Partner Bundles</h2>
+      <p class="text-xl sm:text-2xl text-center opacity-80 mb-10">Includes 12 Months Early Access to LexPilot SaaS – Launching 28 March 2026</p>
+      
+      <div class="pricing-scroll-container">
+        <!-- Tier 1: Essential Partner -->
+        <div class="pricing-card">
+          <h3 class="text-3xl sm:text-4xl font-black text-green-400 mb-3">The Essential Partner</h3>
+          <p class="text-sm opacity-80 mb-4 font-semibold">For solo practitioners establishing a compliant digital front office.</p>
+          <div class="text-5xl font-black text-green-400 mb-1">R19,900 Setup</div>
+          <div class="monthly-price">+ R850/mo</div>
+          <p class="text-sm opacity-70 mb-4"><span class="strikethrough">Total Value: R35,388</span></p>
+          
+          <ul class="feature-list text-left mb-6">
+            <li><i class="fas fa-check-circle"></i><span><strong>The House (Web):</strong> 8-Page Foundation Site (LPC-Compliant, Mobile-First)</span></li>
+            <li><i class="fas fa-check-circle"></i><span><strong>The Engine (Presence):</strong> Google Maps Optimization + 7 Authority Posts</span></li>
+            <li><i class="fas fa-check-circle"></i><span><strong>The Brain (SaaS):</strong> 12 Months Growth Access (Real-time Trust Alerts & Shortfall Warnings)</span></li>
+            <li><i class="fas fa-check-circle"></i><span><strong>Support:</strong> Immediate founder-led digital setup</span></li>
+          </ul>
+          
+          <a href="https://wa.me/27764312871?text=Hi%20Callum%2C%0A%0AI'd%20like%20to%20secure%20the%20Essential%20Partner%20bundle." target="_blank"
+             class="mt-auto w-full bg-gradient-to-r from-green-500 to-emerald-600 text-black font-black text-xl py-5 rounded-2xl hover:scale-105 transition shadow-2xl block">
+            Secure Essential Access
+          </a>
+        </div>
+
+        <!-- Tier 2: Dominance Bundle (Popular) -->
+        <div class="pricing-card relative transform scale-105 shadow-2xl shadow-green-500/40 border-green-500">
+          <div class="recommended-badge">POPULAR CHOICE</div>
+          <h3 class="text-3xl sm:text-4xl font-black text-yellow-400 mb-3">The Dominance Bundle</h3>
+          <p class="text-sm opacity-80 mb-4 font-semibold">The benchmark for boutique firms seeking market authority.</p>
+          <div class="text-5xl font-black text-green-400 mb-1">R34,900 Setup</div>
+          <div class="monthly-price">+ R1,450/mo</div>
+          <p class="text-sm opacity-70 mb-4"><span class="strikethrough">Total Value: R76,788</span></p>
+          
+          <ul class="feature-list text-left mb-6">
+            <li><i class="fas fa-check-circle"></i><span><strong>The House (Web):</strong> 15-Page Growth Site (Full Team Bios + Practice Areas)</span></li>
+            <li><i class="fas fa-check-circle"></i><span><strong>The Engine (Presence):</strong> LinkedIn Authority Engine + 35 "Done-for-You" Legal Tip Posts</span></li>
+            <li><i class="fas fa-check-circle"></i><span><strong>The Brain (SaaS):</strong> 12 Months Dominance Access (Automated Trust Deductions & Multi-Case Invoicing)</span></li>
+            <li><i class="fas fa-check-circle"></i><span><strong>Bonus:</strong> Competitor Visibility Snapshot</span></li>
+          </ul>
+          
+          <a href="https://wa.me/27764312871?text=Hi%20Callum%2C%0A%0AI'd%20like%20to%20secure%20the%20Dominance%20Bundle." target="_blank"
+             class="mt-auto w-full bg-yellow-400 text-black font-black text-xl py-5 rounded-2xl hover:scale-105 transition shadow-2xl block">
+            Secure Dominance Access
+          </a>
+        </div>
+
+        <!-- Tier 3: Apex Enterprise -->
+        <div class="pricing-card apex-border">
+          <h3 class="text-3xl sm:text-4xl font-black gradient-text mb-3">The Apex Enterprise</h3>
+          <p class="text-sm opacity-80 mb-4 font-semibold">For firms seeking comprehensive digital leadership.</p>
+          <div class="text-5xl font-black text-green-400 mb-1">R54,900 Setup</div>
+          <div class="monthly-price">+ R2,250/mo</div>
+          <p class="text-sm opacity-70 mb-4"><span class="strikethrough">Total Value: R184,788</span></p>
+          
+          <ul class="feature-list text-left mb-6">
+            <li><i class="fas fa-check-circle"></i><span><strong>The House (Web):</strong> Apex Site (Client Portals, Booking, Custom Integrations)</span></li>
+            <li><i class="fas fa-check-circle"></i><span><strong>The Engine (Presence):</strong> 55 Authority Posts + Video Snippets + Custom Lead Magnet</span></li>
+            <li><i class="fas fa-check-circle"></i><span><strong>The Brain (SaaS):</strong> 12 Months Apex Access (Client Self-Service Top-Ups & Full Audit Suite)</span></li>
+            <li><i class="fas fa-check-circle"></i><span><strong>Support:</strong> 90-Day Concierge Posting (Full Execution)</span></li>
+          </ul>
+          
+          <a href="https://wa.me/27764312871?text=Hi%20Callum%2C%0A%0AI'd%20like%20to%20apply%20for%20the%20Apex%20Enterprise%20bundle." target="_blank"
+             class="mt-auto w-full bg-gradient-to-r from-yellow-500 to-yellow-600 text-black font-black text-xl py-5 rounded-2xl hover:scale-105 transition shadow-2xl block">
+            Apply for Apex Status
+          </a>
+        </div>
+      </div>
+
+      <p class="strong-disclaimer text-center mt-10 max-w-4xl mx-auto text-base">
+        Setup fees due upfront. Monthly fees begin after launch. All services are ethical and LPC-compliant. No specific business outcomes are guaranteed. LexPilot SaaS early access launches 28 March 2026 with priority onboarding for Founding Partners.
+      </p>
+    </div>
+  </section>
+
+  <!-- PACKAGE COMPARISON TABLE -->
+  <section id="comparison" class="py-16 px-4 bg-zinc-950">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-4xl sm:text-5xl font-black text-center mb-10">Package Comparison</h2>
+      <p class="text-xl text-center opacity-80 mb-8">Clear side-by-side view of what each bundle delivers.</p>
+      
+      <div class="comparison-table-container">
+        <table class="text-left">
+          <thead class="bg-gradient-to-r from-zinc-900 to-black">
+            <tr>
+              <th class="px-6 py-5 text-lg font-black">Feature</th>
+              <th class="text-center px-6 py-5 text-xl font-black text-green-400">Essential Partner</th>
+              <th class="text-center px-6 py-5 text-xl font-black text-yellow-400">Dominance Bundle</th>
+              <th class="text-center px-6 py-5 text-xl font-black gradient-text">Apex Enterprise</th>
+            </tr>
+          </thead>
+          <tbody class="text-base">
+            <tr class="border-b border-zinc-800 bg-zinc-900/30">
+              <td class="px-6 py-4 font-semibold">Setup Fee</td>
+              <td class="text-center">R19,900</td>
+              <td class="text-center">R34,900</td>
+              <td class="text-center">R54,900</td>
+            </tr>
+            <tr class="border-b border-zinc-800">
+              <td class="px-6 py-4 font-semibold">Monthly Fee</td>
+              <td class="text-center">R850/mo</td>
+              <td class="text-center">R1,450/mo</td>
+              <td class="text-center">R2,250/mo</td>
+            </tr>
+            <tr class="border-b border-zinc-800 bg-zinc-900/30">
+              <td class="px-6 py-4 font-semibold">The House (Website)</td>
+              <td class="text-center">8-Page Foundation Site<br>(LPC-Compliant, Mobile-First)</td>
+              <td class="text-center">15-Page Growth Site<br>(Full Team Bios + Practice Areas)</td>
+              <td class="text-center">Apex Site<br>(Client Portals, Booking, Custom Integrations)</td>
+            </tr>
+            <tr class="border-b border-zinc-800">
+              <td class="px-6 py-4 font-semibold">Google Business / Maps Optimisation</td>
+              <td class="text-center text-green-400 text-3xl">✓</td>
+              <td class="text-center text-green-400 text-3xl">✓</td>
+              <td class="text-center text-green-400 text-3xl">✓</td>
+            </tr>
+            <tr class="border-b border-zinc-800 bg-zinc-900/30">
+              <td class="px-6 py-4 font-semibold">Done-for-You Authority Posts</td>
+              <td class="text-center">7</td>
+              <td class="text-center">35</td>
+              <td class="text-center">55 + Video Snippets</td>
+            </tr>
+            <tr class="border-b border-zinc-800">
+              <td class="px-6 py-4 font-semibold">LinkedIn Authority Engine / Content</td>
+              <td class="text-center text-red-500 font-bold">—</td>
+              <td class="text-center">Yes + 35 Legal Tip Posts</td>
+              <td class="text-center">Yes + Custom Lead Magnet</td>
+            </tr>
+            <tr class="border-b border-zinc-800 bg-zinc-900/30">
+              <td class="px-6 py-4 font-semibold">Ethical Review / Trust Systems</td>
+              <td class="text-center text-green-400 text-3xl">✓</td>
+              <td class="text-center text-green-400 text-3xl">✓</td>
+              <td class="text-center text-green-400 text-3xl">✓</td>
+            </tr>
+            <tr class="border-b border-zinc-800">
+              <td class="px-6 py-4 font-semibold">Bundled LexPilot SaaS (12 mo early access)</td>
+              <td class="text-center text-green-400">Growth</td>
+              <td class="text-center text-yellow-400">Dominance</td>
+              <td class="text-center gradient-text">Apex</td>
+            </tr>
+            <tr class="border-b border-zinc-800 bg-zinc-900/30">
+              <td class="px-6 py-4 font-semibold">Additional Bonuses</td>
+              <td class="text-center">—</td>
+              <td class="text-center">Competitor Visibility Snapshot</td>
+              <td class="text-center">90-Day Concierge Posting (Full Execution)</td>
+            </tr>
+            <tr class="bg-zinc-900/50">
+              <td class="px-6 py-4 font-semibold">Founder Support Level</td>
+              <td class="text-center">Immediate Setup</td>
+              <td class="text-center">Full Tailored Guidance</td>
+              <td class="text-center">Strategic + 90-Day Concierge</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="strong-disclaimer text-center mt-8 max-w-4xl mx-auto">
+        All features are delivered ethically and in compliance with LPC rules. No specific outcomes (rankings, leads, revenue, etc.) are guaranteed. SaaS early access launches 28 March 2026.
+      </p>
+    </div>
+  </section>
+
+  
+
+  <!-- FINAL CTA -->
+  <section class="py-20 px-4 bg-gradient-to-b from-black to-zinc-950">
+    <div class="max-w-5xl mx-auto text-center">
+      <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black mb-8 leading-tight">
+        Ready to Upgrade Your Firm’s Digital Infrastructure?
+      </h2>
+      <p class="text-xl sm:text-2xl opacity-90 mb-12 max-w-4xl mx-auto">
+        Contact Callum directly to discuss whether LexPilot is the right fit for your practice.<br>
+        <span class="text-lg opacity-80">Setup begins immediately • SaaS early access launches 28 March 2026</span>
+      </p>
+      <a href="https://wa.me/27764312871?text=Hi%20Callum%2C%0A%0AI'd%20like%20to%20discuss%20LexPilot%20suitability%20for%20my%20firm." target="_blank"
+         class="inline-block bg-gradient-to-r from-green-500 to-emerald-600 text-black font-black rounded-full shadow-2xl hover:scale-105 transition-all py-6 px-10 sm:py-8 sm:px-16 text-2xl sm:text-4xl">
+        Discuss Suitability on WhatsApp
+      </a>
+      <p class="strong-disclaimer mt-12 text-lg">
+        This is marketing material only. No specific outcomes are guaranteed.
+      </p>
+    </div>
+  </section>
+
+  <!-- FLOATING WHATSAPP BUTTON -->
+  <a href="https://wa.me/27764312871?text=Hi%20Callum%2C%0A%0AI%20would%20like%20to%20discuss%20LexPilot." 
+     class="floating-whatsapp">
+    <span class="ping"></span>
+    <i class="fab fa-whatsapp"></i>
+    <span class="hidden lg:inline text-base font-bold">Message Callum</span>
+  </a>
+
+  <!-- FOOTER -->
+  <footer class="bg-black border-t-4 border-green-500 pt-12 pb-16">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12 text-center md:text-left">
+        <div>
+          <div class="flex items-center justify-center md:justify-start gap-4 mb-6">
+            <img src="/images/lexpilot-logo.jpg" alt="LexPilot Logo" class="h-16 rounded-full shadow-2xl border-4 border-green-500/50">
+            <div>
+              <h3 class="text-3xl font-black leading-none">
+                <span class="text-white">Lex</span><span class="text-green-400">Pilot</span>
+              </h3>
+              <p class="text-yellow-400 font-bold text-base tracking-wider mt-1">Founding Phase</p>
+            </div>
+          </div>
+          <p class="text-gray-400 text-base leading-relaxed">
+            Founder-direct digital infrastructure for South African law firms — websites, authority content, compliance systems, and bundled LexPilot SaaS.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="text-2xl font-black text-green-400 mb-6">Quick Links</h4>
+          <ul class="space-y-3 text-gray-300 text-base">
+            <li><a href="#pricing" class="hover:text-green-400 transition">Bundles</a></li>
+            <li><a href="#comparison" class="hover:text-green-400 transition">Compare</a></li>
+            <li><a href="#founder" class="hover:text-green-400 transition">Founder</a></li>
+            <li><a href="https://wa.me/27764312871?text=Hi%20Callum%2C%0A%0AI'd%20like%20to%20discuss%20LexPilot." target="_blank" class="hover:text-green-400 transition">Message Callum</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-2xl font-black text-green-400 mb-6">Legal</h4>
+          <ul class="space-y-3 text-gray-300 text-base">
+            <li><a href="/privacy-policy.html" class="hover:text-green-400 transition">Privacy Policy</a></li>
+            <li><a href="/terms-of-service.html" class="hover:text-green-400 transition">Terms of Service</a></li>
+            <li><a href="/refund-policy.html" class="hover:text-green-400 transition">Refund Policy</a></li>
+            <li><a href="/popia-compliance.html" class="hover:text-green-400 transition">POPIA Compliance</a></li>
+            <li><a href="/disclaimers.html" class="hover:text-green-400 transition">Disclaimers</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-2xl font-black text-green-400 mb-6">Get Started</h4>
+          <p class="text-gray-400 text-base mb-6">Limited founding spots available</p>
+          <a href="https://wa.me/27764312871?text=Hi%20Callum%2C%0A%0AI'd%20like%20to%20discuss%20LexPilot%20suitability." target="_blank"
+             class="inline-flex items-center gap-4 bg-white text-black font-black px-8 py-5 rounded-full hover:scale-105 transition-all shadow-2xl text-xl border-4 border-green-500">
+            <i class="fab fa-whatsapp text-4xl text-green-500"></i>
+            Message Callum
+          </a>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-800 pt-10 text-center">
+        <p class="text-gray-500 text-sm">
+          © 2026 LexPilot • All rights reserved • Proudly South African
+        </p>
+        <p class="strong-disclaimer mt-6 text-base">
+          <strong>General Disclaimer:</strong> This entire website is marketing material only. We focus on ethical, LPC-compliant processes and consistency — no specific business outcomes, enquiry numbers, lead volumes, revenue increases, search rankings or any other results are promised, guaranteed or should be expected. All services are intended to comply with Legal Practice Council rules. Subject to South African law.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
