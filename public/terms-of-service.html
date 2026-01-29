@@ -1,118 +1,225 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Terms of Service – LexPilot</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#000000" />
+  <title>Terms of Service | LexPilot</title>
+  <link rel="icon" href="/images/lexpilot-logo.jpg" />
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxVe5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body { font-family: 'Inter', sans-serif; background: #000; color: #fff; margin: 0; padding: 0; }
-    .break-words { word-break: break-word; hyphens: auto; overflow-wrap: break-word; }
-    /* Fluid typography */
-    .fluid-body { font-size: clamp(1rem, 4vw, 1.25rem); line-height: 1.6; }
-    .fluid-title { font-size: clamp(1.75rem, 6vw, 3rem); line-height: 1.2; }
-    .fluid-heading { font-size: clamp(3rem, 12vw, 6rem); line-height: 1.1; }
-    .fluid-subheading { font-size: clamp(2.5rem, 8vw, 4rem); line-height: 1.2; }
-    .fluid-question { font-size: clamp(2rem, 7vw, 3.5rem); line-height: 1.2; }
-    /* Hero-style container */
-    @media (max-width: 767px) {
-      .hero-container {
-        min-height: calc(100vh - var(--header-height, 80px));
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding-top: 1rem !important;
-        padding-bottom: 3rem !important;
-      }
+    :root {
+      --green: #10b981;
+      --yellow: #fbbf24;
+      --gold: #ffd700;
+      --gold-dark: #b8860b;
     }
-    @media (min-width: 768px) {
-      .hero-container {
-        padding-top: 2rem;
-        padding-bottom: 6rem;
-        min-height: calc(100vh - var(--header-height, 100px));
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-      }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #000;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: #000;
+      border-bottom: 4px solid var(--green);
+      box-shadow: 0 10px 30px -10px rgba(0,0,0,0.8);
+    }
+    .strong-disclaimer {
+      color: #f87171;
+      font-weight: 700;
     }
   </style>
 </head>
-<body class="min-h-screen flex flex-col">
-  <div id="header-placeholder"></div>
-  <main class="flex-1 px-4 sm:px-6 lg:px-8 text-center">
-    <div class="max-w-5xl mx-auto hero-container break-words">
-      <h1 class="fluid-heading font-black text-green-400 leading-none mt-4">
-        TERMS OF<br class="sm:hidden"> SERVICE
-      </h1>
-      <div class="mt-12 sm:mt-16 bg-zinc-900/90 backdrop-blur border-4 border-green-500 rounded-3xl p-8 sm:p-12 md:p-16 lg:p-20">
-        <p class="fluid-subheading font-black text-green-400 mb-12">LexPilot – South African Law Firm Platform</p>
-        <ul class="space-y-10 sm:space-y-14 fluid-body font-medium text-left max-w-4xl mx-auto leading-relaxed">
-          <li class="text-green-300 font-black fluid-title">1. Acceptance of Terms</li>
-          <li class="ml-8">By accessing, registering for, or using LexPilot (the "Service"), you agree to these Terms of Service ("Terms"). If you do not agree, do not use the Service. These Terms form a binding contract between you (the "User" or "Firm") and LexPilot (the "Provider").</li>
-        
-          <li class="text-amber-300 font-black fluid-title mt-10">2. Service Description</li>
-          <li class="ml-8">LexPilot provides a practice management platform for South African law firms, including billing, trust account alerts, matter & workflow management, automated workflows, and other features as described on the website. Access is tiered (Growth, Dominance, Apex) based on your selected plan.</li>
-        
-          <li class="text-green-300 font-black fluid-title mt-10">3. Accounts & Registration</li>
-          <li class="ml-8">You must provide accurate information during registration. You are responsible for maintaining the confidentiality of your account credentials. Notify us immediately of any unauthorized access. We reserve the right to suspend or terminate accounts for violations.</li>
-        
-          <li class="text-amber-300 font-black fluid-title mt-10">4. Payments & Subscriptions</li>
-          <li class="ml-8">All fees are non-refundable except as stated in the Refund Policy. Payments are processed via PayFast. Subscriptions auto-renew monthly. You may cancel anytime with 30 days' notice via WhatsApp. No refunds for partial months. Setup fees are waived for early adopters as advertised.</li>
-        
-          <li class="text-green-300 font-black fluid-title mt-10">5. User Responsibilities</li>
-          <li class="ml-8">You must comply with South African law, including LPC rules and trust account regulations. You are solely responsible for all data you input. Do not use the Service for illegal activities or to store sensitive client data without proper safeguards.</li>
-        
-          <li class="text-amber-300 font-black fluid-title mt-10">6. Intellectual Property</li>
-          <li class="ml-8">All content, features, and proprietary technology are owned by LexPilot or its licensors. You are granted a limited, non-exclusive, non-transferable license to use the Service during your active subscription for your firm's internal purposes only. You agree not to reverse-engineer, decompile, disassemble, copy, modify, or create derivative works based on the Service. You also agree not to develop or launch a competing product using knowledge gained from LexPilot for 24 months after termination (limited to South Africa).</li>
-        
-          <li class="text-green-300 font-black fluid-title mt-10">7. Limitation of Liability</li>
-          <li class="ml-8">To the fullest extent permitted by law, LexPilot is not liable for any indirect, consequential, incidental, or punitive damages arising from use of the Service. Our total liability shall not exceed the fees paid by you in the last 12 months. The Service is provided "as is" without warranties of any kind.</li>
-        
-          <li class="text-amber-300 font-black fluid-title mt-10">8. Termination</li>
-          <li class="ml-8">We may suspend or terminate your access immediately for any breach of these Terms. You may cancel your subscription anytime with 30 days' notice. Upon termination, access ends, but you retain your data for 30 days.</li>
-        
-          <li class="text-green-300 font-black fluid-title mt-10">9. Governing Law</li>
-          <li class="ml-8">These Terms are governed by South African law. Any disputes shall be resolved exclusively in the courts of Johannesburg.</li>
-        
-          <li class="text-amber-300 font-black fluid-title mt-10">10. Changes to Terms</li>
-          <li class="ml-8">We may update these Terms. Material changes will be notified via email/WhatsApp. Continued use after changes constitutes acceptance.</li>
-        
-          <li class="mt-10 fluid-body">
-            • Effective Date: 05 January 2026<br>
-            • Last Updated: 05 January 2026<br>
-            • Contact: support@lexpilot.co.za or WhatsApp 076 431 2871
-          </li>
-        </ul>
-        <p class="mt-16 fluid-question text-yellow-400 font-black text-center">
-          Questions?<br class="sm:hidden"> WhatsApp 076 431 2871
+<body class="min-h-screen flex flex-col bg-black">
+
+  <!-- HEADER (matching your current site style) -->
+  <header class="bg-black border-b-4 border-green-500 shadow-2xl">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 lg:py-4">
+      <div class="hidden lg:flex items-center justify-between">
+        <a href="/" class="flex items-center gap-4 group">
+          <img src="/images/lexpilot-logo.jpg" alt="LexPilot Logo" class="h-10 lg:h-11 rounded-full shadow-2xl ring-4 ring-green-500/30 transition-all group-hover:scale-110 group-hover:ring-green-400">
+          <span class="font-black text-3xl tracking-tighter">
+            <span class="text-white">Lex</span><span class="text-green-400">Pilot</span>
+          </span>
+        </a>
+        <div class="flex items-center gap-10 xl:gap-14">
+          <nav class="flex items-center gap-12 text-base font-bold">
+            <a href="/" class="text-white/90 hover:text-[var(--green)] transition-colors duration-300">Home</a>
+          </nav>
+          <a href="https://wa.me/27764312871?text=Hi%20Callum%2C%0A%0AI%20have%20a%20question%20about%20the%20Terms%20of%20Service." target="_blank"
+             class="bg-gradient-to-r from-green-500 to-emerald-600 text-black font-black px-8 py-3.5 rounded-full shadow-2xl hover:scale-105 transition-all flex items-center gap-3 text-xl border-4 border-green-400/50">
+            <i class="fab fa-whatsapp text-3xl"></i>
+            Ask Callum
+          </a>
+        </div>
+      </div>
+      <!-- Mobile Header -->
+      <div class="lg:hidden flex flex-col items-center">
+        <div class="flex items-center justify-between w-full mb-3">
+          <a href="/" class="flex items-center gap-3 group">
+            <img src="/images/lexpilot-logo.jpg" alt="LexPilot Logo" class="h-10 rounded-full shadow-2xl ring-4 ring-green-500/30 transition-all group-hover:scale-110 group-hover:ring-green-400">
+            <span class="font-black tracking-tighter leading-none">
+              <span class="text-2xl text-white">Lex</span><span class="text-3xl text-green-400">Pilot</span>
+            </span>
+          </a>
+          <a href="https://wa.me/27764312871?text=Hi%20Callum%2C%0A%0AI%20have%20a%20question%20about%20the%20Terms%20of%20Service." target="_blank"
+             class="bg-gradient-to-r from-green-500 to-emerald-600 text-black font-black px-6 py-3.5 rounded-full shadow-2xl hover:scale-110 transition-all flex items-center gap-2 text-lg border-3 border-green-400/50">
+            <i class="fab fa-whatsapp text-3xl"></i>
+            Ask Callum
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="max-w-5xl mx-auto px-6 py-16 flex-1">
+    <h1 class="text-5xl sm:text-6xl font-black text-center mb-6">Terms of Service</h1>
+    <p class="text-center text-xl opacity-80 mb-12">Effective date: 29 January 2026</p>
+
+    <div class="prose prose-invert prose-lg max-w-none space-y-10 text-gray-200 leading-relaxed">
+      <p>By engaging LexPilot (Pty) Ltd (“we”, “us”, “our”) for any services — including website development, digital visibility / authority content, or SaaS for practice management — you agree to these Terms of Service. These terms apply to all Founding Partner engagements.</p>
+
+      <h2 class="text-4xl font-bold text-green-400 border-b border-green-800/50 pb-3">1. Services</h2>
+      <p>We provide the following services on an ethical, founder-direct basis:</p>
+      <ul class="list-disc pl-8 space-y-3">
+        <li><strong>Website development</strong>: bespoke, hand-coded, LPC-compliant websites (structure, content, forms, mobile-first design)</li>
+        <li><strong>Digital visibility & authority content</strong>: Google Business optimisation, ethical review facilitation, LinkedIn positioning, done-for-you legal insight posts (factual and dignified only)</li>
+        <li><strong>SaaS / practice management</strong>: cloud-based tools for trust accounting (Rule 54/86 alerts, deductions, reconciliations), invoicing, client/matter management (early access from March 2026)</li>
+      </ul>
+      <p class="mt-4"><strong>Important:</strong> No specific business outcomes (search rankings, enquiry volumes, leads, revenue, etc.) are promised, implied or guaranteed. All services comply with the Legal Practice Act, LPC Code of Conduct, and POPIA.</p>
+
+      <h2 class="text-4xl font-bold text-green-400 border-b border-green-800/50 pb-3">2. Engagement & Payment</h2>
+      <ul class="list-disc pl-8 space-y-3">
+        <li>Setup fee is payable upfront before work begins</li>
+        <li>Monthly fees commence after site launch or SaaS access granted</li>
+        <li>Payments via approved methods (e.g. PayFast)</li>
+        <li>Late payment may result in suspension of access or support</li>
+        <li>All fees exclude VAT unless stated otherwise</li>
+      </ul>
+
+      <h2 class="text-4xl font-bold text-green-400 border-b border-green-800/50 pb-3">3. Client Obligations</h2>
+      <p>You agree to:</p>
+      <ul class="list-disc pl-8 space-y-3">
+        <li>Provide accurate and complete information (bios, practice areas, branding, content approvals)</li>
+        <li>Approve all content and deliverables before publication</li>
+        <li>Maintain your own regulatory compliance (LPC, FFC, trust accounts under Rule 86)</li>
+        <li>Not use our services for any unlawful or unethical purpose</li>
+      </ul>
+
+      <h2 class="text-4xl font-bold text-green-400 border-b border-green-800/50 pb-3">4. Intellectual Property</h2>
+      <ul class="list-disc pl-8 space-y-3">
+        <li>You retain ownership of firm-specific content (bios, practice descriptions, logos)</li>
+        <li>We retain ownership of underlying code, templates, general processes, and SaaS platform</li>
+        <li>You grant us a limited licence to use your materials for delivering services</li>
+        <li>Upon termination, we return or delete your data per the DPA</li>
+      </ul>
+
+      <h2 class="text-4xl font-bold text-green-400 border-b border-green-800/50 pb-3">5. Limitation of Liability</h2>
+      <p>To the maximum extent permitted by law:</p>
+      <ul class="list-disc pl-8 space-y-3">
+        <li>Our total liability shall not exceed the fees paid by you in the preceding 12 months</li>
+        <li>We are not liable for indirect, consequential, special, or punitive damages</li>
+        <li>We are not liable for any loss arising from your regulatory non-compliance, third-party actions, or failure to provide accurate information</li>
+        <li>SaaS features support trust accounting compliance but do not replace your ultimate responsibility under Rule 86</li>
+      </ul>
+
+      <h2 class="text-4xl font-bold text-green-400 border-b border-green-800/50 pb-3">6. Termination</h2>
+      <ul class="list-disc pl-8 space-y-3">
+        <li>Either party may terminate with 30 days' written notice</li>
+        <li>Upon termination, SaaS access ends immediately; we return or delete your data per the DPA</li>
+        <li>Outstanding fees remain payable</li>
+      </ul>
+
+      <h2 class="text-4xl font-bold text-green-400 border-b border-green-800/50 pb-3">7. Governing Law & Jurisdiction</h2>
+      <p>These terms are governed by South African law. Any disputes shall be subject to the exclusive jurisdiction of the High Court, Gauteng Division, Johannesburg.</p>
+
+      <h2 class="text-4xl font-bold text-green-400 border-b border-green-800/50 pb-3">8. Amendments</h2>
+      <p>We may update these terms from time to time. Continued use of services after changes constitutes acceptance.</p>
+
+      <h2 class="text-4xl font-bold text-green-400 border-b border-green-800/50 pb-3">9. Contact</h2>
+      <p class="text-xl">Callum Denysschen<br><a href="mailto:legal@lexpilot.co.za" class="text-green-400 hover:underline">legal@lexpilot.co.za</a></p>
+    </div>
+
+    <div class="mt-20 text-center">
+      <p class="strong-disclaimer text-2xl font-bold">Marketing material only. No specific outcomes are guaranteed. All services comply with LPC rules and South African law.</p>
+    </div>
+  </main>
+
+  <!-- FOOTER (your current live footer) -->
+  <footer class="bg-black border-t-4 border-green-500 pt-12 pb-16">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12 text-center md:text-left">
+        <!-- Column 1: Brand & Description -->
+        <div>
+          <div class="flex items-center justify-center md:justify-start gap-4 mb-6">
+            <img src="/images/lexpilot-logo.jpg" alt="LexPilot Logo" class="h-16 rounded-full shadow-2xl border-4 border-green-500/50">
+            <div>
+              <h3 class="text-3xl font-black leading-none">
+                <span class="text-white">Lex</span><span class="text-green-400">Pilot</span>
+              </h3>
+              <p class="text-yellow-400 font-bold text-base tracking-wider mt-1">Founding Phase — LPC-Compliant Digital Infrastructure</p>
+            </div>
+          </div>
+          <p class="text-gray-400 text-base leading-relaxed">
+            Founder-direct, ethical digital solutions for established South African law firms: bespoke websites, authority content, and compliant SaaS for trust & practice management.
+          </p>
+        </div>
+
+        <!-- Column 2: Quick Links -->
+        <div>
+          <h4 class="text-2xl font-black text-green-400 mb-6">Quick Links</h4>
+          <ul class="space-y-3 text-gray-300 text-base">
+            <li><a href="#pricing" class="hover:text-green-400 transition">Packages</a></li>
+            <li><a href="#services" class="hover:text-green-400 transition">Services</a></li>
+            <li><a href="#comparison" class="hover:text-green-400 transition">Compare</a></li>
+            <li><a href="#founder" class="hover:text-green-400 transition">Founder</a></li>
+            <li><a href="https://wa.me/27764312871?text=Hi%20Callum%2C%0A%0AI'd%20like%20to%20discuss%20LexPilot." target="_blank" class="hover:text-green-400 transition">Message Callum on WhatsApp</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Legal & Compliance -->
+        <div>
+          <h4 class="text-2xl font-black text-green-400 mb-6">Legal & Compliance</h4>
+          <ul class="space-y-3 text-gray-300 text-base">
+            <li><a href="/privacy-policy.html" class="hover:text-green-400 transition">Privacy Policy (POPIA-aligned)</a></li>
+            <li><a href="/popia-compliance.html" class="hover:text-green-400 transition">POPIA Compliance Statement</a></li>
+            <li><a href="/paia-manual.html" class="hover:text-green-400 transition">PAIA Manual & Access to Information</a></li>
+            <li><a href="/terms.html" class="hover:text-green-400 transition">Terms of Service</a></li>
+            <li><a href="/disclaimers.html" class="hover:text-green-400 transition">Disclaimers & Important Notices</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Get Started CTA -->
+        <div>
+          <h4 class="text-2xl font-black text-green-400 mb-6">Get Started</h4>
+          <p class="text-gray-400 text-base mb-6">Limited founding partner spots available — founder-direct onboarding only.</p>
+          <a href="https://wa.me/27764312871?text=Hi%20Callum%2C%0A%0AI'd%20like%20to%20discuss%20LexPilot%20suitability." target="_blank"
+             class="inline-flex items-center gap-4 bg-white text-black font-black px-8 py-5 rounded-full hover:scale-105 transition-all shadow-2xl text-xl border-4 border-green-500">
+            <i class="fab fa-whatsapp text-4xl text-green-500"></i>
+            Message Callum Directly
+          </a>
+        </div>
+      </div>
+
+      <!-- Bottom legal disclaimer bar -->
+      <div class="border-t border-gray-800 pt-10 text-center">
+        <p class="text-gray-500 text-sm mb-4">
+          © 2026 LexPilot (Pty) Ltd • Proudly South African • All rights reserved.
+        </p>
+        <p class="strong-disclaimer text-base max-w-4xl mx-auto leading-relaxed">
+          <strong>Important Legal Notice:</strong> All content on this website is marketing material only and does not constitute legal advice or create any professional relationship. LexPilot provides services in strict compliance with the Legal Practice Act 28 of 2014, the Legal Practice Council Code of Conduct, the Protection of Personal Information Act 4 of 2013 (POPIA), and all applicable South African laws. No specific business outcomes, enquiry volumes, search rankings, lead generation, revenue increases, or other results are promised, implied or guaranteed. Attorneys and legal practitioners remain solely responsible for their own regulatory compliance, including trust account management under Rule 86 and ethical advertising obligations. Services are offered on an ethical, founder-direct basis only.
         </p>
       </div>
     </div>
-  </main>
-  <div id="footer-placeholder" class="mt-auto"></div>
-  <script>
-    fetch('header.html?v='+Date.now())
-      .then(r => r.ok ? r.text() : '')
-      .then(h => document.getElementById('header-placeholder').innerHTML = h);
-    fetch('footer.html?v='+Date.now())
-      .then(r => r.ok ? r.text() : '')
-      .then(f => document.getElementById('footer-placeholder').innerHTML = f);
-    function adjustMainPadding() {
-      const header = document.querySelector('header');
-      const main = document.querySelector('main');
-      if (header && main) {
-        const headerHeight = header.offsetHeight || 0;
-        main.style.paddingTop = `${headerHeight}px`;
-        document.documentElement.style.setProperty('--header-height', `${headerHeight}px`);
-      }
-    }
-    window.addEventListener('load', adjustMainPadding);
-    window.addEventListener('resize', adjustMainPadding);
-    document.fonts?.ready.then(adjustMainPadding);
-    setTimeout(adjustMainPadding, 100);
-    setTimeout(adjustMainPadding, 500);
-  </script>
+  </footer>
 </body>
 </html>

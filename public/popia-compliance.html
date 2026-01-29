@@ -1,172 +1,214 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>POPIA Compliance – LexPilot</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#000000" />
+  <title>POPIA Compliance Statement | LexPilot</title>
+  <link rel="icon" href="/images/lexpilot-logo.jpg" />
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxVe5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body { font-family: 'Inter', sans-serif; background: #000; color: #fff; margin: 0; padding: 0; }
-    .break-words { word-break: break-word; hyphens: auto; overflow-wrap: break-word; }
-    /* Fluid typography */
-    .fluid-body { font-size: clamp(1rem, 4vw, 1.25rem); line-height: 1.6; }
-    .fluid-title { font-size: clamp(1.75rem, 6vw, 3rem); line-height: 1.2; }
-    .fluid-heading { font-size: clamp(3rem, 12vw, 6rem); line-height: 1.1; }
-    .fluid-subheading { font-size: clamp(2.5rem, 8vw, 4rem); line-height: 1.2; }
-    .fluid-question { font-size: clamp(2rem, 7vw, 3.5rem); line-height: 1.2; }
-    /* Hero-style container — same as all legal pages */
-    @media (max-width: 767px) {
-      .hero-container {
-        min-height: calc(100vh - var(--header-height, 80px));
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding-top: 1rem !important;
-        padding-bottom: 3rem !important;
-      }
+    :root {
+      --green: #10b981;
+      --yellow: #fbbf24;
+      --gold: #ffd700;
+      --gold-dark: #b8860b;
     }
-    @media (min-width: 768px) {
-      .hero-container {
-        padding-top: 2rem;
-        padding-bottom: 6rem;
-        min-height: calc(100vh - var(--header-height, 100px));
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-      }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #000;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: #000;
+      border-bottom: 4px solid var(--green);
+      box-shadow: 0 10px 30px -10px rgba(0,0,0,0.8);
+    }
+    .strong-disclaimer {
+      color: #f87171;
+      font-weight: 700;
     }
   </style>
 </head>
-<body class="min-h-screen flex flex-col">
-  <div id="header-placeholder"></div>
-  <main class="flex-1 px-4 sm:px-6 lg:px-8 text-center">
-    <div class="max-w-5xl mx-auto hero-container break-words">
-      <h1 class="fluid-heading font-black text-green-400 leading-none mt-4">
-        POPIA<br class="sm:hidden"> COMPLIANCE
-      </h1>
-      <div class="mt-12 sm:mt-16 bg-zinc-900/90 backdrop-blur border-4 border-green-500 rounded-3xl p-8 sm:p-12 md:p-16 lg:p-20">
-        <p class="fluid-subheading font-black text-green-400 mb-12">Fully Compliant with South Africa's Protection of Personal Information Act (POPIA)</p>
-        
-        <ul class="space-y-10 sm:space-y-14 fluid-body font-medium text-left max-w-4xl mx-auto leading-relaxed">
-          <li class="text-green-300 font-black fluid-title">1. Our POPIA Commitment</li>
-          <li class="ml-8">
-            LexPilot is 100% compliant with the Protection of Personal Information Act 4 of 2013 (POPIA). We process personal information lawfully, minimally, and transparently to protect the privacy rights of our users, their staff, and their clients.
-          </li>
-        
-          <li class="text-amber-300 font-black fluid-title mt-10">2. Data Residency & Cross-Border</li>
-          <li class="ml-8">
-            All personal data is stored and processed exclusively in South Africa (AWS Johannesburg region).<br>
-            No cross-border transfers occur without explicit, informed consent or where permitted under Section 72 of POPIA.
-          </li>
-        
-          <li class="text-green-300 font-black fluid-title mt-10">3. Lawful Processing Bases</li>
-          <li class="ml-8">
-            We rely on the following lawful bases under POPIA:<br>
-            <span class="block mt-4 opacity-90">
-              • Contractual necessity – to deliver the LexPilot service<br>
-              • Legitimate interests – security, fraud prevention, platform improvements<br>
-              • Legal obligation – tax, regulatory reporting<br>
-              • Consent – marketing communications (revocable anytime)
+<body class="min-h-screen flex flex-col bg-black">
+
+  <!-- HEADER (matching your current site style) -->
+  <header class="bg-black border-b-4 border-green-500 shadow-2xl">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 lg:py-4">
+      <div class="hidden lg:flex items-center justify-between">
+        <a href="/" class="flex items-center gap-4 group">
+          <img src="/images/lexpilot-logo.jpg" alt="LexPilot Logo" class="h-10 lg:h-11 rounded-full shadow-2xl ring-4 ring-green-500/30 transition-all group-hover:scale-110 group-hover:ring-green-400">
+          <span class="font-black text-3xl tracking-tighter">
+            <span class="text-white">Lex</span><span class="text-green-400">Pilot</span>
+          </span>
+        </a>
+        <div class="flex items-center gap-10 xl:gap-14">
+          <nav class="flex items-center gap-12 text-base font-bold">
+            <a href="/" class="text-white/90 hover:text-[var(--green)] transition-colors duration-300">Home</a>
+          </nav>
+          <a href="https://wa.me/27764312871?text=Hi%20Callum%2C%0A%0AI%20have%20a%20question%20about%20POPIA%20compliance." target="_blank"
+             class="bg-gradient-to-r from-green-500 to-emerald-600 text-black font-black px-8 py-3.5 rounded-full shadow-2xl hover:scale-105 transition-all flex items-center gap-3 text-xl border-4 border-green-400/50">
+            <i class="fab fa-whatsapp text-3xl"></i>
+            Ask Callum
+          </a>
+        </div>
+      </div>
+      <!-- Mobile Header -->
+      <div class="lg:hidden flex flex-col items-center">
+        <div class="flex items-center justify-between w-full mb-3">
+          <a href="/" class="flex items-center gap-3 group">
+            <img src="/images/lexpilot-logo.jpg" alt="LexPilot Logo" class="h-10 rounded-full shadow-2xl ring-4 ring-green-500/30 transition-all group-hover:scale-110 group-hover:ring-green-400">
+            <span class="font-black tracking-tighter leading-none">
+              <span class="text-2xl text-white">Lex</span><span class="text-3xl text-green-400">Pilot</span>
             </span>
-          </li>
-        
-          <li class="text-amber-300 font-black fluid-title mt-10">4. Accountability & Governance</li>
-          <li class="ml-8">
-            LexPilot acts as both Responsible Party and Operator (Processor) where applicable.<br>
-            We maintain comprehensive records of processing activities (ROPA).<br>
-            Information Officer: privacy@lexpilot.co.za (registered with the Information Regulator).
-          </li>
-        
-          <li class="text-green-300 font-black fluid-title mt-10">5. Security Safeguards</li>
-          <li class="ml-8">
-            We implement appropriate technical and organisational measures:<br>
-            <span class="block mt-4 opacity-90">
-              • End-to-end encryption (TLS 1.3 & AES-256 at rest)<br>
-              • Role-based access control (RBAC) and multi-factor authentication<br>
-              • Annual independent security audits and penetration testing<br>
-              • Regular vulnerability scanning<br>
-              • Mandatory breach notification to Regulator and data subjects within 72 hours
-            </span>
-          </li>
-        
-          <li class="text-amber-300 font-black fluid-title mt-10">6. Data Subject Rights</li>
-          <li class="ml-8">
-            Data subjects enjoy full POPIA rights:<br>
-            <span class="block mt-4 opacity-90">
-              • Access personal information free of charge<br>
-              • Rectify inaccurate data<br>
-              • Request deletion ("right to be forgotten") subject to legal obligations<br>
-              • Object to processing or direct marketing<br>
-              • Lodge a complaint with the Information Regulator
-            </span><br>
-            Exercise rights via privacy@lexpilot.co.za or WhatsApp 076 431 2871.
-          </li>
-        
-          <li class="text-green-300 font-black fluid-title mt-10">7. Sub-Processors & Operators</li>
-          <li class="ml-8">
-            We engage only POPIA-compliant sub-processors bound by written agreements:<br>
-            <span class="block mt-4 opacity-90">
-              • PayFast (payments – SA servers)<br>
-              • Google Cloud Firebase (auth/notifications – Johannesburg region only)<br>
-              • AWS (infrastructure – Johannesburg region)<br>
-              • SendGrid (transactional email – POPIA compliant routing)
-            </span><br>
-            Full sub-processor list available on request.
-          </li>
-        
-          <li class="text-amber-300 font-black fluid-title mt-10">8. Staff Training & Internal Policies</li>
-          <li class="ml-8">
-            All LexPilot team members complete annual POPIA training.<br>
-            We maintain strict internal policies on data handling, retention, minimisation, and secure deletion.
-          </li>
-        
-          <li class="text-green-300 font-black fluid-title mt-10">9. Data Minimisation & Retention</li>
-          <li class="ml-8">
-            We collect only necessary data and retain it no longer than required for the original purpose or legal obligations (e.g., 5 years for tax records, then securely deleted or anonymised).
-          </li>
-        
-          <li class="mt-10 fluid-body">
-            • Effective Date: 28 December 2025<br>
-            • Last Updated: 28 December 2025<br>
-            • Information Officer: privacy@lexpilot.co.za<br>
-            • WhatsApp: 076 431 2871<br>
-            • Regulator Complaints: enquiries@inforegulator.org.za
-          </li>
-        </ul>
-        
-        <p class="mt-16 fluid-question text-yellow-400 font-black text-center">
-          Questions?<br class="sm:hidden"> WhatsApp 076 431 2871
+          </a>
+          <a href="https://wa.me/27764312871?text=Hi%20Callum%2C%0A%0AI%20have%20a%20question%20about%20POPIA%20compliance." target="_blank"
+             class="bg-gradient-to-r from-green-500 to-emerald-600 text-black font-black px-6 py-3.5 rounded-full shadow-2xl hover:scale-110 transition-all flex items-center gap-2 text-lg border-3 border-green-400/50">
+            <i class="fab fa-whatsapp text-3xl"></i>
+            Ask Callum
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="max-w-5xl mx-auto px-6 py-16 flex-1">
+    <h1 class="text-5xl sm:text-6xl font-black text-center mb-6">POPIA Compliance Statement</h1>
+    <p class="text-center text-xl opacity-80 mb-12">Effective date: 29 January 2026</p>
+
+    <div class="prose prose-invert prose-lg max-w-none space-y-10 text-gray-200 leading-relaxed">
+      <p>LexPilot (Pty) Ltd is fully committed to compliance with the <strong>Protection of Personal Information Act 4 of 2013 (POPIA)</strong> across all services we provide to South African law firms.</p>
+
+      <h2 class="text-4xl font-bold text-green-400 border-b border-green-800/50 pb-3">1. Our Role under POPIA</h2>
+      <p>We act as an <strong>operator</strong> (processor) for the majority of personal information processed on behalf of our clients, particularly in relation to:</p>
+      <ul class="list-disc pl-8 space-y-3">
+        <li><strong>Web development</strong>: firm branding assets, team bios, practice area descriptions, contact form submissions</li>
+        <li><strong>Digital visibility & authority content</strong>: Google Business Profile data, review metadata, LinkedIn profile inputs, content topics and approvals</li>
+        <li><strong>SaaS / practice management</strong>: client & matter identifiers, trust account metadata, invoicing records (processed strictly under client instructions and for compliance purposes)</li>
+      </ul>
+
+      <h2 class="text-4xl font-bold text-green-400 border-b border-green-800/50 pb-3">2. Lawful Basis & Purpose Limitation</h2>
+      <p>We process personal information only when necessary for:</p>
+      <ul class="list-disc pl-8 space-y-3">
+        <li>Performance of our contract with you (delivering websites, content, SaaS)</li>
+        <li>Compliance with legal obligations (LPC rules, financial record-keeping)</li>
+        <li>Legitimate interests (service improvement, support), subject to balancing tests</li>
+      </ul>
+      <p class="mt-4">We never process more data than required and always align with the original purpose or obtain fresh consent where needed.</p>
+
+      <h2 class="text-4xl font-bold text-green-400 border-b border-green-800/50 pb-3">3. Security Measures</h2>
+      <p>We implement appropriate technical and organisational safeguards, including:</p>
+      <ul class="list-disc pl-8 space-y-3">
+        <li>Encryption in transit (TLS 1.3) and at rest</li>
+        <li>Role-based access controls and audit logging</li>
+        <li>Regular vulnerability scanning and penetration testing</li>
+        <li>Exclusive data hosting in South Africa</li>
+        <li>Incident response plan with notification to clients and the Information Regulator as required by section 22</li>
+      </ul>
+
+      <h2 class="text-4xl font-bold text-green-400 border-b border-green-800/50 pb-3">4. Data Processing Agreements (DPAs)</h2>
+      <p class="text-lg">Every client engagement includes a formal, written <strong>Data Processing Agreement</strong> that covers:</p>
+      <ul class="list-disc pl-8 space-y-3">
+        <li>Processing instructions and permitted purposes</li>
+        <li>Security obligations and sub-processor controls</li>
+        <li>Breach notification timelines</li>
+        <li>Data return or deletion upon termination</li>
+        <li>Audit and inspection rights</li>
+      </ul>
+
+      <h2 class="text-4xl font-bold text-green-400 border-b border-green-800/50 pb-3">5. Sub-processors</h2>
+      <p>We use vetted sub-processors bound by the same obligations we have to you. Current categories include:</p>
+      <ul class="list-disc pl-8 space-y-2">
+        <li>Hosting & infrastructure (South African data centres)</li>
+        <li>Payment processing (e.g. PayFast)</li>
+        <li>Email & communication delivery</li>
+      </ul>
+      <p class="mt-4 italic">A current list is available on request.</p>
+
+      <h2 class="text-4xl font-bold text-green-400 border-b border-green-800/50 pb-3">6. Information Officer</h2>
+      <p class="text-xl">Callum Denysschen<br><a href="mailto:privacy@lexpilot.co.za" class="text-green-400 hover:underline">privacy@lexpilot.co.za</a></p>
+    </div>
+
+    <div class="mt-20 text-center">
+      <p class="strong-disclaimer text-2xl font-bold">This statement is for general information only. It does not replace a formal Data Processing Agreement or constitute legal advice.</p>
+    </div>
+  </main>
+
+  <!-- FOOTER (your current live footer) -->
+  <footer class="bg-black border-t-4 border-green-500 pt-12 pb-16">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12 text-center md:text-left">
+        <!-- Column 1: Brand & Description -->
+        <div>
+          <div class="flex items-center justify-center md:justify-start gap-4 mb-6">
+            <img src="/images/lexpilot-logo.jpg" alt="LexPilot Logo" class="h-16 rounded-full shadow-2xl border-4 border-green-500/50">
+            <div>
+              <h3 class="text-3xl font-black leading-none">
+                <span class="text-white">Lex</span><span class="text-green-400">Pilot</span>
+              </h3>
+              <p class="text-yellow-400 font-bold text-base tracking-wider mt-1">Founding Phase — LPC-Compliant Digital Infrastructure</p>
+            </div>
+          </div>
+          <p class="text-gray-400 text-base leading-relaxed">
+            Founder-direct, ethical digital solutions for established South African law firms: bespoke websites, authority content, and compliant SaaS for trust & practice management.
+          </p>
+        </div>
+
+        <!-- Column 2: Quick Links -->
+        <div>
+          <h4 class="text-2xl font-black text-green-400 mb-6">Quick Links</h4>
+          <ul class="space-y-3 text-gray-300 text-base">
+            <li><a href="#pricing" class="hover:text-green-400 transition">Packages</a></li>
+            <li><a href="#services" class="hover:text-green-400 transition">Services</a></li>
+            <li><a href="#comparison" class="hover:text-green-400 transition">Compare</a></li>
+            <li><a href="#founder" class="hover:text-green-400 transition">Founder</a></li>
+            <li><a href="https://wa.me/27764312871?text=Hi%20Callum%2C%0A%0AI'd%20like%20to%20discuss%20LexPilot." target="_blank" class="hover:text-green-400 transition">Message Callum on WhatsApp</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Legal & Compliance -->
+        <div>
+          <h4 class="text-2xl font-black text-green-400 mb-6">Legal & Compliance</h4>
+          <ul class="space-y-3 text-gray-300 text-base">
+            <li><a href="/privacy-policy.html" class="hover:text-green-400 transition">Privacy Policy (POPIA-aligned)</a></li>
+            <li><a href="/popia-compliance.html" class="hover:text-green-400 transition">POPIA Compliance Statement</a></li>
+            <li><a href="/paia-manual.html" class="hover:text-green-400 transition">PAIA Manual & Access to Information</a></li>
+            <li><a href="/terms.html" class="hover:text-green-400 transition">Terms of Service</a></li>
+            <li><a href="/disclaimers.html" class="hover:text-green-400 transition">Disclaimers & Important Notices</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Get Started CTA -->
+        <div>
+          <h4 class="text-2xl font-black text-green-400 mb-6">Get Started</h4>
+          <p class="text-gray-400 text-base mb-6">Limited founding partner spots available — founder-direct onboarding only.</p>
+          <a href="https://wa.me/27764312871?text=Hi%20Callum%2C%0A%0AI'd%20like%20to%20discuss%20LexPilot%20suitability." target="_blank"
+             class="inline-flex items-center gap-4 bg-white text-black font-black px-8 py-5 rounded-full hover:scale-105 transition-all shadow-2xl text-xl border-4 border-green-500">
+            <i class="fab fa-whatsapp text-4xl text-green-500"></i>
+            Message Callum Directly
+          </a>
+        </div>
+      </div>
+
+      <!-- Bottom legal disclaimer bar -->
+      <div class="border-t border-gray-800 pt-10 text-center">
+        <p class="text-gray-500 text-sm mb-4">
+          © 2026 LexPilot (Pty) Ltd • Proudly South African • All rights reserved.
+        </p>
+        <p class="strong-disclaimer text-base max-w-4xl mx-auto leading-relaxed">
+          <strong>Important Legal Notice:</strong> All content on this website is marketing material only and does not constitute legal advice or create any professional relationship. LexPilot provides services in strict compliance with the Legal Practice Act 28 of 2014, the Legal Practice Council Code of Conduct, the Protection of Personal Information Act 4 of 2013 (POPIA), and all applicable South African laws. No specific business outcomes, enquiry volumes, search rankings, lead generation, revenue increases, or other results are promised, implied or guaranteed. Attorneys and legal practitioners remain solely responsible for their own regulatory compliance, including trust account management under Rule 86 and ethical advertising obligations. Services are offered on an ethical, founder-direct basis only.
         </p>
       </div>
     </div>
-  </main>
-  <div id="footer-placeholder" class="mt-auto"></div>
-  <script>
-    // Load header & footer
-    fetch('header.html?v='+Date.now())
-      .then(r => r.ok ? r.text() : '')
-      .then(h => document.getElementById('header-placeholder').innerHTML = h);
-    fetch('footer.html?v='+Date.now())
-      .then(r => r.ok ? r.text() : '')
-      .then(f => document.getElementById('footer-placeholder').innerHTML = f);
-    
-    // Header padding auto-adjust (same as Privacy, Terms, DPA)
-    function adjustMainPadding() {
-      const header = document.querySelector('header');
-      const main = document.querySelector('main');
-      if (header && main) {
-        const headerHeight = header.offsetHeight || 0;
-        main.style.paddingTop = `${headerHeight}px`;
-        document.documentElement.style.setProperty('--header-height', `${headerHeight}px`);
-      }
-    }
-    window.addEventListener('load', adjustMainPadding);
-    window.addEventListener('resize', adjustMainPadding);
-    document.fonts?.ready.then(adjustMainPadding);
-    setTimeout(adjustMainPadding, 100);
-    setTimeout(adjustMainPadding, 500);
-  </script>
+  </footer>
 </body>
 </html>
